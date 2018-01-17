@@ -34,6 +34,7 @@
 <body>
 <div class="coupon_list">
 	<div class="list_c">
+		<form id="sub_mit">
 		<ul>
 			<li>
 				<div class="left">
@@ -43,6 +44,7 @@
 					<h3>免费手工洗车券</h3>
 					<p>截止日期：2018年1月24日</p>
 					<p>使用商家：不限</p>
+					<input name="ids[]" type="checkbox" style="display: none;" class="checkbox" value="22">
 				</div>
 				<div style="clear: both;"></div>
 			</li>
@@ -55,10 +57,12 @@
 					<h3>免费手工洗车券</h3>
 					<p>截止日期：2018年1月24日</p>
 					<p>使用商家：不限</p>
+					<input name="ids[]" type="checkbox" style="display: none;" class="checkbox" value="11">
 				</div>
 				<div style="clear: both;"></div>
 			</li>
 		</ul>
+		</form>
 	</div>
 	<div class="btn">
 		<a href="javascript:void(0);" onclick="submit()">立即使用</a>
@@ -71,11 +75,22 @@ $(function(){
 	$('li').children('.content').after(html)
 })
 $('li').click(function(){
-	$(this).toggleClass("current")
 	$(this).children(".chose").toggle();
+	$(this).toggleClass("current")
+	// if ($(this).children('.content').children(".checkbox").attr()) {
+
+	// }
+	var check=$(this).children('.content').children(".checkbox").prop("checked")
+	
+	if (check) {
+		$(this).children('.content').children(".checkbox").prop("checked",false)
+	}else{
+		$(this).children('.content').children(".checkbox").prop("checked",true)
+	}
 })
 function submit(){
-
+var data = $('#sub_mit').serialize()
+	console.log(data)
 }
 </script>
 </html>
