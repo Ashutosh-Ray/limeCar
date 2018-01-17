@@ -68,7 +68,7 @@ class User extends MobileBase
     {
         $goods_collect_count = M('goods_collect')->where("user_id", $this->user_id)->count(); // 我的商品收藏
         $comment_count = M('comment')->where("user_id", $this->user_id)->count();   // 我的评论数
-        $coupon_count = M('coupon_list')->where("uid", $this->user_id)->count(); // 我的优惠券数量
+        $coupon_count = M('coupon_list')->where(array("uid"=>$this->user_id,'user_del'=>0))->count(); // 我的优惠券数量
         $level_name = M('user_level')->where("level_id", $this->user['level'])->getField('level_name'); // 等级名称
         $order_count = M('order')->where("user_id", $this->user_id)->count(); //我的全部订单 (改)
         $count_return = M('return_goods')->where("user_id=$this->user_id and status<2")->count();   //退换货数量
