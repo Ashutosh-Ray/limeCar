@@ -1,0 +1,567 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>商家入驻-{$imshop_config['shop_info_store_title']}</title>
+    <meta http-equiv="keywords" content="{$imshop_config['shop_info_store_keyword']}" />
+    <meta name="description" content="{$imshop_config['shop_info_store_desc']}" />
+    <link rel="stylesheet" href="__STATIC__/css/index.css" type="text/css">
+    <script src="__STATIC__/js/jquery-1.10.2.min.js"></script>
+    <script src="__STATIC__/js/slider.js"></script>
+    <script src="__PUBLIC__/js/layer/layer.js"></script><!--弹窗js 参考文档 http://layer.layui.com/-->    
+    <script src="__PUBLIC__/js/global.js"></script>
+    <style>
+        #tab_bus_reg{
+            widows: 100%;
+        }
+        #tab_bus_reg th{
+            width: 35%;
+        }
+        #tab_bus_reg td{
+            width: 65%;
+            text-align: left;
+        }
+
+.input-file-show {
+    background-color: #FFF;
+    vertical-align: top;
+    display: inline-block;
+    padding-left: 26px;
+    border: solid 1px #D7D7D7;
+    border-radius: 0px;
+    position: relative;
+    z-index: 1;
+}
+* {
+    word-wrap: break-word;
+    outline: none;
+}
+.input-file-show span.show {
+    width: 22px;
+    height: 22px;
+    text-align: center;
+    padding: 2px;
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+}
+.type-file-box {
+    display: block;
+    width: 262px;
+    height: 26px;
+    position: relative;
+    z-index: 1;
+}
+.type-file-text {
+    line-height: 26px !important;
+    display: block;
+    width: 163px;
+    height: 26px !important;
+    float: left !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none 0 !important;
+    border-radius: 0 !important;
+}
+.type-file-button, .type-file-button:focus {
+    background-color: #E6E6E6;
+    display: block;
+    width: 99px;
+    height: 26px;
+    float: left !important;
+    border: 0;
+    border-radius: 0 3px 3px 0;
+}
+.ncap-thumb-list h5 {
+    font-weight: normal;
+    color: red;
+    line-height: 20px;
+    display: block;
+    height: 20px;
+    padding: 4px 0 8px 0;
+    margin-left: 5px;
+}
+    </style>
+</head>
+
+<body class="reg">
+<div class="customer-header" style="text-align: center;color: #b90006;font-weight: 900;font-size: 34px;line-height: 73px;">
+    商家入驻
+</div>
+<div class="setout">
+    <div class="shuru-area" id="tel_tab_div" >
+        <div class="shrk-bd-zc" style="height:auto; ">
+            <form action="" method="post" onSubmit=" return check_submit(this)" id="reg_form2">
+            <div style="margin-left: 5%;">商户信息:</div>
+                <table border="0" cellspacing="0" cellpadding="0" id="tab_bus_reg" style="width: 100%">
+                    <tr>
+                        <th>商户名称：</th>
+                        <td><input class="zc-text" type="text" name="shop_name" id="username2" placeholder="请输入商户名称" required/></td>
+                    </tr>
+                    <tr>
+                        <th>商户管理员：</th>
+                        <td><input class="zc-text" type="text" name="user_name" id="username2" placeholder="请输入商户管理员" required/><span style="color: red">&nbsp;*手机/邮箱</span></td>
+                    </tr>
+                    <tr>
+                        <th>管理员密码：</th>
+                        <td><input class="zc-text" type="password" name="password" id="username2" placeholder="请输入管理员密码" required/></td>
+                    </tr>
+                    <tr>
+                        <th>确认密码：</th>
+                        <td><input class="zc-text" type="password" name="password2" id="username2" placeholder="请重复输入您的密码" required/></td>
+                    </tr>
+                     <tr>
+                        <th>手机号：</th>
+                        <td><input class="zc-text" type="text" name="phone" id="username2" placeholder="请输入手机号" onkeyup="value=value.replace(/[^0-9\.]*$/g,'')" required/><span style="color: red">&nbsp;*</span></td>
+                    </tr>
+                    <tr>
+                        <th>手机验证码：</th>
+                        <td  class="po-re">
+                            <input class="zc-text wi96" name="code" id="code" type="text" placeholder="手机验证码" required/>
+                            <button type="button" class="po-ab to0" style="width: 60px;height: 35px;margin-top: 10px;margin-left: 10px" id="count_down" onClick="send_sms_reg_code()">发送</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>商户经纬度：</th>
+                        <td><input  class="zc-text wi96" type="text" name="shop_lon" id="shop_lon" placeholder="经度" onkeyup="value=value.replace(/[^0-9\.]*$/g,'')" value="{$shop_lon}" required/><input style="margin-left: 10px;"  class="zc-text wi96" type="text" onkeyup="value=value.replace(/[^0-9\.]*$/g,'')" name="shop_lat" id="shop_lat" placeholder="纬度" value="{$shop_lat}" required/>
+                          <button type="button" class="po-ab" style="width: 60px;height: 35px;margin-left: 10px" onclick="latAndLon()">定位</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>商户地址：</th>
+                        <td><input class="zc-text" type="text" name="shop_address" id="shop_address" placeholder="请输入商户地址" value="{$shop_address}" required/>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>所在区域：</th>
+                        <td>
+                        省<select name="province" class="zc-text" style="height: auto;width: auto;">
+                        <volist name="provinces" id="p">
+                        <option value="{$p.id}">{$p.name}</option>
+                        </volist>
+                        </select>
+                        市<select name="city" class="zc-text" style="height: auto;width: auto;"></select>
+                        区<select name="area" class="zc-text" style="height: auto;width: auto;"></select>
+                        </td>
+                    </tr>
+                     
+                     <tr>
+                        <th>固话：</th>
+                        <td><input onkeyup="value=value.replace(/[^0-9\.]*$/g,'')" class="zc-text" type="text" name="tel" id="username2" placeholder="请输入固话" required/></td>
+                    </tr>
+                    <tr>
+                        <th>商户类型：</th>
+                        <td>
+                        <select value="shop_type" class="zc-text" style="height: auto;">
+                        <option value="1">一站式</option>
+                        <option value="2">社区式</option>
+                        <option value="3">维修厂</option>
+                        </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>商家logo：</th>
+                        <td>
+                        <div class="input-file-show" id="divComUploadContainer" style="float: left;">
+                          <span class="show">
+                           <a class="nyroModal" rel="gal" href="" target="_blank">
+                           <img src="" style="width: 22px;height: 22px;margin-left: 3px;">
+                          <i class="fa fa-picture-o" onmouseover="layer.tips('<img src=>',this, {tips: [1, '#fff']});" onmouseout="layer.closeAll();"></i>
+                          </a>
+                        </span>           
+                       <span class="type-file-box">            
+                         <input type="text" id="shop_logo" name="shop_logo" value="" class="type-file-text" /*disabled="disabled"*/ required/>            
+                        <input type="button" class="type-file-button" onclick="GetUploadify(1,'shop_logo','category','')" value="上传图片" hidefocus="true" nc_type="change_site_logo" title="点击前方预览图可查看大图，点击按钮选择文件并提交表单后上传生效"> 
+                      </span>
+                    </div>
+                    <div id="thumbnails" class="ncap-thumb-list" style="float: left;">
+                       <h5><i class="fa fa-exclamation-circle"></i> 请上传图片格式文件。</h5>
+                    </div>
+                        </td>
+                    </tr> 
+                    <tr>
+                        <th>营业执照：</th>
+                        <td>
+                        <div class="input-file-show" id="divComUploadContainer" style="float: left;">
+                          <span class="show">
+                           <a class="nyroModal" rel="gal" href="" target="_blank">
+                           <img src="" style="width: 22px;height: 22px;margin-left: 3px;">
+                          <i class="fa fa-picture-o" onmouseover="layer.tips('<img src=>',this, {tips: [1, '#fff']});" onmouseout="layer.closeAll();"></i>
+                          </a>
+                        </span>           
+                       <span class="type-file-box">            
+                         <input type="text" id="business_licence" name="business_licence" value="" class="type-file-text" /*disabled="disabled"*/ required/>            
+                        <input type="button" class="type-file-button" onclick="GetUploadify(1,'business_licence','category','')" value="上传图片" hidefocus="true" nc_type="change_site_logo" title="点击前方预览图可查看大图，点击按钮选择文件并提交表单后上传生效"> 
+                      </span>
+                    </div>
+                    <div id="thumbnails" class="ncap-thumb-list" style="float: left;">
+                       <h5><i class="fa fa-exclamation-circle"></i> 请上传图片格式文件。</h5>
+                    </div>
+                        </td>
+                    </tr>
+                </table>
+                <div style="margin-left: 5%;color: ">商户法人信息:</div>
+                <table border="0" cellspacing="0" cellpadding="0" id="tab_bus_reg" style="width: 100%">
+                    <tr>
+                        <th>公司法人：</th>
+                        <td><input class="zc-text" type="text" name="legal_person" id="username2" placeholder="请输入公司法人" required/></td>
+                    </tr>
+                    <tr>
+                        <th>法人身份证号：</th>
+                        <td><input class="zc-text" type="text" onkeyup="value=value.replace(/[^0-9\.]*$/g,'')" name="legal_id" id="username2" placeholder="请输入法人身份证号" required/></td>
+                    </tr>                    
+                   <tr>
+                        <th>法人身份证正面：</th>
+                        <td>
+                        <div class="input-file-show" id="divComUploadContainer" style="float: left;">
+                          <span class="show">
+                           <a class="nyroModal" rel="gal" href="" target="_blank">
+                           <img src="" style="width: 22px;height: 22px;margin-left: 3px;">
+                          <i class="fa fa-picture-o" onmouseover="layer.tips('<img src=>',this, {tips: [1, '#fff']});" onmouseout="layer.closeAll();"></i>
+                          </a>
+                        </span>           
+                       <span class="type-file-box">            
+                         <input type="text" id="card_font" name="card_font" value="" class="type-file-text" /*disabled="disabled"*/ required/>            
+                        <input type="button" class="type-file-button" onclick="GetUploadify(1,'card_font','category','')" value="上传图片" hidefocus="true" nc_type="change_site_logo" title="点击前方预览图可查看大图，点击按钮选择文件并提交表单后上传生效"> 
+                      </span>
+                    </div>
+                    <div id="thumbnails" class="ncap-thumb-list" style="float: left;">
+                       <h5><i class="fa fa-exclamation-circle"></i> 请上传图片格式文件。</h5>
+                    </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>法人身份证反面：</th>
+                        <td>
+                        <div class="input-file-show" id="divComUploadContainer" style="float: left;">
+                          <span class="show">
+                           <a class="nyroModal" rel="gal" href="" target="_blank">
+                           <img src="" style="width: 22px;height: 22px;margin-left: 3px;">
+                          <i class="fa fa-picture-o" onmouseover="layer.tips('<img src=>',this, {tips: [1, '#fff']});" onmouseout="layer.closeAll();"></i>
+                          </a>
+                        </span>           
+                       <span class="type-file-box">            
+                         <input type="text" id="card_back" name="card_back" value="" class="type-file-text" /*disabled="disabled"*/ required/>            
+                        <input type="button" class="type-file-button" onclick="GetUploadify(1,'card_back','category','')" value="上传图片" hidefocus="true" nc_type="change_site_logo" title="点击前方预览图可查看大图，点击按钮选择文件并提交表单后上传生效"> 
+                      </span>
+                    </div>
+                    <div id="thumbnails" class="ncap-thumb-list" style="float: left;">
+                       <h5><i class="fa fa-exclamation-circle"></i> 请上传图片格式文件。</h5>
+                    </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>&nbsp;</th>
+                        <td id="pa1"><input class="checkboxs" id="agree1" name="agree" type="checkbox" value="1" required/ style="vertical-align: middle;"><label for="agree">同意</label><a class="iages" href="">《帐号服务条款、隐私政策》</a></td>
+                    </tr>
+                    <tr>
+                        <th>&nbsp;</th>
+                        <td ><input style="margin-left:10% " type="submit" value="立即入驻" class="zc-ljzc"/></td>
+                    </tr>
+                </table>
+
+            </form>
+
+        </div>
+        <div class="tar">
+            <span><a style="color:#F93; " href="{:U('Admin/Admin/login')}">申请失败</a></span>
+            <span>已有账号</span>
+            <a class="zc-dl" href="{:U('Admin/Admin/login')}">登录</a>
+        </div>
+        <div class="cz-clude">
+            <img src="__STATIC__/images/bg14.png" />
+        </div>
+
+    </div>
+
+    <!--手机注册-->
+</div>
+<div class="hr-60"></div>
+<div class="cust-footer">
+    <div class="setout po-re">
+        <div class="warrant-area">
+            <p>
+                <a href="">《帐号服务条款、隐私政策》</a>
+                <em>|</em>
+                <a href="">常见问题？</a>
+            </p>
+        <p>Copyright © 2016-2025 {$imshop_config['shop_info_store_name']}  版权所有 保留一切权利 备案号:{$imshop_config['shop_info_record_no']}</p>
+        </div>
+    </div>
+</div>
+<script>
+
+$('select[name="province"]').change(function () {
+
+    var val = $(this).val();
+    $.ajax({
+       url:"/index.php/home/Apply/area.html",
+       type:'post',
+       dataType:"json",
+       data:{id:val},
+       success:function (res) {
+         if (res.status==1) {
+          var html = '';
+          $(res.info).each(function (index,item) {
+            html+= '<option value="'+item.id+'">'+item.name+'</option>';
+          });
+          $('select[name="city"]').html(html);
+         }else{
+         
+         }
+       }
+    });
+  });
+$('#submitBtn').click(function () {
+  var form  = $('#business_form');
+  var _url = form.attr('action');
+  $.ajax({
+    url:_url,
+    type:'POST',
+    data:form.serialize(),
+    dataType:'json',
+    success:function (res) {
+     alert(res.msg);
+     window.location.reload(); 
+    }
+  });
+  });
+$('select[name="city"]').change(function () {
+    var val = $(this).val();
+    $.ajax({
+       url:"/index.php/home/Apply/area.html",
+       type:'post',
+       dataType:"json",
+       data:{id:val},
+       success:function (res) {
+         if (res.status==1) {
+          var html = '';
+          $(res.info).each(function (index,item) {
+            html+= '<option value="'+item.id+'">'+item.name+'</option>';
+          });
+          $('select[name="area"]').html(html);
+         }else{
+         
+         }
+       }
+    });
+  });
+    flag = true;
+    $(document).ready(function(){
+    
+
+        $("input[name='username']").blur(function () {
+            var username = $(this).val();
+            var re = /^(13[0-9]{9})|(15[^4,\\D][0-9]{8})|(18[0-9]{9})|(17[0-9]{9})|((\w{1,20}@\w{1,20}.[a-z]{2,5}))$/;
+            var id = $(this).attr("id");
+            if (re.test(username)) {
+                $.ajax({
+                    type : "GET",
+                    url:"/index.php?m=Home&c=Api&a=issetMobileOrEmail",//+tab,
+                    data :{mobile:username},// 你的formid 搜索表单 序列化提交
+                    success: function(data)
+                    {
+                        if(data != '0')
+                        {
+                            flag = false;
+                        }else{
+                            flag = true;
+                        }
+                    }
+                });
+            }else{
+                flag = false;
+            }
+        })
+    });
+	// 普通 图形验证码 
+    function verify(id){
+        $('#'+id).attr('src','/index.php?m=Home&c=User&a=verify&type=user_reg&r='+Math.random());
+    }
+    function check_submit(obj){
+            var form  = $(obj);
+        var _url = '/index.php/home/apply/index';
+       $.ajax({
+         url:_url,
+         type:'POST',
+         data:form.serialize(),
+         dataType:'json',
+         success:function (res) {
+            if (res.status!=1) {
+              layer.alert(res.msg, 
+                {icon: 1,
+                  closeBtn:0
+                },function () {
+                  window.location.reload();
+                }
+                ); 
+            }else{
+
+              layer.alert({icon: 1,
+                  closeBtn:0
+                },function () {
+                  window.location.reload();
+                });
+            }
+       
+          
+         }
+       });
+        return false;
+        var username = $(obj).find('input[name="username"]').val();
+        var password = $(obj).find('input[name="password"]').val();
+        var password2 = $(obj).find('input[name="password2"]').val();
+        var verify_code = $(obj).find('input[name="verify_code"]').val();
+        var agree = $(obj).find('input[type="checkbox"]:checked').val();
+        var error = '';
+        if(username == ''){
+            error += '用户名不能为空';
+        }
+        if(password == '' || password2 == ''){
+            error += '密码不能为空\n';
+        }
+        if(password !== password2){
+            error += '两次输入密码不一致\n';
+        }
+        if(password.length < 6){
+            error += '密码长度不能低于六位\n';
+        }
+        if(verify_code == ''){
+            error += '请输入验证码\n';
+        }
+        if(!agree > 0){
+            error += '您没有同意注册协议\n';
+        }
+        if(!flag){
+            error += '用户名已经被注册\n';
+        }
+        if(error){
+            layer.alert(error, {icon: 2});// alert(error);
+            return false;
+        }
+        var form  = $(obj);
+        var _url = '/index.php/home/apply/index';
+       $.ajax({
+         url:_url,
+         type:'POST',
+         data:form.serialize(),
+         dataType:'json',
+         success:function (res) {
+            if (res.status==1) {
+              layer.alert(res.msg, 
+                {icon: 1,
+                  closeBtn:0
+                },function () {
+                  window.location.reload();
+                }
+                ); 
+            }else{
+            
+              layer.alert(res.msg, {icon: 1});
+            }
+       
+          
+         }
+       });
+        return false;
+    }
+	// 电子邮件注册  和 手机号码注册 切换
+    function reg_tab(id,id2){
+        $('#'+id).addClass('ema-tab');
+        $('#'+id2).removeClass('ema-tab');
+        $('#'+id+'_div').show();
+        $('#'+id2+'_div').hide();
+    }
+	// 发送手机短信
+    function send_sms_reg_code(){
+        var mobile = $('#tel_tab_div').find('input[name="phone"]').val();
+        var verify_code = $('#tel_tab_div').find('input[name="verify_code"]').val();
+        if(!checkMobile(mobile)){
+            layer.alert('请输入正确的手机号码', {icon: 2});// alert('请输入正确的手机号码');
+            return;
+        }
+        // if(verify_code == ''){
+        //     layer.alert('请输入图像验证码', {icon: 2});//alert('请输入正确的手机号码');
+        //     return;
+        // }
+        var url = "/index.php?m=Home&c=Api&a=send_validate_code&scene=1&type=mobile&mobile="+mobile;
+        $.get(url,function(res){
+            if(res.status == 1)
+			{
+				$('#count_down').attr("disabled","disabled");
+				intAs = 10; // 手机短信超时时间
+                jsInnerTimeout('count_down',intAs);
+                layer.alert(res.msg, {icon: 1});
+			}else{
+                layer.alert(res.msg, {icon: 2});
+            }
+        })
+    }
+    // 发送邮箱验证
+    function send_smtp_reg_code(){
+        var email = $('#ema_tab_div').find('input[name="username"]').val();
+        var verify_code =$('#ema_tab_div').find('input[name="verify_code"]').val();
+        if(!checkEmail(email)){
+            layer.alert('请输入正确的邮箱', {icon: 2});// alert('请输入正确的手机号码');
+            return;
+        }
+        $.ajax({
+            type : "POST",
+            url:"{:U('Home/Api/send_validate_code')}",
+            data : {type:'email',send:email,scene:1,verify_code:verify_code},// 你的formid
+            dataType: "json",
+            success: function(data){
+                if(data.status == 1){
+                    $('#count_down').attr("disabled","disabled");
+                    intAs = {$sms_time_out}; // 发送邮箱超时时间
+                    jsInnerTimeout('count_down',intAs);
+                    layer.alert(data.msg, {icon: 1});
+                }else{
+                    layer.alert(data.msg, {icon: 2});
+                }
+            }
+        });
+
+    }
+
+    $('#count_down').removeAttr("disabled");
+    //倒计时函数
+    function jsInnerTimeout(id,intAs)
+    {
+        var codeObj=$("#"+id);
+        //var intAs = parseInt(codeObj.attr("IntervalTime"));
+
+        intAs--;
+        if(intAs<=-1)
+        {
+            codeObj.removeAttr("disabled");
+//            codeObj.attr("IntervalTime",60);
+            codeObj.text("发送");
+            return true;
+        }
+
+        codeObj.text(intAs+'秒');
+//        codeObj.attr("IntervalTime",intAs);
+
+        setTimeout("jsInnerTimeout('"+id+"',"+intAs+")",1000);
+    };
+
+    function latAndLon(){
+      var lng = $('#shop_lon').val();
+      var lat = $('#shop_lat').val();
+    var url = "/Home/Apply/tengXunMap/lat/"+lat+'/lng/'+lng;
+    layer.open({
+        type: 2,
+        title: '选择经纬度',
+        shadeClose: true,
+        shade: 0.8,
+        area: ['60%', '60%'],
+        content: url, 
+    });
+}
+// latAndLon();
+</script>
+</body>
+</html>

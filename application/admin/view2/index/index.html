@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>三品車</title> 
+    <link href="https://fonts.cat.net/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="__PUBLIC__/static/assets/materialize/css/materialize.min.css" media="screen,projection" />
+    <!-- Bootstrap Styles-->
+    <link href="__PUBLIC__/static/assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="__PUBLIC__/static/assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="__PUBLIC__/static/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="__PUBLIC__/static/assets/css/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='http://fonts.cat.net/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="__PUBLIC__/static/assets/js/Lightweight-Chart/cssCharts.css">
+      <script src="__PUBLIC__/static/assets/js/jquery-1.10.2.js"></script>
+    <script src="__PUBLIC__/js/layer/layer.js"></script>
+
+    <style>
+      body{
+        overflow: hidden;
+      }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+<include file="public/nav_header"/>   
+     <!--/. NAV TOP左侧列表  -->
+<include file="public/left"/>
+        <!-- /. NAV SIDE  -->  
+<div id="page-wrapper">
+  <iframe src="{:U('Admin/Index/welcome')}" frameborder="0" width="100%" height="auto" id="iframe">
+  </iframe>
+<include file="public/circle"/>
+  </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+<!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="__PUBLIC__/static/assets/js/jquery-1.10.2.js"></script>
+    <script>
+      $(function(){
+        var height=$(window).height()-65
+        $("iframe").attr("height",height)
+
+        $("#main-menu").children().click(function(){
+          $(this).children().addClass("active-menu")
+          $(this).siblings().children().removeClass("active-menu")
+        })
+
+        $(".nav-second-level").each(function(){
+          $(this).children().click(function(){
+            let address=$(this).children().attr("href")
+            $("#iframe").attr("src",address)
+            $(this).children().addClass("active-menu")
+            $(this).siblings().children().removeClass("active-menu")
+          })
+        })
+      })
+      
+    </script>
+  <!-- Bootstrap Js -->
+    <script src="__PUBLIC__/static/assets/js/bootstrap.min.js"></script>
+  <script src="__PUBLIC__/static/assets/materialize/js/materialize.min.js"></script>
+  <!-- 手风琴菜单引用 -->
+    <script src="__PUBLIC__/static/assets/js/jquery.metisMenu.js"></script>
+    <!-- Custom Js -->
+    <script src="__PUBLIC__/static/assets/js/custom-scripts.js"></script> 
+    
+</body>
+</html>

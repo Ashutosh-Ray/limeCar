@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{$goods.goods_name}-{$imshop_config['shop_info_store_title']}</title>
+    <meta http-equiv="keywords" content="{$imshop_config['shop_info_store_keyword']}" />
+    <meta name="description" content="{$imshop_config['shop_info_store_desc']}" />
+</head>
+<body>
+<link rel="stylesheet" href="__STATIC__/css/goodsInfo.css" type="text/css">
+<link rel="stylesheet" href="__STATIC__/css/swiper.min.css">
+<link rel="stylesheet" href="__STATIC__/css/laydate.css">
+<script type="text/javascript" src="__STATIC__/js/jquery-1.10.2.min.js"></script> 
+<script src="__PUBLIC__/js/layer/layer.js"></script>
+<script src="__STATIC__/js/swiper.min.js"></script>
+<!--------头部开始-------------->
+<include file="public/header" />
+<!--------头部结束-------------->
+
+<!-- 顶部banner开始 -->
+<style>
+.navList li:nth-child(1) a{
+    color: #000!important;
+    }
+.navList li:nth-child(3) a{
+    color: #ca141d!important;
+}
+</style>
+
+<!-- 中部内容开始 -->
+<section class="gi_content gi_usedInfo">
+  <div class="gi_bg">
+    <div class="gi_banner">
+      <div class="gi_base_info">
+          <div class="img">
+              <img src="{$goods.goods_id|goods_thum_images=560,550}" alt="">
+              <div class="moreImg" id="moreImg">
+                查看{$goods_images_list|count}张图
+              </div>
+          </div>
+          <div class="info">
+            <div class="info_tit">
+              <h2>{$goods.goods_name}</h2>
+              <p>{$goods.goods_remark}</p>
+            </div>
+            <div class="info_usedCarPlan">
+              <div class="planCon">
+                <p>三品車价：<span>{$goods['shop_price']|calcu_goods_price}</span></p>
+                <p>首付：<span>{$cases[0]['down_payments']|calcu_goods_price}</span></p>
+                <p>月供：<span>{$cases[0]['first_year']|calcu_goods_price}</span></p>
+                <p>还款期数：{$cases[0]['tail_periods']}期</p>
+              </div>
+            </div>
+            <div class="info_tip">
+              <p>含购置税，送一年保养，无其他费用。更多灵活金融方案，欢迎到店咨询。</p>
+            </div>
+            <div class="info_btn" id="bOpen">
+              <div class="btn">预约到店</div>
+            </div>
+          </div>
+          <div style="clear: both;"></div>
+      </div>
+    </div>
+  </div>
+  <div class="gi_details">
+    <div class="parameter">
+      <h3>车辆配置</h3>
+      <ul>
+      <volist name="goods_attributes" id="vo">
+        <li>
+          <div>
+            <span>{$vo.attr_name}</span>
+            <span>{$vo.attr_val}</span>
+          </div>
+        </li>
+        </volist>
+      </ul>
+      <div style="clear: both;height: 45px;"></div>
+    </div>
+    <div class="details_con">
+  {$goods.goods_content}
+    </div>
+  </div>
+  <div class="gi_swiper" id="swiper" style="visibility:hidden">
+        <!-- Swiper -->
+    <div class="swiper-container gallery-top">
+        <div class="swiper-wrapper">
+          <volist name="goods_images_list" id="v">
+           <div class="swiper-slide" style="background-image:url('{$v|get_sub_images=$v[goods_id],750,550}')"></div>
+         </volist>  
+        </div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next swiper-button-white"></div>
+        <div class="swiper-button-prev swiper-button-white"></div>
+    </div>
+    <div class="swiper-container gallery-thumbs" style="background-color: rgba(0,0,0,0);">
+        <div class="swiper-wrapper">
+            <volist name="goods_images_list" id="v">
+            <div class="swiper-slide" style="background-image:url('{$v|get_sub_images=$v[goods_id],150,100}')">
+            </div>
+            </volist>
+        </div>
+    </div>
+    <div class="swiper_close" id="close">×</div>
+    <!-- Swiper JS -->
+  </div>
+        <!-- 预约到店开始 -->
+  <div class="booking" id="booking" style="visibility:hidden">
+  <form id="ajax_form">
+    <div class="booking_con">
+      <div class="tit">
+        <h3>预约到店</h3>
+        <p>请留下您的联系方式，外面将在24小时之内与您联系</p>
+      </div>
+      <div class="con">
+        <div class="con_left">
+          <div class="con_imgBox">
+            <img src="{$goods.goods_id|goods_thum_images=450,355}" alt="">
+          </div>
+          <div class="con_tit">
+            <h3>{$goods.goods_name}</h3>
+          </div>
+        </div>
+        <div class="con_right">
+          <table>
+            <tr>
+              <td>姓名</td>
+              <td colspan="1">
+                <input type="text" placeholder="请输入您的姓名" name="user_name">
+              </td>
+              <td>
+                <input type="radio" value="0" name="sex">男性
+                <input type="radio" value="1" name="sex">女性
+              </td>
+            </tr>
+            <tr>
+              <td>手机号</td>
+              <td>
+                <input type="text" placeholder="请输入您的手机号" id="phone" name="phone">
+              </td>
+              <td>
+                <span style="display: none;" id="phoneTip">请输入正确的手机号</span>
+              </td>
+            </tr>
+            <tr>
+              <td>验证码</td>
+              <td>
+                <input type="text" placeholder="请输入验证码" name="code">
+              </td>
+              <td>
+                <a href="#" class="check" style="display: block;">点击发送</a>
+<!--                 <a href="javascript:void(0);" class="time" style="display: none;">60s</a>
+                <a href="javascript:void(0);" style="display: none;" class="again">再次发送</a> -->
+              </td>
+            </tr>
+            <tr>
+              <td>预约时间</td>
+              <td id="time">
+                <input type="text" id="bookDate" name="time">
+              </td>
+              <td>
+                <span>&nbsp;</span>
+              </td>
+            </tr>
+            <tr>
+              <td>预约地址</td>
+              <td colspan="2">
+                <p>苏州市工业园区若水路1号（苏州市工业园区职业技术学院西门）</p>
+              </td>
+<!--               <td>
+                &nbsp;
+              </td> -->
+            </tr>
+          </table>
+          <a href="javascript:0;" class="book-btn" id="order">预约到店</a>
+        </div>
+      </div>
+      <div class="book-close" id="bClose">×</div>
+    </div>
+    <input type="hidden" name="goods_id" value="{$goods.goods_id}">
+    </form>
+  </div>
+    <!-- 预约到店结束 -->
+</section>
+<!-- 中部内容结束 -->
+
+
+<!--------footer-开始-------------->
+<include file="public/footer" />
+<!--------footer-结束-------------->
+    
+
+</body>
+<script>
+$('.check').click(function(){
+    let phone=$('#phone').val();
+    if (!(/^1[345678]\d{9}$/.test(phone))) {
+      $('#phoneTip').show();
+    }else{
+
+      $.ajax({
+        url:'/index.php/Home/Goods/sendCode',
+        dataType:'json',
+        data:{phone:phone},
+        type:'post',
+        success:function (res) {
+          if(res.status==1){
+            layer.msg(res.msg, {icon: 1,time: 3000}); 
+          }else{
+             layer.msg(res.msg, {icon: 2,time: 3000}); 
+          }
+          
+        }
+      })
+    }
+  })
+
+    $('#order').click(function(){
+    let phone=$('#phone').val();
+    let name=$.trim($('input[name="user_name"]').val());
+    let code=$.trim($('input[name="code"]').val());
+    let time=$.trim($('input[name="time"]').val());
+    if (!(/^1[345678]\d{9}$/.test(phone))) {
+      $('#phoneTip').show();
+    }else if(name.length==0){
+          layer.msg('请输入姓名', {icon: 2,time: 3000});
+    }else if(code.length==0){
+          layer.msg('请输入验证码', {icon: 2,time: 3000});
+    }else if(time.length==0){
+          layer.msg('请选择时间', {icon: 2,time: 3000});
+    }
+    else{
+  
+      $.ajax({
+        url:'/index.php/Home/Goods/ajax_subscribe',
+        dataType:'json',
+        data:$('#ajax_form').serialize(),
+        type:'post',
+        success:function (res) {
+          if(res.status==1){
+            layer.alert(res.msg, {icon: 1, closeBtn:0});
+          }else{
+             layer.alert(res.msg, {icon: 2, closeBtn:0});
+          }
+          
+        }
+      })
+    }
+  })
+</script>
+<script src="__STATIC__/js/laydate.js"></script>
+<!-- 日历 -->
+<script>
+  laydate.render({
+  elem: '#bookDate' //指定元素
+   ,position: 'fixed'
+   ,change: function(value, date){ //监听日期被切换
+    lay('#time').html(value);
+  }
+});
+
+</script>
+    <!-- Initialize Swiper -->
+    <script>
+    var galleryTop = new Swiper('.gallery-top', {
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        spaceBetween: 10,
+    });
+    var galleryThumbs = new Swiper('.gallery-thumbs', {
+        spaceBetween: 10,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        touchRatio: 0.2,
+        slideToClickedSlide: true
+    });
+    galleryTop.params.control = galleryThumbs;
+    galleryThumbs.params.control = galleryTop;
+    
+    //图片盒子开关
+    $('#close').click(function(){
+      $('#swiper').css('visibility','hidden');
+    });
+    $('#moreImg').click(function(){
+      $('#swiper').css('visibility','visible');
+    })
+
+    //预约开关
+$('#bClose').click(function(){
+  $('#booking').css('visibility','hidden');
+})
+$('#bOpen').click(function(){
+  $('#booking').css('visibility','visible');
+})
+    </script>
+</html>

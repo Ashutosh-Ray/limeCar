@@ -1,0 +1,156 @@
+<include file="public/header"/>
+<body>
+<header>
+<div class="tab_nav">
+   <div class="header">
+     <div class="h-left"><a class="sb-back" href="javascript:history.back(-1)" title="返回"></a></div>
+     <div class="h-mid">订单详情</div>
+     <div class="h-right">
+       <aside class="top_bar">
+         <div onClick="show_menu();$('#close_btn').addClass('hid');" id="show_more"><a href="javascript:;"></a> </div>
+       </aside>
+     </div>
+   </div>
+ </div>
+</header>
+<include file="public/menu"/>
+
+<div id="tbh5v0">
+  <div class="order ajax_return">
+    <if condition="$order_info['check_status'] eq 1">
+           <div class="top_red">已验券</div>
+          <else/>
+             <div class="top_green">未验券</div>
+    </if>
+    
+   
+    <div class="order_list">
+    <volist name="order_info.goods_list" id="vo">  
+      <a>
+      <!-- <a href="{:U('/Mobile/Goods/goodsInfo',array('id'=>$vo['goods_id']))}"> -->
+        <dl style="position: relative">  
+          <dt>
+           
+            <img src="{$vo.goods_id|goods_thum_images=200,200}">
+          </dt>
+          <dd class="tit">
+            <h3 style="font-weight: 700;display: block;font-size: 14px;height: 24px;line-height: 24px;overflow: hidden;white-space: nowrap;text-overflow:ellipsis;">{$vo.goods_name}</h3>
+            <span style="display: block;height: 24px;line-height: 24px;font-size: 12px;color: #696969;">￥{$vo['goods_price']}</span>
+          </dd>                 
+        </dl>
+      </a>
+      <h2 class="bianNo">
+        <a href="javascript:void(0);">
+            <span>订单编号：{$order_info.order_sn}</span>
+        </a>
+      </h2>
+      <h2 class="yanquanNo">
+        <a href="javascript:void(0);">
+          <span>验券号：{$vo.goods_osn}</span>
+          <if condition="$vo['check_status'] eq 1">
+            <span style="float: right;color: #02c1ab">已验</span>
+          <else/>
+            <span style="float: right;color: orange;">未验</span>
+          </if>
+        </a>
+      </h2>
+      <h2 class="dateArea">
+        <if condition="$vo['start_time'] eq 0">
+          <span>使用日期范围：不限</span>
+          <else/>
+          <span>使用日期范围：{$vo['start_time']|date="Y-m-d",###} 至 {$vo['end_time']|date="Y-m-d",###}</span>
+        </if>
+      </h2>
+       <if condition="$vo['check_status'] eq 0">
+      <h2 class="bookTime">
+        <span>下单时间：{$order_info['add_time']|date="Y-m-d H:i:s",###}</span>
+      </h2>
+      <h2 class="openShop">
+        <a href="{:U('Mobile/User/useBusiness',array('rec_id'=>$vo['rec_id']))}" id="latlon">
+        <span>可用商家</span>
+        <span><svg t="1512454024154" style="fill: #9d9d9d;" viewBox="0 0 1024 1024" version="1.1" p-id="1103" width="20" height="20" transform="translate(0 7)"><defs><style type="text/css"></style></defs><path d="M683.9808 512 267.6224 95.6672 303.8208 59.4432 720.4608 476.0832 756.3776 512 303.8208 964.5568 267.6224 928.3328Z" p-id="1104"></path></svg></span>
+        </a>
+      </h2>
+    </if>
+      <div class="blank"></div>
+      <h2 class="goodPrice">
+        <span>商品单价</span>
+        <span>￥{$vo['goods_price']}</span>
+      </h2>
+      <h2 class="num">
+        <span>数量</span>
+        <span>{$vo['goods_num']}</span>
+      </h2>
+      <h2 class="restNum">
+        <span>剩余可用数量</span>
+        <span>{$vo['goods_num'] - $vo['check_num']}</span>
+      </h2>
+      <h2 class="pay">
+        <span>实付款：<em>￥{$order_info['total_amount']}</em></span>
+      </h2>
+      <if condition="$vo['check_status'] eq 1">
+      <div class="blank"></div>
+      <h2>
+        <span>消费记录</span>
+      </h2>
+      <volist name="vo.check_logs" id="cl">
+      <h2 style="border-top: 1px solid #eee;">
+        <span>消费时间：{$cl['add_time']|date="Y-m-d H:i:s",###}</span>
+      </h2>
+      <h2 style="margin-bottom: 10px">
+        <span>消费商家：{$cl['shop_name']}</span>
+      </h2>
+    </volist>
+    </if>
+    </volist>      
+  </div> 
+</div>
+  <!--查询条件-->
+<input type="hidden" name="type" value="{$Request.param.type}" />
+</form>   
+<notempty name="lists"> 
+   <div id="getmore" style="font-size:.24rem;text-align: center;color:#888;padding:.25rem .24rem .4rem; clear:both">
+      <a href="javascript:void(0)" onClick="ajax_sourch_submit()">点击加载更多</a>
+  </div>         
+</notempty>    
+</div>
+
+
+<script language="javascript">
+var  page = 1;
+ 
+ /*** ajax 提交表单 查询订单列表结果*/  
+ function ajax_sourch_submit()
+ {    
+    page += 1;   
+    $.ajax({
+      type : "GET",
+      url:"/index.php?m=Mobile&c=User&a=order_list&type={$Request.param.type}&is_ajax=1&p="+page,//+tab,
+//      url:"{:U('Mobile/User/order_list',array('type'=>$_GET['type']),'')}/is_ajax/1/p/"+page,//+tab,      
+      //data : $('#filter_form').serialize(),
+      success: function(data)
+      {
+        if(data == '')
+          $('#getmore').hide();
+        else  
+        {
+          $(".ajax_return").append(data);     
+          $(".m_loading").hide();
+        }
+      }
+    }); 
+ }
+
+//取消订单
+function cancel_order(id){
+  if(!confirm("确定取消订单?"))
+    return false;
+  location.href = "/index.php?m=Mobile&c=User&a=cancel_order&id="+id;
+}
+
+</script>
+<if condition="$signPackage neq null">
+  <include file="public/wx_share"/>
+</if>
+</body>
+</html>

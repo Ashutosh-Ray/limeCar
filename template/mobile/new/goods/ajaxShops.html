@@ -1,0 +1,14 @@
+ <foreach name="list" item="vo" key="k">
+     <li class="shops_li">
+    <a href="{:U('Mobile/Index/index',array('shop'=>$vo['admin_id']))}" class="item">
+      <div class="pic_box" style="background-color: #f8f8f8;">
+<!--         <div class="active_box">
+          <span style=" background-position:0px -36px">新品</span>
+        </div> -->
+        <img src="{$vo.shop_logo}">
+      </div>
+      <div class="title_box">{$vo.shop_name}</div>
+      <!-- <div class="comment_box">已售0</div> -->
+    </a>
+    </li>
+   </foreach>

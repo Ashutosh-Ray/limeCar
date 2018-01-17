@@ -1,0 +1,137 @@
+body {
+  background-color: #eee;
+}
+.goodsTit {
+  width: 100%;
+  background-color: #fff;
+  margin-top: 10px;
+}
+.goodsTit .goodsTit_w {
+  padding: 10px;
+  display: -webkit-box;
+}
+.goodsTit .goodsTit_w img {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+.goodsTit .goodsTit_w .goodsTit_c {
+  -webkit-box-flex: 1;
+  padding-left: 10px;
+}
+.goodsTit .goodsTit_w .goodsTit_c h3 {
+  width: 100%;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 500;
+}
+.goodsTit .goodsTit_w .goodsTit_c p {
+  font-size: 12px;
+  color: #ADADAD;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.goodsCon {
+  width: 100%;
+  background-color: #fff;
+  margin-top: 10px;
+}
+.goodsCon .goodsCon_w {
+  padding: 0 10px;
+}
+.goodsCon .goodsCon_w table {
+  width: 100%;
+}
+.goodsCon .goodsCon_w table tr {
+  width: 100%;
+  border-bottom: 1px solid #E4E4E4;
+  height: 50px;
+}
+.goodsCon .goodsCon_w table tr td:nth-child(1) {
+  width: 60px;
+  font-weight: 500;
+}
+.goodsCon .goodsCon_w table tr td:nth-child(2) input {
+  border: none;
+  outline: none;
+  font-size: 12px;
+}
+.goodsCon .goodsCon_w table tr td:nth-child(2) a {
+  display: block;
+  text-align: right;
+}
+.goodsCon .goodsCon_w table tr td:nth-child(2) #picktime {
+  width: 100%;
+  height: 32px;
+}
+.goodsCon .goodsCon_w table tr td:nth-child(2) p {
+  line-height: 22px;
+  font-size: 12px;
+}
+.goodsCon .goodsCon_w table tr td:nth-child(2) .phoneTip {
+  font-size: 12px;
+  color: red;
+  line-height: 16px;
+  display: none;
+  float: right;
+  margin-top: 10px;
+}
+.goodsCon .goodsCon_w table tr td:nth-child(3) input {
+  display: none;
+}
+.goodsCon .goodsCon_w table tr td:nth-child(3) label {
+  display: block;
+  width: 50%;
+  height: 100%;
+  float: left;
+  position: relative;
+}
+.goodsCon .goodsCon_w table tr td:nth-child(3) label em {
+  position: absolute;
+  top: 50%;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #E4E4E4;
+  border-radius: 50%;
+  margin-top: -9px;
+}
+.goodsCon .goodsCon_w table tr td:nth-child(3) label span {
+  float: right;
+}
+.goodsCon .goodsCon_w table tr td:nth-child(3) label.active em i {
+  display: block;
+  background-color: red;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 4px;
+  margin-left: 4px;
+}
+.goodsCon .goodsCon_w table tr td:nth-child(3) a {
+  display: block;
+}
+.goodsCon .goodsCon_w table tr:last-child {
+  border: none;
+  height: 65px;
+}
+.confirm {
+  padding: 0;
+  background-color: #eee;
+}
+.confirm a {
+  display: block;
+  width: 100%;
+  height: 40px;
+  color: #fff;
+  text-align: center;
+  line-height: 40px;
+  font-size: 18px;
+  background-color: #FF8F00;
+}

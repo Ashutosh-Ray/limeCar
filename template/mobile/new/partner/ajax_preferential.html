@@ -1,0 +1,18 @@
+<volist name="goods_list" id="vo">
+        <li>
+          <a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$vo[goods_id],'is_vip'=>1))}">
+          <div class="con_main">
+            <div class="main_pic">
+              <img src="{$vo.goods_id|goods_thum_images=240,240}" alt="">
+            </div>
+            <div class="main_p">
+              <p>{$vo['goods_name']}</p>
+              <p>{$vo['goods_remark']}</p>
+            </div>
+            <div class="main_right">
+              <p>￥{$vo['shop_price']|calcu_goods_price}</p>
+            </div>
+          </div>
+        </a>
+        </li>
+    </volist>

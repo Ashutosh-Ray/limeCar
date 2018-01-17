@@ -1,0 +1,62 @@
+<include file="public/header"/>
+<body>
+	<div class="chi_top_w">
+		<div class="chi_top_c">
+			<table>
+				<thead>
+					<td>合伙人姓名</td>
+					<td>费用</td>
+					<td>已售车辆</td>
+					<td>加盟时间</td>
+				</thead>
+			</table>
+		</div>
+	</div>
+	<div class="chi_blank"></div>
+	<div class="chi_con_w">
+		<div class="chi_con_c">
+			<table>
+				<tbody id="ajax_return">
+					<volist name="list" id="vo">
+					<tr>
+					<td>
+						<img src="{$vo[head_pic]|default="__STATIC__/images/user68.jpg"}" alt="">
+						<span>{$vo['aplly_name']}</span>
+					</td>
+					<td>￥{$vo['account']}</td>
+					<td>{$vo['sald_num']}</td>
+					<td>{$vo['pay_time']|date="Y-m-d",###}</td>
+					</tr>
+				</volist>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<notempty name="list">
+   <div id="getmore" style="font-size:.24rem;text-align: center;color:#888;padding:.1rem; clear:both">
+      <a href="javascript:void(0)" onClick="ajax_sourch_submit()">点击加载更多</a>
+  </div>
+</notempty>
+</body>
+</html>
+<script>
+var  page = 1;
+ /*** ajax 提交表单 查询订单列表结果*/  
+ function ajax_sourch_submit()
+ {
+    page += 1;
+    $.ajax({
+        type : "POST",
+        url:"{:U('Mobile/Partner/children')}",//+tab,
+//      data : $('#filter_form').serialize(),// 你的formid 搜索表单 序列化提交
+        data:{p:page},
+        success: function(data)
+        {
+            if($.trim(data) == '')
+                $('#getmore').hide();
+            else
+                $("#ajax_return").append(data);
+        }
+    });
+ } 
+</script>

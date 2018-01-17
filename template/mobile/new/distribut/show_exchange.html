@@ -1,0 +1,200 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta name="Generator" content="imshop" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>兑换商品</title>
+<meta http-equiv="keywords" content="{$imshop_config['shop_info_store_keyword']}" />
+<meta name="description" content="{$imshop_config['shop_info_store_desc']}" />
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<link rel="stylesheet" href="__STATIC__/css/public.css">
+<link rel="stylesheet" href="__STATIC__/css/flow.css">
+<link rel="stylesheet" href="__STATIC__/css/style_jm.css">
+<script type="text/javascript" src="__STATIC__/js/jquery.js"></script>
+<script src="__PUBLIC__/js/global.js"></script>
+<script src="__PUBLIC__/js/mobile_common.js"></script>
+<script src="__STATIC__/js/common.js"></script>
+</head>
+<body style="background: rgb(235, 236, 237);position:relative;">
+
+<div class="tab_nav">
+    <div class="header">
+      <div class="h-left">
+        <a class="sb-back" href="javascript:history.back(-1)" title="返回"></a>
+      </div>
+      <div class="h-mid">兑换商品</div>
+    </div>
+</div>
+ 
+<div class="screen-wrap fullscreen login">
+    <div class="page-shopping ">
+      <div class="cart_list">
+        <form id="cart_form" name="formCart" action="{:U('Mobile/Distribut/do_exchange')}" method="post">
+        <input type="hidden" name="address_id" value="{$address['address_id']}">
+<input type="hidden" name="share_id" value="{$id}">
+    <div  class="block" style="margin-top:0px;">   
+      <div class="item-list">
+       <div class="item">
+         <div class="inner">
+           <div style="width:60%; float:left; height:98px;">
+             <div class="check-wrapper">
+               <!--   <input type="radio" autocomplete="on" name="type" value="goods" > -->
+             </div>
+             <div  class="pic">
+                 <a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$share_goods[goods_id]))}"><img src="{$share_goods.goods_id|goods_thum_images=200,200}"></a>
+             </div>
+             <div class="name" style="height: 36px;text-overflow:ellipsis;overflow: hidden;white-space: nowrap;">
+               <span>  {$share_goods.goods_name} </span>
+             </div>
+             <div class="attr">
+                 <span>{$share_goods.spec_key_name}</span>
+             </div>
+             <div class="num">
+                 <div class="xm-input-number" style="border: 0px solid #fff;">
+                   <div class="act_wrap">x1
+                     </div>
+                  </div>                 
+             </div>
+           </div>
+           <div style=" position:absolute; right:0px; top:20px; width:100px; height:98px;">
+             <div class="price">
+               <!-- <span class="mar_price">￥{$share_goods.market_price}元</span> -->
+               <br>
+               <span>￥{$share_goods.market_price}元</span>
+               <br>
+               <a href=""><span><if condition="$old['exchange_statue'] eq 1 AND $old['exchange_type'] eq 1">已兑换</if></span></a>
+              </div>
+           </div>
+           <div style="height:0px; line-height:0px; clear:both;"></div>
+         </div>
+         <div class="inner">
+           <div style="width:60%; float:left; height:98px;">
+             <div class="check-wrapper">
+                 <!-- <input type="radio" autocomplete="on" name="type" value="money" > -->
+             </div>
+             <div  class="pic">
+                 <a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$v[goods_id]))}"><img src="__STATIC__/images/money.png"></a>
+             </div>
+             <div class="name">
+               <span>  {$v.goods_name} </span>
+             </div>
+             <div class="attr">
+                 <span>{$v.spec_key_name}</span>
+             </div>
+             <div class="num">
+                 <div class="xm-input-number" style="border: 1px solid #fff;">
+                   <div class="act_wrap">{$share_money}
+                     </div>
+                  </div>                 
+             </div>
+           </div>
+             <div style=" position:absolute; right:0px; top:20px; width:100px; height:98px;">
+             <div class="price">          
+               <br>
+               <a href=""><span><if condition="$old['exchange_statue'] eq 1 AND $old['exchange_type'] eq 2">已兑换</if></span></a>
+              </div>
+           </div>
+           <div style=" position:absolute; right:0px; top:20px; width:100px; height:98px;">
+           </div>
+           <div style="height:0px; line-height:0px; clear:both;"></div>
+         </div>
+         <div class="append"></div>
+       </div>
+     </div>
+    </div>
+<!-- <div class="bottom-panel">
+
+       <div class="right">
+         <input type="submit"  class="xm-button " value="兑换"></div>
+    </div> -->
+        </form>
+      </div>
+    </div>
+<div style="height:72px;"></div>
+</div>
+<div class="f_block" id="pop" style="position: fixed; bottom: 0px; left: 0px; height: 0px; z-index: 99999999; overflow: hidden; width: 100%; background: rgb(255, 255, 255);">
+  <p class="f_title"><span>选择自提点</span><a class="c_close" href="javascript:void(0)" onClick="close_pop()"></a></p>
+  <div id="pickcontent"></div>
+</div>
+<include file="public/footer_nav"/>
+<script type="text/javascript">
+$(document).ready(function(){
+    // ajax_cart_list(); // ajax 请求获取购物车列表
+});
+
+// ajax 提交购物车
+var before_request = 1; // 上一次请求是否已经有返回来, 有才可以进行下一次请求
+function ajax_cart_list(){
+
+	if(before_request == 0) // 上一次请求没回来 不进行下一次请求
+	    return false;
+	before_request = 0;
+    $.ajax({
+        type : "POST",
+        url:"{:U('Mobile/Cart/ajaxCartList')}",//+tab,
+        data : $('#cart_form').serialize(),// 你的formid
+        success: function(data){
+            $("#cart_form").html('');
+            $("#cart_form").append(data);
+			before_request = 1;
+        }
+    });
+}
+
+/**
+ * 购买商品数量加加减减
+ * 购买数量 , 购物车id , 库存数量
+ */
+function switch_num(num,cart_id,store_count)
+{
+    var num2 = parseInt($("input[name='goods_num["+cart_id+"]']").val());
+    num2 += num;
+    if(num2 < 1) num2 = 1; // 保证购买数量不能少于 1
+    if(num2 > store_count)
+    {   alert("库存只有 "+store_count+" 件, 你只能买 "+store_count+" 件");
+        num2 = store_count; // 保证购买数量不能多余库存数量
+    }
+
+    $("input[name='goods_num["+cart_id+"]']").val(num2);
+
+    // ajax_cart_list(); // ajax 更新商品价格 和数量
+}
+
+// ajax 删除购物车的商品
+function ajax_del_cart(ids)
+{
+    $.ajax({
+        type : "POST",
+        url:"{:U('Mobile/Cart/ajaxDelCart')}",
+        data:{ids:ids},
+        dataType:'json',
+        success: function(data){
+            if(data.status == 1)
+        	{
+            	// ajax_cart_list(); //ajax 请求获取购物车列表	
+        	}               
+        }
+    });
+}
+
+// 批量删除购物车的商品
+function del_cart_more()
+{
+    if(!confirm('确定要删除吗?'))
+        return false;
+    // 循环获取复选框选中的值
+    var chk_value = [];
+    $('input[name^="cart_select"]:checked').each(function(){
+        var s_name = $(this).attr('name');
+        var id = s_name.replace('cart_select[','').replace(']','');
+        chk_value.push(id);
+    });
+    // ajax调用删除
+    if(chk_value.length > 0)
+        ajax_del_cart(chk_value.join(','));
+}
+</script> 
+
+</body>
+</html>

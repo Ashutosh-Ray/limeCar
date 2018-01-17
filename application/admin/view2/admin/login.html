@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>三品車</title> 
+    <script src="__PUBLIC__/static/assets/js/jquery-1.10.2.js"></script>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        input:focus{
+            outline: none;
+        }
+        .login >img{
+            position: fixed;
+            width: 100%;
+            height: 100%;
+        }
+        .login >.mask{
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            opacity: 0.3;
+        }
+        .login >.login-con{
+            width: 480px;
+            height: 520px;
+            background-color: #fff;
+            position: fixed;
+            left: 50%;
+            margin-left: -240px;
+            top: 50%;
+            margin-top: -260px;
+        }
+        .login .login-con .login-tit{
+            width: 100%;
+            height: 126px;
+        }
+        .login-con{
+            position: relative;
+        }
+        .login-tit img{
+            display: block;
+            margin: 0 auto;
+        }
+        .login-con .login-user{
+            width: 100%;
+            height: 85px;
+            position: relative;
+            overflow: hidden;
+        }
+        .login-con .login-pas{
+            width: 100%;
+            height: 85px;
+            position: relative;
+            overflow: hidden;
+        }
+        .login-con .login-check{
+            width: 100%;
+            height: 85px;
+            position: relative;
+            overflow: hidden;
+        }
+        .login-con .savepas{
+            width: 100%;
+            height: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        .login-con .btn{
+            width: 100%;
+            height: 105px;
+            position: relative;
+            overflow: hidden;
+        }
+        .login-user >input{
+            width: 420px;
+            height: 52px;
+            display: block;
+            margin: 15px auto;
+            padding-left: 15px;
+            font-size: 18px;
+            border: 1px solid #EEE;
+            box-shadow: 2px 2px 2px #F1F5F9; 
+        }
+        .login-pas >input{
+            width: 420px;
+            height: 52px;
+            display: block;
+            margin: 15px auto;
+            padding-left: 15px;
+            border: 1px solid #EEE;
+            font-size: 18px;
+            box-shadow: 2px 2px 2px #F1F5F9; 
+        }
+        .login-check .check{
+            width: 438px;
+            height: 52px;
+            display: block;
+            margin: 15px auto;
+        }
+        .savepas .save{
+            width: 420px;
+            height: 52px;
+            display: block;
+            margin: 15px auto;
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #5D5D5D;
+        }
+        .btn >a{
+            display: block;
+            width: 438px;
+            height: 52px;
+            margin: 0 auto;
+            font-size: 14px;
+            color: #fff;
+            text-align: center;
+            line-height: 52px;
+            background-color: #F54236;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .savepas .save >input{
+            margin-left: 0;
+            margin-right: 10px;
+        }
+        .login-check .check >input{
+            float: left;
+            height: 46px;
+            width: 96px;
+            padding-left: 15px;
+            font-size: 18px;
+            border: 1px solid #EEE;
+            box-shadow: 2px 2px 2px #F1F5F9;
+        }
+        .login-check .check >span{
+            float: right;
+            height: 52px;
+            width: 132px;
+            background-color: #e7e7e7;
+        }
+        .login-user >span{
+            display: block;
+            position: absolute;
+            height: 52px;
+            width: 52px;
+            background: url(__PUBLIC__/static/assets/img/login-user.jpg) no-repeat 15px 15px;
+            top: 17px;
+            right: 25px;
+        }
+        .login-pas >span{
+            display: block;
+            position: absolute;
+            height: 52px;
+            width: 52px;
+            background: url(__PUBLIC__/static/assets/img/login-pas.jpg) no-repeat 15px 15px;
+            top: 17px;
+            right: 25px;
+        }
+        .block1{
+            width: 7px;
+            height: 105px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #FD870F;
+        }
+        .block2{
+            width: 7px;
+            height: 105px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #FD870F;
+        }
+        .tip{
+            position: absolute;
+            top: 105px;
+            left: 0px;
+            width: 100%;
+            text-align: center;
+        }
+        .tip span{
+            color: red;
+            font-size: 14px;
+            display: block;
+        }
+        .chicuele{
+            width: 132px;
+            height: 52px;
+        }
+    </style>
+</head>
+<body>
+    <form action="" name='theForm' id="theForm" method="post">
+    <div class="login">
+        <img src="__PUBLIC__/static/images/loginbanner.jpg" alt="">
+        <div class="mask"></div>
+        <div class="login-con">
+            <div class="tip">
+                <span id="tip1"></span>
+        
+            </div>
+            <div class="login-tit">
+                <img src="__PUBLIC__/static/images/login-logo.jpg" alt="">
+            </div>
+            <div class="login-user">
+                <input type="text" placeholder="用户名" id="userN" name="username">
+                <span></span>
+                <div class="block1" style="display: none;"></div>
+            </div>
+            <div class="login-pas">
+                <input placeholder="密码" id="pasW"  name="password" type="password"  autocomplete="off">
+                <span></span>
+                <div class="block2" style="display: none;"></div>
+            </div>
+            <div class="login-check">
+                <div class="check">
+                    <input type="text" placeholder="验证码" name="vertify" id="vertify">
+                    <span><img src="{:U('Admin/vertify')}" class="chicuele" id="imgVerify" alt="" onclick="fleshVerify()"></span>
+                </div>
+            </div>
+            <div class="savepas">
+                <div class="save">
+                    <input type="checkbox" id="save">记住用户名
+                </div>
+            </div>
+            <div class="btn">
+                <a href="#">登录</a>
+            </div>
+        </div>
+    </div>
+    </form>
+<script type="text/javascript" src="__PUBLIC__/static/js/jquery.cookie.js"></script>
+<script>
+    // 初始化页面时验证是否勾选记住密码
+    $(document).ready(function(){
+        if ($.cookie("save")=="true") {
+            $("#save").attr("checked",true)
+            $("#userN").val($.cookie("userName"))
+            $("#pasN").val($.cookie("passWord"))
+        }
+    })
+    // 保存信息
+    function saveUserInfo(){
+        console.log($("#save").is(':checked'))
+        if ($("#save").is(':checked')==true) {
+            var userN=$("#userN").val()
+            var pasW=$("#pasW").val()
+            $.cookie("save","true",{expires:7})
+            $.cookie("userName",userN,{expires:7})
+            $.cookie("passWord",pasW,{expires:7})
+        }else{
+            $.cookie("save","false",{expires:-1})
+            $.cookie("userName",null,{expires:-1})
+            $.cookie("passWord",null,{expires:-1})
+        }
+    }
+
+    $(function(){
+        $('.login-user').children('input').focus(function(){
+            $('.login-user').css('background-color','#F1F5F9');
+            $('.block1').show();
+        })
+        $('.login-user').children('input').blur(function(){
+            $('.login-user').css('background-color','#fff');
+            $('.block1').hide();
+        })
+        $('.login-pas').children('input').focus(function(){
+            $('.login-pas').css('background-color','#F1F5F9');
+            $('.block2').show();
+        })
+        $('.login-pas').children('input').blur(function(){
+            $('.login-pas').css('background-color','#fff');
+            $('.block2').hide();
+        })
+        $(".btn").click(function(){
+            if ($("#pasW").val()=="" && $("#userN").val()=="") {
+               $("#tip1").text("请输入用户名和密码");
+                return
+            }
+            else if($("#userN").val()=="") {
+                $("#tip1").text("请输入用户名");
+                return
+            }
+            else if($("#pasW").val()=="") {
+               
+                $("#tip1").text("请输入密码");
+                return
+            }
+            else if($("#vertify").val()=="") {
+               
+                $("#tip1").text("请输入验证码");
+                return
+            }
+            else {
+                
+                //提交表单
+                if(vertify && $('#theForm input[name=username]').val() != '' && $('#theForm input[name=password]').val() != ''){
+                    $.ajax({
+                        async:false,
+                        url:'/index.php?m=Admin&c=Admin&a=login&t='+Math.random(),
+                        data:{'username':$('#theForm input[name=username]').val(),'password':$('#theForm input[name=password]').val(),vertify:$('#theForm input[name=vertify]').val()},
+                        type:'post',
+                        dataType:'json',
+                        success:function(res){
+                            saveUserInfo();
+                            if(res.status != 1){
+                                $('#tip1').text(res.msg);
+                                fleshVerify();
+                                username=false;
+                                password=false;
+                                return false;
+                            }else{
+                                top.location.href = res.url;
+                            }
+                        },
+                        error : function(XMLHttpRequest, textStatus, errorThrown) {
+                            $('#error').html('<span class="error">网络失败，请刷新页面后重试!</span>');
+                        }
+                    });
+                }else{
+                    return false;
+                }
+            }
+
+        })
+       
+    })
+       function fleshVerify(){
+            $('#imgVerify').attr('src','/index.php?m=Admin&c=Admin&a=vertify&r='+Math.floor(Math.random()*100));//重载验证码
+        }
+</script>
+</body>
+</html>

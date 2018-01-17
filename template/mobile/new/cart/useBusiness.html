@@ -1,0 +1,219 @@
+<include file="public/header"/>
+<include file="public/menu"/>
+<body>
+<div id="tbh5v0">
+  <div class="order ajax_return">
+    <div class="order_list">
+      <div class="nav">
+        <div class="tab_nav">
+          <div class="header">
+            <div class="h-left"><a class="sb-back" href="javascript:history.back(-1)" title="返回"></a>
+            </div>
+            <div class="h-mid">全部门店</div>
+            <div class="h-right">
+<!--               <aside class="top_bar">
+                <div onClick="show_menu();$('#close_btn').addClass('hid');" id="show_more"><a href="javascript:;"></a> 
+                </div>
+              </aside> -->
+            </div>
+          </div>
+        </div>
+      <div class="nav_blank" style="display: none;">
+        <div class="nav_blank_address">
+          <p>{$area.name}<span></span></p>
+          <div class="address_block" style="display: none;">
+            <ul>
+              <volist name="areas" id="a">
+              <li>
+                <a data_id="{$a.id}" class="address_a" onclick="address_a('{$a.id}')">
+                  <p>{$a.name}<span></span></p>
+                </a>
+              </li>
+              </volist>.
+            </ul>
+          </div>
+        </div>
+        <div class="nav_blank_order">
+          <p><if condition="$sort eq 2">最近优先<else/>默认排序</if><span></span></p>
+          <div class="order_block" style="display: none;">
+            <ul>
+              <li>
+                <a data_id="1" class="order_a" onclick="order_a(1)">
+                  <p>默认排序 <span></span></p>
+                </a>
+              </li>
+              <li>
+                <a data_id="2" class="order_a" onclick="order_a(2)">
+                  <p>最近优先 <span></span></p>
+                </a>
+              </li>
+              <li>
+                <a  onclick="check_num()">
+                  <p>单数最多 <span></span></p>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      <div class="nav_blank_screen">
+        <p>筛选<span></span></p>
+        <div class="screen_block" style="display: none;">
+          <p>店铺类型</p>
+          <ul>
+            <li>
+              <a data_id="1" class="screen_a" onclick="screen_a(1)">
+                <p>一站式</p>
+              </a>
+            </li>
+            <li>
+              <a data_id="3" class="screen_a" onclick="screen_a(3)">
+                <p>维修厂</p>
+              </a>
+            </li>
+            <li>
+              <a data_id="2" class="screen_a" onclick="screen_a(2)">
+                <p>社区式</p>
+              </a>
+            </li>
+ 
+          </ul>
+         <!--  <div class="screen_btn">
+            <a href="#">重置</a>
+            <a href="#">确定</a>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="con_list">
+      <ul>
+      <volist name="list" id="l">
+        <li>
+          <a href="{:U('Mobile/Business/businessInfo',array('id'=>$l['admin_id']))}">
+          <div class="con_main">
+            <div class="main_pic">
+              <img src="{$l.shop_logo}" alt="">
+              <div class="notes">
+                <if condition="$l['shop_type'] eq 1">一站式</if>
+                <if condition="$l['shop_type'] eq 2">社区式</if>
+                <if condition="$l['shop_type'] eq 3">维修厂</if>
+              </div>
+            </div>
+            <div class="main_p">
+              <p>{$l.shop_name}</p>
+              <p>已服务车次：<span>{$l.check_num}</span></p>
+              <div>{$l.shop_address}</div>
+              <div class="tips">
+                <volist name="$l.tags" id="tag">
+                   <span>{$tag.tag_name}</span>
+                </volist>
+              </div>
+            </div>
+            <div class="main_right">
+              <p>距离：{$l.distance}km</p>
+              <a href="/index.php/Mobile/Cart/jumpMap/id/{$l.admin_id}">导航<svg t="1513063690124" viewBox="0 0 1024 1024" version="1.1" p-id="39879" style="position: absolute; left: 2px; top: 2px; fill:#66AF43" width="20" height="20"><defs><style type="text/css"></style></defs><path d="M536.630004 864.057014c-1.946074 0-3.52726-0.243259-4.743557-0.364889h-0.243259c-15.325336-2.310963-27.73156-14.595558-29.920893-29.920893l-38.678228-276.220929-275.73441-38.799858C171.984321 516.682741 159.578097 504.398147 157.267134 488.707923c-2.310963-15.446965 6.203112-30.772301 20.55541-37.218672l619.581423-275.612781c13.500891-5.959853 28.947856-3.040741 39.286376 7.297779 10.33852 10.33852 13.257632 26.028745 7.297779 39.286376L568.98349 843.136715c-5.838223 12.771113-18.487706 20.920299-32.353486 20.920299z m-0.851408-29.312745c0.364889 0 0.729778 0.12163 0.973037 0.12163 2.432593 0 4.621927-1.459556 5.594964-3.64889L817.351229 210.41929c0.973037-2.189334 0.486519-4.865186-1.337926-6.689631s-4.500297-2.189334-6.81126-1.216296L189.74225 478.247773c-2.432593 1.094667-3.892149 3.648889-3.52726 6.324742 0.364889 2.675852 2.554223 4.986816 5.108445 5.230074l297.506117 41.840599 41.718969 297.992636c0.364889 2.554223 2.554223 4.621927 5.230075 5.108445z" fill="" p-id="39880"></path></svg></a>
+            </div>
+          </div>
+        </a>
+        </li>
+        </volist>
+      </ul>
+    </div>
+  </div>
+       </div>
+ 
+    </div>
+ 
+<form action="/index.php/Mobile/Cart/useBusiness" method="get" id="search_form">
+<input type="hidden" name="area_id" value="{$area.id}">
+<input type="hidden" name="sort" value="{$sort}">
+<input type="hidden" name="shop_type">
+<input type="hidden" name="lat" value="{$lat}">
+<input type="hidden" name="lon" value="{$lon}">
+<input type="hidden" name="check_num">
+</form>
+</div>
+
+
+<script language="javascript">
+
+$('.nav_blank_address').click(function(){
+  if ($(this).hasClass('active')) {
+    $(this).removeClass('active');
+    $('.address_block').hide();
+
+  }else{
+    $(this).addClass("active");
+    $('.address_block').show();
+    $('.order_block').hide();
+    $('.screen_block').hide();
+    $('.nav_blank_order').removeClass('active');
+    $('.nav_blank_screen').removeClass('active');
+  }
+
+
+});
+
+$('.nav_blank_order').click(function(){
+if ($(this).hasClass('active')) {
+    $(this).removeClass('active');
+    $('.order_block').hide();
+
+  }else{
+    $(this).addClass("active");
+    $('.nav_blank_address').removeClass('active');
+    $('.nav_blank_screen').removeClass('active');
+    $('.address_block').hide();
+    $('.order_block').show();
+    $('.screen_block').hide();
+  }
+
+});
+$('.nav_blank_screen').click(function(){
+  if ($(this).hasClass('active')) {
+    $(this).removeClass('active');
+    $('.screen_block').hide();
+
+  }else{
+    $(this).addClass("active");
+    $('.address_block').hide();
+    $('.order_block').hide();
+    $('.screen_block').show();
+     $('.nav_blank_address').removeClass('active');
+    $('.nav_blank_address').removeClass('active');
+  }
+  
+});
+function address_a(data_id) {
+
+  $('input[name="area_id"]').val(data_id);
+  $('#search_form').submit();
+}
+function screen_a(data_id) {
+  $('input[name="shop_type"]').val(data_id);
+  $('#search_form').submit();
+}
+function order_a(data_id) {
+  $('input[name="sort"]').val(data_id);
+  $('#search_form').submit();
+}
+
+function check_num() {
+ $('input[name="check_num"]').val(3);
+  $('#search_form').submit();
+}
+
+// $('screen_a').live('click',function(){
+//   $('input[name="shop_type"]').val($(this).attr('data_id'));
+// })
+// $('address_a').live('click',function(){
+ 
+//   $('input[name="area_id"]').val($(this).attr('data_id'));
+// })
+// $('order_a').live('click',function(){
+//   $('input[name="shop_type"]').val($(this).attr('data_id'));
+// })
+</script>
+</body>
+</html>

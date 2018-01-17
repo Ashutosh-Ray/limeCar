@@ -1,0 +1,132 @@
+<include file="public/layout" />
+<body style="overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+	<div class="fixed-bar">
+		<div class="item-title">
+			<!-- <a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a> -->
+			<div class="subject">
+				<h3>会员卡套餐管理</h3>
+				<h5>套餐所含项目的管理</h5>
+			</div>
+		</div>
+	</div>
+	<form class="form-horizontal" id="adminHandle" method="post" action="{:U('Card/add_set_meal')}">
+		<input type="hidden" name="type" value="{$_GET[type]}">
+		<input type="hidden" name="id" value="{$info.id}">
+		<div class="ncap-form-default">
+			<dl class="row">
+				<dt class="tit">
+					<label for="name"><em>*</em>套餐名称</label>
+				</dt>
+				<dd class="opt">
+					<input type="text" value="{$info.name}" name="name" id="name" class="input-txt">
+					<p class="notic"></p>
+				</dd>
+			</dl>
+			<dl class="row">
+				<dt class="tit">
+					<label for="group"><em>*</em>添加包含项目</label>
+				</dt>
+				<dd class="opt">
+					<select class="small form-control" id="controller">
+						<option value="">养护项目</option>
+						<foreach name="attributes" item="attr">
+							<option value="{$attr.attribute}|{$attr.price}">{$attr.attribute}|{$attr.price}元</option>
+						</foreach>
+					</select>
+					<span class="err"></span>
+				     <input type="text" id="act_list" name="time" placeholder="次数" value="" onkeyup="value=value.replace(/[^0-9\.]*$/g,'')">
+					<a class="ncap-btn" onclick="add_right()">添加</a>
+					<p class="notic">
+					</p>
+				</dd>
+			</dl>
+			<dl class="row">
+				<dt class="tit">
+					<label for="name"><em>*</em>所含项目</label>
+				</dt>
+				<dd class="opt">
+					<table>
+						<tr><th style="width:80%">名称|价格|次数</th><th style="width: 50px;text-align: center;" >操作</th></tr>
+						<tbody id="rightList">
+						<foreach name="info[content]" item="vo">
+							<tr><td><input name="right[]" type="text" value="{$vo[0]}|{$vo[1]}|{$vo[2]}" class="form-control" style="width:300px;"></td>
+								<td style="text-align: center;"><a class="ncap-btn" href="javascript:;" onclick="$(this).parent().parent().remove();">删除</a></td></tr>
+						</foreach>
+						</tbody>
+					</table>
+				</dd>
+			</dl>
+
+			<div class="bot"><a href="JavaScript:void(0);" onclick="adsubmit();" class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+		</div>
+	</form>
+</div>
+<script type="text/javascript">
+	function add_right(){
+		var a = [];
+		$('#rightList .form-control').each(function(i,o){
+			if($(o).val() != ''){
+				a.push($(o).val());
+			}
+		})
+		var ncode = $('#controller').val();
+		if(ncode !== ''){
+			var temp = ncode+'|'+ $('#act_list').val();
+			if($.inArray(temp,a) != -1){
+				layer.msg('此权限码已经添加！', {icon: 2,time: 1000});
+				return false;
+			}
+		}
+		var strtr = '<tr>';
+		if(ncode!= ''){
+			strtr += '<td><input type="text" name="right[]" value="'+ncode+'|'+ $('#act_list').val()+'" class="form-control" style="width:300px;"></td>';
+		}else{
+			strtr += '<td><input type="text" name="right[]" value="" class="form-control" style="width:300px;"></td>';
+		}
+		strtr += '<td style="text-align: center;"><a href="javascript:;" class="ncap-btn" onclick="$(this).parent().parent().remove();">删除</a></td>';
+		$('#rightList').append(strtr);
+	}
+	function get_act_list(obj){
+		$.ajax({
+			url: "{:U('System/ajax_get_action',array('type'=>$_GET[type]))}",
+			type:'get',
+			data: {'controller':$(obj).val()},
+			dataType:'html',
+			success:function(res){
+				$('#act_list').empty().append(res);
+			}
+		});
+	}
+	function adsubmit(){
+		if($('input[name=name]').val() == ''){
+			layer.msg('权限名称不能为空！', {icon: 2,time: 1000});
+			return false;
+		}
+
+		if($('input[name="right\[\]"]').length == 0){
+			layer.msg('权限码不能为空！', {icon: 2,time: 1000});
+			return false;
+		}
+
+		// $('#adminHandle').submit();
+		  var form  = $('#adminHandle');
+          var _url = form.attr('action');
+          $.ajax({
+            url:_url,
+            type:'POST',
+            data:form.serialize(),
+            dataType:'json',
+            success:function (res) {
+             alert(res.msg);
+             window.location.reload(); 
+            }
+          });
+          return false;
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+body {
+  padding-top: 35px;
+}
+h2 {
+  font-size: 22px;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 15px;
+}
+.agLine {
+  padding: 0 15px;
+  margin: 0 auto;
+}
+.agLine td:nth-child(1),
+.agLine td:nth-child(3) {
+  width: 45%;
+}
+.agLine td:nth-child(1) div,
+.agLine td:nth-child(3) div {
+  width: 100%;
+  height: 1px;
+  background-color: red;
+}
+.agLine td:nth-child(2) {
+  width: 10%;
+}
+.agLine td:nth-child(2) .diamond {
+  position: relative;
+  width: 30px;
+  height: 20px;
+  background-color: #fff;
+}
+.agLine td:nth-child(2) .diamond i {
+  display: block;
+  width: 10px;
+  height: 10px;
+  margin: 5px 0 0 5px;
+  -webkit-transform-origin: 0 100%;
+  -moz-transform-origin: 0 100%;
+  transform-origin: 0 100%;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  background: red;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: 0px;
+  margin-top: -3px;
+}
+ul {
+  margin-top: 40px;
+  margin-left: 1%;
+}
+ul li {
+  float: left;
+  width: 33%;
+}
+ul li div {
+  width: 55px;
+  height: 55px;
+  background-color: #4FB6D7;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 69px;
+  margin: 0 auto;
+}
+ul li div svg {
+  fill: #fff;
+}
+ul li h3 {
+  font-size: 16px;
+  text-align: center;
+}
+ul li p {
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  padding: 0 2px;
+  color: #82858a;
+}
+ul li:nth-child(2) div {
+  background-color: #F06A69;
+}
+ul li:nth-child(3) div {
+  background-color: #57CFB6;
+}
+.blank {
+  width: 100%;
+  background-color: #eee;
+  border-top: 1px solid #ccc;
+  height: 10px;
+  margin-top: 45px;
+}
+.table {
+  margin-top: 40px;
+  width: 100%;
+}
+.table tr {
+  width: 100%;
+  height: 60px;
+}
+.table tr td:nth-child(1) {
+  width: 35%;
+  padding-left: 8px;
+  text-align: right;
+  line-height: 16px;
+}
+.table tr td:nth-child(2) {
+  padding-left: 5px;
+  position: relative;
+}
+.table tr td:nth-child(2) input {
+  width: 60%;
+  float: left;
+  height: 35px;
+  font-size: 14px;
+}
+.table tr:nth-child(3) td:nth-child(2) a {
+  position: absolute;
+  height: 37px;
+  right: 12px;
+  width: 70px;
+  background-color: #DCDCDC;
+  font-size: 12px;
+  color: #000;
+  text-align: center;
+  line-height: 37px;
+}
+.table tr:nth-child(5) td:nth-child(2) a {
+  display: block;
+  background-color: #FFBB00;
+  width: 135px;
+  height: 37px;
+  text-align: center;
+  line-height: 37px;
+  color: #fff;
+  border-radius: 15px;
+}
+.table textarea,
+.table input {
+  border: 1px solid #DCDCDC;
+  border-radius: 2px;
+  padding-left: 5px;
+  font-size: 14px;
+}
+.table textarea {
+  padding-top: 2px;
+}

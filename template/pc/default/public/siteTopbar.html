@@ -1,0 +1,84 @@
+<link rel="stylesheet" href="__STATIC__/css/hp.css" type="text/css">
+<link rel="stylesheet" href="__STATIC__/css/common.min.css" type="text/css">
+<div class="pub_topbar">
+    <div class="topbar_login">
+        <div class="login_banner">
+            <div class="login_fr">
+                <p class="nologin"><a href="/home/LoginApi/login/oauth/weixin.html">请登录！</a></p>
+                <p class="islogin">你好！<a class="userinfo"></a></p>
+            </div>
+        </div>
+    </div>
+    <div class="topbar_banner">
+        <div class="topbar_left fl">
+            <!-- logo开始 -->
+            <div class="topbar_logo">
+                <a href="/" title="IMSHOP">
+                    <img src="__STATIC__/images/LOGO.png" alt="IMSHOP">
+                </a>
+            </div>
+            <!-- logo结束 -->
+        <!-- 搜索开始-->
+        <div class="searchBar" style="width: 522px;height: 0px;">
+<!--             <div class="searchBar-form">
+                <form name="sourch_form" id="sourch_form" method="post" action="{:U('/Home/Goods/search')}" > -->
+<!--                 <select name="type" style="width:50px; height: 26px;padding-left: 2px;outline: none;">
+                <option value="0">宝贝</option>
+                <option value="1">店铺</option>
+                </select> -->
+<!--                     <div class="Sb-sel" style="display: none;">
+                        <div class="sel">宝贝</div>
+                        <div class="opt">
+                            <a href="javascript:void(0);" class="baobei">宝贝</a>
+                            <a href="javascript:void(0);" class="dianpu">店铺</a>
+                        </div>
+                    </div>
+                    <input name="type" value="0" type="hidden">
+                    <input type="text" class="text" name="q" id="q" value="<?php echo I('q'); ?>"  placeholder="  搜索关键字"/>
+                    <input type="button" class="button" value="搜索" onclick="if($.trim($('#q').val()) != '') $('#sourch_form').submit();"/>
+                </form>
+            </div> -->
+<!--             <div class="searchBar-hot">
+                <b>热门搜索</b>
+                <foreach name="imshop_config.hot_keywords" item="wd" key="k">
+                    <a target="_blank" href="{:U('Home/Goods/search',array('q'=>$wd))}" <if condition="$k eq 0">class="ht"</if>>{$wd}</a>
+                </foreach>
+            </div> -->
+        </div>
+        <!-- 搜索结束-->
+        <!-- 顶部导航开始 -->
+        <div class="pub_topnav">
+        <div class="topnav_banner">
+            <div class="topnav_navlist fl">
+                <ul class="navList">
+                    <li class="homepage"><a href="/index.php/Home/Index/index/shop/{$admin_name}"><span>首页</span></a></li>
+                    <imshop sql="SELECT * FROM `__PREFIX__navigation` where shop_id=$shop_id and is_show = 1 and type=1 ORDER BY `sort` DESC" key="k" item='v'>
+                    <li class="page"><a href="{$v[url]}" <if condition="$v[is_new] eq 1">target="_blank" </if><span>{$v[name]}</span></a></li>
+                    </imshop> 
+                </ul>
+            </div>
+        </div>
+        </div>
+        <!-- 顶部导航结束 -->
+        </div>
+        <div class="topbar_right fr">
+            <div class="topbar_erwei fr">            
+                <img src="__STATIC__/images/erwei.jpg" alt="" alt="关注我们">
+                <p>关注我们</p>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function (){
+                    var uname = getCookie('uname');
+                    if (uname == '') {
+                        $('.islogin').remove();
+                        $('.nologin').show();
+                    } else {
+                        $('.nologin').remove();
+                        $('.islogin').show();
+                        $('.userinfo').html(decodeURIComponent(uname).substring(0,5));
+                    }
+            })
+</script>

@@ -1,0 +1,154 @@
+<include file="public/layout" />
+<style>
+.package_check{
+  float: left;
+  height: 24px;
+  padding-top: 3px;
+  margin-right: 10px;
+}
+.package_check input {
+  display: block;
+  float: left;
+}
+.package_check span {
+  display: block;
+  float: left;
+  height: 16px;
+  line-height: 15px;
+}
+</style>
+<body style="overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+	<div class="fixed-bar">
+		<div class="item-title">
+			<!-- <a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a> -->
+			<div class="subject">
+				<h3>会员卡 - 编辑类型</h3>
+				<h5></h5>
+			</div>
+		</div>
+	</div>
+	<form class="form-horizontal" action="{:U('Admin/card/add_card_type')}" id="roleform" method="post">
+		<div class="ncap-form-default">
+			<dl class="row">
+				<dt class="tit">
+					<label for="role_name"><em>*</em>类型名称</label>
+				</dt>
+				<dd class="opt">
+					<input type="text" name="data[card_name]" id="role_name" value="{$info.card_name}" class="input-txt">
+					<!-- <span class="err" id="name_err" style="display: none">导航名称不能为空!!</span> -->
+					<p class="notic"></p>
+				</dd>
+			</dl>
+			<dl class="row">
+				<dt class="tit">
+					<label for="role_name"><em>*</em>价格</label>
+				</dt>
+				<dd class="opt">
+					<input type="text" name="data[money]" id="role_name" value="{$info.money}" class="input-txt" onkeyup="value=value.replace(/[^0-9\.]*$/g,'')">
+					<!-- <span class="err" id="name_err" style="display: none">导航名称不能为空!!</span> -->
+					<p class="notic"></p>
+				</dd>
+			</dl>
+			<dl class="row">
+				<dt class="tit">
+					<label for="role_desc">类型描述</label>
+				</dt>
+				<dd class="opt">
+					<textarea id="role_desc" name="data[type_desc]" class="tarea" rows="6">{$info.type_desc}</textarea>
+					<!-- <span class="err" id="err_tpl_content" style="display:none;">短信内容不能为空</span> -->
+					<p class="notic"></p>
+				</dd>
+			</dl>
+			<dl class="row">
+                <dt class="tit">
+                    <label for="cls_full"><em>*</em>可选套餐</label>
+                </dt>
+                <dd class="opt" >
+                  	<volist name="set_meals" id="s">
+                  	<div class="package_check" style="float: left;">
+                  		<input class="checkbox" name="right[]" value="{$s.id}" <if condition="is_array($info['packages']) AND in_array($s['id'],$info['packages'])">checked</if> ck="mod-{$kk}" type="radio">
+                  		<span>{$s.name}</span>
+                  	</div>
+                	</volist>
+                </dd>
+            </dl>
+			<div class="bot"><a href="JavaScript:void(0);" onclick="roleSubmit();" class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+		</div>
+		<input type="hidden" name="id" value="{$info.id}">
+	</form>
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(":checkbox[cka]").click(function(){
+			var $cks = $(":checkbox[ck='"+$(this).attr("cka")+"']");
+			if($(this).is(':checked')){
+				$cks.each(function(){$(this).prop("checked",true);});
+			}else{
+				$cks.each(function(){$(this).removeAttr('checked');});
+			}
+		});
+	});
+
+	function choosebox(o){
+		var vt = $(o).is(':checked');
+		if(vt){
+			$('input[type=checkbox]').prop('checked',vt);
+		}else{
+			$('input[type=checkbox]').removeAttr('checked');
+		}
+	}
+
+	function roleSubmit(){
+		if($('#role_name').val() == '' ){
+			layer.alert('类型名称不能为空', {icon: 2});
+			return false;
+		}
+		// $('#roleform').submit();
+		var form  = $('#roleform');
+          var _url = form.attr('action');
+          $.ajax({
+            url:_url,
+            type:'POST',
+            data:form.serialize(),
+            dataType:'json',
+            success:function (res) {
+             alert(res.msg);
+             window.location.reload(); 
+            }
+          });
+          return false;
+	}
+
+
+//套餐控制
+// $('.package_all').click(function(){
+//   if ($(this).attr("checked")=="checked") {
+//     $(this).parent().siblings().children('input').attr("checked","checked")
+//   }else{
+//     $(this).parent().siblings().children('input').removeAttr("checked")
+//   }
+// })
+// var oths=$('.package_all').parent().siblings().children('input')
+// oths.each(function(){
+//   $(this).click(function(){
+//     var chknum=$('.package_all').parent().siblings().children('input').size()
+//     var chk=0
+//     oths.each(function(){
+//       if ($(this).prop("checked")==true) {
+//         chk++;
+//       }
+//     })
+//     if (chk==chknum) {
+//       $('.package_all').prop("checked",true)
+//     }else{
+//       $('.package_all').prop("checked",false)
+//     }
+//   })
+// })
+</script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<include file="public/header"/>
+<div id="page-wrapper">
+<div class="header"> 
+  <h1 class="page-header">
+     <if condition="$cat_id eq 138">新车列表</if>
+     <if condition="$cat_id eq 164">二手车列表</if>
+     <if condition="$cat_id eq 165">养护列表</if>
+  </h1>
+<!--   <ol class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Dashboard</a></li>
+    <li class="active">Data</li>
+  </ol> -->             
+</div>
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+        <!-- Advanced Tables -->
+            <div class="card">
+<!--            <div class="card-action">
+                    Advanced Tables
+                </div> -->
+                <div class="card-content">
+                    <div class="table-responsive">
+                        <div class="row">
+                            <div class="col-sm-6"></div>
+                            <div class="col-sm-6 table-search">
+                                <form action="" id="search-form2" class="navbar-form form-inline" method="post" onSubmit="return false">
+                                <div class="ts-la">
+                                   <!--  <div class="sel-group">
+                                        <notempty name="businessList">
+                                        <select name="shop_id"  class="select">
+                                            <option value="">全部商家</option> 
+                                            <option value="0">三品車</option>     
+                                                <foreach name="businessList" item="v" key="k" >
+                                                    <option value="{$v['admin_id']}"> {$v['shop_name']}</option>
+                                                </foreach>
+                                        </select> 
+                                        </notempty> 
+                                        <select name="cat_id" id="cat_id" class="select">
+                                            <option value="">所有分类</option>
+                                            <foreach name="categoryList" item="v" key="k" >
+                                                <option value="{$v['id']}" <if condition="$v['id'] eq $cat_id">selected="selected"</if>> {$v['name']}</option>
+                                            </foreach>
+                                        </select> 
+                                        <select name="is_on_sale" id="is_on_sale" class="select">
+                                            <option value="">全部</option>
+                                            <option value="1">上架</option>
+                                            <option value="0">下架</option>
+                                        </select>
+                                        <select name="intro" class="select">
+                                            <option value="0">全部</option>
+                                            <option value="is_new">新品</option>
+                                            <option value="is_recommend">推荐</option>
+                                        </select>
+                                    </div> -->
+                                    <label>
+                                        <input type="text" placeholder="搜索" name="keywords">
+                                        <a onClick="ajax_get_table('search-form2',1)">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </label>
+                                </div>
+                            <!--     <input type="hidden" name="orderby1" value="goods_id" />
+                                <input type="hidden" name="orderby2" value="desc" /> -->
+                            </form>
+                            </div>
+                        </div>
+                        <div id="ajax_return">
+
+                        </div>     
+
+                    </div>
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+    </div>
+    <div class="check_price" style="display: none;">
+      <form id="submit_form">
+    	<div id="check_price">
+    		<p>请核实审核返佣信息</p>
+    		<table>
+    			<tbody>
+    				<tr>
+    					<td>邀请人ID：</td>
+    					<td id="user_id">1</td>
+    					<td>&nbsp;</td>
+    				</tr>
+    				<tr>
+    					<td>邀请人手机号：</td>
+    					<td id="apply_phone">12648795546</td>
+    					<td>&nbsp;</td>
+    				</tr>
+    				<tr>
+    					<td>返佣金额：</td>
+    					<td><input type="text" class="must_con" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')" name="all_profit"></td>
+    					<td>&nbsp;<span style="display: none;" class="check_tip">请填写内容</span></td>
+    				</tr>
+    			</tbody>
+    		</table>
+    		<p>
+    			<a href="javascript:void(0);" onclick="do_confirm()">确认审核</a>
+    			<a href="javascript:void(0);" id="check_cancle" onclick="cancle()">取消</a>
+    		</p>
+    	</div>
+      <input type="hidden" name="id">
+      <input type="hidden" name="user_id">
+      </form>
+    </div>
+<include file="public/footer"/>
+
+<script>
+    $(document).ready(function () {
+        //ajax 加载商品列表
+        ajax_get_table('search-form2', 1);
+        
+
+    });
+    
+    var cur_page; 
+    // ajax 抓取页面 form 为表单id  page 为当前第几页
+    function ajax_get_table(form, page) {
+        cur_page = page; //当前页面 保存为全局变量
+        $.ajax({
+            type: "POST",
+            url: "/index.php/Admin/Partner/commision_check_list/p/" + page,//+tab,
+            data: $('#' + form).serialize(),// 你的formid
+            success: function (data) {
+                $("#ajax_return").html('');
+         
+                $("#ajax_return").append(data);
+            }
+        });
+    }
+    
+        // 点击排序
+        function sort(field)
+        {
+           $("input[name='orderby1']").val(field);
+           var v = $("input[name='orderby2']").val() == 'desc' ? 'asc' : 'desc';             
+           $("input[name='orderby2']").val(v);
+           ajax_get_table('search-form2',cur_page);
+        }
+
+        
+       // 删除操作
+        function del(id)
+        {
+            if(!confirm('确定要删除吗?'))
+                return false;
+        $.ajax({
+            url:"/index.php?m=Admin&c=partner&a=del_check&id="+id,
+            dataType:'json',
+            success: function(res){   
+                                    
+                                if(res.status == 1){
+                                  ajax_get_table('search-form2',cur_page);
+                                   }else{
+                                  layer.msg(res.msg, {icon: 2,time: 1000}); //alert(v.msg);
+                                }
+                                        
+            }
+        }); 
+               return false;
+        }  
+
+
+		//审核表单开闭
+       	function check(id,user_id,apply_phone){
+       	  	$(".check_price").fadeIn()
+            $('#user_id').html(user_id);
+            $('#apply_phone').html(apply_phone);
+            $('input[name="id"]').val(id);
+            $('input[name="user_id"]').val(user_id);
+
+       	}
+       	function cancle(){
+       	  	$(".check_price").fadeOut()
+             $('input[name="all_profit"]').val('');
+       	}
+       	//审核表单提交
+       	function do_confirm(){
+       		let con=$(".must_con").val()
+       		if (con=="") {
+       			$(".check_tip").show()
+       		}else{
+
+            $.ajax({
+              url:"{:U('Admin/Partner/check_apply')}",
+              type:"post",
+              dataType:'json',
+              data:$('#submit_form').serialize(),
+              success:function (res) {
+
+                if (res.status==1) {
+
+                  $(".check_tip").hide();
+                  $(".check_price").fadeOut();
+                  layer.msg(res.msg, {icon: 1,time: 2000});
+                  ajax_get_table('search-form2', cur_page);
+                }else{
+                  layer.msg(res.msg, {icon: 2,time: 1000});
+                }
+              },
+              error:function () {
+               alert('error')
+              }
+            })
+       			
+       		}
+       	}
+</script>
+<include file="public/table"/>
+        <!-- Custom Js -->
+    <script src="__PUBLIC__/static/assets/js/custom-scripts.js"></script> 
+
+</body>
+
+</html>

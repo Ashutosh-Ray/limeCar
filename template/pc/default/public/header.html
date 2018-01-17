@@ -1,0 +1,29 @@
+<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<script src="__PUBLIC__/js/global.js"></script>
+<!--最顶部-->
+<include file="public/siteTopbar" />
+<!-- 在线客服 -->
+<include file="public/kefu" />
+<!-- 在线客服 -->
+<!--顶部banner开始-->    
+<?php if(MODULE_NAME.'/'.CONTROLLER_NAME.'/'.ACTION_NAME == 'home/Index/index' && $_COOKIE["top-banner"] == null){ ?>
+<?php 
+		setcookie("top-banner", "1", time()+ 3600); // 弹过窗的 不在弹窗
+	} 
+?>
+<!--顶部banner结束-->    
+<header>
+	<!-- <div class="pub_topnav">
+		<div class="topnav_banner">
+			<div class="topnav_navlist fl">
+				<ul class="navList">
+            		<li class="homepage"><a href="/index.php/Home/Index/index/shop/{$admin_name}"><span>首页</span></a></li>
+                	<imshop sql="SELECT * FROM `__PREFIX__navigation` where shop_id=$shop_id and is_show = 1 and type=1 ORDER BY `sort` DESC" key="k" item='v'>
+            		<li class="page"><a href="{$v[url]}" <if condition="$v[is_new] eq 1">target="_blank" </if><span>{$v[name]}</span></a></li>
+					</imshop> 
+            	</ul>
+			</div>
+		</div>
+	</div> -->
+</header>
+

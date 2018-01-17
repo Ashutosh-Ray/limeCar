@@ -1,0 +1,177 @@
+<include file="public/layout" />
+<body style="background-color: #fff; overflow: auto;"> 
+<div class="page" style="min-width: 0px;max-width: 500px;max-height: 500px;">
+    <!--表单数据-->
+    <form method="post" id="addEditBrandForm" onSubmit="return checkName();">
+    <if condition="$type eq 1">
+    <div class="ncap-form-default">
+      <dl class="row">
+        <dt class="tit">
+          <label for="ac_name"><em>*</em>品牌名称</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="名称" class="t_mane" id="name" name="name" value="{$brand.name}">
+		  <span class="err" id="err_name" style="color:#F00; display:none;">品牌名称不能为空</span>                                                  
+          <p class="notic"></p>
+        </dd>
+      </dl>	
+      <div class="bot"><a href="JavaScript:void(0);" onClick="submitForm();" class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+    </div>
+    </if>
+
+    <if condition="$type eq 2">
+    <div class="ncap-form-default">
+      <dl class="row">
+        <dt class="tit">
+          <label for="ac_name"><em>*</em>选择品牌</label>
+        </dt>
+        <dd class="opt">
+          <select name="brand_id" onChange="getbrandversion(2,this.value,'brand_id');">
+          <volist name='brands' id='vo'>
+          <if condition="$info['brand_id'] eq $vo['id']">
+            <option value="{$vo.id}" selected="selected">{$vo.name}</option>
+            <else/><option value="{$vo.id}">{$vo.name}</option>
+          </if>  
+           </volist> 
+          </select>                                                  
+          <p class="notic"></p>
+        </dd>
+      </dl>
+    <dl class="row">
+        <dt class="tit">
+          <label for="ac_sort">系列</label>
+        </dt>
+        <dd class="opt">
+          
+          <input type="text" placeholder="系列名称" id="name" class="t_mane" name="series_name" >
+          <span class="err" id="err_name" style="color:#F00; display:none;">系列名称不能为空</span>                
+          <p class="notic"></p>
+        </dd>
+      </dl> 
+                              
+      <div class="bot"><a href="JavaScript:void(0);" onClick="submitForm()" class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+    </div>
+    </if>
+
+    <if condition="$type eq 3">
+    <div class="ncap-form-default">
+      <dl class="row">
+        <dt class="tit">
+          <label for="ac_name"><em>*</em>选择品牌</label>
+        </dt>
+        <dd class="opt">
+          <select name="brand_id" onChange="getbrandversion(2,this.value,'brand_id');">
+          <volist name='brands' id='vo'>
+           <if condition="$info['brand_id'] eq $vo['id']">
+            <option value="{$vo.id}" selected="selected">{$vo.name}</option>
+            <else/><option value="{$vo.id}">{$vo.name}</option>
+          </if>
+           </volist> 
+          </select>                                                  
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="ac_name"><em>*</em>选择系列</label>
+        </dt>
+        <dd class="opt">
+          <select name="series_id" onChange="getbrandversion(3,this.value,'series_id');">
+          <volist name='serieses' id='vo'>
+          <if condition="$info['series_id'] eq $vo['id']">
+            <option value="{$vo.id}" selected="selected">{$vo.series_name}</option>
+            <else/> <option value="{$vo.id}">{$vo.series_name}</option>
+          </if>
+           
+           </volist> 
+          </select>                                                  
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="ac_sort">型号</label>
+        </dt>
+        <dd class="opt">
+          
+          <input type="text" placeholder="型号名称" id="name" class="t_mane" name="version_name" >
+          <span class="err" id="err_name" style="color:#F00; display:none;">型号名称不能为空</span>                
+          <p class="notic"></p>
+        </dd>
+      </dl>                               
+      <div class="bot"><a href="JavaScript:void(0);" onClick="submitForm()" class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+    </div>
+    </if>
+        <input type="hidden" name="type" value="{$type}">  
+  </form>
+</div>
+<script>
+// 判断输入框是否为空
+function submitForm() {
+
+    var name = $("#addEditBrandForm").find("#name").val();
+ 
+    if($.trim(name) == '')
+  {
+    $("#err_name").show();
+    return false;
+  }
+  var form = $('#addEditBrandForm');
+  var url = '/index.php/Admin/goods/addBrandSeriesVersion';
+  $.ajax({
+    url:url,
+    data:form.serialize(),
+    type:'POST',
+    dataType:'json',
+    success:function(res){
+     
+     if (res.status==1) {
+              layer.alert(res.msg, 
+                {icon: 1,
+                  closeBtn:0
+                },function () {
+                  // window.location.reload();
+                   var index = parent.layer.getFrameIndex(window.name);
+                   parent.layer.close(index);
+                }
+                ); 
+            }else{
+            
+              layer.alert(res.msg, {icon: 2});
+            }
+    }
+  })
+}
+    function getbrandversion(type,id,pro) {
+       $.ajax({
+                    url:"/index.php/Admin/Goods/ajaxBrandSeriesVersion/type/"+type+'/'+pro+'/'+id,
+                    dataType:'json',
+                    type:'GET',
+                    success:function(res) {
+                       if (res.status==1) {
+                        var html='<option value="">所有</option>';
+                        $.each(res.data,function(index,item){
+                           html+='<option value="'+item.id+'">'+item.name+'</option>' 
+
+                        })
+                        switch(type)
+                                {
+                                case 1:
+                                 $('select[name="brand_id"]').html(html)
+                                  break;
+                                case 2:
+                                  $('select[name="series_id"]').html(html)
+                                  break;
+                                case 3:
+                                  $('select[name="version_id"]').html(html)
+                                  break;  
+                                default:
+                                 
+                                }
+                       }
+                    }
+                })
+    }
+</script>
+</body>
+</html>

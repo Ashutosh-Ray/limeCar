@@ -1,0 +1,159 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta name="Generator" content="imshop" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>{$goods.goods_name}_{$shop_name}</title>
+<meta http-equiv="keywords" content="{$imshop_config['shop_info_store_keyword']}" />
+<meta name="description" content="{$imshop_config['shop_info_store_desc']}" />
+<meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/public.css"/>
+<link rel="stylesheet" href="__STATIC__/css/idangerous.swiper.css">
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/mgoodsInfo.css"/>
+<script type="text/javascript" src="__STATIC__/js/jquery.js"></script>
+<script src="__STATIC__/js/idangerous.swiper.min.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+var process_request = "正在处理您的请求...";
+</script> 
+<style>
+.swiper-slide {
+  line-height: 36px;
+  color: #fff;
+  font-size: 36px;
+  text-align: center;
+  background-color: #fff;
+}
+.swiper-slide img{
+  max-width: 100%;
+  height: 100%;
+}
+.swiper-wrapper{
+  height: 300px;
+}
+.swiper-slide {
+  /* Specify Slides's Size: */
+  width: 100%;
+  height: 40px;
+}
+</style>
+<div class="tab_nav">
+  <div class="header">
+    <div class="h-left"><a class="sb-back" href="javascript:history.back(-1)" title="返回"></a></div>
+    <div class="h-mid">
+    <a href="#user_goods_ka_1" id="goods_ka1" class="on">商品</a>
+    <a href="#user_goods_ka_2" id="goods_ka2">详情</a>
+    </div>
+  </div>
+</div>
+<section class="curing_car">
+  <div class="mgi_top" id="user_goods_ka_1">
+  <!-- 轮播图 -->
+  <div class="mgi_top" id="user_goods_ka_1">
+    <div class="mgi_top_img">
+      <img src="{$goods.original_img}" alt="" style="width: 100%;">
+    </div>
+  </div>
+  <!-- 标题 -->
+  <div class="mgi_tit">
+    <div class="tit_w">
+    <form action="{:U('/Mobile/Cart/order')}" id="buy_form" method="post">
+    <div class="tit_c curingCar">
+      <h3>{$goods['goods_name']}</h3>
+      <p>{$goods['goods_remark']}</p>
+      <p>￥{$goods['shop_price']|calcu_goods_price}</p>
+      <!-- <div class="calc">  
+        <span>购买数量：</span>    
+        <a href="javascript:void(0);" id="sub">-</a>
+        <input type="text" value="1" id="num"  name="goods_num">
+        <input type="hidden" name="goods_id" value="{$goods['goods_id']}">
+        <a href="javascript:void(0);" id="add">+</a>
+      </div> -->
+      <input type="hidden" value="1" id="num"  name="goods_num">
+      <input type="hidden" name="goods_id" value="{$goods['goods_id']}">
+    </div>
+    </form>
+    </div>
+  </div>
+  <!-- 查看更多 -->
+  <div class="mgi_shop curingCar_con" id="user_goods_ka_1_1">
+    <div class="shop_w">
+      <div class="shop_c">
+        <h3>全部门店<a href="" id="latlon">查看更多&gt;&gt;</a></h3>
+<!--       <p>{$shop['shop_name']}</p>
+      <p>{$shop['shop_address']}</p> -->
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<!-- 通用详情 -->
+<div class="mgi_detail" id="user_goods_ka_2">
+  <div class="detail_w">
+    <div class="detail_c">{$goods['goods_content']}
+    </div>
+  </div>
+  <div style="clear: both;"></div>
+</div>
+<!-- 底部导航栏开始 -->
+<section class="footer_nav">
+  <ul>
+    <li class="bian"><a href="/index.php/Mobile/Index/index/shop/{$admin_name}"><em class="goods_nav1">
+      <svg class="icon" width="25px" height="25px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M936.462295 431.272397 527.130605 75.79629c-10.373255-9.013281-25.819039-8.928347-36.096103 0.192382L87.317695 434.286034c-8.499581 7.53972-11.449773 19.549242-7.417947 30.173207 4.03592 10.624988 14.214746 17.645892 25.577538 17.645892l56.722886 0 0 281.699824c-1.035586 9.969049-2.885723 45.906539 20.129456 72.411193 10.503215 12.097526 30.205952 26.51591 64.440661 26.51591l511.043209 0c0.968048 0.046049 2.316765 0.092098 3.994987 0.092098 12.30628 0 42.129516-2.466168 65.668629-24.232914 13.087063-12.101619 28.687366-34.756595 28.687366-73.975828l0-283.527448 63.139016-1.812275c11.271718-0.326435 21.185508-7.526417 24.979928-18.143219C948.07989 450.516694 944.969039 438.660668 936.462295 431.272397zM440.610066 620.364033c0.029676-0.116657 0.075725-0.275269 0.138146-0.466628 0.409322-1.278109 1.390673-3.294023 3.722788-5.669116 4.755304-4.830005 20.634969-16.067954 65.323774-16.067954 38.529525 0 55.135738 8.79941 61.607126 14.042831 5.735631 4.646833 6.703679 8.866948 6.854105 9.864672l0 185.949063L440.610066 808.016901 440.610066 620.364033z" /></svg>
+    </em><span>首页</span></a> </li>
+    <li class="bian"><a href="tel:{$imshop_config['shop_info_phone']}"><em class="goods_nav2">
+      <svg class="icon" width="25px" height="25px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M510 213.29c-124.79 0-225.92 99-225.92 221.19S385.25 655.66 510 655.66s226-99.02 226-221.18-101.17-221.19-226-221.19z"  /><path d="M249.16 519.38v-204.2q-4.29 0-8.5 0.34C287 215 390.08 145 510.07 145s223.11 70 269.41 170.5q-4.2-0.33-8.5-0.34v204.2c57.62 0 104.37-45.72 104.37-102.1 0-38.29-21.56-71.66-53.45-89.13C777 201.77 654.55 111 510.07 111s-267 90.77-311.83 217.14c-31.89 17.47-53.45 50.84-53.45 89.14 0 56.38 46.71 102.1 104.37 102.1zM735.48 636.45c-59 53.94-138.29 87-225.45 87-87 0-166.12-32.91-225.12-86.67C179.33 689.94 110 784.62 110 913.24h802.82c0-128.86-70.62-223.66-177.33-276.8z"  /></svg>
+    </em><span>客服</span></a> </li>
+  </ul>
+  <dl>
+  <in name="goods.cat_id" value="$usedCates">
+    <dd class="flow"><a class="button active_button" href="{:U('/Mobile/Goods/subscribe',array('goods_id'=>$goods['goods_id']))}" >预约到店</a> </dd>
+    </in>
+    <in name="goods.cat_id" value="$newCates">
+    <dd class="flow"><a class="button active_button" href="{:U('/Mobile/Goods/subscribe',array('goods_id'=>$goods['goods_id']))}" >预约到店</a> </dd>
+    </in>
+    <in name="goods.cat_id" value="$curingCates">
+    <dd class="flow"><a class="button active_button" href="javascript:void(0);" onClick="submit_buy()">立即购买</a> </dd>
+    </in>
+  </dl>
+</section>
+<!-- 底部导航栏开始 -->
+<script>
+  var ka1=$('#user_goods_ka_1').height()+$('#user_goods_ka_1_1').height()+$('#user_goods_ka_1_2').height();
+  var ka2=$('#user_goods_ka_2');
+  var win=$(window);
+  win.scroll(function(){
+    if (win.scrollTop()<=ka1) {
+      $("#goods_ka1").addClass("on");
+      $("#goods_ka2").removeClass("on");
+    }else{
+      $("#goods_ka2").addClass("on");
+      $("#goods_ka1").removeClass("on");
+    }
+})
+
+  $('#goods_ka1').click(function(){
+    $('#goods_ka1').addClass('on');
+    $('#goods_ka2').removeClass("on");
+  })
+  $('#goods_ka2').click(function(){
+    $('#goods_ka2').addClass('on');
+    $('#goods_ka1').removeClass("on");
+  })
+
+
+  function submit_buy() {
+    // alert('该功能开发中');
+  $('#buy_form').submit();
+}
+
+</script>
+
+<if condition="$signPackage neq null">
+  <include file="public/wx_gshare"/>
+</if>
+<!-- 微信浏览器 调用微信 分享js  end-->
+</body>
+</html>

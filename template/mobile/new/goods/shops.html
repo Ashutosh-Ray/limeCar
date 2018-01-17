@@ -1,0 +1,102 @@
+<html>
+<head>
+<meta name="Generator" content="imshop" />
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="minimal-ui=yes,width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>商品列表-{$shop_name}</title>
+<meta http-equiv="keywords" content="{$imshop_config['shop_info_store_keyword']}" />
+<meta name="description" content="{$imshop_config['shop_info_store_desc']}" />
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/public.css"/>
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/category_list.css"/>
+<script type="text/javascript" src="__STATIC__/js/jquery.js"></script>
+<script type="text/javascript" src="__STATIC__/js/layer.js" ></script>
+<script src="__PUBLIC__/js/global.js"></script>
+<script src="__PUBLIC__/js/mobile_common.js"></script>
+<style>
+  #goods_list .shops_li{
+    border: none;
+    width: 33%;
+    margin-left: 1px;
+  }
+  #goods_list .shops_li .title_box{
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<section class="_pre" >
+<header id="head_search_box" style="position: fixed; top: 0px; width: 100%;">
+<div class="search_header">
+    <a href="javascript:history.back(-1)" class="back search_back"></a>
+        <div class="search">    
+     <form name="sourch_form" id="sourch_form2" method="post" action="{:U("Goods/search")}">
+      <div class="text_box" name="list_search_text_box" onClick="return 1;">
+          <input type="text" class="text" name="q" id="keyword" value="<?php echo I('q'); ?>"  placeholder="搜索关键字"/>
+      </div>
+        <input type="button" value="" class="submit"  onclick="if($.trim($('#keyword').val()) != '') $('#sourch_form2').submit();" />        
+  </form>    
+    </div>
+    <a class="menu filtrate" name="list_go_filter" style=" color:#666">筛选</a>
+</header>
+<div style="height:51px;" class="empty_div">&nbsp;</div>
+
+<section>
+<div class="touchweb-com_searchListBox openList" id="goods_list">
+  <empty name="list">
+  <p class="goods_title">抱歉暂时没有相关结果，换个筛选条件试试吧</p>
+  <else /> 
+   <foreach name="list" item="vo" key="k">
+     <li class="shops_li">
+    <a href="{:U('Mobile/Index/index',array('shop'=>$vo['admin_id']))}" class="item">
+      <div class="pic_box" style="background-color: #f8f8f8;">
+<!--         <div class="active_box">
+          <span style=" background-position:0px -36px">新品</span>
+        </div> -->
+        <img src="{$vo.shop_logo}">
+      </div>
+      <div class="title_box">{$vo.shop_name}</div>
+      <!-- <div class="comment_box">已售0</div> -->
+    </a>
+    </li>
+   </foreach>
+  </empty>
+</div>
+<notempty name="list">
+   <div id="getmore" style="font-size:.24rem;text-align: center;color:#888;padding:.25rem .24rem .4rem; clear:both">
+      <a href="javascript:void(0)" onClick="ajax_sourch_submit()">点击加载更多</a>
+  </div>
+</notempty>
+</section> 
+</section>
+
+
+
+<footer><include file="public/footer_nav"/></footer>
+<script>
+function goTop(){
+  $('html,body').animate({'scrollTop':0},600);
+}
+
+var  page = 1;
+ /*** ajax 提交表单 查询订单列表结果*/  
+ function ajax_sourch_submit()
+ {       
+        page += 1;
+    $.ajax({
+      type : "GET",
+      url:"/mobile/Goods/shops/q/{$q}/p/"+page,//+tab,
+//      data : $('#filter_form').serialize(),// 你的formid 搜索表单 序列化提交
+      success: function(data)
+      {
+        if($.trim(data) == '')
+          $('#getmore').hide();
+        else
+            $("#goods_list").append(data);
+      }
+    }); 
+ }
+</script>
+<a href="javascript:goTop();" class="gotop" style=" z-index:9999"><img src="__STATIC__/images/topup.png"></a> 
+</body>
+</html>

@@ -1,0 +1,27 @@
+<div class="com_top">
+	<dl>
+		<dt>
+			<img src='{$user[head_pic]|default="__STATIC__/images/user68.jpg"}' />
+		<!-- <dd>{$level_name}</dd> -->
+		</dt>
+	</dl>
+	<p class="tuij_cas">
+	        {$user['nickname']}<em>合伙人</em>
+            <if condition="$first_nickname neq ''">
+            	<br />
+            	<span>由( {$first_nickname} )推荐</span>
+            </if>
+    </p>
+	<h2><a href="{:U('Mobile/User/userinfo')}">
+		<svg t="1506480826419" viewBox="0 0 1024 1024" width="20" height="20"><path d="M921.6 1024H102.4c-56.69888 0-102.4-45.70112-102.4-102.4V102.4C0 45.70112 45.70112 0 102.4 0h580.3008c19.0976 0 34.0992 15.0016 34.0992 34.0992s-15.0016 34.0992-34.0992 34.0992H102.4c-19.0976 0-34.0992 15.0016-34.0992 34.0992v819.2c0 19.0976 15.0016 34.0992 34.0992 34.0992h819.2c19.0976 0 34.0992-15.0016 34.0992-34.0992V614.4c0-19.0976 15.0016-34.0992 34.0992-34.0992s34.0992 15.0016 34.0992 34.0992v307.2c0.1024 56.69888-45.59872 102.4-102.2976 102.4z m-424.6016-357.00224c-20.50048 20.50048-52.59776 20.50048-72.99584 0s-20.50048-52.59776 0-72.99584l511.29856-511.40096c20.50048-20.50048 52.59776-20.50048 73.00096 0s20.50048 52.59776 0 73.00096L496.9984 666.99776z" fill="#fff" p-id="20411"></path></svg>
+	</a></h2>
+</div>
+<!-- <div class="uer_topnav">
+	<ul> -->
+		<!-- <li class="bain"><a href="{:U('Mobile/User/order_list')}" ><span style="color: red;">{$order_count}</span>我的订单</a></li> -->
+<!-- 		<li class="bain"><a href="{:U('Mobile/User/collect_list')}"><span>{$goods_collect_count}</span>我的收藏</a></li>	 -->	
+		<!-- <li class="bain"><a href="{:U('User/points')}"><span style="color: red;">{$user.user_money}</span>我的余额</a></li> -->
+<!-- 		<li><a href="{:U('Mobile/User/comment')}"><span>{$comment_count}</span>我的评价</a></li> -->
+<!-- 	</ul>
+</div> -->
+

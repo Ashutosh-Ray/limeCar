@@ -1,0 +1,165 @@
+<include file="public/header"/>
+<div id="page-wrapper">
+<div class="header"> 
+  <h1 class="page-header">
+     优惠券管理
+  </h1>
+<!--   <ol class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Dashboard</a></li>
+    <li class="active">Data</li>
+  </ol> -->             
+</div>
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+        <!-- Advanced Tables -->
+            <div class="card">
+<!--            <div class="card-action">
+                    Advanced Tables
+                </div> -->
+                <div class="card-content">
+                    <div class="table-responsive">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <a href="{:U('Admin/Coupon/coupon_info')}" class="waves-effect waves-light btn" style="text-align: center;text-decoration: none;">
+                                    添加优惠券
+                                </a>
+                            </div>
+                            <div class="col-sm-6 table-search">
+                                  <form class="navbar-form form-inline" action="{:U('Coupon/index')}" method="post" id="submit_form">
+                                <div class="ts-la">
+                                    <label>
+                                        <div class="btn-group">
+                                            <!-- 下拉框 -->
+                                        </div>
+                                        <input type="search" name="keywords" placeholder="搜索" value="{$keywords}">
+                                        <a onclick="search_act()">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </label>
+                                </div>
+                            </form>
+                            </div>
+                        </div>
+                        <table class="table table-striped table-bordered table-hover" id="lunboList">
+                            <thead>
+                                <tr>
+                                    <th class="center">ID</th>
+                                    <th class="center">优惠券名称</th>
+                                    <th class="center">优惠券类别</th>
+                                    <th class="center">发行数量</th>
+                                    <th class="center">领取数量</th>
+                                    <th class="center">优惠券二维码</th>
+                                    <th class="center">是否可用</th>
+                                    <th class="center">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <volist name="lists" id="list">
+                                <tr class="odd gradeX">
+                                    <td class="center">{$list.id}</td>
+                                    <td class="center">{$list.name}</td>
+                                    <td class="center">{$coupons[$list[type]]}</td>
+                                    <td class="center">{$list.createnum}</td>
+                                    <td class="center">{$list.send_num}</td>
+                                    <td class="center">
+                                        <img src="{$list.qrcode}" alt="">
+                                    </td>
+                                    <td class="center">
+                                        <div class="judge">
+                                            <if condition='$list[is_use] eq 1'>
+                                            <span class="yes" onclick="changeTableVal('coupon','id','{$list.id}','is_use',this)">
+                                                <i class="fa fa-check-circle"></i>
+                                                <span>是</span>
+                                            </span>
+                                            <else/>
+                                            <span class="no" onclick="changeTableVal('coupon','id','{$list.id}','is_use',this)">
+                                                <i class="fa fa-ban
+                                                " style="color: #BEC3C7"></i>
+                                                <span style="color: #BEC3C7">否</span>
+                                            </span>
+                                        </if>
+                                        </div>
+                                    </td>
+                                    <td class="center">
+                                        <a href="{:U('Admin/Coupon/coupon_info',array('id'=>$list['id']))}">编辑</a> /
+                                        <a href="javascript:void(0);" onclick="delfunc(this)" data-url="{:U('Admin/Coupon/del_coupon',array('id'=>$list['id']))}" style="cursor: pointer;">删除</a>
+                                    </td>
+                                </tr>
+                                </volist>
+                            </tbody>
+                        </table>
+                        <div class="row">
+                            <div class="col-sm-6"></div>
+                           <div class="col-sm-6 table-pagecut">
+                            <!-- page -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+    </div>
+
+<include file="public/footer"/>
+<include file="public/table"/>
+
+    <script>
+        $(document).ready(function () {
+            $('#newCarTable').dataTable();
+        });
+    </script>
+
+            <!-- Custom Js -->
+    <script src="__PUBLIC__/static/assets/js/custom-scripts.js"></script> 
+</body>
+</html>
+<script>    
+ 
+
+    function delfunc(obj){
+  
+      layer.confirm('确认删除？', {
+                btn: ['确定','取消'] //按钮
+              }, function(){
+                // 确定
+                $.ajax({
+                  type : 'post',
+                  url : $(obj).attr('data-url'),
+                  data : {act:'del',del_id:$(obj).attr('data-id')},
+                  dataType : 'json',
+                  success : function(data){
+                    if(data==1){
+                      layer.msg('操作成功', {icon: 1});
+                      $(obj).parent().parent().remove();
+                    }else{
+                      layer.msg(data, {icon: 2,time: 2000});
+                    }
+//                          layer.closeAll();
+                  }
+                })
+              }, function(index){
+                layer.close(index);
+                return false;// 取消
+              }
+      );
+    }
+
+    $('input[name="keywords"]').keypress(function(event) {
+      if (event.keycode==13) {
+        $('#submit_form').submit()
+      }
+       
+    })
+
+    function search_act() {
+        $('#submit_form').submit()
+    }
+
+    $('select[name="pid"]').change(function() {
+      
+       $('#submit_form').submit()
+    })
+</script>

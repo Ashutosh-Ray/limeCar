@@ -1,0 +1,783 @@
+@font-face {
+  font-family: 'msyhbd';
+  /*字体名称*/
+  src: url('../font/msyhbd.ttf');
+  /*字体源文件*/
+}
+@font-face {
+  font-family: 'msyhl';
+  /*字体名称*/
+  src: url('../font/msyhl.ttf');
+  /*字体源文件*/
+}
+body {
+  font-family: "微软雅黑" !important;
+}
+a {
+  color: #000;
+}
+.pub_topbar {
+  width: 100%;
+  height: 144px;
+  border-bottom: 1px solid #ca141d;
+  position: relative;
+}
+.pub_topbar .topbar_login {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #e3e4e5;
+  border-bottom: 1px solid #ddd;
+  height: 30px;
+}
+.pub_topbar .topbar_login .login_banner {
+  width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+}
+.pub_topbar .topbar_login .login_banner .login_fr {
+  float: right;
+}
+.pub_topbar .topbar_login .login_banner .login_fr p {
+  padding-right: 32px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+}
+.pub_topbar .topbar_login .login_banner .login_fr p a {
+  text-decoration: none;
+  color: red;
+}
+.pub_topbar .topbar_banner {
+  width: 1200px;
+  position: absolute;
+  left: 50%;
+  margin-left: -600px;
+  top: 30px;
+  height: 114px;
+}
+.pub_topbar .topbar_banner .topbar_left {
+  width: 1100px;
+  height: 100%;
+}
+.pub_topbar .topbar_banner .topbar_left .topbar_logo {
+  float: left;
+  height: 144px;
+  margin-top: -30px;
+  box-shadow: -10px -6px 25px #e5e5e5;
+  background-color: #fff;
+}
+.pub_topbar .topbar_banner .topbar_left .topbar_logo a {
+  width: 100%;
+  height: 100%;
+  display: block;
+  box-shadow: 10px -6px 25px #e5e5e5;
+}
+.pub_topbar .topbar_banner .topbar_left .topbar_logo a img {
+  margin-top: 40px;
+}
+.pub_topbar .topbar_banner > .topbar_right {
+  width: 100px;
+}
+.pub_topbar .topbar_banner > .topbar_right .topbar_erwei {
+  width: 80px;
+  height: 80px;
+  background-color: black;
+  margin-top: 2px;
+  margin-right: 20px;
+}
+.pub_topbar .topbar_banner > .topbar_right .topbar_erwei img {
+  width: 80px;
+  height: 80px;
+}
+.pub_topbar .topbar_banner > .topbar_right .topbar_erwei p {
+  color: #000;
+  margin-top: 0px;
+  text-align: center;
+}
+.searchBar {
+  float: left;
+  padding: 22px 7px 10px 50px;
+}
+.searchBar .searchBar-form {
+  width: 522px;
+  line-height: 1px;
+  border: 2px solid #ca141d;
+  height: 28px;
+}
+.searchBar .searchBar-form .Sb-sel {
+  float: left;
+  height: 26px;
+  width: 60px;
+  margin-top: 1px;
+  position: relative;
+  z-index: 99;
+  cursor: pointer;
+}
+.searchBar .searchBar-form .Sb-sel .sel {
+  width: 100%;
+  height: 100%;
+  line-height: 26px;
+  text-align: center;
+  -webkit-background-size: 20%;
+  background-size: 20%;
+}
+.searchBar .searchBar-form .Sb-sel .opt {
+  width: 100%;
+  position: absolute;
+  top: 27px;
+  left: -2px;
+}
+.searchBar .searchBar-form .Sb-sel .opt a {
+  display: block;
+  width: 100%;
+  height: 26px;
+  text-align: center;
+  line-height: 25px;
+  background-color: #fff;
+  border: 1px solid #f69400;
+}
+.searchBar .searchBar-form .text {
+  width: 455px;
+  border: 0 none;
+  height: 28px;
+  line-height: 28px;
+  font-family: 'Tahoma';
+  padding-left: 5px;
+}
+.searchBar .searchBar-form .text:focus {
+  outline: none;
+}
+.searchBar .searchBar-form .button {
+  float: right;
+  width: 62px;
+  height: 28px;
+  cursor: pointer;
+  border: 0 none;
+  background-color: #ca141d;
+  font-family: 'Tahoma';
+  font-size: 14px;
+  color: #FFF;
+}
+.searchBar .searchBar-hot {
+  width: 365px;
+  padding: 3px 0 0 1px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.searchBar .searchBar-hot b {
+  font-weight: 400;
+  color: #999;
+  margin-right: 4px;
+  line-height: 1.5;
+  font-size: 12px;
+}
+.searchBar .searchBar-hot a {
+  color: #999;
+  margin-right: 12px;
+  font-size: 12px;
+}
+.pub_topnav {
+  float: left;
+  width: 600px;
+  padding-left: 90px;
+}
+.pub_topnav .topnav_banner {
+  height: 40px;
+}
+.pub_topnav .topnav_banner .topnav_navlist {
+  height: 100%;
+}
+.pub_topnav .topnav_banner .topnav_navlist .navList li {
+  float: left;
+  line-height: 2.5;
+}
+.pub_topnav .topnav_banner .topnav_navlist .navList li a {
+  height: 40px;
+  font-size: 20px;
+  color: #000;
+  font-family: "msyhbd";
+  white-space: nowrap;
+  padding: 0px 30px;
+  text-decoration: none;
+}
+.pub_topnav .topnav_banner .topnav_navlist .navList li:nth-child(1) a {
+  background: url(../images/split1.png) no-repeat 94px 0px;
+  background-size: 10px;
+  color: #ca141d;
+}
+.pub_topnav .topnav_banner .topnav_navlist .navList li:nth-child(2) a {
+  background: url(../images/split1.png) no-repeat 134px 0px;
+  background-size: 10px;
+}
+.pub_topnav .topnav_banner .topnav_navlist .navList li:nth-child(3) a {
+  background: url(../images/split1.png) no-repeat 134px 0px;
+  background-size: 10px;
+}
+.pub_topnav .topnav_banner .topnav_navlist .navList li:nth-child(4) a {
+  background: url(../images/split1.png) no-repeat 134px 0px;
+  background-size: 10px;
+}
+.pub_topnav .topnav_banner .topnav_navlist .navList li:hover a {
+  color: #ca141d!important;
+}
+.hp_newcar {
+  width: 100%;
+  margin-top: 34px;
+}
+.hp_newcar .newcar_banner {
+  width: 1200px;
+  margin: 0 auto;
+  background-color: #fff;
+  height: 650px;
+}
+.hp_newcar .newcar_banner .newcar_tit {
+  width: 100%;
+  height: 60px;
+}
+.hp_newcar .newcar_banner .newcar_tit > .tit_w p {
+  font-size: 24px;
+}
+.hp_newcar .newcar_banner .newcar_tit > .tit_more p {
+  font-size: 24px;
+}
+.hp_newcar .newcar_banner .newcar_tit > .tit_more p a {
+  font-size: 14px;
+  text-decoration: none;
+  color: gray;
+}
+.hp_newcar .newcar_banner .newcar_left {
+  width: 300px;
+  height: 594px;
+}
+.hp_newcar .newcar_banner .newcar_left a {
+  display: block;
+  width: 300px;
+  height: 594px;
+  position: relative;
+}
+.hp_newcar .newcar_banner .newcar_left a h3 {
+  position: absolute;
+  top: 80px;
+  width: 100%;
+  color: #fff;
+  font-size: 24px;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+.hp_newcar .newcar_banner .newcar_left a p {
+  position: absolute;
+  top: 120px;
+  width: 100%;
+  color: #fff;
+  font-size: 17px;
+  text-align: center;
+}
+.hp_newcar .newcar_banner .newcar_left a button {
+  border: 1px solid #fff;
+  width: 164px;
+  height: 46px;
+  background-color: rgba(0, 0, 0, 0);
+  position: absolute;
+  bottom: 38px;
+  left: 50%;
+  margin-left: -82px;
+  text-align: center;
+  line-height: 44px;
+  font-family: 微软雅黑;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+.hp_newcar .newcar_banner .newcar_left a button:hover {
+  background-color: #fff;
+  color: #19c8a9;
+  font-weight: 700;
+}
+.hp_newcar .newcar_banner .newcar_right {
+  width: 900px;
+  height: 594px;
+}
+.hp_newcar .newcar_banner .newcar_right .newcar_carbox > li {
+  width: 430px;
+  height: 284px;
+  margin-left: 18px;
+  border: 1px solid #d9d9d9;
+}
+.hp_newcar .newcar_banner .newcar_right .newcar_carbox > li .carbox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.hp_newcar .newcar_banner .newcar_right .newcar_carbox > li .carbox > img {
+  width: 64%;
+  height: 100%;
+}
+.hp_newcar .newcar_banner .newcar_right .newcar_carbox > li .carbox > .carName {
+  position: absolute;
+  right: 10px;
+  top: 30px;
+  font-size: 18px;
+}
+.hp_newcar .newcar_banner .newcar_right .newcar_carbox > li .carbox > .carPrice {
+  position: absolute;
+  background-color: #fff;
+  right: 0;
+  top: 72px;
+}
+.hp_newcar .newcar_banner .newcar_right .newcar_carbox > li .carbox > .carPrice > ul li div {
+  width: 145px;
+  height: 26px;
+  line-height: 25px;
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: gray;
+  font-size: 14px;
+  color: #fff;
+}
+.hp_newcar .newcar_banner .newcar_right .newcar_carbox > li .carbox > .carPrice > ul li div span:nth-child(1) {
+  color: #fff;
+  width: 84px;
+  float: left;
+  text-align: right;
+  font-size: 12px;
+}
+.hp_newcar .newcar_banner .newcar_right .newcar_carbox > li .carbox > .carPrice > ul li div span:nth-child(2) {
+  text-align: right;
+  float: right;
+  color: #f19149;
+  font-size: 14px;
+  font-weight: 700;
+}
+.hp_newcar .newcar_banner .newcar_right .newcar_carbox > li .carbox > .carPrice > ul > li:not(.last) {
+  margin-bottom: 1px;
+}
+.hp_newcar .newcar_banner .newcar_right .newcar_carbox > li .carbox > .carBottom {
+  position: absolute;
+  bottom: 0;
+  height: 42px;
+  width: 100%;
+  background-color: #f19149;
+  text-align: center;
+  line-height: 41px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+}
+.hp_newcar .newcar_banner .newcar_right .newcar_carbox > li:nth-child(1),
+.hp_newcar .newcar_banner .newcar_right .newcar_carbox > li:nth-child(2) {
+  margin-bottom: 20px;
+}
+.hp_seccar {
+  width: 100%;
+  margin-top: 34px;
+}
+.hp_seccar .seccar_banner {
+  width: 1200px;
+  margin: 0 auto;
+  background-color: #fff;
+  height: 650px;
+}
+.hp_seccar .seccar_banner .seccar_tit {
+  width: 100%;
+  height: 60px;
+}
+.hp_seccar .seccar_banner .seccar_tit > .tit_w p {
+  font-size: 24px;
+}
+.hp_seccar .seccar_banner .seccar_tit > .tit_more p {
+  font-size: 24px;
+}
+.hp_seccar .seccar_banner .seccar_tit > .tit_more p a {
+  font-size: 14px;
+  text-decoration: none;
+  color: gray;
+}
+.hp_seccar .seccar_banner .seccar_left {
+  width: 300px;
+  height: 594px;
+}
+.hp_seccar .seccar_banner .seccar_left a {
+  display: block;
+  width: 300px;
+  height: 594px;
+  position: relative;
+}
+.hp_seccar .seccar_banner .seccar_left a h3 {
+  position: absolute;
+  top: 80px;
+  width: 100%;
+  color: #fff;
+  font-size: 24px;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+.hp_seccar .seccar_banner .seccar_left a p {
+  position: absolute;
+  top: 120px;
+  width: 100%;
+  color: #fff;
+  font-size: 17px;
+  text-align: center;
+}
+.hp_seccar .seccar_banner .seccar_left a button {
+  border: 1px solid #fff;
+  width: 164px;
+  height: 46px;
+  background-color: rgba(0, 0, 0, 0);
+  position: absolute;
+  bottom: 38px;
+  left: 50%;
+  margin-left: -82px;
+  text-align: center;
+  line-height: 44px;
+  font-family: 微软雅黑;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+.hp_seccar .seccar_banner .seccar_left a button:hover {
+  background-color: #fff;
+  color: #2884e3;
+  font-weight: 700;
+}
+.hp_seccar .seccar_banner .seccar_right {
+  width: 900px;
+  height: 594px;
+}
+.hp_seccar .seccar_banner .seccar_right .seccar_carbox > li {
+  width: 430px;
+  height: 284px;
+  margin-left: 18px;
+  border: 1px solid #d9d9d9;
+}
+.hp_seccar .seccar_banner .seccar_right .seccar_carbox > li .carbox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.hp_seccar .seccar_banner .seccar_right .seccar_carbox > li .carbox > img {
+  position: absolute;
+  left: 50%;
+  margin-left: -138px;
+}
+.hp_seccar .seccar_banner .seccar_right .seccar_carbox > li .carbox > .carBottom {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  background-color: #fff;
+  padding-bottom: 10px;
+}
+.hp_seccar .seccar_banner .seccar_right .seccar_carbox > li .carbox > .carBottom > .carBottom_tit {
+  width: 100%;
+  text-align: center;
+  font-weight: 700;
+  font-size: 16px;
+}
+.hp_seccar .seccar_banner .seccar_right .seccar_carbox > li .carbox > .carBottom > .carBottom_price {
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+}
+.hp_seccar .seccar_banner .seccar_right .seccar_carbox > li .carbox > .carBottom > .carBottom_price span:nth-child(even) {
+  font-weight: 700;
+  color: #f19149;
+  font-size: 16px;
+}
+.hp_seccar .seccar_banner .seccar_right .seccar_carbox > li:nth-child(1),
+.hp_seccar .seccar_banner .seccar_right .seccar_carbox > li:nth-child(2) {
+  margin-bottom: 20px;
+}
+.hp_carparts {
+  width: 100%;
+  margin-top: 34px;
+}
+.hp_carparts .carparts_banner {
+  width: 1200px;
+  margin: 0 auto;
+  background-color: #fff;
+  height: 650px;
+}
+.hp_carparts .carparts_banner .carparts_tit {
+  width: 100%;
+  height: 60px;
+}
+.hp_carparts .carparts_banner .carparts_tit > .tit_w p {
+  font-size: 24px;
+}
+.hp_carparts .carparts_banner .carparts_tit > .tit_more p {
+  font-size: 24px;
+}
+.hp_carparts .carparts_banner .carparts_tit > .tit_more p a {
+  font-size: 14px;
+  text-decoration: none;
+  color: gray;
+}
+.hp_carparts .carparts_banner .carparts_left {
+  width: 300px;
+  height: 594px;
+}
+.hp_carparts .carparts_banner .carparts_left a {
+  display: block;
+  width: 300px;
+  height: 594px;
+  position: relative;
+}
+.hp_carparts .carparts_banner .carparts_left a img {
+  width: 100%;
+}
+.hp_carparts .carparts_banner .carparts_left a h3 {
+  position: absolute;
+  top: 80px;
+  width: 100%;
+  color: #fff;
+  font-size: 24px;
+  text-align: center;
+  font-weight: 700;
+}
+.hp_carparts .carparts_banner .carparts_left a p {
+  position: absolute;
+  top: 120px;
+  width: 100%;
+  color: #fff;
+  font-size: 17px;
+  text-align: center;
+}
+.hp_carparts .carparts_banner .carparts_left a button {
+  border: 1px solid #fff;
+  width: 164px;
+  height: 46px;
+  background-color: rgba(0, 0, 0, 0);
+  position: absolute;
+  bottom: 38px;
+  left: 50%;
+  margin-left: -82px;
+  text-align: center;
+  line-height: 44px;
+  font-family: 微软雅黑;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+.hp_carparts .carparts_banner .carparts_left a button:hover {
+  background-color: #434343;
+  color: #fff;
+  font-weight: 700;
+}
+.hp_carparts .carparts_banner .carparts_left {
+  width: 298px;
+  height: 592px;
+  border: 1px solid #d9d9d9;
+}
+.hp_carparts .carparts_banner .carparts_left a {
+  width: 100%;
+  height: 100%;
+}
+.hp_carparts .carparts_banner .carparts_left a h3 {
+  color: #000;
+}
+.hp_carparts .carparts_banner .carparts_left a p {
+  color: #000;
+}
+.hp_carparts .carparts_banner .carparts_left a p:nth-child(4) {
+  color: #000;
+  top: 145px;
+}
+.hp_carparts .carparts_banner .carparts_left a button {
+  border-color: #d9d9d9;
+  color: gray;
+}
+.hp_carparts .carparts_banner .carparts_right {
+  width: 900px;
+  height: 594px;
+}
+.hp_carparts .carparts_banner .carparts_right .carparts_carbox > li {
+  width: 278px;
+  height: 285px;
+  margin-left: 20px;
+  border: 1px solid #d9d9d9;
+}
+.hp_carparts .carparts_banner .carparts_right .carparts_carbox > li a {
+  text-decoration: none;
+}
+.hp_carparts .carparts_banner .carparts_right .carparts_carbox > li .carbox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.hp_carparts .carparts_banner .carparts_right .carparts_carbox > li .carbox img {
+  height: 212px;
+}
+.hp_carparts .carparts_banner .carparts_right .carparts_carbox > li .carbox > .partsBottom p {
+  width: 238px;
+  padding: 0 20px;
+  text-align: center;
+  font-size: 18px;
+}
+.hp_carparts .carparts_banner .carparts_right .carparts_carbox > li .carbox > .partsBottom p:nth-child(1) {
+  margin-top: 10px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: block;
+}
+.hp_carparts .carparts_banner .carparts_right .carparts_carbox > li .carbox > .partsBottom p:nth-child(2) {
+  color: red;
+}
+.hp_carparts .carparts_banner .carparts_right .carparts_carbox > li:nth-child(1),
+.hp_carparts .carparts_banner .carparts_right .carparts_carbox > li:nth-child(2),
+.hp_carparts .carparts_banner .carparts_right .carparts_carbox > li:nth-child(3) {
+  margin-bottom: 20px;
+}
+.hp_bottomnav {
+  width: 100%;
+  height: 280px;
+}
+.hp_bottomnav .bottomnav_banner {
+  width: 1200px;
+  margin: 100px auto;
+}
+.hp_bottomnav .bottomnav_banner h3 {
+  font-size: 24px;
+}
+.hp_bottomnav .bottomnav_banner .bottomnav {
+  width: 500px;
+  height: 118px;
+  padding-left: 100px;
+  float: left;
+  position: relative;
+}
+.hp_bottomnav .bottomnav_banner .bottomnav .imgBox {
+  width: 118px;
+  height: 118px;
+  border-radius: 50%;
+  background-color: #434343;
+}
+.hp_bottomnav .bottomnav_banner .bottomnav .imgBox img {
+  margin-top: 35px;
+  margin-left: 35px;
+}
+.hp_bottomnav .bottomnav_banner .bottomnav h3 {
+  position: absolute;
+  top: 25px;
+  left: 250px;
+  font-size: 16px;
+}
+.hp_bottomnav .bottomnav_banner .bottomnav p {
+  position: absolute;
+  top: 60px;
+  left: 250px;
+  font-size: 14px;
+}
+.hp_bottomnav .bottomnav_banner .bottomnav:nth-child(2) {
+  width: 450px;
+  padding-left: 100px;
+}
+.hp_bottomnav .bottomnav_banner .bottomnav:nth-child(2) h3,
+.hp_bottomnav .bottomnav_banner .bottomnav:nth-child(2) p {
+  left: 250px;
+}
+.hp_bottomnav .bottomnav_banner .bottomnav:nth-child(3) {
+  margin-top: 45px;
+}
+.hp_bottomnav .bottomnav_banner .bottomnav:nth-child(4) {
+  width: 450px;
+  padding-left: 100px;
+  margin-top: 45px;
+}
+.hp_bottomnav .bottomnav_banner .bottomnav:nth-child(4) h3,
+.hp_bottomnav .bottomnav_banner .bottomnav:nth-child(4) p {
+  left: 250px;
+}
+.boer {
+  width: 100%;
+  background: url(../images/boer-banner.jpg) no-repeat;
+  height: 298px;
+}
+.boer .boer_banner {
+  width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+.boer .boer_banner img {
+  width: 182px;
+  height: 182px;
+  position: absolute;
+  top: 54px;
+  right: 100px;
+}
+.boer .boer_banner h2 {
+  color: #fff;
+  position: absolute;
+  top: 90px;
+  left: 100px;
+  font-size: 28px;
+}
+.boer .boer_banner p {
+  color: #fff;
+  position: absolute;
+  top: 145px;
+  left: 100px;
+  font-size: 22px;
+}
+.keep-on-record {
+  text-align: center;
+  height: 55px;
+  line-height: 55px;
+}
+.sweep {
+  position: fixed;
+  z-index: 1000;
+  right: 0;
+  top: 50%;
+  width: 82px;
+  height: 67px;
+  border-radius: 2px;
+  background: -webkit-linear-gradient(#ef7804, #fe8f22);
+  /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(#ef7804, #fe8f22);
+  /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(#ef7804, #fe8f22);
+  /* Firefox 3.6 - 15 */
+  background: linear-gradient(#ef7804, #fe8f22);
+  /* 标准的语法 */
+  color: #fff;
+  text-align: center;
+  font-size: 20px;
+  padding-top: 15px;
+  line-height: 25px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.sweep span {
+  font-family: 微软雅黑;
+}
+.sweep_mosk {
+  position: fixed;
+  z-index: 250;
+  padding: 30px 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  top: 50%;
+  left: 50%;
+  margin: -250px 0 0 -250px;
+  transform: translate(0, 0);
+  width: 500px;
+  text-align: center;
+}
+.sweep_mosk h3 {
+  margin: 40px auto;
+  font-size: 30px;
+  font-weight: normal;
+  color: #fff;
+  font-family: 微软雅黑;
+}
+.sweep_mosk h3:nth-child(1) {
+  font-size: 34px;
+}
+.sweep_mosk img {
+  width: 200px;
+}

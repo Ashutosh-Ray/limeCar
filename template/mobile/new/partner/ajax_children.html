@@ -1,0 +1,11 @@
+<volist name="list" id="vo">
+					<tr>
+					<td>
+						<img src="{$vo[head_pic]|default="__STATIC__/images/user68.jpg"}" alt="">
+						<span>{$vo['aplly_name']}</span>
+					</td>
+					<td>￥{$vo['account']}</td>
+					<td>{$vo['sald_num']}</td>
+					<td>{$vo['pay_time']|date="Y-m-d",###}</td>
+					</tr>
+</volist>

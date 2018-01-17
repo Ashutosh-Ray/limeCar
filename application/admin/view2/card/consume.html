@@ -1,0 +1,78 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;"> 
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+      <div class="subject">
+        <h3>会员卡消费</h3>
+        <h5>记录会员卡消费情况</h5>
+      </div>
+    </div>
+  </div>
+    <!--表单数据-->
+    <form method="post" id="addEditGoodsAttributeForm" action='{:U("Card/do_consume")}'>
+    <div class="ncap-form-default">
+      <dl class="row">
+        <dt class="tit">
+          <label for="parent_id">消费项目：</label>
+        </dt>
+        <dd class="opt">
+           
+            <select name="card_meal_id" id="type_id" class="small form-control">
+                 <option value="">请选择</option>
+                <volist name="types" id="vo">
+                 <option value="{$vo[id]}" time="{$vo['time']}" consume="{$vo[ consume_num]}">{$vo[name]}</option>
+                </volist>                                        
+            </select>
+            <span  class="err" id="err_type_id" style="color:#F00; display:none;"></span>      
+
+        </dd>
+      </dl>      
+	     <dl class="row">
+        <dt class="tit">
+          <label for="ac_name"><em>*</em>消费次数：</label>
+        </dt>
+        <dd class="opt">
+            <input type="text" name="time"  class="input-txt musthave"  tip="会员车牌号不能为空" onkeyup="javascript:this.value=this.value.replace(/[^\d.]/g,'');if(this.value==10){this.value=0};"/>
+            <span class="err" id="err_attr_name" style="color:#F00; display:none;"></span>                                  
+        </dd>
+      </dl>
+      <if condition="$codeshow neq 1">
+      <dl class="row">
+        <dt class="tit">
+          <label for="ac_name"><em>*</em>手机验证码：</label>
+        </dt>
+        <dd class="opt">
+            <input type="text" name="code"  class="input-txt musthave" placeholder="请输入验证码" />
+            <span class="err" id="err_attr_name" style="color:#F00; display:none;"></span>                                  
+        </dd>
+      </dl> 
+      </if>	                 
+      <div class="bot"><a href="JavaScript:void(0);" onclick="submit_form()"  class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+    </div>
+     <input type="hidden" name="name" value="{$data.name}">
+     <input type="hidden" name="card_id" value="{$card_id}">
+  </form>
+</div>
+ 
+</body>
+</html>
+<script type="text/javascript">
+function submit_form() {
+  $('#addEditGoodsAttributeForm').submit();
+}
+$('#type_id').change(function () {
+  var text = $('select option:selected').text();
+ var time = $('select option:selected').attr('time');
+ var consume = $('select option:selected').attr('consume');
+ var yu = time-consume;
+ $('input:hidden[name="name"]').val(text);
+ $('#err_attr_name').show();
+ $('#err_attr_name').text('剩余'+yu+'次');
+ $('input[name="time"]').keyup(function () {
+   $(this).val().replace(/[^\d.]/g,'');
+   if ($(this).val()>yu) {$(this).val(yu)}
+ })
+
+})
+</script>

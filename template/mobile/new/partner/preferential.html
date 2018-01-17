@@ -1,0 +1,92 @@
+<include file="public/header"/>
+<include file="public/menu"/>
+<style>
+.content .con_list ul li .con_main .main_p p:nth-child(2){
+  white-space: normal;
+  width: 100%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  margin-top: 10px;
+}
+.content .con_list ul li .con_main .main_right p{
+  top: 30px;
+  text-align: right;
+  font-size: 16px;
+  color: red;
+}
+.content .con_list ul li{
+  height: 100px;
+}
+</style>
+<body>
+<div id="tbh5v0">
+  <div class="order ajax_return">
+    <div class="order_list">
+      <div class="nav">
+        <div class="tab_nav">
+          <div class="header">
+            <div class="h-left"><a class="sb-back" href="javascript:history.back(-1)" title="返回"></a>
+            </div>
+            <div class="h-mid">合伙人特惠</div>
+            <div class="h-right">
+            </div>
+          </div>
+        </div>
+      </div>
+  <div class="content">
+    <div class="con_list">
+      <ul id="ajax_return">
+      	<volist name="goods_list" id="vo">
+        <li>
+          <a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$vo[goods_id],'is_vip'=>1))}">
+          <div class="con_main">
+            <div class="main_pic">
+              <img src="{$vo.goods_id|goods_thum_images=240,240}" alt="">
+              <!-- <img src="__STATIC__/images/none.png" alt=""> -->
+            </div>
+            <div class="main_p">
+              <p>{$vo['goods_name']}</p>
+              <p>{$vo['goods_remark']}</p>
+            </div>
+            <div class="main_right">
+              <p>￥{$vo['shop_price']|calcu_goods_price}</p>
+            </div>
+          </div>
+        </a>
+        </li>
+    </volist>
+      </ul>
+    </div>
+  </div>
+  </div>
+  <notempty name="goods_list">
+   <div id="getmore" style="font-size:.24rem;text-align: center;color:#888;padding:.1rem; clear:both">
+      <a href="javascript:void(0)" onClick="ajax_sourch_submit()">点击加载更多</a>
+  </div>
+  </notempty>
+</div>
+</div>
+</body>
+</html>
+<script>
+var  page = 1;
+ /*** ajax 提交表单 查询订单列表结果*/  
+ function ajax_sourch_submit()
+ {
+    page += 1;
+    $.ajax({
+        type : "POST",
+        url:"{:U('Mobile/Partner/preferential')}",//+tab,
+//      data : $('#filter_form').serialize(),// 你的formid 搜索表单 序列化提交
+        data:{id:'{$cat_id}',q:'{$q}',is_ajax:1,sort:'{$Request.param.sort}',sort_asc:'{$Request.param.sort_asc}',p:page},
+        success: function(data)
+        {
+            if($.trim(data) == '')
+                $('#getmore').hide();
+            else
+                $("#ajax_return").append(data);
+        }
+    });
+ } 
+</script>

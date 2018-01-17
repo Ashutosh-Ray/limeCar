@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<!-- saved from url=(0074)https://dev.juxinli.com/#/app/reports/4.2/bebd43b270294c69a16a4d14909b371d -->
+<html  class="ng-scope"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style></style><style type="text/css"></style>
+    <style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style> <title>首页</title>
+    <link rel="stylesheet" href="{$Think.config.base_path}/Static/admin/css/jxl_bower_stylesheet_41f2390a0e.css">
+    
+    <link rel="stylesheet" href="{$Think.config.base_path}/Static/admin/css/jxl_dev_platform_31c5e05aaf.css">
+    <script src="{$Think.config.base_path}/Static/admin/js/jxl_bower_script_506a82252d.js"></script>
+<script src="{$Think.config.base_path}/Static/admin/js/template_d004eb8491.js"></script>
+      <style></style>
+      <meta name="__hash__" content="63d2fbc7b37fa40147932d8dafd38b25_6018b4d344dac7f3af0cc57c575c44d9" /></head>
+<body class="jxl-body">
+
+<div class="ng-toast ng-toast--right ng-toast--top ng-toast--animate-slide"><ul class="ng-toast__list"><!-- ngRepeat: message in messages --></ul></div>
+<!-- ngInclude: 'tpl/common/header.html' --><header ng-controller="HeaderCtrl as header" ng-include="&#39;tpl/common/header.html&#39;"
+                                                    class="jxl-structure-header ng-scope">
+
+</header> <article class="jxl-structure-core"> <!-- uiView: undefined -->
+    <ui-view class="ng-scope"><!-- uiView: content --><div ui-view="content" class="ng-scope"><div class="container ng-scope">
+    <div class="report report-fade active" ng-class="{
+  &#39;active&#39;: reportDetail.showRenderReport,
+  }" style="">
+        <h2 class="h2 report-title text-center" style="font-weight: 700;">
+            互联网资信报告
+
+        </h2>
+
+        <!--基本信息开始-->
+        <div class="report-basic-info">
+            <table class="table" style="margin-bottom:10px;">
+                <tbody>
+                <tr>
+                    <td>
+                        <em class="ng-binding">编号：{$aJxlData.report_data.report.rpt_id}</em>
+                    </td>
+                    <td style="text-align: right">
+                        <em class="ng-binding">报告时间：{$aJxlData.report_data.report.update_time}</em>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <!--基本信息结束-->
+
+                <h4 class="report-item-title">客户在其他公司借款数据</h4>
+        <!--客户在其他公司数据开始-->
+        <div class="report-item">
+            <h2>
+                <span>客户在其他公司借款数据</span>
+            </h2>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th width="">姓名</th>
+                    <th width="">性别</th>
+                    <th width="">身份证号</th>
+                    <th width="">借款公司</th>
+                    <th width="">借款额</th>
+                    <th width="">审核备注</th>
+                    <th width="">审核状态</th>
+                    <th width="">审核日期</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- ngRepeat: cell in reportDetail.report.cell_behavior[0].behavior -->
+
+<!--                                     <tr  class="ng-scope">
+                        <td  class="ng-binding text-center">王夕兰</td>
+                        <td  class="ng-binding text-center">女</td>
+                        <td  class="ng-binding text-center">320422196410150127</td>
+                        <td  class="ng-binding ">苏州鸿信令当商务咨询有限公司（常州）</td>
+                        <td  class="ng-binding text-center">0</td>
+                        <td  class="ng-binding text-center"></td>
+                        <td  class="ng-binding text-center">审核拒绝</td>
+                        <td  class="ng-binding text-center">2017-03-20 09:59:21</td>
+                    </tr> -->
+                                </tbody>
+                </table>
+        </div>
+                <!--客户在其他公司数据结束-->
+
+
+        <h4 class="report-item-title">用户申请表检测</h4>
+
+        <!--申请信息核查开始-->
+        <div class="report-basic-info" style="margin: 10px 0px;">
+            <table class="table teb-time">
+                <!-- ngRepeat: reportapp in reportDetail.report.application_check -->
+                <tbody ng-repeat="reportapp in reportDetail.report.application_check" class="ng-scope">
+                <!-- ngIf: reportapp.app_point=='user_name' -->
+                <tr ng-if="reportapp.app_point==&#39;user_name&#39;" class="ng-scope">
+                    <th>姓名：</th>
+                    <td>
+                        <em class="ng-binding">{$aJxlData.report_data.application_check.0.check_points.key_value}</em>
+                    </td>
+                    <td></td>
+                </tr><!-- end ngIf: reportapp.app_point=='user_name' -->
+                <!-- ngIf: reportapp.app_point=='user_name' --><tr ng-if="reportapp.app_point==&#39;user_name&#39;" class="ng-scope">
+                    <td colspan="3">
+                        <hr>
+                    </td>
+                </tr><!-- end ngIf: reportapp.app_point=='user_name' -->
+                <!-- ngIf: reportapp.app_point=='id_card' -->
+                <!-- ngIf: reportapp.app_point=='id_card' -->
+
+
+                <!-- ngIf: reportapp.app_point=='cell_phone' -->
+                <!-- ngIf: reportapp.app_point=='cell_phone' -->
+
+                <!-- ngIf: reportapp.app_point=='home_addr' -->
+
+
+                <!-- ngIf: reportapp.app_point=='home_addr' && reportapp.check_points.key_value!='' -->
+
+                <!-- ngIf: reportapp.check_points.key_value=='home_addr' && reportapp.check_points.key_value!='' -->
+
+                <!-- ngIf: reportapp.app_point=='home_phone' && reportapp.check_points.key_value!='' -->
+
+                <!-- ngIf: reportapp.app_point=='home_phone' && reportapp.check_points.key_value!='' -->
+
+
+                <!-- ngIf: reportapp.app_point=='contact' -->
+
+                <!-- ngIf: reportapp.app_point=='contact' -->
+
+                <!-- ngIf: reportapp.app_point=='contact' -->
+
+                <!-- ngIf: reportapp.app_point=='taobao' || reportapp.app_point=='jingdong' -->
+
+
+                <!-- ngIf: reportapp.app_point=='taobao' -->
+
+                <!-- ngIf: reportapp.app_point=='jingdong' -->
+                </tbody><!-- end ngRepeat: reportapp in reportDetail.report.application_check --><tbody ng-repeat="reportapp in reportDetail.report.application_check" class="ng-scope">
+                <!-- ngIf: reportapp.app_point=='user_name' -->
+                <!-- ngIf: reportapp.app_point=='user_name' -->
+                <!-- ngIf: reportapp.app_point=='id_card' --><tr ng-if="reportapp.app_point==&#39;id_card&#39;" class="ng-scope">
+                    <th>身份证：</th>
+                    <td>
+                        <em class="ng-binding">{$aJxlData.report_data.application_check.1.check_points.key_value}</em>
+
+
+                        <!-- ngIf: reportapp.check_points.court_blacklist.arised==false -->
+
+
+											<if condition="$aJxlData[report_data][application_check][1][financial_blacklist]['arised'] eq true">
+                                                  <span class="label label-danger ng-scope" ng-if="reportapp.check_points.court_blacklist.arised==false"> 
+                                                  <i class="fa fa-user-secret" aria-hidden="true"></i>法院黑名单</span>
+											<else />
+                                                  <span class="label label-success ng-scope" ng-if="reportapp.check_points.court_blacklist.arised==false"> 
+                                                  <i class="fa fa-user-secret" aria-hidden="true"></i>不在法院黑名单</span>
+                                            </if>      
+                                                  
+                                                    
+                                                    <!-- end ngIf: reportapp.check_points.court_blacklist.arised==false -->
+                        <!-- ngIf: reportapp.check_points.court_blacklist.arised==true -->
+                            
+                        <!-- ngIf: reportapp.check_points.financial_blacklist.arised==false -->
+
+					
+							<if condition="$aJxlData[report_data][application_check][1][financial_blacklist]['arised'] eq true">
+                                                <span class="label court_blacklist ng-scope" ng-if="reportapp.check_points.court_blacklist.arised==false">
+                            <i class="fa fa-user-secret" aria-hidden="fals"></i>金融机构黑名单</span>
+							<else />
+                                                <span class="label label-success ng-scope" ng-if="reportapp.check_points.court_blacklist.arised==false">
+                            <i class="fa fa-user-secret" aria-hidden="fals"></i>不在金融机构黑名单</span>
+                            </if>
+                            
+                            <!-- end ngIf: reportapp.check_points.court_blacklist.arised==false -->
+                        <!-- ngIf: reportapp.check_points.court_blacklist.arised==true -->
+                                                <!-- ngIf: reportapp.check_points.financial_blacklist.arised==true -->
+                    </td>
+
+                    <td>
+                        <em class="ng-binding">{$aJxlData.report_data.application_check.1.check_points.gender}｜
+                            {$aJxlData.report_data.application_check.1.check_points.age}｜{$aJxlData.report_data.application_check.1.check_points.province}                            {$aJxlData.report_data.application_check.1.check_points.city}                            {$aJxlData.report_data.application_check.1.check_points.region}                       </em>
+                    </td>
+                </tr><!-- end ngIf: reportapp.app_point=='id_card' -->
+                <!-- ngIf: reportapp.app_point=='id_card' --><tr ng-if="reportapp.app_point==&#39;id_card&#39;" class="ng-scope">
+                    <td colspan="3">
+                        <hr>
+                    </td>
+                </tr><!-- end ngIf: reportapp.app_point=='id_card' -->
+
+
+                <!-- ngIf: reportapp.app_point=='cell_phone' -->
+                <!-- ngIf: reportapp.app_point=='cell_phone' -->
+
+                <!-- ngIf: reportapp.app_point=='home_addr' -->
+
+
+                <!-- ngIf: reportapp.app_point=='home_addr' && reportapp.check_points.key_value!='' -->
+
+                <!-- ngIf: reportapp.check_points.key_value=='home_addr' && reportapp.check_points.key_value!='' -->
+
+                <!-- ngIf: reportapp.app_point=='home_phone' && reportapp.check_points.key_value!='' -->
+
+                <!-- ngIf: reportapp.app_point=='home_phone' && reportapp.check_points.key_value!='' -->
+
+
+                <!-- ngIf: reportapp.app_point=='contact' -->
+
+                <!-- ngIf: reportapp.app_point=='contact' -->
+
+                <!-- ngIf: reportapp.app_point=='contact' -->
+
+                <!-- ngIf: reportapp.app_point=='taobao' || reportapp.app_point=='jingdong' -->
+
+
+                <!-- ngIf: reportapp.app_point=='taobao' -->
+
+                <!-- ngIf: reportapp.app_point=='jingdong' -->
+                </tbody><!-- end ngRepeat: reportapp in reportDetail.report.application_check --><tbody ng-repeat="reportapp in reportDetail.report.application_check" class="ng-scope">
+                <!-- ngIf: reportapp.app_point=='user_name' -->
+                <!-- ngIf: reportapp.app_point=='user_name' -->
+                <!-- ngIf: reportapp.app_point=='id_card' -->
+                <!-- ngIf: reportapp.app_point=='id_card' -->
+
+
+                <!-- ngIf: reportapp.app_point=='cell_phone' --><tr ng-if="reportapp.app_point==&#39;cell_phone&#39;" class="ng-scope">
+                    <th>手机号：</th>
+
+                    <!-- ngIf: reportapp.check_points.reliability=='实名认证' -->
+                    <td ng-if="reportapp.check_points.reliability==&#39;&#39;" class="text-success ng-scope">
+                        <em class="ng-binding">   {$aJxlData.report_data.application_check.2.check_points.website}｜
+                            <span class="label label-success ng-binding"><i class="fa fa-user" aria-hidden="true"></i>实名认证</span>
+                            {$aJxlData.report_data.application_check.2.check_points.reg_time}                        </em>
+                    </td><!-- end ngIf: reportapp.check_points.reliability=='实名认证' -->
+
+
+                    <!-- ngIf: reportapp.check_points.reliability!='实名认证' -->
+
+                    <td>
+                        <em class="ng-binding">{$aJxlData.report_data.application_check.2.check_points.key_value}</em>
+                                                <!-- ngIf: reportapp.check_points.financial_blacklist.arised==false -->
+                             
+                          <if condition="$aJxlData[report_data][application_check][2][check_points][financial_blacklist][arised] eq true">                 
+                             <span class="label label-danger ng-scope" ng-if="reportapp.check_points.financial_blacklist.arised==false">
+                             <i class="fa fa-user-secret" aria-hidden="true"></i>金融机构黑名单</span>
+                           <else />
+                             <span class="label label-success ng-scope" ng-if="reportapp.check_points.financial_blacklist.arised==false">
+                             <i class="fa fa-user-secret" aria-hidden="true"></i>不在金融机构黑名单</span>
+                           </if>
+                             
+                             <!-- end ngIf: reportapp.check_points.financial_blacklist.arised==false -->
+                                                <!-- ngIf: reportapp.check_points.financial_blacklist.arised==true -->
+                    </td>
+
+                </tr><!-- end ngIf: reportapp.app_point=='cell_phone' -->
+                <!-- ngIf: reportapp.app_point=='cell_phone' --><tr ng-if="reportapp.app_point==&#39;cell_phone&#39;" class="ng-scope">
+                    <td></td>
+                    <td>
+                        <ul class="phone-list">
+                            <!-- ngIf: reportapp.check_points.check_name.indexOf('匹配成功')>=0 -->
+                                                        <li ng-if="reportapp.check_points.check_name.indexOf(&#39;匹配成功&#39;)&gt;=0" class="text-danger ng-binding ng-scope">
+                              {$aJxlData.report_data.application_check.2.check_points.check_name}                             <i style="font-size:14px; margin-left: 5px;" class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                            </li>
+
+                            <!-- end ngIf: reportapp.check_points.check_name.indexOf('匹配成功')>=0 -->
+                            <!-- ngIf: reportapp.check_points.check_idcard.indexOf('匹配成功')>=0 -->
+                                                        <li ng-if="reportapp.check_points.check_idcard.indexOf(&#39;匹配成功&#39;)&gt;=0" class="text-warning ng-binding ng-scope">
+                                 {$aJxlData.report_data.application_check.2.check_points.check_idcard}                                  <i style="font-size:14px; margin-left: 5px;" class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                            </li><!-- end ngIf: reportapp.check_points.check_idcard.indexOf('匹配成功')>=0 -->
+                            <!-- ngIf: reportapp.check_points.check_name.indexOf('匹配失败')>=0 -->
+                            <!-- ngIf: reportapp.check_points.check_idcard.indexOf('匹配失败')>=0 -->
+                            <!-- ngIf: reportapp.check_points.check_idcard.indexOf('未提供')>=0 -->
+
+                            <!-- ngIf: reportapp.check_points.check_ebusiness.indexOf('无法判断')>=0 || reportapp.check_points.check_ebusiness.indexOf('无电商数据')>=0 -->
+                                                        <li ng-if="reportapp.check_points.check_ebusiness.indexOf(&#39;无法判断&#39;)&gt;=0 || reportapp.check_points.check_ebusiness.indexOf(&#39;无电商数据&#39;)&gt;=0" class="text-warning ng-binding ng-scope">
+                            {$aJxlData.report_data.application_check.2.check_points.check_ebusiness}  
+                                <i style="font-size:14px; margin-left: 5px;" class="fa fa-exclamation-circle" aria-hidden="true">
+                                </i>
+                            </li><!-- end ngIf: reportapp.check_points.check_ebusiness.indexOf('无法判断')>=0 || reportapp.check_points.check_ebusiness.indexOf('无电商数据')>=0 -->
+                            <!-- ngIf: reportapp.check_points.check_ebusiness.indexOf('使用过[')>=0 -->
+                        </ul>
+                    </td>
+                    <td></td>
+                </tr>
+                </tbody><!-- end ngRepeat: reportapp in reportDetail.report.application_check --><tbody ng-repeat="reportapp in reportDetail.report.application_check" class="ng-scope">
+
+
+                <!-- ngIf: reportapp.app_point=='home_addr' --><tr ng-if="reportapp.app_point==&#39;home_addr&#39;" class="ng-scope">
+                    <td colspan="3">
+                        <hr>
+                    </td>
+                </tr><!-- end ngIf: reportapp.app_point=='home_addr' -->
+
+
+                <!-- ngIf: reportapp.app_point=='home_addr' && reportapp.check_points.key_value!='' --><tr ng-if="reportapp.app_point==&#39;home_addr&#39; &amp;&amp; reportapp.check_points.key_value!=&#39;&#39;" class="ng-scope">
+                    <th width="88px;">居住地址：</th>
+                    <td><em class="ng-binding"> {$aCustomer.permanent_address}</em></td>
+                    <td style="width:400px;">
+                        <!-- ngIf: reportapp.check_points.check_addr.indexOf('可通过')>=0 -->
+                        <!-- ngIf: reportapp.check_points.check_addr.indexOf('可通过')<0 -->
+                        <em class="text-warning ng-binding ng-scope" ng-if="reportapp.check_points.check_addr.indexOf(&#39;可通过&#39;)&lt;0" style="text-align: right">
+                            {$aJxlData.report_data.application_check.2.check_points.check_addr}</em><!-- end ngIf: reportapp.check_points.check_addr.indexOf('可通过')<0 -->
+                    </td>
+                </tr>
+                </tbody><!-- end ngRepeat: reportapp in reportDetail.report.application_check -->
+                <tbody ng-repeat="reportapp in reportDetail.report.application_check" class="ng-scope">
+
+                </tbody><!-- end ngRepeat: reportapp in reportDetail.report.application_check -->
+                <if condition="$contactTrue neq 1">
+                <volist name="contacts" id="c">
+                <tbody ng-repeat="reportapp in reportDetail.report.application_check" class="ng-scope">
+
+
+
+                <tr ng-if="reportapp.app_point==&#39;contact&#39;" class="ng-scope">
+                    <td colspan="3">
+                        <hr>
+                    </td>
+                </tr>
+
+                <tr ng-if="reportapp.app_point==&#39;contact&#39;" class="ng-scope">
+                                        <th>联系人：</th>
+                    <td>
+                        <em class="ng-binding">
+                            {$c.relationship} ｜   {$c.name} ｜
+                            {$c.phone}                        </em><span class="label label-success ng-scope">非临时小号</span>
+
+                        <span class="label label-success ng-scope"
+                              ng-if="reportapp.check_points.check_xiaohao.indexOf(&#39;非临时小号&#39;)&gt;0"><i class="fa fa-mobile" aria-hidden="true" style="font-size:16px;"></i>
+                           {$aJxlData.report_data.application_check.5.check_points.check_xiaohao}</span>
+                    </td>
+                    <td></td>
+                </tr>
+
+                <tr ng-if="reportapp.app_point==&#39;contact&#39;" class="ng-scope">
+                    <td></td>
+                    <td>
+                        <em ng-class="{&#39;text-success&#39;:reportapp.check_points.check_mobile.indexOf(&#39;没有该联系人&#39;)==-1,&#39;text-danger&#39;:reportapp.check_points.check_mobile.indexOf(&#39;没有该联系&#39;)&gt;=0}" class="ng-binding text-success">
+                            {$aJxlData.report_data.application_check.5.check_points.check_mobile}                           <!--  <i style="font-size:14px;" class="fa fa-exclamation-circle" aria-hidden="true"></i> --></em>
+
+                    </td>
+                    <td></td>
+                </tr>
+
+                <tr ng-if="reportapp.app_point==&#39;contact&#39;" class="ng-scope">
+                    <td></td>
+                    <td ></td>
+                    <td></td>
+                </tr>
+                </tbody>
+                </volist>
+                </if>
+
+                <if condition="$contactTrue eq 1">
+                
+                 <tbody ng-repeat="reportapp in reportDetail.report.application_check" class="ng-scope">
+
+
+                <tr ng-if="reportapp.app_point==&#39;contact&#39;" class="ng-scope">
+                    <td colspan="3">
+                        <hr>
+                    </td>
+                </tr>
+
+               <tr ng-if="reportapp.app_point==&#39;contact&#39;" class="ng-scope">
+                    <th>联系人：</th>
+                    <td>
+                        <em class="ng-binding">
+                            {$aJxlData.report_data.application_check.5.check_points.relationship} ｜  {$aJxlData.report_data.application_check.5.check_points.contact_name}｜
+                            {$aJxlData.report_data.application_check.5.check_points.key_value}                         </em>
+    <span class="label label-success ng-scope" ng-if="reportapp.check_points.check_xiaohao.indexOf(&#39;非临时小号&#39;)&gt;0"><i class="fa fa-mobile" aria-hidden="true" style="font-size:16px;"></i>{$aJxlData.report_data.application_check.5.check_points.check_xiaohao}</span>
+                    </td>
+                    <td></td>
+                </tr>
+
+              <tr ng-if="reportapp.app_point==&#39;contact&#39;" class="ng-scope">
+                    <td></td>
+                    <td>
+                        <em ng-class="{&#39;text-success&#39;:reportapp.check_points.check_mobile.indexOf(&#39;没有该联系人&#39;)==-1,&#39;text-danger&#39;:reportapp.check_points.check_mobile.indexOf(&#39;
+                        没有该联系&#39;)&gt;=0}" class="ng-binding text-success">{$aJxlData.report_data.application_check.5.check_points.check_mobile}                            <i style="font-size:14px;" class="fa fa-exclamation-circle" aria-hidden="true"></i></em>
+
+                    </td>
+                    <td></td>
+                </tr>
+
+                    <tr ng-if="reportapp.app_point==&#39;contact&#39;" class="ng-scope">
+                        <td></td>
+                        <td >
+ 
+
+                        </td>
+                        <td></td>
+                    </tr>
+                </tbody>
+
+                 <tbody ng-repeat="reportapp in reportDetail.report.application_check" class="ng-scope">
+
+
+                <tr ng-if="reportapp.app_point==&#39;contact&#39;" class="ng-scope">
+                    <td colspan="3">
+                        <hr>
+                    </td>
+                </tr>
+
+               <tr ng-if="reportapp.app_point==&#39;contact&#39;" class="ng-scope">
+                    <th>联系人：</th>
+                    <td>
+                        <em class="ng-binding">
+                            {$aJxlData.report_data.application_check.6.check_points.relationship} ｜  {$aJxlData.report_data.application_check.6.check_points.contact_name}｜
+                            {$aJxlData.report_data.application_check.6.check_points.key_value}                         </em>
+    <span class="label label-success ng-scope" ng-if="reportapp.check_points.check_xiaohao.indexOf(&#39;非临时小号&#39;)&gt;0"><i class="fa fa-mobile" aria-hidden="true" style="font-size:16px;"></i>{$aJxlData.report_data.application_check.6.check_points.check_xiaohao}</span>
+                    </td>
+                    <td></td>
+                </tr>
+
+              <tr ng-if="reportapp.app_point==&#39;contact&#39;" class="ng-scope">
+                    <td></td>
+                    <td>
+                        <em ng-class="{&#39;text-success&#39;:reportapp.check_points.check_mobile.indexOf(&#39;没有该联系人&#39;)==-1,&#39;text-danger&#39;:reportapp.check_points.check_mobile.indexOf(&#39;
+                        没有该联系&#39;)&gt;=0}" class="ng-binding text-success">{$aJxlData.report_data.application_check.6.check_points.check_mobile}                            <i style="font-size:14px;" class="fa fa-exclamation-circle" aria-hidden="true"></i></em>
+
+                    </td>
+                    <td></td>
+                </tr>
+
+                    <tr ng-if="reportapp.app_point==&#39;contact&#39;" class="ng-scope">
+                        <td></td>
+                        <td >
+ 
+
+                        </td>
+                        <td></td>
+                    </tr>
+                </tbody>
+                </if>
+            </table> 
+        </div>
+        <!--申请信息核查结束-->
+
+        <h4 class="report-item-title">用户信息检测</h4>
+        <!--推断分析开始-->
+        <div class="report-item">
+            <h2>
+                <span>联系人数据</span>
+            </h2>
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th width="110px;">用户查询信息</th>
+                    <td style="padding: 0px;">
+                        <table class="table" style="margin-bottom: 0px;">
+                            <tbody>
+                            <tr>
+                                <th width="210px;" style=" border-top:none;border-left:1px solid #f5f5f5;">
+                                    查询过该用户的相关企业数量
+                                </th>
+                                <!-- ngIf: reportDetail.report.user_info_check.check_search_info.searched_org_cnt==-1 || reportDetail.report.user_info_check.check_search_info.searched_org_cnt==0 -->
+                                <td style="border-top: none; border-right: 1px solid rgb(245, 245, 245);"
+                                    ng-if="reportDetail.report.user_info_check.check_search_info.searched_org_cnt==-1 || reportDetail.report.user_info_check.check_search_info.searched_org_cnt==0" class="ng-scope">
+                                    {$aJxlData.report_data.user_info_check.check_search_info.searched_org_cnt}                                </td><!-- end ngIf: reportDetail.report.user_info_check.check_search_info.searched_org_cnt==-1 || reportDetail.report.user_info_check.check_search_info.searched_org_cnt==0 -->
+                                <!-- ngIf: reportDetail.report.user_info_check.check_search_info.searched_org_cnt>0 -->
+                            </tr>
+                            <tr>
+                                <th width="210px;" style=" border-left:1px solid #f5f5f5;">查询过该用户的相关企业类型</th>
+                                <td style=" border-right:1px solid #f5f5f5;" class="neme-time">
+                                    <!-- ngRepeat: org in reportDetail.report.user_info_check.check_search_info.searched_org_type -->
+                                    <volist name="$aJxlData.report_data.user_info_check.check_search_info.searched_org_type" id="name">
+                                                                     <span class="nasb text-danger ng-binding ng-scope" ng-if="reportDetail.report.user_info_check.check_search_info.searched_org_type.length==0">
+                                        {$name}</span>
+                                   </volist>
+                                                                     
+                                    <!-- ngIf: reportDetail.report.user_info_check.check_search_info.searched_org_type.length==0 -->
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <th width="210px;" style=" border-left:1px solid #f5f5f5;">身份证组合过的其他姓名</th>
+                                <td style=" border-right:1px solid #f5f5f5;" class="neme-time">
+                                    <!-- ngRepeat: idcardforName in reportDetail.report.user_info_check.check_search_info.idcard_with_other_names -->
+                                                                          <span class="label label-success ng-scope" ng-if="reportDetail.report.user_info_check.check_search_info.idcard_with_other_names.length==0">
+                                    无数据
+                                    </span>
+                                    
+                                    <!-- ngIf: reportDetail.report.user_info_check.check_search_info.idcard_with_other_names.length==0 -->
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <th width="210px;" style=" border-left:1px solid #f5f5f5;">身份证组合过其他电话</th>
+                                <td style=" border-right:1px solid #f5f5f5;" class="neme-time">
+                                    <!-- ngRepeat: idcardforPhone in reportDetail.report.user_info_check.check_search_info.idcard_with_other_phones -->
+                                    <!-- ngIf: reportDetail.report.user_info_check.check_search_info.idcard_with_other_phones.length==0 -->
+                                                                          <span class="label label-success ng-scope" ng-if="reportDetail.report.user_info_check.check_search_info.idcard_with_other_phones.length==0">
+                                    无数据
+                                    </span>
+                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <th width="210px;" style=" border-left:1px solid #f5f5f5;">电话号码组合过其他姓名</th>
+                                <td style=" border-right:1px solid #f5f5f5;" class="neme-time">
+                                    <!-- ngRepeat: phoneforName in reportDetail.report.user_info_check.check_search_info.phone_with_other_names -->
+                                     <!-- ngIf: reportDetail.report.user_info_check.check_search_info.phone_with_other_names.length==0 -->
+                                                                          <span class="label label-success ng-scope" ng-if="reportDetail.report.user_info_check.check_search_info.phone_with_other_names.length==0">
+                                    无数据
+                                    </span>
+                                                                    </td>
+                            </tr>
+                            <tr>
+                                <th width="210px;" style=" border-left:1px solid #f5f5f5;">电话号码组合过其他身份证</th>
+                                <td style=" border-right:1px solid #f5f5f5;" class="neme-time">
+                                    <!-- ngRepeat: phoneforIdcards in reportDetail.report.user_info_check.check_search_info.phone_with_other_idcards -->
+                                                                          <span class="label label-success ng-scope" ng-if="reportDetail.report.user_info_check.check_search_info.phone_with_other_idcards.length==0">
+                                    无数据
+                                    </span>
+                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <th width="210px;" style=" border-left:1px solid #f5f5f5;">电话号码注册过的相关企业数量</th>
+
+                                <!-- ngIf: reportDetail.report.user_info_check.check_search_info.register_org_cnt==-1 || reportDetail.report.user_info_check.check_search_info.register_org_cnt==0 -->
+                                <!-- ngIf: reportDetail.report.user_info_check.check_search_info.register_org_cnt>0 -->
+                                <td style="border-right: 1px solid rgb(245, 245, 245);"
+                                    ng-if="reportDetail.report.user_info_check.check_search_info.register_org_cnt&gt;0" class="ng-binding ng-scope">
+                                    {$aJxlData.report_data.user_info_check.check_search_info.register_org_cnt}                                </td><!-- end ngIf: reportDetail.report.user_info_check.check_search_info.register_org_cnt>0 -->
+                            </tr>
+
+                            <tr>
+                                <th width="210px;" style=" border-left:1px solid #f5f5f5;">电话号码注册过的相关企业类型</th>
+                                <td style=" border-right:1px solid #f5f5f5;" class="neme-time">
+                                    <!-- ngRepeat: register in reportDetail.report.user_info_check.check_search_info.register_org_type -->
+                                                                        <span class="label label-success ng-scope" ng-if="reportDetail.report.user_info_check.check_search_info.phone_with_other_idcards.length==0">无数据</span>
+                                                                        <!-- ngIf: reportDetail.report.user_info_check.check_search_info.register_org_type.length==0 -->
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th width="210px;" style=" border-left:1px solid #f5f5f5; border-bottom:1px solid #f5f5f5;">
+                                    电话号码出现过的公开网站
+                                </th>
+                                <td style=" border-right:1px solid #f5f5f5; border-bottom:1px solid #f5f5f5;" class="neme-time">
+                                    <!-- ngRepeat: web in reportDetail.report.user_info_check.check_search_info.arised_open_web -->
+                                    <!-- ngIf: reportDetail.report.user_info_check.check_search_info.arised_open_web.length==0 -->
+                                                                          <span class="label label-success ng-scope" ng-if="reportDetail.report.user_info_check.check_search_info.arised_open_web.length==0">
+                                    无数据
+                                    </span>
+                                  
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <h2>
+                <span>黑名单</span>
+            </h2>
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th width="110px;">黑名单信息</th>
+                    <td style="padding: 0px;">
+                        <table class="table" style="margin-bottom: 0px;">
+                            <tbody>
+                            <tr ng-class="{&#39;danger&#39;:reportDetail.report.user_info_check.check_black_info.phone_gray_score&lt;60,&#39;success&#39;:reportDetail.report.user_info_check.check_black_info.phone_gray_score&gt;60}" class="danger" style="">
+                                <th width="210px;" style=" border-top:none;border-left:1px solid #f5f5f5;">
+                                    黑中介分数
+                                </th>
+                                <td style=" border-top:none;border-right:1px solid #f5f5f5;" class="ng-binding">
+                                    {$aJxlData.report_data.user_info_check.check_black_info.phone_gray_score}（分数范围0-100，参考分为10，分数越低关系越紧密）
+                                </td>
+                            </tr>
+                            <tr ng-class="{&#39;danger&#39;:reportDetail.report.user_info_check.check_black_info.contacts_class1_blacklist_cnt&gt;1,&#39;success&#39;:reportDetail.report.user_info_check.check_black_info.contacts_class1_blacklist_cnt&lt;1}" class="success" style="">
+                                <th width="210px;" style=" border-left:1px solid #f5f5f5;">直接联系人中黑名单人数</th>
+                                <td style=" border-right:1px solid #f5f5f5;" class="neme-time ng-binding">
+                                    {$aJxlData.report_data.user_info_check.check_black_info.contacts_class1_blacklist_cnt}                                    (直接联系人：和被查询号码有通话记录)
+                                </td>
+                            </tr>
+                            <tr class="warning">
+                                <th width="210px;" style=" border-left:1px solid #f5f5f5;">间接联系人中黑名单人数</th>
+                                <td style=" border-right:1px solid #f5f5f5;" class="neme-time ng-binding">
+                                    {$aJxlData.report_data.user_info_check.check_black_info.contacts_class2_blacklist_cnt}                                (间接联系人：和被查询号码的直接联系人有通话记录)
+                                </td>
+                            </tr>
+                            <tr>
+                                <th width="210px;" style=" border-left:1px solid #f5f5f5;">直接联系人人数</th>
+                                <td style=" border-right:1px solid #f5f5f5;" class="neme-time ng-binding">
+                                    {$aJxlData.report_data.user_info_check.check_black_info.contacts_class1_cnt}                                   (直接联系人：和被查询号码有通话记录)
+                                </td>
+                            </tr>
+                            <tr>
+                                <th width="210px;" style=" border-left:1px solid #f5f5f5;">引起黑名单的直接联系人数量</th>
+                                <td style=" border-right:1px solid #f5f5f5;" class="neme-time ng-binding">
+                                    {$aJxlData.report_data.user_info_check.check_black_info.contacts_router_cnt}                                     (直接联系人有和黑名单用户的通讯记录的号码数量)
+                                </td>
+                            </tr>
+                            <tr>
+                                <th width="210px;" style=" border-left:1px solid #f5f5f5;">直接联系人中引起间接黑名单占比</th>
+                                <td style=" border-right:1px solid #f5f5f5;" class="neme-time ng-binding">
+                                    ({$aJxlData.report_data.user_info_check.check_black_info.contacts_router_ratio}*100)%
+                                    (直接联系人有和黑名单用户的通讯记录的号码数量在直接联系人数量中的百分比)
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+
+            <h4 class="report-item-title">用户行为检测</h4>
+            <!--用户行为检测开始-->
+            <div class="report-item">
+                <h2>
+                    <span>用户行为检测</span>
+                </h2>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <!--<th width="300px;">检查点</th>-->
+                        <th width="200px;">检查项</th>
+                        <th width="300px;">结果</th>
+                        <th>依据</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+
+
+					<volist name="aJxlData[report_data][behavior_check]"  id="vo">              
+                    <tr ng-repeat="applicationCheck in reportDetail.report.behavior_check" ng-class="{&#39;danger&#39;:applicationCheck.score == 2,&#39;warning&#39;:applicationCheck.score == 0}" class=" ng-scope">
+                        <td ng-bind="applicationCheck.check_point_cn" class="ng-binding">{$vo.check_point_cn}</td>
+                        <td ng-bind="applicationCheck.result" class="ng-binding">{$vo.result}</td>
+                        <td>
+                                                        <!-- ngRepeat: check in applicationCheck.evidence --><span ng-repeat="check in applicationCheck.evidence" class="ng-scope">
+                                <p class="ng-binding">{$vo.evidence}</p>
+                            </span><!-- end ngRepeat: check in applicationCheck.evidence -->
+                              
+                        </td>
+                    </tr>
+                    
+                    </volist>
+
+                                       <!-- end ngRepeat: applicationCheck in reportDetail.report.behavior_check -->
+                    </tbody>
+                    <tbody><!-- ngIf: reportDetail.report.behavior_check== 0 || reportDetail.report.behavior_check== null -->
+                </tbody></table>
+            </div>
+            <!--用户行为检测结束-->
+
+            <h4 class="report-item-title">运营商数据</h4>
+            <!--运营商数据管理开始-->
+            <div class="report-item">
+                <h2>
+                    <span>运营商数据</span>
+                </h2>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th width="">运营商</th>
+                        <th width="">号码</th>
+                        <th width="">归属地</th>
+                        <th width="">月份</th>
+                        <th width="">呼叫次数</th>
+                        <th width="">主叫次数</th>
+                        <th width="">主叫时间(分钟)</th>
+                        <th width="">被叫次数</th>
+                        <th width="">被叫时间(分钟)</th>
+                        <th width="">短信数量</th>
+                        <th width="">话费消费</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- ngRepeat: cell in reportDetail.report.cell_behavior[0].behavior -->
+
+<volist name="aJxlData[report_data][cell_behavior][0][behavior]"  id="vo">   
+                    <tr ng-repeat="cell in reportDetail.report.cell_behavior[0].behavior" class="ng-scope">
+                        <td ng-bind="cell.cell_operator_zh" class="ng-binding">{$vo.cell_operator_zh}</td>
+                        <td ng-bind="cell.cell_phone_num" class="ng-binding">{$vo.cell_phone_num}</td>
+                        <td ng-bind="cell.cell_loc" class="ng-binding">{$vo.cell_loc}</td>
+                        <td ng-bind="cell.cell_mth" class="ng-binding">{$vo.cell_mth}</td>
+                        <td ng-bind="cell.call_cnt" class="ng-binding">{$vo.call_cnt}</td>
+                        <td ng-bind="cell.call_out_cnt" class="ng-binding">{$vo.call_out_cnt}</td>
+                        <td ng-bind="cell.call_out_time |number:2" class="ng-binding">{$vo.call_out_time}</td>
+                        <td ng-bind="cell.call_in_cnt" class="ng-binding">{$vo.call_in_cnt}</td>
+                        <td ng-bind="cell.call_in_time |number:2" class="ng-binding">{$vo.call_in_time}</td>
+                        <td ng-bind="cell.sms_cnt" class="ng-binding">{$vo.sms_cnt}</td>
+                        <!-- ngIf: (cell.total_amount | number:0)==-1 || (cell.total_amount | number:0)==0 -->
+                        <td ng-if="(cell.total_amount | number:0)==-1 || (cell.total_amount | number:0)==0" class="ng-scope">
+                            <span class="label label-danger">{$vo.total_amount}</span>
+                        </td><!-- end ngIf: (cell.total_amount | number:0)==-1 || (cell.total_amount | number:0)==0 -->
+                        <!-- ngIf: (cell.total_amount | number:0)>0 -->
+                    </tr><!-- end ngRepeat: cell in reportDetail.report.cell_behavior[0].behavior -->
+</volist>                                    
+                                        </tbody>
+                    <tbody><!-- ngIf: reportDetail.report.cell_behavior[0].behavior== 0 || reportDetail.report.cell_behavior== null -->
+                </tbody></table>
+            </div>
+            <!--运营商数据管理结束-->
+
+
+            <h4 class="report-item-title">联系人区域汇总</h4>
+            <!--联系人区域汇总开始-->
+            <div class="report-item">
+                <h2>
+                    <span>联系人区域数据</span>
+                </h2>
+                <table class="table table-bordered">
+                    <thead>
+
+                    <tr>
+                        <th width="80px;">地区</th>
+                        <th width="">号码次数</th>
+                        <th width="">呼入次数</th>
+                        <th width="">呼出次数</th>
+                        <th width="">呼入时间(分钟)</th>
+                        <th width="">呼出时间(分钟)</th>
+                        <!--<th width="">平均呼入时间</th>-->
+                        <!--<th width="">平均呼出时间</th>-->
+                        <th width="">呼入次数百分比</th>
+                        <th width="">呼出次数百分比</th>
+                        <th width="">呼入时间百分比</th>
+                        <th width="">呼出时间百分比</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+<volist name="aJxlData[report_data][contact_region]"  id="vo">  
+                                        <!-- ngRepeat: region in reportDetail.report.contact_region | orderBy:['-region_call_out_cnt','-region_call_in_cnt'] -->
+                    <tr ng-repeat="region in reportDetail.report.contact_region | orderBy:[&#39;-region_call_out_cnt&#39;,&#39;-region_call_in_cnt&#39;]" class="ng-scope">
+                        <td ng-bind="region.region_loc" class="ng-binding">{$vo.region_loc}</td>
+                        <td ng-bind="region.region_uniq_num_cnt" class="ng-binding">{$vo.region_uniq_num_cnt}</td>
+                        <td ng-bind="region.region_call_in_cnt" class="ng-binding">{$vo.region_call_in_cnt}</td>
+                        <td ng-bind="region.region_call_out_cnt" class="ng-binding">{$vo.region_call_out_cnt}</td>
+                        
+                        <td ng-bind="region.region_call_in_time  |number:2" class="ng-binding"><php>echo round ($vo['region_call_in_time'])</php></td>
+                        <td ng-bind="region.region_call_out_time |number:2" class="ng-binding"><php>echo round ($vo['region_call_out_time'])</php></td>
+                        <!--<td ng-bind="region.region_avg_call_in_time |number:2"></td>-->
+                        <!--<td ng-bind="region.region_avg_call_out_time |number:2"></td>-->
+                        <td class="ng-binding"><php>echo round($vo['region_call_in_cnt_pct']*100,2);</php>%</td>
+                        <td class="ng-binding"><php>echo round($vo['region_call_out_cnt_pct']*100,2);</php>%</td>
+                        <td class="ng-binding"><php>echo round($vo['region_call_in_time_pct']*100,2);</php>%</td>
+                        <td class="ng-binding"><php>echo round($vo['region_call_out_time_pct']*100,2);</php>%
+                        </td>
+                    </tr>
+ </volist>                   
+                    <!-- ngIf: reportDetail.report.contact_region == 0 || reportDetail.report.contact_region == null -->
+                    </tbody>
+                </table>
+            </div>
+            <!--联系人区域汇总结束-->
+
+
+            <h4 class="report-item-title">运营商数据分析</h4>
+            <!--通话记录数据分析开始-->
+            <div class="report-item">
+                <h2>
+                    <span>通话数据分析</span>
+                </h2>
+                <div style="line-height: 30px;text-align:right;">
+                    <!--  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;font-size:13px;">标识说明: </span><label class="label label-default">来自本系统的标识</label> <label class="label label-success">来自第三方的标识</label>-->
+                </div>
+                <table class="table table-bordered table-center">
+                    <thead>
+                    <tr>
+                        <th>号码</th>
+                        <th>互联网标识</th>
+                        <th>需求类型</th>
+                        <th>归属地</th>
+                        <th>联系次数</th>
+                        <th>联系时间(分)</th>
+                        <th>主叫次数</th>
+                        <th>被叫次数</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    
+<volist name="aJxlData[report_data][contact_list2]"  id="vo"> 
+                    <tr ng-repeat="contact in reportDetail.report.contact_list | orderBy:[&#39;-call_cnt&#39;]" class="ng-scope">
+                        <td ng-bind="contact.phone_num" class="ng-binding">{$vo.phone_num}</td>
+                        <td ng-if="contact.contact_name==&#39;未知&#39;" class="ng-binding ng-scope">
+                        <if condition="$vo.contact_name eq '未知'">
+                        	未知
+                        <else />
+                        	 <label class="label label-default">{$vo.contact_name}</label>
+                        </if>
+                           
+                         </td>
+                        <td ng-bind="contact.needs_type" class="ng-binding">{$vo.needs_type}</td>
+                        <td ng-bind="contact.phone_num_loc" class="ng-binding">{$vo.phone_num_loc}</td>
+                        <td ng-bind="contact.call_cnt" class="ng-binding">{$vo.call_cnt}</td>
+                        <td ng-bind="contact.call_len | number:0" class="ng-binding"> <php>echo round($vo['call_len'],2);</php> </td>
+                        <td ng-bind="contact.call_out_cnt" class="ng-binding">{$vo.call_out_cnt}</td>
+                        <td ng-bind="contact.call_in_cnt" class="ng-binding">{$vo.call_in_cnt}</td>
+                    </tr>
+</volist>
+ 
+                 </tbody>
+
+                </table>
+            </div>
+            <!--通话记录数据分析结束-->
+
+
+            <h4 class="report-item-title">联系人信息和地址信息</h4>
+
+            <div class="report-item">
+                <h2>
+                    <span>联系人数据(来源于紧急联系人和电商收货人)</span>
+                </h2>
+                <table class="table table-bordered table-center">
+                    <thead>
+                    <tr>
+                        <th>联系人</th>
+                        <th>最早联系时间</th>
+                        <th>最晚联系时间</th>
+                        <th>联系电话</th>
+                        <th>近半年通话/短信次数和时长</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    
+<volist name="aJxlData[report_data][collection_contact]"  id="vo"> 
+
+
+                    <!-- ngRepeat: collectionContact in reportDetail.report.collection_contact -->
+                                        <tr ng-class="{&#39;danger&#39;:collectionContact.begin_date == &#39;&#39; ||collectionContact.end_date==&#39;&#39;}"
+                        ng-repeat="collectionContact in reportDetail.report.collection_contact" class="ng-scope">
+                        <td ng-bind="collectionContact.contact_name" class="ng-binding">{$vo.contact_name}</td>
+
+                        <!-- ngIf: collectionContact.begin_date=='' -->
+                        <!-- ngIf: collectionContact.begin_date!='' -->
+                        <td ng-if="collectionContact.begin_date!=&#39;&#39;" ng-bind="collectionContact.begin_date" class="ng-binding ng-scope">
+                            {$vo.begin_date}</td><!-- end ngIf: collectionContact.begin_date!='' -->
+
+                        <!-- ngIf: collectionContact.end_date=='' -->
+                        <!-- ngIf: collectionContact.end_date!='' -->
+                        <td ng-if="collectionContact.end_date!=&#39;&#39;" ng-bind="collectionContact.end_date" class="ng-binding ng-scope">
+                            {$vo.end_date}</td><!-- end ngIf: collectionContact.end_date!='' -->
+                        <td>
+                            <!-- ngRepeat: detail in collectionContact.contact_details --><p ng-repeat="detail in collectionContact.contact_details" class="ng-scope">
+                                <span ng-bind="detail.phone_num" class="ng-binding"> {$vo.contact_details.0.phone_num}</span>
+                                <span ng-bind="detail.phone_num_loc" class="ng-binding">{$vo.contact_details.0.phone_num_loc}</span>
+                            </p><!-- end ngRepeat: detail in collectionContact.contact_details -->
+                        </td>
+                        <td>
+                            通话<span ng-bind="collectionContact.contact_details[0].call_len | number:2" class="ng-binding">{$vo.contact_details.0.call_len}</span>分钟，
+                            短信<span ng-bind="collectionContact.contact_details[0].sms_cnt" class="ng-binding">{$vo.contact_details.0.sms_cnt}</span>条
+                        </td>
+
+                    </tr>
+                    
+</volist>          
+                    
+                                        </tbody>
+                    <tbody><!-- ngIf: reportDetail.report.collection_contact.length == 0 || reportDetail.report.collection_contact == null -->
+                </tbody></table>
+            </div>
+            <!--联系人信息数据分析结束-->
+
+            <!--送货地址数据分析开始-->
+            <div class="report-item">
+                <h2>
+                    <span>地址信息</span>
+                </h2>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>地址</th>
+                        <th>总消费金额</th>
+                        <th>收货人姓名</th>
+                        <th>收货人手机</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- ngRepeat: deliverAddress in reportDetail.report.deliver_address -->
+                    <tbody>
+                    <tr  ng-if="reportDetail.report.deliver_address.length == 0 ||reportDetail.report.deliver_address == null" class="ng-scope">
+                        <td colspan="4" class="danger text-center">未收集到电商数据</td>
+                    </tr>
+                                        </tbody>
+                </table>
+            </div>
+            <!--送货地址数据分析结束-->
+
+            <h4 class="report-item-title">电商数据分析</h4>
+            <!--电商＃ 电商数据分析开始-->
+            <div class="report-item">
+                <h2>
+                    <span>电商消费记录</span>
+                </h2>
+                <table class="table table-bordered table-center">
+                    <thead>
+                    <tr>
+
+                        <th>月份</th>
+                        <th>全部消费笔数</th>
+                        <th>全部消费金额(元)</th>
+                        <th>品类分析</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                                        <tr  ng-if="reportDetail.report.ebusiness_expense.length == 0 ||reportDetail.report.ebusiness_expense == null" class="ng-scope">
+                        <td colspan="7" class="danger text-center">未收集到电商数据</td>
+                    </tr>
+                    <!-- ngRepeat: ebusinessExpense in reportDetail.report.ebusiness_expense -->
+                    <!-- ngIf: reportDetail.report.ebusiness_expense.length == 0 ||reportDetail.report.ebusiness_expense == null -->
+                    </tbody>
+                </table>
+            </div>
+            <!--电商＃ 电商数据分析开始-->
+
+            <h4 class="report-item-title">出行数据分析</h4>
+            <!--出行数据分析开始-->
+            <div class="report-item">
+                <h2>
+                    <span>出行数据</span>
+                </h2>
+                <table class="table table-bordered table-center">
+                    <thead>
+                    <tr>
+                        <th>时间段</th>
+                        <th>出发时间</th>
+                        <th>回程时间</th>
+                        <th>出发地</th>
+                        <th>目的地</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    
+                    <volist name="aJxlData[report_data][trip_info]"  id="vo"> 
+	                    <tr>
+	                        <th>{$vo.trip_type}</th>
+	                        <th>{$vo.trip_start_time}</th>
+	                        <th>{$vo.trip_end_time}</th>
+	                        <th>{$vo.trip_leave}</th>
+	                        <th>{$vo.trip_dest}</th>
+	                    </tr>
+                    </volist>
+                   </tbody>
+                </table>
+            </div>
+            <!--出行数据分析结束-->
+        </div>
+    </div>
+
+
+</div>
+
+
+</div></ui-view> </article> <!-- ngInclude: 'tpl/common/footer.html' -->
+</body></html>

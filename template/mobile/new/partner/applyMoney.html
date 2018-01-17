@@ -1,0 +1,111 @@
+<include file="public/header"/>
+<script type="text/javascript" src="__STATIC__/js/laydate/laydate.js" ></script>
+<body>  
+<div class="invite">
+	<div class="inv_w">
+		<div class="inv_c">
+			<form action="{:U('Mobile/Partner/applyMoney')}" method="post" id="inv_f">
+			<table>
+				<tbody>
+					<tr>
+						<td>
+							<span>*</span>购车人姓名：
+						</td>
+						<td>
+							<input type="text" placeholder="请输入姓名" class="name" name="buy_name">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span>*</span>购车人手机号：
+						</td>
+						<td>
+							<input type="text" placeholder="请输入手机号" class="phone1" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')" name="buy_phone">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span>*</span>购车时间：
+						</td>
+						<td>
+							<input type="text" placeholder="选择提车时间" id="data" name="buy_time">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span>*</span>所购车型：
+						</td>
+						<td>
+							<input type="text" placeholder="请输入车辆品牌/型号" class="type" name="car_type">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span>*</span>申请人手机号：
+						</td>
+						<td>
+							<input type="text" placeholder="请输入申请人手机号" class="phone2" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')" name="apply_phone">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			</form>
+			<p class="tip"></p>
+			<a href="javascript:void(0);" class="inv_btn" onclick="check()">申请返佣</a>
+		</div>
+	</div>
+</div>
+<include file="public/footer"/>
+<include file="public/footer_nav"/>
+<script>
+
+	$(function(){
+		laydate.render({
+  			elem: '#data'
+		});
+	})
+	function check(){
+		//去空格
+		let name=$(".name").val().replace(/(^\s*)|(\s*$)/g, "");
+		//内容为空验证
+		$(".tip").html("")
+		if ($(".name").val()=="") {
+			$(".tip").html("请输入购车人姓名")
+		}else if ($(".phone1").val()=="") {
+			$(".tip").html("请输入购车人手机号")
+		}else if ($(".type").val()=="") {
+			$(".tip").html("请输入所购车型")
+		}else if ($(".phone2").val()=="") {
+			$(".tip").html("请输入申请人手机号")
+		}else if ($("#data").val()=="") {
+			$(".tip").html("请选择选择提车时间")
+		}
+
+		if ($(".tip").html()=="") {
+			$.ajax({
+				type:"POST",
+				url:"{:U('Mobile/Partner/applyMoney')}",
+				dataType:"json",
+				data:$("#inv_f").serialize(),
+				success:function(data){
+					if (data.status==1) {
+						alert('您的申请已提交至系统，48小时内客服会给予反馈')
+						location.href="{:U('Mobile/Partner/partner_info')}";
+					}else {
+						layer.open({
+							type:0,
+							content:data.msg
+						})
+					}
+				}
+			})
+		}
+
+		
+	}
+</script>
+<if condition="$signPackage neq null">
+  <include file="public/wx_gshare"/>
+</if>
+</body>
+</html>

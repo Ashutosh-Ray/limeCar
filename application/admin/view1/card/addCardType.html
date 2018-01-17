@@ -1,0 +1,123 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+	<div class="fixed-bar">
+		<div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+			<div class="subject">
+				<h3>会员卡 - 编辑类型</h3>
+				<h5></h5>
+			</div>
+		</div>
+	</div>
+	<form class="form-horizontal" action="{:U('Admin/card/add_card_type')}" id="roleform" method="post">
+		<div class="ncap-form-default">
+			<dl class="row">
+				<dt class="tit">
+					<label for="role_name"><em>*</em>类型名称</label>
+				</dt>
+				<dd class="opt">
+					<input type="text" name="data[card_name]" id="role_name" value="{$info.card_name}" class="input-txt">
+					<span class="err" id="name_err" style="display: none">导航名称不能为空!!</span>
+					<p class="notic"></p>
+				</dd>
+			</dl>
+			<dl class="row">
+				<dt class="tit">
+					<label for="role_name"><em>*</em>该卡市场价值</label>
+				</dt>
+				<dd class="opt">
+					<input type="text" name="data[money]" id="role_name" value="{$info.money}" class="input-txt" onkeyup="value=value.replace(/[^0-9\.]*$/g,'')">
+					<span class="err" id="name_err" style="display: none">导航名称不能为空!!</span>
+					<p class="notic"></p>
+				</dd>
+			</dl>
+			<dl class="row">
+				<dt class="tit">
+					<label for="role_desc"><em>*</em>类型描述</label>
+				</dt>
+				<dd class="opt">
+					<textarea id="role_desc" name="data[type_desc]" class="tarea" rows="6">{$info.type_desc}</textarea>
+					<span class="err" id="err_tpl_content" style="display:none;">短信内容不能为空</span>
+					<p class="notic"></p>
+				</dd>
+			</dl>
+			<dl class="row">
+				<dt class="tit">
+					<label for="cls_full">可选套餐</label>
+				</dt>
+				<dd style="margin-left:200px;">
+<!-- 					<div class="ncap-account-container" style="border-top:none;">
+						<h4>
+							<input id="cls_full" onclick="choosebox(this)" type="checkbox">
+							<label>全选</label>
+						</h4>
+					</div> -->
+						<div class="ncap-account-container" style="border-top:none;">
+							<h4>
+								<label>{$group[$kk]}</label>
+								<input value="1" cka="mod-{$kk}" type="checkbox">
+								<label>全部</label>
+							</h4>
+							<ul class="ncap-account-container-list">
+							<volist name="set_meals" id="s">
+									<li>
+										<label><input class="checkbox" name="right[]" value="{$s.id}" <if condition="is_array($info['packages']) AND in_array($s['id'],$info['packages'])">checked</if> ck="mod-{$kk}" type="checkbox">{$s.name}</label>
+									</li>
+							</volist>		
+							</ul>
+						</div>
+				</dd>
+			</dl>
+
+			<div class="bot"><a href="JavaScript:void(0);" onclick="roleSubmit();" class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+		</div>
+		<input type="hidden" name="id" value="{$info.id}">
+	</form>
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(":checkbox[cka]").click(function(){
+			var $cks = $(":checkbox[ck='"+$(this).attr("cka")+"']");
+			if($(this).is(':checked')){
+				$cks.each(function(){$(this).prop("checked",true);});
+			}else{
+				$cks.each(function(){$(this).removeAttr('checked');});
+			}
+		});
+	});
+
+	function choosebox(o){
+		var vt = $(o).is(':checked');
+		if(vt){
+			$('input[type=checkbox]').prop('checked',vt);
+		}else{
+			$('input[type=checkbox]').removeAttr('checked');
+		}
+	}
+
+	function roleSubmit(){
+		if($('#role_name').val() == '' ){
+			layer.alert('类型名称不能为空', {icon: 2});
+			return false;
+		}
+		// $('#roleform').submit();
+		var form  = $('#roleform');
+          var _url = form.attr('action');
+          $.ajax({
+            url:_url,
+            type:'POST',
+            data:form.serialize(),
+            dataType:'json',
+            success:function (res) {
+             alert(res.msg);
+             window.location.reload(); 
+            }
+          });
+          return false;
+	}
+</script>
+</body>
+</html>

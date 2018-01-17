@@ -1,0 +1,212 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;"> 
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+      <div class="subject">
+        <h3>会员卡</h3>
+        <h5>添加会员卡</h5>
+      </div>
+    </div>
+  </div>
+    <!--表单数据-->
+    <form method="post" id="addEditGoodsAttributeForm" action='{:U("Card/do_add_card")}'>
+    <div class="ncap-form-default">
+      <dl class="row">
+        <dt class="tit">
+          <label for="ac_name"><em>*</em>会员卡号：</label>
+        </dt>
+        <dd class="opt">
+            <input type="text" value="{$data.card_no}" name="card_no"  class="input-txt musthave"  tip="会员卡号不能为空" />
+            <span class="err" id="err_attr_name" style="color:#F00; display:none;"></span>                                  
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="ac_name"><em>*</em>会员姓名：</label>
+        </dt>
+        <dd class="opt">
+            <input type="text" value="{$data.host_name}" name="host_name"  class="input-txt musthave" tip="会员姓名不能为空" />
+            <span class="err" id="err_attr_name" style="color:#F00; display:none;"></span>                                  
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="ac_name"><em>*</em>会员手机号：</label>
+        </dt>
+        <dd class="opt">
+            <input type="text" value="{$data.host_phone}" name="host_phone"  class="input-txt musthave" tip="会员手机号不能为空" onkeyup="this.value=this.value.replace(/[^\d.]/g,'')" />
+            <span class="err" id="err_attr_name" style="color:#F00; display:none;"></span>                                  
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="ac_name"><em>*</em>会员车牌号：</label>
+        </dt>
+        <dd class="opt">
+            <input type="text" value="{$data.car_no}" name="car_no"  class="input-txt musthave"  tip="会员车牌号不能为空"/>
+            <span class="err" id="err_attr_name" style="color:#F00; display:none;"></span>                                  
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="parent_id">会员卡类型：</label>
+        </dt>
+        <dd class="opt">
+           
+            <select name="card_type" id="type_id" class="small form-control">
+                 <option value="">请选择</option>
+                <volist name="types" id="vo">
+                 <option value="{$vo[id]}" <if condition="$vo[id] eq $data[card_type]">selected="selected"</if>>{$vo[card_name]}</option>
+                </volist>                                        
+            </select>
+            <span  class="err" id="err_type_id" style="color:#F00; display:none;"></span>      
+
+        </dd>
+      </dl> 
+       <dl class="row">
+        <dt class="tit">
+          <label for="parent_id">车型：</label>
+        </dt>
+        <dd class="opt">
+           
+            <select name="car_type1"  class="small form-control">
+                 <option value="">请选择</option>
+                <volist name="car_types" id="vo">
+                 <option value="{$vo[id]}">{$vo[name]}</option>
+                </volist>                                        
+            </select>
+            <select name="car_type2"  class="small form-control"></select>
+            <select name="car_type"  class="small form-control"></select>
+            <span  class="err" id="err_type_id" style="color:#F00; display:none;"></span>      
+
+        </dd>
+      </dl>       
+		<dl class="row">
+        <dt class="tit">
+          <label>可选套餐:</label>
+        </dt>
+        <dd class="opt" id="set_meals">                    
+         <volist  name="info" id="i">
+        
+         <input type="radio" name="set_meal" value="{$i.id}" content="{$i.content}"  <if condition="$data[set_meal] eq $i[id]">checked='checked'</if>>
+         {$i.name}
+         </volist>
+        </dd>
+      </dl>		       	                 
+      <div class="bot"><a href="JavaScript:void(0);" onclick="submit_form()"  class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+    </div>
+	   <input type="hidden" name="id" value="{$data.id}">
+     <input type="hidden" name="content" value="{$data.content}">
+  </form>
+</div>
+ 
+</body>
+</html>
+<script type="text/javascript">
+ function submit_form() {
+   $('#addEditGoodsAttributeForm').find('.musthave').each(function (index,item) {
+   var val = $(item).val();
+   var tip = $(item).attr('tip');
+   if(trim(val)==''){
+        layer.msg(tip, {icon: 2,time: 2000});
+        return false;
+   }else{
+        var form  = $('#addEditGoodsAttributeForm');
+          var _url = form.attr('action');
+          $.ajax({
+            url:_url,
+            type:'POST',
+            data:form.serialize(),
+            dataType:'json',
+            success:function (res) {
+              if (res.status==1) {
+               layer.msg(res.msg, {icon: 1,time: 2000});
+                 window.location.reload(); 
+           }else{
+         layer.msg(res.msg, {icon: 2,time: 2000});
+           }
+            
+            }
+          });
+          return false;
+   }
+  })
+  }
+$(function() {
+ 
+  
+  
+  $('#type_id').change(function () {
+   var  id = $(this).val();
+
+   $.ajax({
+      type : 'post',
+      url : '/index.php/Admin/card/get_meal',
+      data : {id:id},
+      dataType : 'json',
+      success : function(data){
+        if(data.status==1){
+          var html = '';
+          $.each(data.info,function (index,item) {
+            if(index==0){
+                html+="<input checked='checked' type='radio' value='"+item.id+"' name='set_meal' content='"+item.content+"'>"+item.name;
+            }else{
+               html+="<input type='radio' value='"+item.id+"' name='set_meal' content='"+item.content+"'>"+item.name;
+            }
+           
+          })
+          $('#set_meals').html(html);
+        }else{
+          layer.msg(data.msg, {icon: 2,time: 2000});   //alert(data);
+        }
+      }
+    })
+  });
+ $('select[name="car_type1"]').change(function () {
+   var  id = $(this).val();
+
+   $.ajax({
+      type : 'post',
+      url : '/index.php/Admin/card/ajax_car_type',
+      data : {parent_id:id},
+      dataType : 'json',
+      success : function(data){
+   
+          var html = '<option value="">请选择</option>';
+          $.each(data.data,function (index,item) {
+           html += '<option value="'+item.id+'">'+item.name+'</option>'
+           
+          })
+          $('select[name="car_type2"]').html(html);
+    
+      }
+    })
+  });
+  $('select[name="car_type2"]').change(function () {
+   var  id = $(this).val();
+
+   $.ajax({
+      type : 'post',
+      url : '/index.php/Admin/card/ajax_car_type',
+      data : {parent_id:id},
+      dataType : 'json',
+      success : function(data){
+   
+          var html = '';
+          $.each(data.data,function (index,item) {
+           html += '<option value="'+item.id+'">'+item.name+'</option>'
+           
+          })
+          $('select[name="car_type"]').html(html);
+    
+      }
+    })
+  });
+  $('input:radio[name="set_meal"]').live('click',function () {
+   var val = $(this).attr('content');
+   $('input[name="content"]').val(val);
+
+  })
+})
+</script>

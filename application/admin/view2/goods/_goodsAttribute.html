@@ -1,0 +1,59 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;"> 
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+      <div class="subject">
+        <h3>商品属性</h3>
+        <h5>商品属性添加与管理</h5>
+      </div>
+    </div>
+  </div>
+    <!--表单数据-->
+    <form method="post" id="addEditGoodsAttributeForm">
+    <div class="ncap-form-default">
+      <dl class="row">
+        <dt class="tit">
+          <label for="ac_name"><em>*</em>属性名称：</label>
+        </dt>
+        <dd class="opt">
+            <input type="text" value="{$goodsAttribute.attr_name}" name="attr_name"  class="input-txt request" />
+            <span class="err" class="tip" style="color:#F00; display:none;">属性名称必填</span>                                  
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="parent_id">所属商品类型：</label>
+        </dt>
+        <dd class="opt">
+           
+            <select name="type_id" id="type_id" class="small form-control request">
+                 <option value="">请选择</option>
+                <volist name="categorys" id="vo">
+                 <option value="{$vo[id]}" <if condition="$vo[id] eq $goodsAttribute[cat_id]">selected="selected"</if> <if condition="$cat_id eq $vo[id]">selected="selected"</if>>{$vo[name]}</option>
+                </volist>                                        
+            </select>
+            <span  class="err" class="tip" style="color:#F00; display:none;">商品类型必选</span> 
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="parent_id">选择输入类型：</label>
+        </dt>
+        <dd class="opt">
+           
+            <select name="input_data_type" id="type_id" class="small form-control">
+              <option value="0" <if condition="$vo['input_data_type'] eq 0">selected="selected"</if> >字符串</option> 
+              <option value="1"  <if condition="$vo['input_data_type'] eq 1">selected="selected"</if> >数字</option>                                       
+            </select>
+            <span  class="err" class="tip" style="color:#F00; display:none;">商品类型必选</span> 
+        </dd>
+      </dl>                       
+      <div class="bot"><a href="JavaScript:void(0);" onclick="ajaxSubmitForm('addEditGoodsAttributeForm','{:U('Goods/addEditGoodsAttribute')}');"  class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+    </div>
+	   <input type="hidden" name="attr_id" value="{$goodsAttribute.id}">
+     <input type="hidden" name="cat_id" value="{$cat_id}">
+  </form>
+</div>
+</body>
+</html>

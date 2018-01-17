@@ -1,0 +1,46 @@
+<table class="table table-striped table-bordered table-hover" id="commisionCheckList">
+      <thead>
+          <tr>
+              <th class="center" style="min-width: 75px;">邀请人ID</th>
+              <th class="center">邀请人手机号</th>
+              <th class="center" style="min-width: 90px;">购车人姓名</th>
+              <th class="center" style="min-width: 45px;">购车人手机号</th>
+              <th class="center" style="min-width: 60px;">所够车型</th>
+              <th class="center" style="min-width: 75px;">购车时间</th>
+              <th class="center" style="min-width: 45px;">审核状态</th>
+              <th class="center" style="min-width: 90px;">操作</th>
+          </tr>
+      </thead>
+	  <tbody>
+      <volist name="list" id="vo">
+	  	<tr>
+	  		<td class="center">{$vo.user_id}</td>
+        <td class="center">{$vo.apply_phone}</td>
+	  		<td class="center">{$vo.buy_name}</td>
+	  		<td class="center">{$vo.buy_phone}</td>
+	  		<td class="center">{$vo.car_type}</td>
+	  		<td class="center">{$vo.add_time|date="Y-m-d H:i:s",###}</td>
+	  		<td class="center isExamine"><if condition="$vo['check_status'] eq 1">已审核<else/>未审核</if></td>
+	  		<td class="center">
+          <if  condition="$vo['check_status'] neq 1">
+	  			<a href="javascript:void(0);" onclick="check({$vo.id},{$vo.user_id},{$vo.apply_phone})">审核</a> /
+        </if>
+	  			<a href="javascript:void(0);" onclick="del({$vo['id']})">删除</a>
+	  		</td>
+	  	</tr>
+    </volist>
+	  </tbody>
+  </table>
+  <div class="row">
+      <div class="col-sm-6"></div>
+      <div class="col-sm-6 table-pagecut">
+        {$show}
+      </div>
+  </div>
+  <script type="text/javascript">
+       // 点击分页触发的事件
+            $(".pagination  a").click(function(){
+                cur_page = $(this).data('p');
+                ajax_get_table('search-form2',cur_page);
+            });
+  </script>

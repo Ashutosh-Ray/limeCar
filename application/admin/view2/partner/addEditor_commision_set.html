@@ -1,0 +1,157 @@
+<include file="public/layout" />
+<script src="__ROOT__/public/static/js/layer/laydate/laydate.js"></script>
+</head>
+<body style="overflow: auto;"> 
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title"><!-- <a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a> -->
+      <div class="subject">
+        <h3> 返佣方案</h3>
+        <!-- <h5>广告添加与管理</h5> -->
+      </div>
+    </div>
+  </div>
+    <!--表单数据-->
+    <form method="post" id="handleposition" action="{:U('Admin/Partner/do_set')}">  
+    <div class="ncap-form-default">
+      <dl class="row">
+        <dt class="tit">
+          <label for="ac_name"><em>*</em>返佣方案名称：</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="请输入方案名称" class="input-txt" name="case_name" value="{$info.case_name}">
+		  <span class="err" id="err_ad_name" style="color:#F00; display:none;">返佣方案名称不能为空</span>                                                  
+          <p class="notic"></p>
+        </dd>
+      </dl>	        
+      <dl class="row">
+        <dt class="tit">
+          <label for="ac_name"><em>*</em>合伙人加盟费：</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="请输入加盟费用" class="input-txt" name="initial_fee" value="{$info.initial_fee}">
+		  <span class="err" id="err_ad_link" style="color:#F00; display:none;">合伙人加盟费不能为空</span>
+          <p class="notic"></p>
+        </dd>
+      </dl>		        
+      <dl class="row">
+        <dt class="tit">
+          <label for="ac_name"><em>*</em>公司分成比例：</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="请输入比例" class="input-com proportion" name="company_rate" value="{$info.company_rate}" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')">%
+		  <span class="err" id="err_ad_link" style="color:#F00; display:none;">比例不能为空</span>
+          <p class="notic"></p>
+        </dd>
+      </dl>		        
+      <dl class="row">
+        <dt class="tit">
+          <label for="ac_name"><em>*</em>一级合伙人分成比例：</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="请输入比例" class="input-fir proportion" name="first_rate" value="{$info.first_rate}" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')">%
+		  <span class="err" id="err_ad_link" style="color:#F00; display:none;">比例不能为空</span>
+          <p class="notic"></p>
+        </dd>
+      </dl>		        
+      <dl class="row">
+        <dt class="tit">
+          <label for="ac_name"><em>*</em>二级合伙人分成比例：</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="请输入比例" class="input-sec proportion" name="second_rate" value="{$info.second_rate}" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')">%
+		  <span class="err" id="err_ad_link" style="color:#F00; display:none;">比例不能为空</span>
+          <p class="notic"></p>
+        </dd>
+      </dl>		        
+      <dl class="row">
+        <dt class="tit">
+          <label for="ac_name"><em>*</em>三级合伙人分成比例：</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="请输入比例" class="input-thr proportion" name="third_rate" value="{$info.third_rate}" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')">%
+		  <span class="err" id="err_ad_link" style="color:#F00; display:none;">比例不能为空</span>
+          <p class="notic"></p>
+        </dd>
+      </dl>	        
+      <dl class="row">
+        <dt class="tit">
+          <label for="ac_name"><em>*</em>新人分成比例：</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="请输入比例" class="input-new proportion" name="new_rate" value="{$info.new_rate}" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')">%
+		  <span class="err" id="err_ad_link" style="color:#F00; display:none;">比例不能为空</span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+       <dl class="row">
+        <dt class="tit">
+          <label for="ac_name"><em>*</em>下级团队最大人数：</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="请输入最大个数" class="input-new proportion" name="child_num" value="{$info.child_num}" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')">
+      <span class="err" id="err_ad_link" style="color:#F00; display:none;">个数不能为空</span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <if condition="$user_id eq 0">
+      <dl class="row">
+        <dt class="tit">
+          <label for="ac_name"><em>*</em>是否为种子方案</label>
+        </dt>
+        <dd class="opt">
+          <input type="radio" name="is_seed" value="0" <if condition="$info['is_seed'] eq 0">checked="true"</if>>否
+          <input type="radio" name="is_seed" value="1" <if condition="$info['is_seed'] eq 1">checked="true"</if>>是
+      <span class="err" id="err_ad_link" style="color:#F00; display:none;">个数不能为空</span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      </if>
+      <if condition="($act eq 'edit') AND ($user_id neq 0)"> 	                   		                           
+      <div class="bot"><a href="JavaScript:void(0);" onclick="adsubmit()" class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+    </if>
+     <if condition="($act eq 'add') AND ($user_id eq 0)">                                                    
+      <div class="bot"><a href="JavaScript:void(0);" onclick="adsubmit()" class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+    </if>
+    </div>
+       <input type="hidden" name="user_id" value="{$user_id}">
+       <input type="hidden" name="id" value="{$info.id}">
+       <input type="hidden" name="act" value="{$act}">
+  </form>
+</div>
+ <script>
+	function adsubmit(){
+	 	var total;
+		$("input").each(function(){
+			if ($(this).val()=="") {
+				$(this).siblings("span").show();
+			}else{
+				$(this).siblings("span").hide();
+				let com=parseInt($(".input-com").val())
+				let fir=parseInt($(".input-fir").val())
+				let sec=parseInt($(".input-sec").val())
+				let thr=parseInt($(".input-thr").val())
+				let _new=parseInt($(".input-new").val())
+				total=com+fir+sec+thr+_new
+       
+			}
+		})
+		if(total>100){
+			layer.open({
+				content:"警告：所有比例相加不能超过100%",
+				btnAlign: 'c'
+			})
+		}else if (total<=100 && typeof(total)!=Number) {
+      ajaxSubmitForm('handleposition',"{:U('Admin/Partner/do_set')}");
+			// $("#handleposition").submit()
+      location.href="{:U('Admin/Partner/commision_case_list')}"
+		}
+	}
+	
+    $(document).ready(function(){
+		$('#start_time').layDate();
+		$('#end_time').layDate();
+	});
+ </script>
+</body>
+</html>

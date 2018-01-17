@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{$goods.goods_name}-{$imshop_config['shop_info_store_title']}</title>
+    <meta http-equiv="keywords" content="{$imshop_config['shop_info_store_keyword']}" />
+    <meta name="description" content="{$imshop_config['shop_info_store_desc']}" />
+</head>
+<body>
+<link rel="stylesheet" href="__STATIC__/css/order.css">
+<script type="text/javascript" src="__STATIC__/js/jquery-1.10.2.min.js"></script> 
+<!--------头部开始-------------->
+<include file="public/header" />
+<!--------头部结束-------------->
+
+<!-- 顶部banner开始 -->
+<style>
+.navList li:nth-child(1) a{
+    color: #000!important;
+    }
+.navList li:nth-child(4) a{
+    color: #ca141d!important;
+}
+</style>
+
+<!-- 中部内容开始 -->
+<section class="order">
+  <div class="order_con">
+    <p>确认你购买的以下商品</p>
+    <table>
+      <thead>
+        <td>商品</td>
+        <td>单价</td>
+        <td>数量</td>
+        <td>小计（元）</td>
+      </thead>
+      <volist name="lists" id="vo">
+      <tr>
+        <td>{$vo.goods_name}</td>
+        <td>￥{$vo.goods_price}</td>
+        <td>{$vo.goods_num}</td>
+        <td>￥<php> echo $vo['goods_price']*$vo['goods_num']</php></td>
+      </tr>
+      </volist>
+    </table>
+    <p>应付金额：<span>￥{$allmoney['order_amount']}</span></p>
+    <div class="btn">
+      <a onclick="addSubmit()" style="cursor: pointer;">确认支付</a>
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+</section>
+<!-- 中部内容结束 -->
+
+
+<!--------footer-开始-------------->
+<include file="public/footer" />
+<!--------footer-结束-------------->
+
+</body>
+</html>
+<script type="text/javascript">
+  function addSubmit() {
+    $.ajax({
+      type : 'post',
+      url : "{:U('/Home/Cart/submit_order')}",
+      data : {},
+      dataType : 'json',
+      success : function(res){
+        if(res.status==1){
+          window.location.href="/Home/Cart/cart4/order_id/"+res.result;
+        }else{
+          layer.msg(res.msg, {icon: 2,time: 2000});   //alert(data);
+        }
+      }
+    })
+  }
+</script>

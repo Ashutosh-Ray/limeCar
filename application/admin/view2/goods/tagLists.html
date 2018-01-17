@@ -1,0 +1,149 @@
+<include file="public/header"/>
+<div id="page-wrapper">
+<div class="header"> 
+  <h1 class="page-header">
+      服务范围列表
+  </h1>
+<!--   <ol class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Dashboard</a></li>
+    <li class="active">Data</li>
+  </ol> -->             
+</div>
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+        <!-- Advanced Tables -->
+            <div class="card">
+<!--            <div class="card-action">
+                    Advanced Tables
+                </div> -->
+                <div class="card-content">
+                    <div class="table-responsive">
+                        <div class="row">
+                            <div class="col-sm-6">
+
+                                <a href="{:U('Goods/addEditTag')}" class="waves-effect waves-light btn" style="text-align: center;text-decoration: none;">
+                                    添加服务范围
+                                </a>
+                            </div>
+                            <div class="col-sm-6 table-search">
+                               <!--  <form action="" id="search-form2" class="navbar-form form-inline" method="post" onSubmit="return false">
+                                <div class="ts-la">
+                                    <label>
+                                        <div class="btn-group">
+                                            <select name="type_id">
+                                                <option value="0">==查看所有==</option>
+                                                <volist name="goodsTypeList" id="v" key="k">
+                                                    <option value="{$v['id']}" <if condition="$cat_id eq $v['id']">selected="selected"</if>>{$v['name']}</option>
+                                               </volist>          
+                                            </select>
+                                        </div>
+                                        <input name="keywords" placeholder="搜索" type="text">
+                                        <a id="button-filter" onClick="ajax_get_table('search-form2',1)">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </label>
+                                </div>
+                                </form> -->
+                            </div>
+                        </div>
+
+                        <div id="ajax_return">
+                            <table class="table table-striped table-bordered table-hover" id="catAttributeList">
+                            <thead>
+                                <tr>
+                                    <th class="center">ID</th>
+                                    <th class="center">服务名称</th>
+                                    <th class="center">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                <volist name="list" id="vo">
+                                <tr class="odd gradeX">
+                                    <td class="center">{$vo.id}</td>
+                                    <td class="center">{$vo.name}</td>
+                                    <td class="center">
+                                        <a href="{:U('Admin/goods/addEditTag',array('id'=>$vo['id']))}">编辑</a> /
+                                        <a onclick="del({$vo.id},this)" style="cursor: pointer;">删除</a>
+                                    </td>
+                                </tr>
+                            </volist>
+                       
+                            </tbody>
+                        </table>
+                        <div class="row">
+                            <div class="col-sm-6"></div>
+                            <div class="col-sm-6 table-pagecut">
+                               {$show}
+                            </div>
+                        </div>
+                    </div> 
+<script>
+    // 点击分页触发的事件
+    $(".pagination  a").click(function(){
+        cur_page = $(this).data('p');
+        ajax_get_table('search-form2',cur_page);
+    });
+ 
+</script>        
+
+                    </div>
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+    </div>
+
+
+<include file="public/footer"/>
+<include file="public/table"/>
+<script type="text/javascript">
+     $(document).ready(function(){
+     
+        $('#button-filter').trigger('click');
+     })
+    // ajax 抓取页面 form 为表单id  page 为当前第几页
+    function ajax_get_table(form,page){
+
+        cur_page = page; //当前页面 保存为全局变量
+            $.ajax({
+                type : "POST",
+                url:"/index.php?m=Admin&c=goods&a=ajaxGoodsAttributeList&p="+page,//+tab,
+                data : $('#'+form).serialize(),// 你的formid
+                success: function(data){
+                    $("#ajax_return").html('');
+                    $("#ajax_return").append(data);
+                }
+            });
+        }
+
+
+         // 删除操作
+        function del(id,obj)
+        {
+           
+            if(!confirm('确定要删除吗?'))
+                return false;
+        $.ajax({
+            url:"/index.php?m=Admin&c=goods&a=del_tag&id="+id,
+            dataType:'json',
+            success: function(res){   
+                                    
+                                if(res.status == 1){
+                                   $(obj).parent().parent().remove();
+                                   }else{
+                                  layer.msg(res.msg, {icon: 2,time: 1000}); //alert(v.msg);
+                                }
+                                        
+            }
+        }); 
+               return false;
+        }         
+</script>
+        <!-- Custom Js -->
+    <script src="__PUBLIC__/static/assets/js/custom-scripts.js"></script> 
+
+</body>
+</html>

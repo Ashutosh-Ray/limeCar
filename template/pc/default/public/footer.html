@@ -1,0 +1,60 @@
+<div class="sweep" id="sweep">
+    <span>
+        扫码<br>看车
+    </span>
+</div>
+<div class="sweep_mosk" style="display: none;">
+    <h3>扫一扫&nbsp;&nbsp;加入三品車</h3>
+    <img src="__STATIC__/images/erwei.jpg" alt="">
+    <h3>扫描二维码关注三品車公众号</h3>
+</div>
+<div class="footer">
+<!--     <div class="layout quality layer" style="background-color: #fff">
+        <ul class="footer_quality">
+            <li><i></i>品质保证</li>
+            <li  class="f2"><i></i>7天退换 15天换货</li>
+            <li  class="f3"><i></i>100元起免运费</li>
+            <li  class="f4"><i></i>448家维修网点 全国联保</li>
+        </ul>
+    </div>
+    <div class="helpful layout" style="background-color: #fff">
+    <imshop sql="select * from `__PREFIX__article_cat` where parent_id = 2" key="k" item='v'>
+            <dl <if condition="$k neq 0">class="jszc"</if> >
+                <dt>{$v[cat_name]}</dt>
+                <dd>
+                    <ol>
+                    	<imshop sql="select * from `__PREFIX__article` where cat_id = $v[cat_id] and is_open=1" key="k2" item='v2'>
+                        <li><a href="{:U('Home/Article/detail',array('article_id'=>$v2[article_id]))}" target="_blank">{$v2[title]}</a></li>
+					 	</imshop>                        
+                    </ol>
+                </dd>
+            </dl>
+ 	</imshop>
+     </div> -->
+     <div class="boer">
+        <div class="boer_banner">
+            <img src="__STATIC__/images/erwei.jpg" alt="">
+            <h2>买车、保养、洗车、维修  全流程服务您的爱车</h2>
+            <p>联系电话：400-877-8063</p>
+        </div>
+     </div>
+     <div class="keep-on-record" >
+        <p>
+        Copyright © 2016-2025 {$imshop_config['shop_info_store_name']}  版权所有 保留一切权利 备案号:{$imshop_config['shop_info_record_no']}
+        </p>
+     </div>
+ </div>
+ 
+<script>
+    // $("#sweep").mouseover(function(){
+    //     $(".sweep_mosk").fadeIn(300)
+    // }).mouseleave(function(){
+    //     $(".sweep_mosk").fadeOut(300)
+    // })
+    $("#sweep").on("mouseenter",function(){
+        $(".sweep_mosk").stop().fadeIn(300)
+    })
+    $("#sweep").on("mouseleave",function(){
+        $(".sweep_mosk").stop().fadeOut(300)
+    })
+</script>

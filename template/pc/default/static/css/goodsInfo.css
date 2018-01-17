@@ -1,0 +1,594 @@
+.gi_content .gi_bg {
+  width: 100%;
+  height: 695px;
+  background-color: #E4E4E4;
+  border-top: 50px solid #E4E4E4;
+}
+.gi_content .gi_bg .gi_banner {
+  width: 1200px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 46px 50px;
+  margin-bottom: 50px;
+}
+.gi_content .gi_bg .gi_banner .gi_base_info .img {
+  position: relative;
+  width: 560px;
+  height: 550px;
+  float: left;
+}
+.gi_content .gi_bg .gi_banner .gi_base_info .img img {
+  width: 100%;
+  height: 100%;
+}
+.gi_content .gi_bg .gi_banner .gi_base_info .img .moreImg {
+  height: 32px;
+  width: 124px;
+  background: #a3a3a3 url(../images/folder.png) no-repeat 12px 7px;
+  border: 1px solid #E0E0E0;
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  cursor: pointer;
+  text-align: center;
+  line-height: 32px;
+  color: #fff;
+  text-indent: 20px;
+}
+.gi_content .gi_bg .gi_banner .gi_base_info > .info {
+  height: 550px;
+  width: 560px;
+  float: right;
+}
+.gi_content .gi_bg .gi_banner .gi_base_info > .info > .info_tit {
+  height: 125px;
+  border-bottom: 1px solid #DBDBDB;
+}
+.gi_content .gi_bg .gi_banner .gi_base_info > .info > .info_tit h2 {
+  font-size: 22px;
+  font-weight: 700;
+}
+.gi_content .gi_bg .gi_banner .gi_base_info > .info > .info_tit p {
+  width: 100%;
+  font-size: 16px;
+  color: #696969;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 22px;
+  margin-top: 10px;
+  height: 65px;
+}
+.gi_content .gi_bg .gi_banner .gi_base_info > .info > .info_plan1 {
+  height: 125px;
+  padding: 10px 0;
+  border-bottom: 1px solid #DBDBDB;
+}
+.gi_content .gi_bg .gi_banner .gi_base_info > .info > .info_plan1 h3 {
+  font-size: 18px;
+  display: inline-block;
+  margin-top: 5px;
+}
+.gi_content .gi_bg .gi_banner .gi_base_info > .info > .info_plan1 > .info_plan1_right {
+  float: right;
+  height: 100%;
+  width: 250px;
+  margin-top: 5px;
+}
+.gi_content .gi_bg .gi_banner .gi_base_info > .info > .info_plan1 > .info_plan1_right ul {
+  width: 100%;
+}
+.gi_content .gi_bg .gi_banner .gi_base_info > .info > .info_plan1 > .info_plan1_right ul li {
+  width: 100%;
+  float: left;
+  margin-top: 5px;
+  height: 28px;
+}
+.gi_content .gi_bg .gi_banner .gi_base_info > .info > .info_plan1 > .info_plan1_right ul li span {
+  float: left;
+  font-size: 14px;
+  color: red;
+}
+.gi_content .gi_bg .gi_banner .gi_base_info > .info > .info_plan1 > .info_plan1_right ul li span:nth-child(1) {
+  width: 75%;
+  text-align: right;
+}
+.gi_content .gi_bg .gi_banner .gi_base_info > .info > .info_plan1 > .info_plan1_right ul li span:nth-child(2) {
+  width: 25%;
+  text-align: right;
+}
+.gi_content .gi_bg .gi_banner .gi_base_info > .info > .info_plan1 > .info_plan1_right ul li div {
+  border: 1px solid red;
+  float: right;
+  padding: 2px 5px;
+  background-color: #FFEEE8;
+  color: red;
+  font-size: 12px;
+}
+.gi_content .gi_bg .gi_banner .gi_base_info > .info > .info_plan2 {
+  height: 160px;
+  padding: 10px 0;
+  border-bottom: 1px solid #DBDBDB;
+  overflow: hidden;
+}
+.gi_content .gi_bg .gi_banner .gi_base_info > .info > .info_plan2 h3 {
+  font-size: 18px;
+  margin-top: 5px;
+}
+.gi_content .gi_bg .gi_banner .gi_base_info > .info > .info_plan2 .info_plan2_left {
+  margin-top: 20px;
+}
+.gi_content .gi_bg .gi_banner .gi_base_info > .info > .info_plan2 .info_plan2_left p {
+  font-size: 16px;
+  margin-top: 10px;
+}
+.gi_content .gi_bg .gi_banner .gi_base_info > .info > .info_plan2 .info_plan2_left p span {
+  color: red;
+}
+.gi_content .gi_bg .gi_banner .gi_base_info > .info > .info_tip > p {
+  margin-top: 12px;
+  color: #155DFF;
+  font-size: 14px;
+}
+.gi_content .gi_bg .gi_banner .gi_base_info > .info > .info_btn > .btn {
+  display: block;
+  width: 100%;
+  height: 48px;
+  background-color: #FF8F00;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+  line-height: 48px;
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 13px;
+  text-decoration: none;
+}
+.gi_content .gi_details {
+  width: 1200px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 50px 0;
+}
+.gi_content .gi_details .details_con {
+  text-align: center;
+}
+.gi_content .gi_details .details_con .imgBox {
+  margin: 0 auto;
+  text-align: center;
+}
+.gi_content .gi_details .details_con .imgBox img {
+  max-width: 1200px;
+}
+.gi_content .gi_details .details_con p {
+  margin-top: 5px;
+  font-size: 16px;
+  line-height: 32px;
+}
+.gi_content .gi_details .details_con p img {
+  max-width: 100%;
+}
+.swiper-container {
+  width: 750px;
+  height: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.swiper-slide {
+  background-size: cover;
+  background-position: center;
+}
+.gallery-top {
+  height: 550px;
+  width: 750px;
+  margin-top: 140px;
+}
+.gallery-thumbs {
+  height: 120px;
+  box-sizing: border-box;
+  padding: 10px 0;
+}
+.gallery-thumbs .swiper-slide {
+  width: 150px;
+  height: 100%;
+  opacity: 0.4;
+}
+.gallery-thumbs .swiper-slide-active {
+  opacity: 1;
+}
+.gi_swiper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.gi_swiper .swiper_close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 55px;
+  height: 55px;
+  z-index: 5;
+  font-size: 80px;
+  text-align: center;
+  line-height: 45px;
+  color: #fff;
+  font-family: "新宋";
+  cursor: pointer;
+}
+.swiper-button-white {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.gi_usedInfo .info_usedCarPlan {
+  height: 228px;
+  border-bottom: 1px solid #DBDBDB;
+}
+.gi_usedInfo .info_usedCarPlan .planCon {
+  margin-top: 100px;
+}
+.gi_usedInfo .info_usedCarPlan .planCon p {
+  color: red;
+  font-size: 20px;
+  margin-top: 5px;
+}
+.gi_usedInfo .info_usedCarPlan .planCon p:nth-child(4) {
+  color: #000;
+  font-size: 14px;
+  margin-top: 15px;
+}
+.gi_usedInfo .parameter {
+  width: 100%;
+  border-bottom: 1px solid #DBDBDB;
+  border-top: 1px solid #DBDBDB;
+  padding-top: 45px;
+}
+.gi_usedInfo .parameter > h3 {
+  font-size: 24px;
+}
+.gi_usedInfo .parameter > ul {
+  padding-top: 15px;
+}
+.gi_usedInfo .parameter > ul > li {
+  float: left;
+  width: calc(400px);
+}
+.gi_usedInfo .parameter > ul > li > div {
+  width: 80%;
+  margin: 0 auto;
+  height: 55px;
+  line-height: 55px;
+  border-bottom: 1px solid #DBDBDB;
+  font-size: 16px;
+}
+.gi_usedInfo .parameter > ul > li > div > span:nth-child(1) {
+  float: left;
+  color: #5E5E5E;
+}
+.gi_usedInfo .parameter > ul > li > div > span:nth-child(2) {
+  float: right;
+}
+.gi_CuringInfo {
+  width: 100%;
+}
+.gi_CuringInfo .curing_bg {
+  width: 100%;
+  margin-top: 60px;
+}
+.gi_CuringInfo .curing_bg .curing_banner {
+  width: 100%;
+}
+.gi_CuringInfo .curing_bg .curing_banner .curing_base_info {
+  width: 1200px;
+  margin: 0 auto;
+}
+.gi_CuringInfo .curing_bg .curing_banner .curing_base_info .curing_img {
+  width: 100%;
+}
+.gi_CuringInfo .curing_bg .curing_banner .curing_base_info .curing_img img {
+  width: 100%;
+}
+.gi_CuringInfo .curing_bg .curing_banner .curing_base_info .curing_info {
+  width: 100%;
+  margin: 30px 0 40px;
+  height: 120px;
+}
+.gi_CuringInfo .curing_bg .curing_banner .curing_base_info .curing_info .curing_info_left {
+  float: left;
+  width: 50%;
+  height: 100%;
+  position: relative;
+}
+.gi_CuringInfo .curing_bg .curing_banner .curing_base_info .curing_info .curing_info_left .curing_tit {
+  margin-bottom: 10px;
+}
+.gi_CuringInfo .curing_bg .curing_banner .curing_base_info .curing_info .curing_info_left .curing_tit h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+.gi_CuringInfo .curing_bg .curing_banner .curing_base_info .curing_info .curing_info_left .curing_tit p {
+  font-size: 14px;
+  color: #696969;
+}
+.gi_CuringInfo .curing_bg .curing_banner .curing_base_info .curing_info .curing_info_left .curing_price {
+  font-size: 24px;
+  color: red;
+}
+.gi_CuringInfo .curing_bg .curing_banner .curing_base_info .curing_info .curing_info_left .curing_shop {
+  position: absolute;
+  left: 280px;
+  bottom: 14px;
+}
+.gi_CuringInfo .curing_bg .curing_banner .curing_base_info .curing_info .curing_info_left .curing_shop a {
+  color: #5EA6FF;
+  cursor: pointer;
+  text-decoration: none;
+}
+.gi_CuringInfo .curing_bg .curing_banner .curing_base_info .curing_info .curing_info_right {
+  float: right;
+  width: 50%;
+  height: 100%;
+  position: relative;
+}
+.gi_CuringInfo .curing_bg .curing_banner .curing_base_info .curing_info .curing_info_right .curing_calc {
+  position: absolute;
+  right: 0;
+  bottom: 75px;
+}
+.gi_CuringInfo .curing_bg .curing_banner .curing_base_info .curing_info .curing_info_right .curing_calc span {
+  font-size: 14px;
+  float: left;
+  margin-top: 4px;
+}
+.gi_CuringInfo .curing_bg .curing_banner .curing_base_info .curing_info .curing_info_right .curing_calc .add,
+.gi_CuringInfo .curing_bg .curing_banner .curing_base_info .curing_info .curing_info_right .curing_calc .sub {
+  float: left;
+  width: 28px;
+  height: 28px;
+  border: 1px solid #DBDBDB;
+  text-align: center;
+  line-height: 24px;
+  text-decoration: none;
+}
+.gi_CuringInfo .curing_bg .curing_banner .curing_base_info .curing_info .curing_info_right .curing_calc .add {
+  font-size: 24px;
+  margin-left: 10px;
+}
+.gi_CuringInfo .curing_bg .curing_banner .curing_base_info .curing_info .curing_info_right .curing_calc .sub {
+  font-size: 32px;
+}
+.gi_CuringInfo .curing_bg .curing_banner .curing_base_info .curing_info .curing_info_right .curing_calc .num {
+  float: left;
+  width: 50px;
+  height: 28px;
+  border: 1px solid #DBDBDB;
+  text-align: center;
+  line-height: 28px;
+  font-size: 18px;
+  margin-left: 10px;
+}
+.gi_CuringInfo .curing_bg .curing_banner .curing_base_info .curing_info .curing_info_right .curing_btn {
+  position: absolute;
+  right: 0;
+  bottom: 12px;
+}
+.gi_CuringInfo .curing_bg .curing_banner .curing_base_info .curing_info .curing_info_right .curing_btn a {
+  display: block;
+  height: 48px;
+  width: 287px;
+  background-color: #FF8F00;
+  text-align: center;
+  line-height: 48px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+.gi_CuringInfo .curing_blank {
+  height: 60px;
+  background-color: #e4e4e4;
+}
+.gi_CuringInfo .info_curingPlan {
+  height: 228px;
+  border-bottom: 1px solid #DBDBDB;
+}
+.gi_CuringInfo .info_curingPlan .planCon {
+  margin-top: 100px;
+}
+.gi_CuringInfo .info_curingPlan .planCon p {
+  color: red;
+  font-size: 20px;
+  margin-top: 5px;
+}
+.gi_CuringInfo .info_curingPlan .planCon .curingShop {
+  width: 100%;
+  margin-top: 15px;
+}
+.gi_CuringInfo .info_curingPlan .planCon .curingShop .buyNum {
+  float: left;
+}
+.gi_CuringInfo .info_curingPlan .planCon .curingShop .buyNum span {
+  font-size: 14px;
+  float: left;
+  margin-top: 4px;
+}
+.gi_CuringInfo .info_curingPlan .planCon .curingShop .buyNum a {
+  text-decoration: none;
+}
+.gi_CuringInfo .info_curingPlan .planCon .curingShop .buyNum .sub {
+  float: left;
+  width: 28px;
+  height: 28px;
+  border: 1px solid #DBDBDB;
+  text-align: center;
+  line-height: 24px;
+  font-size: 32px;
+}
+.gi_CuringInfo .info_curingPlan .planCon .curingShop .buyNum .num {
+  float: left;
+  width: 50px;
+  height: 28px;
+  border: 1px solid #DBDBDB;
+  text-align: center;
+  line-height: 28px;
+  font-size: 18px;
+  margin-left: 10px;
+  font-family: 微软雅黑;
+}
+.gi_CuringInfo .info_curingPlan .planCon .curingShop .buyNum .add {
+  float: left;
+  width: 28px;
+  height: 28px;
+  border: 1px solid #DBDBDB;
+  text-align: center;
+  line-height: 24px;
+  font-size: 24px;
+  margin-left: 10px;
+}
+.gi_CuringInfo .info_curingPlan .planCon .curingShop .shop {
+  float: right;
+  height: 28px;
+  background-color: #FFEEE8;
+  border: 1px solid #FFA9A5;
+  width: 192px;
+  text-align: center;
+  line-height: 28px;
+  color: red;
+  text-decoration: none;
+}
+.booking {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 2;
+}
+.booking .booking_con {
+  width: 940px;
+  margin: 195px auto;
+  height: 480px;
+  background-color: #fff;
+  padding: 60px 130px;
+  position: relative;
+}
+.booking .booking_con > .tit {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #BEBEBE;
+}
+.booking .booking_con > .tit h3 {
+  display: inline-block;
+  font-size: 32px;
+}
+.booking .booking_con > .tit p {
+  display: inline-block;
+  margin-left: 35px;
+  font-size: 16px;
+  font-weight: 700;
+}
+.booking .booking_con > .con {
+  margin-top: 35px;
+}
+.booking .booking_con > .con .con_left {
+  width: 450px;
+  float: left;
+}
+.booking .booking_con > .con .con_left .con_imgBox {
+  width: 100%;
+  height: 400px;
+}
+.booking .booking_con > .con .con_left .con_imgBox img {
+  width: 100%;
+  height: 100%;
+}
+.booking .booking_con > .con .con_left .con_tit {
+  margin-top: 15px;
+}
+.booking .booking_con > .con .con_left .con_tit h3 {
+  font-size: 22px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.booking .booking_con > .con .con_right {
+  width: 450px;
+  float: right;
+}
+.booking .booking_con > .con .con_right table {
+  width: 100%;
+}
+.booking .booking_con > .con .con_right table tr {
+  width: 100%;
+  height: 60px;
+}
+.booking .booking_con > .con .con_right table tr td:nth-child(1) {
+  width: 16%;
+  text-align: right;
+  font-size: 16px;
+}
+.booking .booking_con > .con .con_right table tr td:nth-child(2) {
+  height: 45px;
+  padding-left: 15px;
+}
+.booking .booking_con > .con .con_right table tr td:nth-child(2) input {
+  height: 33px;
+  border: 1px solid #BFBFBF;
+  padding-left: 6px;
+  font-size: 14px;
+  width: 90%;
+  font-family: 微软雅黑;
+}
+.booking .booking_con > .con .con_right table tr td:nth-child(2) p {
+  font-size: 14px;
+}
+.booking .booking_con > .con .con_right table tr:nth-child(1) td:nth-child(3) input {
+  vertical-align: text-bottom;
+  margin-bottom: 1px;
+  margin-right: 3px;
+  font-family: 微软雅黑;
+  margin-left: 10px;
+}
+.booking .booking_con > .con .con_right table tr:nth-child(2) span {
+  color: red;
+}
+.booking .booking_con > .con .con_right table tr:nth-child(3) td:nth-child(3) a {
+  display: block;
+  width: 140px;
+  height: 35px;
+  background-color: #EAEAEA;
+  text-decoration: none;
+  text-align: center;
+  line-height: 35px;
+  font-size: 16px;
+}
+.booking .booking_con > .con .con_right table tr:nth-child(3) td:nth-child(3) a:active {
+  background-color: #2783c9;
+  color: #fff;
+}
+.booking .booking_con > .con .con_right .book-btn {
+  width: 100%;
+  height: 48px;
+  background-color: #FF8F00;
+  color: #fff;
+  text-align: center;
+  line-height: 47px;
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  text-decoration: none;
+  margin-top: 7px;
+  margin-top: 52px;
+}
+.booking .booking_con > .book-close {
+  font-size: 42px;
+  color: gray;
+  position: absolute;
+  top: 0px;
+  right: 25px;
+  cursor: pointer;
+}

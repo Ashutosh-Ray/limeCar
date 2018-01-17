@@ -1,0 +1,138 @@
+<nav class="navbar-default navbar-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="main-menu">
+            <li>
+                <a href="#" class="waves-effect waves-dark"><i class="fa fa-truck"></i><span>产品管理</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{:U('Admin/goods/goodsList',array('cat_id'=>138))}"  onclick="return false"><span>新车</span></a>
+                    </li>
+                    <li>
+                        <a href="{:U('Admin/goods/goodsList',array('cat_id'=>164))}"  onclick="return false"><span>二手车</span></a>
+                    </li>  
+                    <li>
+                        <a href="{:U('Admin/goods/goodsList',array('cat_id'=>165))}"  onclick="return false"><span>汽车养护</span></a>
+                    </li>   
+                </ul>
+            </li>
+            <if condition="$admin_type eq 0">
+            <li>
+                <a href="#" class="waves-effect waves-dark"><i class="fa fa-gear fa-fw"></i><span>配置中心</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level" >
+                    <li>
+                        <a href="{:U('Admin/Ad/adList')}" onclick="return false"><span>轮播图配置</span></a>
+                    </li>
+                    <li>
+                        <a href="{:U('Admin/system/navigationList')}" onclick="return false"><span>PC端导航栏配置</span></a>
+                    </li>
+                    <li>
+                        <a href="{:U('Admin/goods/categoryList')}"  onclick="return false"><span>商品分类配置</span></a>
+                    </li>
+                    <li>
+                        <a href="{:U('Admin/goods/tagLists')}"  onclick="return false"><span>服务范围</span></a>
+                    </li>
+                    <li>
+                        <a href="{:U('Admin/Plugin/index')}"  onclick="return false"><span>支付配置</span></a>
+                    </li>
+                    <li>
+                        <a href="{:U('Admin/Plugin/index')}"  onclick="return false"><span>登录配置</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" class="waves-effect waves-dark"><i class="fa fa-gear fa-fw"></i><span>合伙人管理</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level" >
+                    <li>
+                        <a href="{:U('Admin/partner/partner_list')}" onclick="return false"><span>合伙人</span></a>
+                    </li>
+                    <li>
+                        <a href="{:U('Admin/partner/commision_check_list')}" onclick="return false"><span>返佣审核</span></a>
+                    </li>
+                    <li>
+                        <a href="{:U('Admin/partner/commision_case_list')}" onclick="return false"><span>金额比例设置</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" class="waves-effect waves-dark"><i class="fa fa-paste"></i><span>会员卡管理</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{:U('Admin/card/index')}"  onclick="return false"><span>会员卡列表</span></a>
+                    </li>
+                    <li>
+                        <a href="{:U('Admin/card/card_type')}"  onclick="return false"><span>会员卡类型</span></a>
+                    </li>
+                    <li>
+                        <a href="{:U('Admin/card/set_meal')}"  onclick="return false"><span>套餐管理</span></a>
+                    </li>
+                    <li>
+                        <a href="{:U('Admin/card/attribute')}"  onclick="return false"><span>可选项目</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" class="waves-effect waves-dark"><i class="fa fa-users"></i><span>商户管理</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{:U('Admin/business/index')}"  onclick="return false"><span>商户列表</span></a>
+                    </li>
+                </ul>
+            </li>
+            </if>
+            <if condition="$admin_type eq 1">
+            <li>
+                <a href="#" class="waves-effect waves-dark"><i class="fa fa-sitemap"></i><span>商家后台</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{:U('Admin/business/checkList')}"  onclick="return false"><span>商家验券列表</span></a>
+                    </li>
+                    <li>
+                        <a href="{:U('Admin/business/checkOrder')}"  onclick="return false"><span>验券</span></a>
+                    </li>
+                    <li>
+                        <a href="{:U('Admin/Card/check_card')}"  onclick="return false"><span>会员卡验证</span></a>
+                    </li>
+                    <li>
+                        <a href="{:U('Admin/Business/changeSecret')}"  onclick="return false"><span>修改密码</span></a>
+                    </li>
+                </ul>
+            </li>
+            </if>
+            <if condition="$admin_type neq 1">
+<!--             <li>
+                <a href="#" class="waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i><span>统计</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="#"  onclick="return false"><span>新车</span></a>
+                    </li>
+                </ul>
+            </li> -->
+            <li>
+                <a href="#" class="waves-effect waves-dark"><i class="fa fa-heart"></i><span>意向用户管理</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{:U('Admin/Agency/index')}"  onclick="return false"><span>意向用户列表</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" class="waves-effect waves-dark"><i class="fa fa-tasks"></i><span>订单管理</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{:U('Admin/Order/index')}"  onclick="return false"><span>订单列表</span></a>
+                    </li>
+                </ul>
+            </li>
+             <li>
+                <a href="#" class="waves-effect waves-dark"><i class="fa fa-tasks"></i><span>优惠券管理</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{:U('Admin/Coupon/index')}"  onclick="return false"><span>优惠券列表</span></a>
+                    </li>
+                </ul>
+            </li>
+            </if>
+        </ul>
+    </div>
+</nav>
+<!-- /. NAV SIDE  -->

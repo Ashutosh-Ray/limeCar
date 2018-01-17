@@ -1,0 +1,792 @@
+<include file="public/layout" />
+<!--物流配置 css -start-->
+<style>
+    ul.group-list {
+        width: 96%;min-width: 1000px; margin: auto 5px;list-style: disc outside none;
+    }
+    ul.group-list li {
+        white-space: nowrap;float: left;
+        width: 150px; height: 25px;
+        padding: 3px 5px;list-style-type: none;
+        list-style-position: outside;border: 0px;margin: 0px;
+    }
+    .row .table-bordered td .btn,.row .table-bordered td img{
+        vertical-align: middle;
+    }
+    .row .table-bordered td{
+      padding: 8px;
+      line-height: 1.42857143;
+    }
+    .table-bordered{
+      width: 100%
+    }
+    .table-bordered tr td{
+      border: 1px solid #f4f4f4;
+    }
+    .btn-success {
+        color: #fff;
+        background-color: #449d44;
+        border-color: #398439 solid 1px;
+    }
+    .btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.col-xs-8 {
+    width: 66.66666667%;
+}
+.col-xs-4 {
+    width: 33.33333333%;
+}
+.col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    float: left;
+}
+.row .tab-pane h4{
+  padding: 10px 0;
+}
+.row .tab-pane h4 input{
+  vertical-align: middle;
+} 
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+.ncap-form-default .title{
+  border-bottom: 0
+}
+.ncap-form-default dl.row, .ncap-form-all dd.opt{
+    /*border-color: #F0F0F0;*/
+    border: none;
+}
+.ncap-form-default dl.row:hover, .ncap-form-all dd.opt:hover{
+    border: none;
+    box-shadow: inherit;
+}
+</style>
+<!--物流配置 css -end-->
+<!--以下是在线编辑器 代码 -->
+<script type="text/javascript">
+    /*
+   * 在线编辑器相 关配置 js 
+   *  参考 地址 http://fex.baidu.com/ueditor/
+   */
+    window.UEDITOR_Admin_URL = "/public/plugins/Ueditor/";
+    var URL_upload = "{$URL_upload}";
+    var URL_fileUp = "{$URL_fileUp}";
+    var URL_scrawlUp = "{$URL_scrawlUp}";
+    var URL_getRemoteImage = "{$URL_getRemoteImage}";
+    var URL_imageManager = "{$URL_imageManager}";
+    var URL_imageUp = "{$URL_imageUp}";
+    var URL_getMovie = "{$URL_getMovie}";
+    var URL_home = "{$URL_home}";
+</script>
+<script type="text/javascript" charset="utf-8" src="/public/plugins/Ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="/public/plugins/Ueditor/ueditor.all.min.js"> </script>
+ <script type="text/javascript" charset="utf-8" src="/public/plugins/Ueditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript">  
+  
+    var editor;
+    $(function () {
+        //具体参数配置在  editor_config.js  中
+        var options = {
+            zIndex: 999,
+            initialFrameWidth: "95%", //初化宽度
+            initialFrameHeight: 400, //初化高度
+            focus: false, //初始化时，是否让编辑器获得焦点true或false
+            maximumWords: 99999, removeFormatAttributes: 'class,style,lang,width,height,align,hspace,valign'
+            , //允许的最大字符数 'fullscreen',
+            pasteplain:false, //是否默认为纯文本粘贴。false为不使用纯文本粘贴，true为使用纯文本粘贴
+            autoHeightEnabled: true
+         /*   autotypeset: {
+                mergeEmptyline: true,        //合并空行
+                removeClass: true,           //去掉冗余的class
+                removeEmptyline: false,      //去掉空行
+                textAlign: "left",           //段落的排版方式，可以是 left,right,center,justify 去掉这个属性表示不执行排版
+                imageBlockLine: 'center',    //图片的浮动方式，独占一行剧中,左右浮动，默认: center,left,right,none 去掉这个属性表示不执行排版
+                pasteFilter: false,          //根据规则过滤没事粘贴进来的内容
+                clearFontSize: false,        //去掉所有的内嵌字号，使用编辑器默认的字号
+                clearFontFamily: false,      //去掉所有的内嵌字体，使用编辑器默认的字体
+                removeEmptyNode: false,      //去掉空节点
+                                             //可以去掉的标签
+                removeTagNames: {"font": 1},
+                indent: false,               // 行首缩进
+                indentValue: '0em'           //行首缩进的大小
+            }*/,
+          toolbars: [
+                   ['fullscreen', 'source', '|', 'undo', 'redo',
+                       '|', 'bold', 'italic', 'underline', 'fontborder',
+                       'strikethrough', 'superscript', 'subscript',
+                       'removeformat', 'formatmatch', 'autotypeset',
+                       'blockquote', 'pasteplain', '|', 'forecolor',
+                       'backcolor', 'insertorderedlist',
+                       'insertunorderedlist', 'selectall', 'cleardoc', '|',
+                       'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
+                       'customstyle', 'paragraph', 'fontfamily', 'fontsize',
+                       '|', 'directionalityltr', 'directionalityrtl',
+                       'indent', '|', 'justifyleft', 'justifycenter',
+                       'justifyright', 'justifyjustify', '|', 'touppercase',
+                       'tolowercase', '|', 'link', 'unlink', 'anchor', '|',
+                       'imagenone', 'imageleft', 'imageright', 'imagecenter',
+                       '|', 'insertimage', 'emotion', 'insertvideo',
+                       'attachment', 'map', 'gmap', 'insertframe',
+                       'insertcode', 'webapp', 'pagebreak', 'template',
+                       'background', '|', 'horizontal', 'date', 'time',
+                       'spechars', 'wordimage', '|',
+                       'inserttable', 'deletetable',
+                       'insertparagraphbeforetable', 'insertrow', 'deleterow',
+                       'insertcol', 'deletecol', 'mergecells', 'mergeright',
+                       'mergedown', 'splittocells', 'splittorows',
+                       'splittocols', '|', 'print', 'preview', 'searchreplace']
+               ]
+        };
+        editor = new UE.ui.Editor(options);
+        editor.render("goods_content");  //  指定 textarea 的  id 为 goods_content
+
+    }); 
+</script>
+<!--以上是在线编辑器 代码  end-->
+<body style="background-color: #FFF; overflow: auto;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title">
+            <div class="subject">
+                <h3>商城设置</h3>
+                <h5>网站全局内容基本选项设置</h5>
+            </div>
+            <ul class="tab-base nc-row">
+                <li><a href="javascript:void(0);" data-index='1' class="tab current"><span>通用信息</span></a></li>
+                <!-- <li><a href="javascript:void(0);" data-index='2' class="tab"><span>商品相册</span></a></li>
+                <li><a href="javascript:void(0);" data-index='3' class="tab"><span>商品模型</span></a></li>
+                <li><a href="javascript:void(0);" data-index='4' class="tab"><span>商品物流</span></a></li>  -->               
+            </ul>
+        </div>
+    </div>
+    <!-- 操作说明 -->
+    <div class="explanation" id="explanation">
+        <div class="title" id="checkZoom"><i class="fa fa-lightbulb-o"></i>
+            <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+            <span id="explanationZoom" title="收起提示"></span> </div>
+        <ul>
+            <li>请务必正确填写商品信息</li>
+            <li>分销比例数不为零为分销商品.</li>
+        </ul>
+    </div>
+    <!--表单数据-->
+    <form method="post" id="addEditGoodsForm">
+
+<!--通用信息-->
+        <div class="ncap-form-default tab_div_1">
+                
+            <dl class="row">
+                <dt class="tit">
+                    <label for="record_no">商品品牌</label>
+                </dt>
+                <dd class="opt">
+                <select name="brand_id" id="brand_id"  class="small form-control request" onChange="getbrandversion(2,this.value,'brand_id');">
+                         <option value="">所有品牌</option>
+                        <foreach name="brandList" item="v" key="k" >
+                           <option value="{$v['id']}"  <if condition="$v['id'] eq $goodsInfo['brand_id'] ">selected="selected"</if>>
+                                {$v['name']}
+                           </option>
+                         </foreach>
+                  </select> 
+                  <span class="err" id="err_brand_id" style="color:#F00; display:none;">商品品牌必选</span>
+                   <a onclick="addBrand(1,'','','新增品牌')" class="ncap-btn"><i class="fa fa-plus"></i>新增品牌</a>
+                 
+                   <div id="thumbnails" class="ncap-thumb-list">
+                    <h5><i class="fa fa-exclamation-circle"></i> 例：宝马</h5>
+                  </div>
+                </dd>
+
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="record_no">车系</label>
+                </dt>
+                <dd class="opt">
+                <select name="series_id" id="series_id"  class="small form-control request" onChange="getbrandversion(3,this.value,'series_id');">
+                   <option value="">所有车系</option> 
+                   <foreach name="seriesList" item="v" key="k" >
+                           <option value="{$v['id']}"  <if condition="$v['id'] eq $goodsInfo['series_id'] ">selected="selected"</if>>
+                                {$v['series_name']}
+                           </option>
+                      </foreach>
+                  </select> 
+                   <span class="err" id="err_series_id" style="color:#F00; display:none;">车系必选</span>
+                   <a onclick="addBrand(2,'{$goodsInfo.brand_id}','','新增车系')" class="ncap-btn"><i class="fa fa-plus"></i>新增车系</a>
+                  
+                   <div id="thumbnails" class="ncap-thumb-list">
+                   <h5><i class="fa fa-exclamation-circle"></i> 例：3系；X5(进口)</h5>
+                  </div>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="record_no">车型</label>
+                </dt>
+                <dd class="opt">
+                <select name="version_id" id="brand_id"  class="small form-control request">
+                     <option value="">所有车型</option> 
+                     <foreach name="versionList" item="v" key="k" >
+                           <option value="{$v['id']}"  <if condition="$v['id'] eq $goodsInfo['version_id'] ">selected="selected"</if>>
+                                {$v['version_name']}
+                           </option>
+                      </foreach>
+                  </select> 
+                   <span class="err" id="err_version_id" style="color:#F00; display:none;">车型必选</span>
+                  <a onclick="addBrand(3,'{$goodsInfo.brand_id}','{$goodsInfo.series_id}','新增车型')" class="ncap-btn"><i class="fa fa-plus"></i>新增车型</a>
+                 
+                  <div id="thumbnails" class="ncap-thumb-list">
+                    <h5><i class="fa fa-exclamation-circle"></i> 例：2017款320Li运动型</h5>
+                   </div>
+                </dd>
+            </dl> 
+              <dl class="row"  style="color:#F00; display:none;">
+                <dt class="tit">
+                    <label for="record_no">商品名称</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" value="{$goodsInfo.goods_name}" name="goods_name" class="input-txt"/>
+                    <span class="err" id="err_goods_name" style="color:#F00; display:none;"></span>
+                </dd>
+            </dl>  
+            <dl class="row">
+                <dt class="tit">
+                    <label for="record_no">商品分类</label>
+                </dt>
+                <dd class="opt" >
+                      <select name="cat_id" id="cat_id" onChange="get_category(this.value,'cat_id_2','0');" class="small form-control request">
+                        <option value="0">请选择商品分类</option>                                      
+                             <foreach name="cat_list" item="v" key="k" >                                                                                          
+                               <option value="{$v['id']}" <if condition="$v['id'] eq $level_cat['1']">selected="selected"</if> <if condition="$cat_id eq $v['id']">selected="selected"</if>>
+                                    {$v['name']}
+                               </option>
+                             </foreach>
+                      </select>
+                      <select name="cat_id_2" id="cat_id_2" onChange="get_category(this.value,'cat_id_3','0');" class="small form-control" style="display: none">
+                        <option value="0">请选择商品分类</option>
+                      </select>
+                      <select name="cat_id_3" id="cat_id_3" class="small form-control" style="display: none">
+                        <option value="0">请选择商品分类</option>
+                      </select>                      
+                    <span class="err" id="err_cat_id" style="color:#F00; display:none;">商品分类必选</span>
+                </dd>
+            </dl> 
+
+            <dl class="row">
+                <dt class="tit">
+                    <em>*</em><label for="record_no">市场指导价</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" value="{$goodsInfo.market_price}" name="market_price" class="t_mane request" onKeyUp="this.value=this.value.replace(/[^\d.]/g,'')" onpaste="this.value=this.value.replace(/[^\d.]/g,'')" />
+                    <span class="err" id="err_market_price" style="color:#F00; display:none;">市场指导价必填</span>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                   <em>*</em> <label for="record_no">全款裸车价</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" value="{$goodsInfo.shop_price}" name="shop_price" class="t_mane request" onKeyUp="this.value=this.value.replace(/[^\d.]/g,'')" onpaste="this.value=this.value.replace(/[^\d.]/g,'')" />
+                    <span class="err" id="err_shop_price" style="color:#F00; display:none;">全款裸车价必填</span>
+                </dd>
+            </dl>         
+    <dl class="row">
+        <dt class="tit">商品主图</dt>
+        <dd class="opt">
+          <div class="input-file-show" id="divComUploadContainer">
+            <span class="show">
+                <a class="nyroModal" rel="gal">
+                    <i class="fa fa-picture-o" onMouseOver="layer.tips('<img src={$goodsInfo.original_img}>',this ,{tips: [1, '#fff']});" onMouseOut="layer.closeAll();"></i>
+                </a>
+            </span>             
+            <span class="type-file-box">            
+            <input type="text" id="imagetext" name="original_img" value="{$goodsInfo.original_img}" class="type-file-text">            
+            <input type="button" class="type-file-button" onClick="GetUploadify(1,'imagetext','goods','')" value="上传图片"  hidefocus="true" nc_type="change_site_logo" title="点击前方预览图可查看大图，点击按钮选择文件并提交表单后上传生效"/>
+            </span>
+          </div>
+          <div id="thumbnails" class="ncap-thumb-list">
+            <h5><i class="fa fa-exclamation-circle"></i> 请上传图片格式文件。</h5>
+            <ul>
+            </ul>
+          </div>
+        </dd>
+      </dl> 
+      <dl class="row">
+        <dt class="tit">商品相册</dt>
+        <dd class="opt">
+           <div class="tab-pane" id="tab_goods_images">
+                            <table class="table table-bordered">
+                                <tbody>
+                                <tr>                                    
+                                    <td>                                    
+                                    <foreach name="goodsImages" item="vo" key="k" >
+                                    <if condition="$goodsInfo['original_img'] neq $vo['image_url']">
+                                       <div style="width:100px; text-align:center; margin: 5px;display:inline-block;" class="goods_xc">
+                                        
+                                       
+                                            <input type="hidden" value="{$vo['image_url']}" name="goods_images[]">
+                                            <a onClick="" href="{$vo['image_url']}" target="_blank"><img width="100" height="100" src="{$vo['image_url']}"></a>
+                                            <br>
+                                            <a href="javascript:void(0)" onClick="ClearPicArr2(this,'{$vo['image_url']}')">删除</a>
+                                        </div>
+                                         </if>
+                                    </foreach>
+                                    
+                                        <div class="goods_xc" style="width:100px; text-align:center; margin: 5px; display:inline-block;">
+                                            <input type="hidden" name="goods_images[]" value="" />
+                                            <a href="javascript:void(0);" onClick="GetUploadify(10,'','goods','call_back2');"><img src="/public/images/add-button.jpg" width="100" height="100" /></a>
+                                            <br/>
+                                            <a href="javascript:void(0)">&nbsp;&nbsp;</a>
+                                        </div>                                        
+                                    </td>
+                                </tr>                                              
+                                </tbody>
+                            </table>
+                        </div>
+          <div id="thumbnails" class="ncap-thumb-list">
+            <h5><i class="fa fa-exclamation-circle"></i> 请上传图片格式文件。</h5>
+            <ul>
+            </ul>
+          </div>
+        </dd>
+      </dl> 
+
+            <dl class="row">
+                <dt class="tit">
+                    <label for="store_name">商品简介</label>
+                </dt>
+                <dd class="opt">
+                    <textarea rows="3" cols="80" name="goods_remark" class="input-txt">{$goodsInfo.goods_remark}</textarea>
+                    <span id="err_goods_remark" class="err" style="color:#F00; display:none;"></span>                    
+                </dd>
+            </dl>         
+        <dl class="row">
+                <dt class="tit">
+                    <em>*</em><label for="record_no">库存数量</label>
+                </dt>
+                <dd class="opt">                
+                    <if condition="$goodsInfo[goods_id] gt 0">
+                        <input type="text" value="{$goodsInfo.store_count}" class="t_mane request" name="store_count" onKeyUp="this.value=this.value.replace(/[^\d.]/g,'')" onpaste="this.value=this.value.replace(/[^\d.]/g,'')" />
+                    <else />
+                        <input type="text" value="{$imshop_config[basic_default_storage]}" class="t_mane" name="store_count" onKeyUp="this.value=this.value.replace(/[^\d.]/g,'')" onpaste="this.value=this.value.replace(/[^\d.]/g,'')" />                                         
+                    </if>
+                    <span class="err" id="err_store_count" style="color:#F00; display:none;"></span>
+                </dd>
+            </dl> 
+             <dl class="row">
+                <dt class="tit">
+                    <label for="record_no">金融方案</label>
+                </dt>
+                <dd class="opt">                
+                    <p class="notic">
+                        <a onclick="addProgramme()" class="ncap-btn"><i class="fa fa-plus"></i>新增金融方案</a>
+                    </p>
+                    <span class="err" id="err_store_count" style="color:#F00; display:none;"></span>
+                </dd>
+            </dl> 
+            <dl class="row">
+                <dt class="tit">
+                </dt>
+                <dd class="opt" id='programme'> 
+                <volist name="programmes" id="vo">               
+                    <div>
+                    <label>首付款:</label>
+                    <input type="text" name="down_payments[]" value="{$vo.down_payments}" onKeyUp="this.value=this.value.replace(/[^\d.]/g,'')">
+                    <label>第一年月供:</label>
+                    <input type="text" name="first_year[]" value="{$vo.first_year}" onKeyUp="this.value=this.value.replace(/[^\d.]/g,'')">
+                    <label>一年后残值:</label>
+                    <input type="text" name="residual_value[]" value="{$vo.residual_value}" onKeyUp="this.value=this.value.replace(/[^\d.]/g,'')">
+                    <label>尾款贷款期数:</label>
+                    <input type="text" name="tail_periods[]" value="{$vo.tail_periods}" onKeyUp="this.value=this.value.replace(/[^\d.]/g,'')">
+                    <label>尾款月供:</label>
+                    <input type="text" name="tail_money[]" value="{$vo.tail_money}" onKeyUp="this.value=this.value.replace(/[^\d.]/g,'')">
+                    <a onclick="delProgramme(this)" class="ncap-btn"><i class="fa"></i>删除</a>
+                    </div>
+                </volist>   
+                </dd>
+            </dl> 
+            <div id="ajax_attributes">
+            
+            </div>   
+            <dl class="row">
+                <dt class="tit">
+                   <em>*</em> <label for="record_no">商品详情描述</label>
+                </dt>
+                <dd class="opt">                    
+                    <textarea class="span12 ckeditor" id="goods_content" name="goods_content" title="">{$goodsInfo.goods_content}</textarea>
+                    <span class="err" id="err_goods_content" style="color:#F00; display:none;">商品详情必填</span>                    
+                </dd>
+            </dl>                                                                                                                                           
+        </div>
+<!--通用信息-->
+
+    <div class="ncap-form-default">        
+            <div class="bot">            
+                <input type="hidden" name="goods_id" value="{$goodsInfo.goods_id}">
+                <input type="hidden" name="__token__" value="{$Request.token}" />
+                <a href="JavaScript:void(0);" class="ncap-btn-big ncap-btn-green" onClick="sureSubmit()">确认提交</a>
+            </div>
+        </div> 
+     </form>
+    <!--表单数据-->
+</div>
+<div id="goTop"> <a href="JavaScript:void(0);" id="btntop"><i class="fa fa-angle-up"></i></a><a href="JavaScript:void(0);" id="btnbottom"><i class="fa fa-angle-down"></i></a></div>
+<script>
+function sureSubmit() {
+    var brand=$("select[name='brand_id']").find("option:selected").text();
+    var series=$("select[name='series_id']").find("option:selected").text();
+    var version=$("select[name='version_id']").find("option:selected").text();
+    brand = $.trim(brand);
+    series = $.trim(series);
+    version = $.trim(version);
+    var val = brand+series+version;
+  
+    $("input[name='goods_name']").val(val);
+    ajaxSubmitForm('addEditGoodsForm','{:U('Goods/addEditGoods?is_ajax=1')}');
+}
+    // 物流设置相 关
+     $(document).ready(function(){
+        $(":checkbox[cka]").click(function(){
+            var $cks = $(":checkbox[ck='"+$(this).attr("cka")+"']");
+            if($(this).is(':checked')){
+                $cks.each(function(){$(this).prop("checked",true);});
+            }else{
+                $cks.each(function(){$(this).removeAttr('checked');});
+            }
+        });
+    });
+    // 物流设置相 关
+    function choosebox(o){
+        var vt = $(o).is(':checked');
+        if(vt){
+            $('input[type=checkbox]').prop('checked',vt);
+        }else{
+            $('input[type=checkbox]').removeAttr('checked');
+        }
+    }
+    /*
+     * 以下是图片上传方法
+     */
+    // 上传商品图片成功回调函数
+    function call_back(fileurl_tmp){
+        $("#original_img").val(fileurl_tmp);
+      $("#original_img2").attr('href', fileurl_tmp);
+    }
+ 
+    // 上传商品相册回调函数
+    function call_back2(paths){
+        
+        var  last_div = $(".goods_xc:last").prop("outerHTML");  
+        for (i=0;i<paths.length ;i++ )
+        {                    
+            $(".goods_xc:eq(0)").before(last_div);  // 插入一个 新图片
+                $(".goods_xc:eq(0)").find('a:eq(0)').attr('href',paths[i]).attr('onclick','').attr('target', "_blank");// 修改他的链接地址
+            $(".goods_xc:eq(0)").find('img').attr('src',paths[i]);// 修改他的图片路径
+                $(".goods_xc:eq(0)").find('a:eq(1)').attr('onclick',"ClearPicArr2(this,'"+paths[i]+"')").text('删除');
+            $(".goods_xc:eq(0)").find('input').val(paths[i]); // 设置隐藏域 要提交的值
+        }          
+    }
+    /*
+     * 上传之后删除组图input     
+     * @access   public
+     * @val      string  删除的图片input
+     */
+    function ClearPicArr2(obj,path)
+    {
+        $(obj).parent().remove();
+      $.ajax({
+                    type:'GET',
+                    url:"{:U('Admin/Uploadify/delupload')}",
+                    data:{action:"del", filename:path},
+                    success:function(){
+                           $(obj).parent().remove(); // 删除完服务器的, 再删除 html上的图片        
+                    }
+    });
+    // 删除数据库记录
+      $.ajax({
+                    type:'GET',
+                    url:"{:U('Admin/Goods/del_goods_images')}",
+                    data:{filename:path},
+                    success:function(){
+                          //     
+                    }
+    });   
+    }
+ 
+
+
+/** 以下 商品属性相关 js*/
+
+// 属性输入框的加减事件
+function addAttr(a)
+{
+  var attr = $(a).parent().parent().prop("outerHTML");  
+  attr = attr.replace('addAttr','delAttr').replace('+','-');  
+  $(a).parent().parent().after(attr);
+}
+// 属性输入框的加减事件
+function delAttr(a)
+{
+   $(a).parent().parent().remove();
+}
+ 
+
+/** 以下 商品规格相关 js*/
+$(document).ready(function(){ 
+    // 商品模型切换时 ajax 调用  返回不同的属性输入框
+    $("#spec_type").change(function(){        
+        var goods_id = '{$goodsInfo.goods_id}';
+        var spec_type = $(this).val();
+            $.ajax({
+                    type:'GET',
+                    data:{goods_id:goods_id,spec_type:spec_type}, 
+                    url:"{:U('admin/Goods/ajaxGetSpecSelect')}",
+                    success:function(data){                            
+                           $("#ajax_spec_data").html('')
+                           $("#ajax_spec_data").append(data);
+         ajaxGetSpecInput();  // 触发完  马上触发 规格输入框
+                    }
+            });           
+            //商品类型切换时 ajax 调用  返回不同的属性输入框     
+            $.ajax({
+                 type:'GET',
+                 data:{goods_id:goods_id,type_id:spec_type}, 
+                 url:"/index.php/admin/Goods/ajaxGetAttrInput",
+                 success:function(data){                            
+                         $("#goods_attr_table tr:gt(0)").remove()
+                         $("#goods_attr_table").append(data);
+                 }        
+           });
+    });
+  // 触发商品规格
+  $("#spec_type").trigger('change'); 
+  
+    $("input[name='exchange_integral']").blur(function(){
+        var shop_price = parseInt($("input[name='shop_price']").val());
+        var exchange_integral = parseInt($(this).val());
+        if (shop_price * 100 < exchange_integral) {
+          
+        }
+    });
+});
+
+/** 以下是编辑时默认选中某个商品分类,以及其他属性*/
+$(document).ready(function(){
+get_category('{$cat_id}','cat_id_2','{$level_cat[2]}');
+  <if condition="$level_cat['2'] gt 0">
+     // 商品分类第二个下拉菜单
+     get_category('{$level_cat[1]}','cat_id_2','{$level_cat[2]}');  
+  </if>
+  <if condition="$level_cat['3'] gt 0">
+    // 商品分类第二个下拉菜单
+     get_category('{$level_cat[2]}','cat_id_3','{$level_cat[3]}');   
+  </if>
+
+    //  扩展分类
+  <if condition="$level_cat2['2'] gt 0">
+     // 商品分类第二个下拉菜单
+     get_category('{$level_cat2[1]}','extend_cat_id_2','{$level_cat2[2]}'); 
+  </if>
+  <if condition="$level_cat2['3'] gt 0">
+    // 商品分类第二个下拉菜单
+     get_category('{$level_cat2[2]}','extend_cat_id_3','{$level_cat2[3]}');  
+  </if>
+var cat_id = "{$cat_id}";
+getAttributes(cat_id,'{$goodsInfo[goods_id]}');
+});
+
+function getAttributes(cat_id,goods_id) {
+
+  var url = '/index.php/Admin/Goods/ajax_attributes/cat_id/'+ cat_id+'/goods_id/'+goods_id;
+    $.ajax({
+        type : "GET",
+        url  : url,
+        error: function(request) {
+            alert("服务器繁忙, 请联系管理员!");
+            return;
+        },
+        success: function(v) {
+            if(v!=''){
+       
+            $('#ajax_attributes').empty().html(v);
+            
+           
+            }
+           
+        }
+    });
+}
+
+function get_category(id,next,select_id){
+    var url = '/index.php?m=Home&c=api&a=get_category&parent_id='+ id;
+    $.ajax({
+        type : "GET",
+        url  : url,
+        error: function(request) {
+            alert("服务器繁忙, 请联系管理员!");
+            return;
+        },
+        success: function(v) {
+            if(v!=''){
+             v = "<option value='0'>请选择商品分类</option>" + v;
+            $('#'+next).empty().html(v);
+            $('#'+next).show();
+            (select_id > 0) && $('#'+next).val(select_id);//默认选中 
+            }
+           
+        }
+    });
+}
+ 
+     function selectGoods(){
+        var url = "/index.php/admin/Goods/search_goods.html";
+        layer.open({
+            type: 2,
+            title: '选择商品',
+            shadeClose: true,
+            shade: 0.2,
+            area: ['75%', '75%'],
+            content: url,
+        });
+    }
+ function call_back(goods_id,goods_name,store_count,price){
+        $('#goods_id').val(goods_id);
+        $('#goods_name').val(goods_name);
+        // $('#group_num').val(store_count);
+        $('#goods_price').val(price);
+        layer.closeAll('iframe');
+    }
+    $(document).ready(function(){
+     
+        //插件切换列表
+        $('.tab-base').find('.tab').click(function(){
+            $('.tab-base').find('.tab').each(function(){
+                $(this).removeClass('current');
+            });
+            $(this).addClass('current');
+      var tab_index = $(this).data('index');      
+      $(".tab_div_1, .tab_div_2, .tab_div_3, .tab_div_4").hide();     
+      $(".tab_div_"+tab_index).show();
+    }); 
+
+
+    //获取属性列表  
+            
+    });
+
+    //添加金融方案
+    function addProgramme() {
+        var content = '<div> <label>首付款:</label><input type="text" name="down_payments[]" onKeyUp="this.value=this.value.replace(/[^\d.]/g,"")"><label>第一年月供:</label><input type="text" name="first_year[]" onKeyUp="this.value=this.value.replace(/[^\d.]/g,"")"><label>一年后残值:</label><input type="text" name="residual_value[]" onKeyUp="this.value=this.value.replace(/[^\d.]/g,"")"><label>尾款贷款期数:</label><input type="text" name="tail_periods[]" onKeyUp="this.value=this.value.replace(/[^\d.]/g,"")"><label>尾款月供:</label><input type="text" name="tail_money[]" onKeyUp="this.value=this.value.replace(/[^\d.]/g,"")"><a onclick="delProgramme(this)" class="ncap-btn"><i class="fa"></i>删除</a></div>';
+        $('#programme').append(content);
+    }
+
+    //删除金融方案
+    function delProgramme(obj) {
+        
+       $(obj).parent().remove();
+    }
+
+    function getbrandversion(type,id,pro) {
+       $.ajax({
+                    url:"/index.php/Admin/Goods/ajaxBrandSeriesVersion/type/"+type+'/'+pro+'/'+id,
+                    dataType:'json',
+                    type:'GET',
+                    success:function(res) {
+                       if (res.status==1) {
+                        var html='<option value="">所有</option>';
+                        $.each(res.data,function(index,item){
+                           html+='<option value="'+item.id+'">'+item.name+'</option>' 
+
+                        })
+                        switch(type)
+                                {
+                                case 1:
+                                 $('select[name="brand_id"]').html(html)
+                                  break;
+                                case 2:
+                                  $('select[name="series_id"]').html(html)
+                                  break;
+                                case 3:
+                                  $('select[name="version_id"]').html(html)
+                                  break;  
+                                default:
+                                 
+                                }
+                       }
+                    }
+                })
+    }
+//添加品牌车系车型
+function addBrand(type,brand_id,series_id,title) {
+               var id=0;
+               var pro='';
+               var brand_id=0;
+               var series_id=0;
+                if (type==1) {id=0}
+                if (type==2) {
+                    var val = $('select[name="brand_id"]').val();
+                    if (val=='') {
+                         alert('请选择品牌')
+                         return false;
+                    }else{
+                        id=val;
+                        brand_id=val;
+                        pro='brand_id';
+                    }
+                    
+                }
+                if (type==3) {
+                    var val = $('select[name="series_id"]').val();
+                    if (val=='') {
+                         alert('请选择车系')
+                          return false;
+                    }else{
+                        id=val;
+                        series_id=val;
+                        brand_id = $('select[name="brand_id"]').val();
+                        pro='series_id';
+                    }
+                }
+  
+    var url = "/index.php/Admin/Goods/addBrandSeriesVersion/type/"+type+"/brand_id/"+brand_id+"/series_id/"+series_id;
+        layer.open({
+            type: 2,
+            title: title,
+            shadeClose: true,
+            shade: 0.2,
+            area: ['500px', '600px'],
+            content: [url,'no'],
+            cancel: function(){
+              //点击上面的xx的时候
+                getbrandversion(type,id,pro);
+                
+            },
+            end:function() {
+              //整个layer关闭的时候
+               getbrandversion(type,id,pro);
+           
+            }
+        });
+}
+</script>   
+</body>
+</html>

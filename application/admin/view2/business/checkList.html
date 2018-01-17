@@ -1,0 +1,105 @@
+<include file="public/header"/>
+<div id="page-wrapper">
+<div class="header"> 
+  <h1 class="page-header">
+      商家验券列表
+  </h1>
+<!--   <ol class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Dashboard</a></li>
+    <li class="active">Data</li>
+  </ol> -->             
+</div>
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+        <!-- Advanced Tables -->
+            <div class="card">
+<!--            <div class="card-action">
+                    Advanced Tables
+                </div> -->
+                <div class="card-content">
+                    <div class="table-responsive">
+                        <div class="row">
+                            <div class="col-sm-6"></div>
+                            <div class="col-sm-6 table-search">
+                                <div class="ts-la">
+                                    <label>
+                                            <div class="btn-group">
+                                            <select name="pid">
+                                                <option value="0">==查看所有==</option>
+                                                <volist name="ad_position_list" id="item" key="k">
+                                                    <option value="{$item.position_id}">{$item.position_name}</option>
+                                               </volist>          
+                                            </select>
+                                        </div>
+                                        <input type="search" placeholder="搜索">
+                                        <a href="">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-striped table-bordered table-hover" id="checkList">
+                            <thead>
+                                <tr>
+                                    <th class="center" style="min-width: 60px;">ID</th>
+                                    <th class="center" style="min-width: 60px;">验券码</th>
+                                    <th class="center" style="min-width: 80px;">商品名称</th>
+                                    <th class="center" style="min-width: 45px;">验券时间</th>
+                                    <th class="center" style="min-width: 90px;">核对状态</th>
+                                    <th class="center" style="min-width: 90px;">核对时间</th>
+                                    <!-- <th class="center" style="min-width: 90px;">操作</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <volist name="list" id="l">
+                                <tr class="odd gradeX">
+                                    <td class="center">{$l.id}</td>
+                                    <td class="center">{$l.order_sn}</td>
+                                    <td class="center">{$l.goods_name}</td>
+                                    <td class="center">{$l.add_time|date='Y-m-d',###}</td>
+                                    <td class="center check">
+                                        <if condition="$l.status eq 1">已核对
+                                         <else />未核对
+                                        </if>
+                                    </td>
+                                    <td class="center time">{$l.op_time|date='Y-m-d',###}</td>
+                                    <!-- <td class="center">
+                                        <a href="/index.php/Admin/Business/del_check_order/id/{$l.id}">删除</a> 
+                                        /<a href="">核对</a>
+                                    </td> -->
+                                </tr>
+                            </volist>
+                            </tbody>
+                        </table>
+                        <div class="row">
+                            <div class="col-sm-6"></div>
+                            <div class="col-sm-6 table-pagecut">
+                                <div class="dataTables_paginate paging_simple_numbers">
+                                    {$page}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+    </div>
+
+<include file="public/footer"/>
+<include file="public/table"/>
+<script>
+    $(document).ready(function(){ 
+    if ($('.time').html()=='1970-01-01') {
+        $('.time').html("--")
+    }
+}); 
+</script>
+        <!-- Custom Js -->
+    <script src="__PUBLIC__/static/assets/js/custom-scripts.js"></script> 
+</body>
+
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{$goods.goods_name}-{$imshop_config['shop_info_store_title']}</title>
+    <meta http-equiv="keywords" content="{$imshop_config['shop_info_store_keyword']}" />
+    <meta name="description" content="{$imshop_config['shop_info_store_desc']}" />
+</head>
+<body>
+<link rel="stylesheet" href="__STATIC__/css/goodsInfo.css" type="text/css">
+<link rel="stylesheet" href="__STATIC__/css/swiper.min.css">
+<script type="text/javascript" src="__STATIC__/js/jquery-1.10.2.min.js"></script> 
+<script src="__PUBLIC__/js/layer/layer.js"></script>
+<script src="__STATIC__/js/swiper.min.js"></script>
+<!--------头部开始-------------->
+<include file="public/header" />
+<!--------头部结束-------------->
+
+<!-- 顶部banner开始 -->
+<style>
+.navList li:nth-child(1) a{
+    color: #000!important;
+    }
+.navList li:nth-child(4) a{
+    color: #ca141d!important;
+}
+</style>
+
+<!-- 中部内容开始 -->
+<section class="gi_content gi_CuringInfo">
+  <div class="curing_bg">
+    <div class="curing_banner">
+      <div class="curing_base_info">
+        <div class="curing_img">
+
+          <img src="{$goods.goods_id|goods_thum_images=1200,690}" alt="">
+
+        </div>
+        <div class="curing_info">
+          <div class="curing_info_left">
+            <div class="curing_tit">
+              <h3>{$goods.goods_name}</h3>
+              <p>{$goods.goods_remark}</p>
+            </div>
+            <div class="curing_price">
+              三品車价：{$goods['shop_price']|calcu_goods_price}
+            </div>
+            <div class="curing_shop">
+              <a onclick="show_business(0);">点击查看全部可用门店>></a>
+            </div>
+          </div>
+          <div class="curing_info_right">
+            <form action="{:U('/Home/Cart/order')}" id="buy_form">
+            <div class="curing_calc">
+              <span>购买数量：</span>
+              <a href="javascript:void(0);" id="sub" class="sub">-</a>
+              <input type="text" id="num" class="num" value="1" name="goods_num">
+              <input type="hidden" name="goods_id" value="{$goods['goods_id']}">
+              <a href="javascript:void(0);" id="add" class="add">+</a>
+            </div>
+            <div class="curing_btn">
+              <if condition="$is_login eq 1 "> 
+                <a onClick="submit_buy()">立即购买</a>
+                <else />
+                <a href="/home/LoginApi/login/oauth/weixin.html">点击登录后购买</a>
+              </if>
+            </div>
+          </form>
+          </div>
+          <div style="clear: both;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="curing_blank"></div>
+  <div class="gi_details">
+    <div class="details_con">
+     {$goods.goods_content}
+    </div>
+  </div>
+  <div class="gi_swiper" id="swiper" style="visibility:hidden">
+        <!-- Swiper -->
+    <div class="swiper-container gallery-top">
+        <div class="swiper-wrapper">
+           <volist name="goods_images_list" id="v">
+           <div class="swiper-slide" style="background-image:url('{$v|get_sub_images=$v[goods_id],750,550}')"></div>
+         </volist> 
+        </div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next swiper-button-white"></div>
+        <div class="swiper-button-prev swiper-button-white"></div>
+    </div>
+    <div class="swiper-container gallery-thumbs" style="background-color: rgba(0,0,0,0);">
+        <div class="swiper-wrapper">
+            <volist name="goods_images_list" id="v">
+            <div class="swiper-slide" style="background-image:url('{$v|get_sub_images=$v[goods_id],150,100}')">
+            </div>
+            </volist>
+        </div>
+    </div>
+    <div class="swiper_close" id="close">×</div>
+    <!-- Swiper JS -->
+
+  </div>
+</section>
+<!-- 中部内容结束 -->
+
+
+<!--------footer-开始-------------->
+<include file="public/footer" />
+<!--------footer-结束-------------->
+<script>
+  //购买数量控制
+  $('#add').click(function(){
+    let num=parseInt($('#num').val());
+    num++;
+    $('#num').val(num);
+  })
+  $('#sub').click(function(){
+    let num=parseInt($('#num').val());
+    if (num>0) {
+      num--;
+    }
+    $('#num').val(num);
+  })
+</script>
+<script type="text/javascript">
+function show_business(id)
+{
+
+    var url = "/index.php/Home/Cart/map.html"; // 新增地址
+    layer.open({
+        type: 2,
+        title: '可用门店',
+        shadeClose: true,
+        shade: 0.8,
+        area: ['1200px', '600px'],
+        content: url,
+    });     
+}
+
+function submit_buy() {
+  $('#buy_form').submit();
+}
+</script>
+    <!-- Initialize Swiper -->
+    <script>
+    var galleryTop = new Swiper('.gallery-top', {
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        spaceBetween: 10,
+    });
+    var galleryThumbs = new Swiper('.gallery-thumbs', {
+        spaceBetween: 10,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        touchRatio: 0.2,
+        slideToClickedSlide: true
+    });
+    galleryTop.params.control = galleryThumbs;
+    galleryThumbs.params.control = galleryTop;
+    
+    //图片盒子开关
+    $('#close').click(function(){
+      $('#swiper').css('visibility','hidden');
+    });
+    $('#moreImg').click(function(){
+      $('#swiper').css('visibility','visible');
+    })
+    </script>
+</body>
+</html>

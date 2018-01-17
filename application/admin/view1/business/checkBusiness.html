@@ -1,0 +1,330 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+      <div class="subject">
+        <h3>商户 - 添加修改商户</h3>
+        <h5>添加或编辑商品分类</h5>
+      </div>
+    </div>
+  </div>
+  <div class="explanation" id="explanation">
+    <div class="title" id="checkZoom"><i class="fa fa-lightbulb-o"></i>
+      <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+      <span id="explanationZoom" title="收起提示"></span>
+    </div>
+    <ul>
+      <li>请正确填写商户信息</li>
+    </ul>
+  </div>
+  <form action="{:U('Business/addEditBusiness')}" method="post" class="form-horizontal" id="business_form">
+    <div class="ncap-form-default">
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>商户名称</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" disabled="disabled" placeholder="商户名称" class="input-txt" name="shop_name" value="{$data.shop_name}">
+          <span class="err" id="err_name" style="color:#F00; display:none;"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>商户地址</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="商户地址" disabled="disabled" class="input-txt" name="shop_address" value="{$data.shop_address}">
+          <span class="err" id="err_mobile_name" style="color:#F00; display:none;"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>商户管理员</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="商户管理员" disabled="disabled" class="input-txt" name="user_name" value="{$data.user_name}">
+          <span class="err" id="err_name" style="color:#F00; display:none;"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>法人</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="法人" disabled="disabled" class="input-txt" name="legal_person" value="{$data.legal_person}">
+          <span class="err" id="err_name" style="color:#F00; display:none;"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+       <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>法人身份证号</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="法人身份证号" disabled="disabled" class="input-txt" name="legal_id" value="{$data.legal_id}">
+          <span class="err" id="err_name" style="color:#F00; display:none;"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+        <dl class="row">
+        <dt class="tit">法人身份证正面</dt>
+        <dd class="opt">
+            <span class="show" style="width: 80px;height: 80px;">
+            <a href="{$data.card_font}" target="_blank">
+            <img src="{$data.card_font}" style="width: 80px;height: 80px;" onmouseover="layer.tips('<img src={$data.card_font}>',this, {tips: [1, '#fff']});" onmouseout="layer.closeAll();">
+            </a>
+            </span>           
+        </dd>
+      </dl>
+       <dl class="row">
+        <dt class="tit">法人身份证反面</dt>
+        <dd class="opt">
+            <span class="show" style="width: 80px;height: 80px;">
+            <a href="{$data.card_back}" target="_blank">
+            <img src="{$data.card_back}" style="width: 80px;height: 80px;" onmouseover="layer.tips('<img src={$data.card_back}>',this, {tips: [1, '#fff']});" onmouseout="layer.closeAll();">
+            </a>
+            </span>           
+        </dd>
+      </dl>
+       <dl class="row">
+        <dt class="tit">营业执照</dt>
+         <dd class="opt">
+            <span class="show" style="width: 80px;height: 80px;">
+            <a href="{$data.business_licence}" target="_blank">
+            <img src="{$data.business_licence}" style="width: 80px;height: 80px;" onmouseover="layer.tips('<img src={$data.business_licence}>',this, {tips: [1, '#fff']});" onmouseout="layer.closeAll();">
+            </a>
+            </span>           
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">商家logo</dt>
+        <dd class="opt">
+            <span class="show" style="width: 80px;height: 80px;">
+            <a href="{$data.shop_logo}" target="_blank">
+            <img src="{$data.shop_logo}" style="width: 80px;height: 80px;" onmouseover="layer.tips('<img src={$data.shop_logo}>',this, {tips: [1, '#fff']});" onmouseout="layer.closeAll();">
+            </a>
+            </span>           
+        </dd>
+      </dl> 
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>经度</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="经度" disabled="disabled" class="input-txt" name="shop_lon" value="{$data.shop_lon}">
+          <span class="err" id="err_name" style="color:#F00; display:none;"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>纬度</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="纬度" disabled="disabled" class="input-txt" name="shop_lat" value="{$data.shop_lat}">
+          <span class="err" id="err_name" style="color:#F00; display:none;"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+
+<!--        <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em></em>区域</label>
+        </dt>
+        <dd class="opt">省
+          <select name="province" value="{$data.province}">
+          <volist name="provinces" id="p">
+          <option value="{$p.id}">{$p.name}</option>
+          </volist>
+          </select>
+          市
+          <select name="city" value="{$data.city}">
+          </select>
+           区
+          <select name="area" value="{$data.area}">
+          </select>
+          <span class="err" id="err_name" style="color:#F00; display:none;"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl> -->
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em></em>商户类型</label>
+        </dt>
+
+        <dd class="opt">
+        <if condition="$data.shop_type eq 1">一站式</if>
+        <if condition="$data.shop_type eq 2">社区店</if>
+        <if condition="$data.shop_type eq 3">维修厂</if>
+
+          <span class="err" id="err_name" style="color:#F00; display:none;"></span>
+          <p class="notic"></p>
+        </dd>
+        
+      </dl>
+
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane">手机号</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="手机号" disabled="disabled" class="input-txt" name="phone" value="{$data.phone}">
+          <span class="err" id="err_name" style="color:#F00; display:none;"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane">百度糯米</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="百度糯米号" disabled="disabled" class="input-txt" name="baidu" value="{$data.baidu}">
+          <input type="text" placeholder="百度糯密码" disabled="disabled" class="input-txt" name="baidupsw" value="{$data.baidupsw}">
+          <span class="err" id="err_name" style="color:#F00; display:none;"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane">美团</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="美团号" disabled="disabled" class="input-txt" name="meituan" value="{$data.meituan}">
+          <input type="text" placeholder="美团密码" disabled="disabled" class="input-txt" name="meituanpsw" value="{$data.meituanpsw}">
+          <span class="err" id="err_name" style="color:#F00; display:none;"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane">固话</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="固话" disabled="disabled" class="input-txt" name="tel" value="{$data.tel}">
+          <span class="err" id="err_name" style="color:#F00; display:none;"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+     <dl class="row">
+        <dt class="tit">
+          <label for="t_mane">审核说明</label>
+        </dt>
+        <dd class="opt">
+          <textarea class="input-txt" name="reason" >{$data.reason}</textarea> 
+          <span class="err" id="err_name" style="color:#F00; display:none;"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+	  <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>审核通过</label>
+        </dt>
+        <dd class="opt">
+            <input id="goods_category1" name="check_status" value="1" type="radio" <if condition="$data[check_status] eq 1"> checked="checked"</if> <if condition="$data[check_status] neq 0">disabled="disabled"</if>>是
+            <input id="goods_category0" name="check_status" value="-1" type="radio" <if condition="$data[check_status] eq -1"> checked="checked"</if><if condition="$data[check_status] neq 0">disabled="disabled"</if>>否
+          <!-- </div> -->
+          <p class="notic">商户是否通过审核</p>
+        </dd>        
+    </dl>
+    </div>
+  </form>
+</div>
+<script>  
+    
+/** 以下是编辑时默认选中某个商品分类*/
+$(document).ready(function(){
+var admin_id = "{$data['admin_id']}";
+var status = "{$data['check_status']}";
+console.log(status);
+
+   //自定义radio样式
+    $("#goods_category1").click(function(){
+   
+        post_data(1,admin_id);
+    });
+    $("#goods_category0").click(function(){
+        post_data(-1,admin_id);     
+    });
+
+    function post_data(checkStatus,aid) {
+       var reason = $('textarea[name="reason"]').val();
+       $.ajax({
+         url:"/index.php/Admin/Business/doCheckBusiness",
+         type:'POST',
+         data:{check_status:checkStatus,id:aid,rsn:reason},
+         dataType:'json',
+         success:function (res) {
+          alert(res.msg);
+          window.location.reload(); 
+         }
+       });
+    }
+	// $('#submitBtn').click(function () {
+ //  var form  = $('#business_form');
+ //  var _url = form.attr('action');
+ //  $.ajax({
+ //    url:_url,
+ //    type:'POST',
+ //    data:form.serialize(),
+ //    dataType:'json',
+ //    success:function (res) {
+ //     alert(res.msg);
+ //     window.location.reload(); 
+ //    }
+ //  });
+ //  });
+
+
+  // $('select[name="province"]').change(function () {
+  //   var val = $(this).val();
+  //   $.ajax({
+  //      url:"{:U('Business/area')}",
+  //      type:'post',
+  //      dataType:"json",
+  //      data:{id:val},
+  //      success:function (res) {
+  //        if (res.status==1) {
+  //         var html = '';
+  //         $(res.info).each(function (index,item) {
+  //           html+= '<option value="'+item.id+'">'+item.name+'</option>';
+  //         });
+  //         $('select[name="city"]').html(html);
+  //        }else{
+         
+  //        }
+  //      }
+  //   });
+  // });
+
+// $('select[name="city"]').change(function () {
+//     var val = $(this).val();
+//     $.ajax({
+//        url:"{:U('Business/area')}",
+//        type:'post',
+//        dataType:"json",
+//        data:{id:val},
+//        success:function (res) {
+//          if (res.status==1) {
+//           var html = '';
+//           $(res.info).each(function (index,item) {
+//             html+= '<option value="'+item.id+'">'+item.name+'</option>';
+//           });
+//           $('select[name="area"]').html(html);
+//          }else{
+         
+//          }
+//        }
+//     });
+//   });
+
+});
+ 
+</script>
+</body>
+</html>

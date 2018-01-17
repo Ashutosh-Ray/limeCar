@@ -1,0 +1,93 @@
+<include file="public/header"/>
+<div id="page-wrapper">
+<div class="header"> 
+  <h1 class="page-header">
+      商户列表
+  </h1>
+<!--   <ol class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Dashboard</a></li>
+    <li class="active">Data</li>
+  </ol>  -->            
+</div>
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+        <!-- Advanced Tables -->
+            <div class="card">
+<!--            <div class="card-action">
+                    Advanced Tables
+                </div> -->
+                <div class="card-content">
+                    <div class="table-responsive">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <a href="{:U('Admin/business/addEditBusiness')}" class="waves-effect waves-light btn" style="text-align: center;text-decoration: none;">
+                                    添加商户
+                                </a>
+                            </div>
+                            <div class="col-sm-6 table-search">
+                                <form action="" method="post" id="search_form">
+                                <div class="ts-la">
+                                    <label>
+                                            <div class="btn-group">
+                                        </div>
+                                        <input type="text" placeholder="搜索" name="keywords">
+                                        <a onclick="search_action()">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </label>
+                                </div>
+                            </form>
+                            </div>
+                        </div>
+                        <table class="table table-striped table-bordered table-hover" id="newCarTable">
+                            <thead>
+                                <tr>
+                                    <th style="min-width: 60px;">商户ID</th>
+                                    <th>商户名称</th>
+                                    <th class="center" style="min-width: 70px;">管理员名称</th>
+                                    <th class="center" style="min-width: 45px;">地址</th>
+                                    <th class="center" style="min-width: 90px;">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <volist name="list" id="l">
+                                <tr class="odd gradeX">
+                                    <td>{$l.admin_id}</td>
+                                    <td>{$l.shop_name}</td>
+                                    <td class="center">{$l.user_name}</td>
+                                    <td class="center">{$l.shop_address}</td>
+                                    <td class="center">
+                                        <a href="/index.php/Admin/Business/addEditBusiness/id/{$l.admin_id}">编辑</a> /
+                                        <a href="/index.php/Admin/Business/del_shop_admin/id/{$l.admin_id}">删除</a> /
+                                        <a href="/index.php/Admin/Business/businessCheckList/id/{$l.admin_id}">查看验券</a>
+                                    </td>
+                                </tr>
+                            </volist>
+                            </tbody>
+                        </table>
+                        <div class="row">
+                            <div class="col-sm-6"></div>
+                            <div class="col-sm-6 table-pagecut">
+
+                               {$page}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+    </div>
+
+<include file="public/footer"/>
+<include file="public/table"/>
+<script type="text/javascript">
+    function search_action() {
+       $('#search_form').submit();
+    }
+</script>
+    <script src="__PUBLIC__/static/assets/js/custom-scripts.js"></script> 
+</body>
+</html>

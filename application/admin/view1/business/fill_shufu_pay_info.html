@@ -1,0 +1,278 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+      <div class="subject">
+        <h3>商户 - 线下支付入驻</h3>
+        <h5>添加线下支付入驻</h5>
+      </div>
+    </div>
+  </div>
+  <div class="explanation" id="explanation">
+    <div class="title" id="checkZoom"><i class="fa fa-lightbulb-o"></i>
+      <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+      <span id="explanationZoom" title="收起提示"></span>
+    </div>
+    <ul>
+      <li>请正确填写商户信息</li>
+    </ul>
+  </div>
+  <form action="{:U('Business/fillShufuPayInfo')}" method="post" class="form-horizontal" id="business_form">
+    <input type="hidden" name="iAdminId" value="{$iAdminId}">
+    <div class="ncap-form-default">
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>密码</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="密码" readonly="readonly" value="{$passwd}" class="input-txt" name="loginPwd">
+        </dd>
+      </dl>
+      
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>联系人姓名</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="联系人姓名"  class="input-txt" name="contact">
+        </dd>
+      </dl>
+      
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>邮箱</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="邮箱"  class="input-txt" name="email">
+        </dd>
+      </dl>
+      
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>联系人电话</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="联系人电话" class="input-txt" name="contactPhoneNo">
+        </dd>
+      </dl>
+      
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>商户名称</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="商户名称" class="input-txt" name="fullName">
+        </dd>
+      </dl>
+      
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>注册地址</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="注册地址" class="input-txt" name="companyAddress">
+        </dd>
+      </dl>
+      
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>商户简称</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="商户简称" class="input-txt" name="shortName">
+        </dd>
+      </dl>
+      
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>固定座机号</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="固定座机号" class="input-txt" name="contactLandline">
+        </dd>
+      </dl>
+      
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>区域</label>
+        </dt>
+        <dd class="opt">
+        	<select name="area">
+        		<option value="华东">华东</option>
+        		<option value="华北">华北</option>
+        		<option value="东北">东北</option>
+        		<option value="华南">华南</option>
+        		<option value="华中">华中</option>
+        		<option value="西南">西南</option>
+        		<option value="西北">西北</option>
+        		<option value="台湾省">台湾省</option>
+        		<option value="香港特别行政区">香港特别行政区</option>
+        		<option value="澳门特别行政区">澳门特别行政区</option>
+        	</select>
+        </dd>
+      </dl>
+      
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>开户名称</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="开户名称" class="input-txt" name="bankAccountName">
+        </dd>
+      </dl>
+      
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>开户银行</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="开户银行" class="input-txt" name="bank">
+        </dd>
+      </dl>
+
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>支行名称</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="支行名称" class="input-txt" name="subBranchName">
+        </dd>
+      </dl>
+
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>开户账号</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="开户账号" class="input-txt" name="bankNo">
+        </dd>
+      </dl>
+
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>费率</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="费率千分之几," class="input-txt" name="rate">
+        </dd>
+      </dl>
+
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>账户类型</label>
+        </dt>
+        <dd class="opt">
+          <select name="bankType" id="bankType" onchange="switchDiv()">
+          	<option value="0">对私</option>
+          	<option value="1">对公</option>
+          </select>
+        </dd>
+      </dl>
+     
+     
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>营业执照</label>
+        </dt>
+        <dd class="opt">
+        	<input type="button" class="type-file-button" onClick="GetUploadify(1,'businessLicense','offlinepayment','')" style="margin-right: 30px" value="上传营业执照"/> 
+        	<input type="text"  name="businessLicense" id="businessLicense" style="width: 500px;" class="type-file-text">
+        </dd>
+      </dl>
+
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>法人身份证正面</label>
+        </dt>
+        <dd class="opt">
+        	<input type="button" class="type-file-button" onClick="GetUploadify(1,'idCardFront','offlinepayment','')" style="margin-right: 30px" value="上传法人身份证正面"/> 
+        	<input type="text"  name="idCardFront" id="idCardFront" style="width: 500px;" class="type-file-text">
+        </dd>
+      </dl>  
+      
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>法人身份证反面</label>
+        </dt>
+        <dd class="opt">
+        	<input type="button" class="type-file-button" onClick="GetUploadify(1,'idCardBack','offlinepayment','')" style="margin-right: 30px" value="上传法人身份证反面"/> 
+        	<input type="text"  name="idCardBack" id="idCardBack" style="width: 500px;" class="type-file-text">
+        </dd>
+      </dl>
+      
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>门面照</label>
+        </dt>
+        <dd class="opt">
+        	<input type="button" class="type-file-button" onClick="GetUploadify(1,'shopPic','offlinepayment','')" style="margin-right: 30px" value="上传门面照"/> 
+        	<input type="text"  name="shopPic" id="shopPic" style="width: 500px;" class="type-file-text">
+        </dd>
+      </dl>  
+      
+      
+	  <div id="toPrivate">
+	      <dl class="row">
+	        <dt class="tit">
+	          <label for="t_mane"><em>*</em>银行卡正面</label>
+	        </dt>
+	        <dd class="opt">
+		       	<input type="button" class="type-file-button" onClick="GetUploadify(1,'bankCardFront','offlinepayment','')" style="margin-right: 30px" value="上传银行卡正面"/> 
+		       	<input type="text"  name="bankCardFront" id="bankCardFront" style="width: 500px;" class="type-file-text">
+	        </dd>
+	      </dl>
+	      <dl class="row">
+	        <dt class="tit">
+	          <label for="t_mane"><em>*</em>银行卡反面</label>
+	        </dt>
+	        <dd class="opt">
+	        	<input type="button" class="type-file-button" onClick="GetUploadify(1,'bankCardBack','offlinepayment','')" style="margin-right: 30px" value="上传银行卡反面"/> 
+	        	<input type="text"  name="bankCardBack" id="bankCardBack" style="width: 500px;" class="type-file-text">
+	        </dd>
+	      </dl>
+	  </div>
+	  
+	  <div style="display: none;" id="toPublic">
+	      <dl class="row">
+	        <dt class="tit">
+	          <label for="t_mane"><em>*</em>开户许可证</label>
+	        </dt>
+	        <dd class="opt">
+	        	<input type="button" class="type-file-button" onClick="GetUploadify(1,'openingPermit','offlinepayment','')" style="margin-right: 30px" value="上传开户许可证"/> 
+	        	<input type="text"  name="openingPermit" id="openingPermit" style="width: 500px;" class="type-file-text">
+	        </dd>
+	      </dl>
+	  </div>
+
+     <div class="bot" style="margin-bottom: 40px">
+     <input type="submit" class="ncap-btn-big ncap-btn-green" value="确认提交">
+     </div>
+    </div>
+  </form>
+</div>
+
+<script>
+	function switchDiv()
+	{
+		
+		if($('#bankType').val()==1)
+		{
+			$('#toPublic').show();
+			$('#toPrivate').hide();
+		}
+		else
+		{
+			$('#toPublic').hide();
+			$('#toPrivate').show();
+		}
+		
+		
+		
+	}
+</script>
+
+</body>
+</html>

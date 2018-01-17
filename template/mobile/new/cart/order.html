@@ -1,0 +1,57 @@
+<include file="public/header"/>
+<body>
+<header>
+<div class="tab_nav">
+   <div class="header">
+     <div class="h-left"><a class="sb-back" href="javascript:history.back(-1)" title="返回"></a></div>
+     <div class="h-mid">确定订单</div>
+     <div class="h-right">
+       <aside class="top_bar">
+         <div onClick="show_menu();$('#close_btn').addClass('hid');" id="show_more"><a href="javascript:;"></a> </div>
+       </aside>
+     </div>
+   </div>
+ </div>
+</header>
+<include file="public/menu"/>
+
+<div id="tbh5v0">
+<div class="order ajax_return">
+<volist name="lists" id="vo">
+	<div class="order_list">
+        <a>
+	        <dl style="position: relative;background-color: #fff;">
+		        <dd class="name" style="width: 55%;"><strong>{$vo.goods_name}</strong>
+		          	<!-- <span style="position: absolute;"> </span></dd> -->
+		        <dd class="pice" style="font-weight: 500;width: 45%;">￥{$vo.goods_price}<em>x{$vo.goods_num}</em></dd>
+		    </dl>
+	    </a>
+        <div class="pic" style="border-bottom: none;">共{$vo.goods_num}件商品<span>&nbsp;&nbsp;合计：</span><strong style="font-weight: 700;">￥{$allmoney['order_amount']}</strong></div>
+    </div>
+    </volist>
+    <div class="btn" style="width: 100%;background-color: #fff;">
+    	<a onclick="addSubmit()" style="width: 90%;display: block;height: 35px;color: #fff;text-align: center;line-height: 35px;background-color: #FF9000;margin: 0 auto;font-size: 14px;font-weight: 700;">确认支付</a>
+    </div>
+    
+</div>
+
+
+<script type="text/javascript">
+  function addSubmit() {
+    $.ajax({
+      type : 'post',
+      url : "{:U('/Mobile/Cart/submit_order')}",
+      data : {},
+      dataType : 'json',
+      success : function(res){
+        if(res.status==1){
+          window.location.href="/Mobile/Cart/cart4/order_id/"+res.result;
+        }else{
+          layer.msg(res.msg, {icon: 2,time: 2000});   //alert(data);
+        }
+      }
+    })
+  }
+</script>
+</body>
+</html>

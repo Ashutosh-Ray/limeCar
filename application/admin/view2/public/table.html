@@ -1,0 +1,17 @@
+    <script>
+        $(function(){
+            $(".dropdown-menu li").click(function(){
+                let sel=$(this).children().html()
+                $(".dropdown-toggle").html(sel+"<span class='caret'></span>")
+            })
+        })
+    </script>
+   	<!-- Morris Chart Js -->
+    <script src="__PUBLIC__/static/assets/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="__PUBLIC__/static/assets/js/morris/morris.js"></script>
+    <script src="__PUBLIC__/static/assets/js/easypiechart.js"></script>
+    <script src="__PUBLIC__/static/assets/js/easypiechart-data.js"></script>
+    <script src="__PUBLIC__/static/assets/js/Lightweight-Chart/jquery.chart.js"></script>
+    <!-- DATA TABLE SCRIPTS -->
+    <script src="__PUBLIC__/static/assets/js/dataTables/jquery.dataTables.js"></script>
+    <script src="__PUBLIC__/static/assets/js/dataTables/dataTables.bootstrap.js"></script>

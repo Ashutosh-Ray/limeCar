@@ -1,0 +1,58 @@
+<volist name="goods_list" id="vo">
+        <in name="vo.cat_id" value="$newCates">
+        <li>
+          <a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$vo[goods_id]))}">
+          <div class="newCarBox carBox">
+            <div class="img">
+              <img src="{$vo.goods_id|goods_thum_images=280,275}" alt="">
+            </div>
+            <div class="detail">
+              <div class="det_w">
+                <h3>{$vo['goods_name']}</h3>
+                <div class="price">最低首付&nbsp;{$vo.goods_id|getProgramme=2,###}</div>
+                <div class="monthPay">月供{$vo.goods_id|getProgramme=1,###}</div>
+              </div>
+            </div>
+          </div>
+          </a>
+        </li>
+        </in>
+       
+        <!-- 二手车 -->
+        <in name="vo.cat_id" value="$usedCates">
+        <li>
+          <a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$vo[goods_id]))}">
+          <div class="secCarBox carBox">
+            <div class="img">
+              <img src="{$vo.goods_id|goods_thum_images=280,275}" alt="">
+            </div>
+            <div class="detail">
+              <div class="det_w">
+                <h3>{$vo['goods_name']}</h3>
+                <div class="price">青柠价&nbsp;{$vo['shop_price']|calcu_goods_price}</div>
+                <div class="monthPay">最低首付{$vo.goods_id|getProgramme=2,###}</div>
+              </div>
+            </div>
+          </div>
+          </a>
+        </li>
+        </in>
+        <!-- 养护 -->
+        <in name="vo.cat_id" value="$curingCates">
+        <li>
+          <a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$vo[goods_id]))}">
+          <div class="curingCarBox carBox">
+            <div class="img">
+              <img src="{$vo.goods_id|getFirstImg=280,275}" alt="">
+            </div>
+            <div class="detail">
+              <div class="det_w">
+                <h3>{$vo['goods_name']}</h3>
+                <div class="price curingPrice">青柠价&nbsp;{$vo['shop_price']|calcu_goods_price}</div>
+              </div>
+            </div>
+          </div>
+          </a>
+        </li>
+        </in>
+</volist>

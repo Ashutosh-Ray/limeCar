@@ -1,0 +1,188 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta name="Generator" content="TPSHOP v1.1" />
+<meta charset="UTF-8">
+<meta name="format-detection" content="telephone=no" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="applicable-device" content="mobile">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>{$shop_name}</title>
+<meta http-equiv="keywords" content="{$imshop_config['shop_info_store_keyword']}" />
+<meta name="description" content="{$imshop_config['shop_info_store_desc']}" />
+<link rel="stylesheet" href="__STATIC__/css/public.css">
+<link rel="stylesheet" href="__STATIC__/css/user.css">
+<link rel="stylesheet" href="__STATIC__/css/personCenter.css">
+<link rel="stylesheet" href="__STATIC__/css/partner.css">
+<link rel="stylesheet" href="__STATIC__/css/usebusiness.css">
+<script type="text/javascript" src="__STATIC__/js/jquery.js"></script>
+<script src="__PUBLIC__/js/global.js"></script>
+<script src="__PUBLIC__/js/mobile_common.js"></script>
+<script type="text/javascript" src="__STATIC__/js/modernizr.js"></script>
+<script type="text/javascript" src="__STATIC__/js/layer.js" ></script>
+<script>
+		(function (doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                if(clientWidth>=640){
+                    docEl.style.fontSize = '100px';
+                }else{
+                    docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+                }
+            };
+
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+</script>
+<style>
+  .vf_nav ul li:nth-child(5) a{color: #65b144;}
+  .vf_nav ul li:nth-child(5) a div svg{
+    fill: #65b144;
+  }
+</style>
+</head>
+<script>
+	$(function(){
+		var enough = parseInt("{$enough}");
+		if (enough==1) {
+			layer.open({
+			content:"该团队人数已达上限，有问题请拨打客服电话：400-8778063",
+			type: 0,
+			shadeClose :false,
+			btnAlign: 'c',
+			btn:["确定"]
+		})
+		}
+	})
+</script>
+<body>  
+<img src="__STATIC__/images/partner-reg.jpg" alt="" class="bgc">
+<div class="partner_reg">
+	<div class="reg_w">
+		<div class="reg_tit">
+			<ul>
+				<li>
+					<i></i>全车保养半价不限次
+				</li>
+				<li>
+					<i></i>全车洗车半价不限次
+				</li>
+				<li>
+					<i></i>零费用养护
+				</li>
+				<li>
+					<i></i>邀请有返佣
+				</li>
+				<li>
+					<i></i>合伙人收益看得见
+				</li>
+			</ul>
+		</div>
+		<form id="submit_f" action="{:U('Mobile/Payment/getApplyPay')}" method="post">
+		<div class="reg_c">
+			<p class="tip" style="height: 0.4rem;"></p>
+			<ul>
+				<li>
+					<div>
+						<!-- <span></span> -->
+						<svg t="1515980546918" viewBox="0 0 1024 1024" p-id="5387" width="30" height="30"><path d="M634.65472 581.91872c92.89728-45.48608 157.02016-140.65664 157.02016-251.04384C791.67488 176.41472 666.46016 51.2 512 51.2c-154.46016 0-279.67488 125.21472-279.67488 279.67488 0 110.3872 64.12288 205.57824 157.02016 251.04384-154.15296 49.37728-270.25408 188.7232-282.46016 357.56032-1.2288 17.12128 11.63264 31.98976 28.75392 33.23904 17.24416 1.20832 31.98976-11.65312 33.23904-28.75392C181.80096 764.90752 332.53376 624.64 512 624.64s330.19904 140.26752 343.1424 319.32416c1.18784 16.36352 14.82752 28.83584 30.96576 28.83584 0.75776 0 1.51552-0.02048 2.27328-0.08192 17.12128-1.2288 29.98272-16.11776 28.75392-33.23904C904.92928 770.64192 788.82816 631.296 634.65472 581.91872zM294.48192 330.87488c0-120.13568 97.3824-217.51808 217.51808-217.51808 120.13568 0 217.51808 97.3824 217.51808 217.51808S632.13568 548.39296 512 548.39296C391.86432 548.39296 294.48192 451.01056 294.48192 330.87488z" p-id="5388" fill="#FFBB00"></path></svg>
+						<input type="text" placeholder="请输入姓名" class="name" name="aplly_name">
+					</div>
+				</li>
+				<li>
+					<div>
+						<svg t="1515981057583" viewBox="0 0 1024 1024" p-id="21629" width="30" height="30" fill="#FFBB00"><path d="M512.387 779.93c-24.834 0-45.039 20.201-45.039 45.041 0 24.834 20.205 45.036 45.039 45.036 24.838 0 45.043-20.202 45.043-45.036C557.43 800.131 537.225 779.93 512.387 779.93L512.387 779.93zM512.387 779.93" p-id="21630"></path><path d="M735.214 71 289.563 71c-37.495 0-67.994 30.501-67.994 67.995l0 747.902c0 37.494 30.5 67.994 67.994 67.994l445.651 0c37.494 0 67.994-30.5 67.994-67.994L803.208 138.995C803.208 101.501 772.708 71 735.214 71L735.214 71zM289.563 116.328l445.651 0c12.5 0 22.667 10.167 22.667 22.667l0 560.323L266.897 699.318 266.897 138.995C266.897 126.495 277.063 116.328 289.563 116.328L289.563 116.328zM735.214 909.561 289.563 909.561c-12.5 0-22.666-10.169-22.666-22.664L266.897 748.525l490.983 0 0 138.371C757.881 899.396 747.714 909.561 735.214 909.561L735.214 909.561zM735.214 909.561" p-id="21631" fill="#FFBB00"></path></svg>
+						<input type="text" placeholder="请输入手机号" class="phone" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')" value="" name="apply_phone">
+						<input type="button" class="codeSend" onclick="sendCode()"  value="发送验证码">
+					</div>
+				</li>
+				<li>
+					<div>
+						<svg t="1515980994949" viewBox="0 0 1024 1024" p-id="20784" width="30" height="30" fill="#FFBB00"><path d="M512.035158 1024c101.956466-34.50699 197.449829-100.585327 266.639596-196.594333 54.523271-75.553257 98.218062-169.56415 129.806988-279.706431 53.240026-185.572487 53.925595-350.894311 53.925595-357.855476 0.105472-15.791533-11.115599-28.893525-26.080932-30.44631-2.355546-0.205085-241.203216-26.286018-407.228188-153.573392a27.809505 27.809505 0 0 0-34.055804 0C329.908096 132.378986 90.175631 159.186505 87.808366 159.39159c-14.965334 1.459032-26.180545 14.654777-26.180546 30.44631 0 6.961166 0.591816 172.27713 53.931455 357.849617 31.594785 109.925477 75.184104 204.065281 129.806988 279.712291 69.189767 95.909393 164.812041 162.093202 266.668895 196.600192m391.823386-807.249108l-0.105472 1.664117c-2.84775 60.376978-13.189885 181.212969-50.585642 311.623492-65.644729 228.681322-180.199264 374.156792-340.517018 432.348152l-0.591816 0.205085-0.603536-0.205085c-159.813831-58.080028-274.274612-203.033997-340.106847-430.906698-39.165346-135.590381-48.616827-264.119983-50.972374-313.164559l-0.105472-1.658257 1.476611-0.210945c69.476886-10.699569 246.523703-46.542541 389.221738-147.959926l0.884795-0.732446 0.990267 0.732446c142.897261 101.417386 319.944078 137.260357 389.426823 148.071258l1.587943 0.193366z" fill="" p-id="20785"></path><path d="M675.692864 362.671689l-210.69831 227.691055-121.867275-106.761311a34.688637 34.688637 0 0 0-22.389406-8.203394 34.366361 34.366361 0 0 0-26.245 12.058989c-12.305091 14.414535-10.664412 36.335175 3.873174 48.640266l149.641622 130.539433c6.099809 5.162279 14.531726 8.203394 22.975362 8.203394 1.054722 0 2.097725 0 3.158307-0.123051a34.51285 34.51285 0 0 0 23.795701-13.348093l232.835755-256.637316a33.932753 33.932753 0 0 0 6.685766-25.541853c-1.166054-9.146784-5.976758-17.227127-13.242622-22.852311-15.363785-11.713274-37.038323-8.783491-48.523074 6.334192z" fill="#FFBB00" p-id="20786"></path></svg>
+						<input type="text" placeholder="请输入验证码" class="code" name="code">
+					</div>
+				</li>
+<!-- 				<li>
+					<p class="tip" style="height: 0.4rem;"></p>
+				</li> -->
+			</ul>
+			<a href="javascript:void(0);" class="reg_btn" onclick="check()">点击付款￥{$config['initial_fee']}立即成为合伙人</a>
+		</div>
+		<input type="hidden" name="pay_code" value="weixin">
+		<input type="hidden" name="parent_id" value="{$parent_id}">
+		<input type="hidden" name="case_id" value="{$config['id']}">
+	</form>
+	</div>
+</div>
+<script>
+//验证码倒计时
+	// var b = 59;
+	// var t;
+	// function timeback(){
+	// 	t=setInterval("countdown()",1000);
+	// 	$(".codeSend").attr("disabled","true")
+	// }
+	// function countdown(){
+	// 	$(".codeSend").val(b+"S")
+	// 	b--;
+	// 	if (b<=-1) {
+	// 		b=59;
+	// 		$(".codeSend").val("再次发送").removeAttr("disabled")
+	// 		clearTimeout(t);
+	// 	}
+	// }
+
+	//去空格
+	var code=$(".code").val().replace(/(^\s*)|(\s*$)/g, "");
+	var phone,name
+	function check(){
+		//内容为空验证
+		name=$(".name").val().replace(/(^\s*)|(\s*$)/g, "");  
+		$(".tip").html("")
+		if ($(".name").val()==""||name.length<=0) {
+			$(".tip").html("请输入姓名")
+		}else if ($(".phone").val()=="") {
+			$(".tip").html("请输入手机号")
+		}else if ($(".code").val()=="") {
+			$(".tip").html("请输入验证码")
+		}else{
+			$('#submit_f').submit();
+		}	
+	}
+
+	function sendCode(){
+		var reg=/^1[3|4|5|7|8][0-9]{9}$/; 
+		phone=$(".phone").val().replace(/(^\s*)|(\s*$)/g, "");
+		if (reg.test(phone)==true) {
+		//发送验证码
+			$.ajax({
+				type:"POST",
+				dataType:"JSON",
+				url:"/index.php?m=Home&c=Api&a=sendCode",
+				data:{phone:phone,model_id:46986},
+				success:function(data){
+					layer.open({
+						content:"已发送",
+						type:0,
+						time:1000
+					})
+				}
+		})
+		}else{
+			$(".tip").html("请输入正确的手机号")
+		}
+
+	}
+</script>
+<if condition="$signPackage neq null">
+  <include file="public/wx_gshare"/>
+</if>
+</body>
+</html>

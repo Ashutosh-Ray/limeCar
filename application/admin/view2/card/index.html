@@ -1,0 +1,127 @@
+<include file="public/header"/>
+<div id="page-wrapper">
+<div class="header"> 
+  <h1 class="page-header">
+    会员卡列表
+  </h1>
+<!--   <ol class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Dashboard</a></li>
+    <li class="active">Data</li>
+  </ol> -->             
+</div>
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+        <!-- Advanced Tables -->
+            <div class="card">
+<!--            <div class="card-action">
+                    Advanced Tables
+                </div> -->
+                <div class="card-content">
+                    <div class="table-responsive">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <a href="{:U('Admin/Card/add_card')}" class="waves-effect waves-light btn" style="text-align: center;text-decoration: none;">添加会员卡</a>
+                            </div>
+                            <div class="col-sm-6 table-search">
+                                <form action="" id="search-form2" class="navbar-form form-inline" method="post" onSubmit="return false">
+                                <div class="ts-la">
+                                    <div class="sel-group">
+                                        <!-- <notempty name="businessList">
+                                        <select name="shop_id"  class="select">
+                                            <option value="">全部商家</option> 
+                                            <option value="0">三品車</option>     
+                                                <foreach name="businessList" item="v" key="k" >
+                                                    <option value="{$v['admin_id']}"> {$v['shop_name']}</option>
+                                                </foreach>
+                                        </select> 
+                                        </notempty> 
+                                        <select name="cat_id" id="cat_id" class="select">
+                                            <option value="">所有分类</option>
+                                            <foreach name="categoryList" item="v" key="k" >
+                                                <option value="{$v['id']}" <if condition="$v['id'] eq $cat_id">selected="selected"</if>> {$v['name']}</option>
+                                            </foreach>
+                                        </select> 
+                                        <select name="is_on_sale" id="is_on_sale" class="select">
+                                            <option value="">全部</option>
+                                            <option value="1">上架</option>
+                                            <option value="0">下架</option>
+                                        </select>
+                                        <select name="intro" class="select">
+                                            <option value="0">全部</option>
+                                            <option value="is_new">新品</option>
+                                            <option value="is_recommend">推荐</option>
+                                        </select> -->
+                                    </div>
+                                    <label>
+                                        <input type="text" placeholder="搜索" name="key_word">
+                                        <a onClick="ajax_get_table('search-form2',1)">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </label>
+                                </div>
+                                <input type="hidden" name="orderby1" value="goods_id" />
+                                <input type="hidden" name="orderby2" value="desc" />
+                                </form>
+                            </div>
+                        </div>
+                        <div id="ajax_return">
+                            <table class="table table-striped table-bordered table-hover" id="newCarTable">
+                                <thead>
+                                    <tr>
+                                        <th class="center" style="min-width: 60px;">ID</th>
+                                        <th class="center" style="min-width: 75px;">会员卡号</th>
+                                        <th class="center" style="min-width: 45px;">会员姓名</th>
+                                        <th class="center" style="min-width: 60px;">手机号</th>
+                                        <th class="center" style="min-width: 75px;">车牌号</th>
+                                        <th class="center" style="min-width: 45px;">类型</th>
+                                        <th class="center">操作时间</th>
+                                        <th class="center" style="min-width: 90px;">操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <volist name="list" id="l">
+                                    <tr class="odd gradeX">
+                                        <td class="center">{$l.id}</td>
+                                        <td class="center">{$l.card_no}</td>
+                                        <td class="center">{$l.host_name}</td>
+                                        <td class="center">{$l.host_phone}</td>
+                                        <td class="center">{$l.car_no}</td>
+                                        <td class="center">
+                                            <volist name="cates" id='cate'>
+                                                <if condition="$l['card_type'] eq $cate['id']">{$cate.card_name}</if>
+                                            </volist>
+                                        </td>
+                                        <td class="center">{$l.add_time|date="Y-m-d:H:i:s",###}</td>
+                                        <td class="center">
+                                            <a href="{:U('Admin/Card/add_card',array('id'=>$l['id']))}">编辑</a> /
+                                            <if condition="$type eq 0"><a href="{:U('Admin/Card/del_card',array('id'=>$l['id']))}" >删除会员卡</a></if> / <a href="{:U('Admin/Card/consume_log',array('id'=>$l['id']))}" >消费记录</a>
+                                        </td>
+                                    </tr>
+                                </volist>
+                                </tbody>
+                            </table>
+                            <div class="row">
+                                <div class="col-sm-6"></div>
+                                <div class="col-sm-6 table-pagecut">
+                                  {$page}
+                                </div>
+                            </div>
+                            <!--分页位置--> 
+                            <script>
+                                
+                            </script>  
+                        </div>     
+                    </div>
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+    </div>
+<include file="public/footer"/>
+<include file="public/table"/>
+<!-- Custom Js -->
+<script src="__PUBLIC__/static/assets/js/custom-scripts.js"></script> 
+</body>
+</html>

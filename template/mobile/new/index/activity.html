@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="Generator" content="IMSHOP v1.1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>{$shop_name}</title>
+<meta http-equiv="keywords" content="{$imshop_config['shop_info_store_keyword']}" />
+<meta name="description" content="{$imshop_config['shop_info_store_desc']}" />
+<meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
+<script>
+	(function (doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                if(clientWidth>=640){
+                    docEl.style.fontSize = '100px';
+                }else{
+                    docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+                }
+            };
+
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+</script>
+<style>
+*{
+	padding: 0;
+	margin: 0;
+}
+@font-face{
+	font-family: 朗倩;
+	src:url("__STATIC__/font/MFLANGQIAN_NONCOMMERCIAL-REGULAR.OTF");
+}
+.activity{
+	position: relative;
+}
+img{
+	width: 100%;
+}
+a{
+	position: absolute;
+	width: 4.4rem;
+	height: 0.6rem;
+	background-color: #59A636;
+	color: #fff;
+	left: 50%;
+	margin-left: -2.2rem;
+	text-align: center;
+	line-height: 0.6rem;
+	text-decoration: none;
+	border-radius: 4px;
+	font-size: 18px;
+	font-family: 朗倩;
+	letter-spacing: 2px;
+}
+a:nth-child(4){
+	top: 9.4rem;
+}
+a:nth-child(5){
+	top: 14.4rem;
+}
+a:nth-child(6){
+	top: 19.2rem;
+}
+</style>
+</head>
+<body>
+	<div class="activity">
+		<img src="__STATIC__/images/janActivity1.jpg" alt="">
+		<img src="__STATIC__/images/janActivity2.jpg" alt="">
+		<img src="__STATIC__/images/janActivity3.jpg" alt="">
+		<a href="http://www.sanpinche.com/index.php/Mobile/Goods/goodsInfo/id/216.html">开始抢购</a>
+		<a href="http://www.sanpinche.com/index.php/Mobile/Goods/goodsInfo/id/200.html">开始抢购</a>
+		<a href="http://www.sanpinche.com/index.php/Mobile/Goods/goodsInfo/id/208.html">开始抢购</a>
+	</div>
+</body>
+</html>

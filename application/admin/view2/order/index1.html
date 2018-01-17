@@ -1,0 +1,152 @@
+<include file="public/header"/>
+<div id="page-wrapper">
+<div class="header"> 
+  <h1 class="page-header">
+     订单列表
+  </h1>
+<!--   <ol class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Dashboard</a></li>
+    <li class="active">Data</li>
+  </ol> -->             
+</div>
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+        <!-- Advanced Tables -->
+            <div class="card">
+                <div class="card-content">
+                    <div class="table-responsive">
+                        <div class="row">
+                            <div class="col-sm-6">
+                            </div>
+                            <div class="col-sm-6 table-search">
+                                <form class="navbar-form form-inline"  method="post" action="{:U('Admin/order/export_order')}"  name="search-form2" id="search-form2">  
+        <input type="hidden" name="order_by" value="order_id">
+            <input type="hidden" name="sort" value="desc">
+            <input type="hidden" name="user_id" value="{$Request.param.user_id}">
+            <!--用于查看结算统计 包含了哪些订单-->
+            <input type="hidden" value="{$_GET['order_statis_id']}" name="order_statis_id" />                              
+      <div class="sDiv">
+        <div class="sDiv2">
+          <input type="text" size="30" id="add_time_begin" name="add_time_begin" value="" class="qsbox"  placeholder="下单开始时间">
+        </div>
+        <div class="sDiv2">
+          <input type="text" size="30" id="add_time_end" name="add_time_end" value="" class="qsbox"  placeholder="下单结束时间">
+        </div>
+        <div class="sDiv2">  
+          <select name="pay_status" class="select" style="width:100px;margin-right:5px;margin-left:5px">
+                    <option value="">支付状态</option>
+                    <option value="0">未支付</option>
+              <option value="1">已支付</option>
+            </select>
+        </div>
+        <div class="sDiv2">    
+            <select name="pay_code" class="select" style="width:100px;margin-right:5px;margin-left:5px">
+                <option value="">支付方式</option>
+                <option value="alipay">支付宝支付</option>
+        <option value="weixin">微信支付</option>
+        <option value="cod">货到付款</option>
+             </select>
+         </div>
+         <div class="sDiv2">   
+             <select name="shipping_status" class="select" style="width:100px;">
+                <option value="">发货状态</option>
+                <option value="0">未发货</option>
+                <option value="1">已发货</option>
+                <option value="2">部分发货</option>
+             </select>
+          </div>
+          <div class="sDiv2">  
+             <select name="order_status" class="select" style="width:100px;">
+                  <option value="">订单状态</option>
+                  <volist name="order_status" id="v" key="k">
+                      <option value="{$k-1}">{$v}</option>
+                  </volist>
+              </select>       
+         </div>
+         <div class="sDiv2">                  
+          <select  name="keytype" class="select">
+            <option value="consignee">收货人</option>
+            <option value="order_sn">订单编号</option>
+            </foreach>            
+          </select>
+         </div>
+         <div class="sDiv2">   
+          <input type="text" size="30" name="keywords" class="qsbox" placeholder="搜索相关数据...">
+        </div>
+        <div class="sDiv2">  
+          <input type="button" onclick="ajax_get_table('search-form2',1)"  class="btn" value="搜索">
+        </div>
+      </div>
+     </form>
+                            </div>
+                        </div>
+                        <div id="ajax_return">
+
+                        </div>     
+
+                    </div>
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+    </div>
+<include file="public/footer"/>
+
+<script>
+    $(document).ready(function () {
+        // ajax 加载商品列表
+        ajax_get_table('search-form2', 1);
+
+    });
+
+    // ajax 抓取页面 form 为表单id  page 为当前第几页
+    function ajax_get_table(form, page) {
+        cur_page = page; //当前页面 保存为全局变量
+        $.ajax({
+            type: "POST",
+            url: "/index.php/Admin/goods/ajaxGoodsList/p/" + page,//+tab,
+            data: $('#' + form).serialize(),// 你的formid
+            success: function (data) {
+                $("#ajax_return").html('');
+         
+                $("#ajax_return").append(data);
+            }
+        });
+    }
+    
+        // 点击排序
+        function sort(field)
+        {
+           $("input[name='orderby1']").val(field);
+           var v = $("input[name='orderby2']").val() == 'desc' ? 'asc' : 'desc';             
+           $("input[name='orderby2']").val(v);
+           ajax_get_table('search-form2',cur_page);
+        }
+        
+        // 删除操作
+        function del(id)
+        {
+            if(!confirm('确定要删除吗?'))
+                return false;
+        $.ajax({
+            url:"/index.php?m=Admin&c=goods&a=delGoods&id="+id,
+            success: function(v){   
+                                var v =  eval('('+v+')');                                 
+                                if(v.hasOwnProperty('status') && (v.status == 1))
+                                        ajax_get_table('search-form2',cur_page);                                                      
+                                else
+                                        layer.msg(v.msg, {icon: 2,time: 1000}); //alert(v.msg);
+            }
+        }); 
+               return false;
+          } 
+</script>
+<include file="public/table"/>
+        <!-- Custom Js -->
+    <script src="__PUBLIC__/static/assets/js/custom-scripts.js"></script> 
+
+</body>
+
+</html>

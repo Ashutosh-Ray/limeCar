@@ -1,0 +1,153 @@
+<include file="public/header"/>
+<div id="page-wrapper">
+<div class="header"> 
+  <h1 class="page-header">
+     轮播图配置
+  </h1>
+<!--   <ol class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Dashboard</a></li>
+    <li class="active">Data</li>
+  </ol> -->             
+</div>
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+        <!-- Advanced Tables -->
+            <div class="card">
+<!--            <div class="card-action">
+                    Advanced Tables
+                </div> -->
+                <div class="card-content">
+                    <div class="table-responsive">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <a href="{:U('Admin/ad/ad')}" class="waves-effect waves-light btn" style="text-align: center;text-decoration: none;">
+                                    添加轮播
+                                </a>
+                            </div>
+                            <div class="col-sm-6 table-search">
+                                  <form class="navbar-form form-inline" action="{:U('Ad/adList')}" method="post" id="submit_form">
+                                <div class="ts-la">
+                                    <label>
+                                        <div class="btn-group">
+                                            <select name="pid">
+                                                <option value="0">==查看所有==</option>
+                                                <volist name="ad_position_list" id="item" key="k">
+                                                    <option value="{$item.position_id}" <if condition="$item.position_id eq $pid">selected="selected"</if>>{$item.position_name}</option>
+                                               </volist>          
+                                            </select>
+                                        </div>
+                                        <input type="search" name="keywords" placeholder="搜索" value="{$keywords}">
+                                        <a onclick="search_act()">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </label>
+                                </div>
+                            </form>
+                            </div>
+                        </div>
+                        <table class="table table-striped table-bordered table-hover" id="lunboList">
+                            <thead>
+                                <tr>
+                                    <th class="center">广告ID</th>
+                                    <th class="center">广告位置</th>
+                                    <th class="center">广告名称</th>
+                                    <th class="center">广告图片</th>
+                                    <th class="center">排序</th>
+                                    <th class="center">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <foreach name="list" item="vo" key="k" >
+                                <tr class="odd gradeX">
+                                    <td class="center">{$vo[ad_id]}</td>
+                                    <td class="center">{$ad_position_list[$vo[pid]][position_name]}</td>
+                                    <td class="center">{$vo.ad_name}</td>
+                                    <td class="center">
+                                        <img src="{$vo.ad_code}" alt="" style="width: 100px;">
+                                    </td>
+                                    <td class="center"><input type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onpaste="this.value=this.value.replace(/[^\d]/g,'')" value="{$vo.orderby}" onChange="changeTableVal('ad','ad_id','{$vo.ad_id}','orderby',this)"></td>
+                                    <td class="center">
+                                        <a href="{:U('Ad/ad',array('act'=>'edit','ad_id'=>$vo['ad_id']))}">编辑</a> /
+                                        <a onclick="delfunc(this)" data-url="{:U('Ad/adHandle')}" data-id="{$vo.ad_id}" style="cursor: pointer;">删除</a>
+                                    </td>
+                                </tr>
+                                </foreach>
+                               
+                            </tbody>
+                        </table>
+                        <div class="row">
+                            <div class="col-sm-6"></div>
+
+                           <div class="col-sm-6 table-pagecut">
+                            {$pager->show()}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+    </div>
+
+<include file="public/footer"/>
+<include file="public/table"/>
+
+    <script>
+        $(document).ready(function () {
+            $('#newCarTable').dataTable();
+        });
+    </script>
+
+            <!-- Custom Js -->
+    <script src="__PUBLIC__/static/assets/js/custom-scripts.js"></script> 
+</body>
+</html>
+<script>    
+ 
+
+    function delfunc(obj){
+  
+      layer.confirm('确认删除？', {
+                btn: ['确定','取消'] //按钮
+              }, function(){
+                // 确定
+                $.ajax({
+                  type : 'post',
+                  url : $(obj).attr('data-url'),
+                  data : {act:'del',del_id:$(obj).attr('data-id')},
+                  dataType : 'json',
+                  success : function(data){
+                    if(data==1){
+                      layer.msg('操作成功', {icon: 1});
+                      $(obj).parent().parent().remove();
+                    }else{
+                      layer.msg(data, {icon: 2,time: 2000});
+                    }
+//                          layer.closeAll();
+                  }
+                })
+              }, function(index){
+                layer.close(index);
+                return false;// 取消
+              }
+      );
+    }
+
+    $('input[name="keywords"]').keypress(function(event) {
+      if (event.keycode==13) {
+        $('#submit_form').submit()
+      }
+       
+    })
+
+    function search_act() {
+        $('#submit_form').submit()
+    }
+
+    $('select[name="pid"]').change(function() {
+      
+       $('#submit_form').submit()
+    })
+</script>

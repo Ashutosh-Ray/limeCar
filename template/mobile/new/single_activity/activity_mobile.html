@@ -1,0 +1,149 @@
+<include file="public/header"/>
+<body>  
+<div class="partner_reg">
+	<div class="reg_w">
+		<form id="submit_f" action="{:U('Mobile/SingleActivity/check_mobile')}" method="post">
+		<div class="reg_c">
+			<ul>
+				<li style="display: none;">
+					<div>
+						<span></span>
+						<input type="text" placeholder="请输入姓名" class="name" name="aplly_name">
+					</div>
+				</li>
+				<li>
+					<div>
+						<span></span>
+						<input type="text" placeholder="请输入手机号" class="phone" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')" value="" name="apply_phone">
+						<input type="button" class="codeSend" onclick="sendCode()"  value="发送验证码">
+					</div>
+				</li>
+				<li>
+					<div>
+						<span></span>
+						<input type="text" placeholder="请输入验证码" class="code" name="code">
+					</div>
+				</li>
+				<li>
+					<p class="tip" style="height: 40px;"></p>
+				</li>
+			</ul>
+			<a href="javascript:void(0);" class="reg_btn" onclick="check()">确定</a>
+		</div>
+	</form>
+	</div>
+</div>
+<style>
+	.notice{
+		padding: 20px 15px;
+		border-top: 1px solid #ccc;
+		margin-top: 50px;
+		position: relative;
+	}
+	.notice span{
+		position: absolute;
+		top: -20px;
+		left: 0;
+		background-color: #fff;
+		width: 120px;
+		text-align: center;
+		font-size: 15px;
+	}
+	.notice p{
+		font-size: 13px;
+		color: #999;
+	}
+</style>
+<div class="notice">
+	<span>活动须知</span>
+	<p>1、每个手机号仅可报名参加一次，验证通过后请立即下单购买，否则将会失去购买机会
+		<br>
+2、本活动有效期为2017年12月2日至2017年12月8日
+<br>
+3、参与该活动的门店有：
+<br>
+苏州市工业园区奇胜汽车一站式服务中心
+<br>
+苏州市工业园区融通汽车服务中心
+<br>
+4、如有问题请拨打客服电话：400-877-8063
+<br>
+5、该活动的解释权在法律规定的范围内归本公司所有</p>
+</div>
+<include file="public/footer"/>
+<include file="public/footer_nav"/>
+<script>
+//验证码倒计时
+	// var b = 59;
+	// var t;
+	// function timeback(){
+	// 	t=setInterval("countdown()",1000);
+	// 	$(".codeSend").attr("disabled","true")
+	// }
+	// function countdown(){
+	// 	$(".codeSend").val(b+"S")
+	// 	b--;
+	// 	if (b<=-1) {
+	// 		b=59;
+	// 		$(".codeSend").val("再次发送").removeAttr("disabled")
+	// 		clearTimeout(t);
+	// 	}
+	// }
+
+	//去空格
+	var code=$(".code").val().replace(/(^\s*)|(\s*$)/g, "");
+	var phone,name
+	function check(){
+		//内容为空验证
+		name=$(".name").val().replace(/(^\s*)|(\s*$)/g, "");  
+		$(".tip").html("")
+		if ($(".phone").val()=="") {
+			$(".tip").html("请输入手机号")
+		}else if ($(".code").val()=="") {
+			$(".tip").html("请输入验证码")
+		}else{
+			$.ajax({
+				type:"POST",
+				dataType:"JSON",
+				url:"{:U('Mobile/SingleActivity/check_mobile')}",
+				data:$('#submit_f').serialize(),
+				success:function(res){
+					if (res.status==1) {
+						window.location.href=res.url; 
+					}else{
+						alert(res.msg)
+					}
+				}
+			})
+		}	
+	}
+
+	function sendCode(){
+		var reg=/^1[3|4|5|7|8][0-9]{9}$/; 
+		phone=$(".phone").val().replace(/(^\s*)|(\s*$)/g, "");
+		if (reg.test(phone)==true) {
+		//发送验证码
+			$.ajax({
+				type:"POST",
+				dataType:"JSON",
+				url:"/index.php?m=Home&c=Api&a=sendCode",
+				data:{phone:phone,model_id:46986},
+				success:function(data){
+					layer.open({
+						content:"已发送",
+						type:0,
+						time:1000
+					})
+				}
+		})
+		}else{
+			$(".tip").html("请输入正确的手机号")
+		}
+
+	}
+</script>
+<if condition="$signPackage neq null">
+  <include file="public/wx_gshare"/>
+</if>
+</body>
+</html>

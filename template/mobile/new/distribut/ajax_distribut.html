@@ -1,0 +1,55 @@
+<volist name="lists" id="good">
+<!--               <a href="javascript:void(0)">
+              <dl style="position: relative">  
+              <dt><img src="{$good.goods_id|goods_thum_images=200,200}" onclick="window.location.href='{:U('Mobile/Distribut/show_exchange',array('id'=>$good.id))}'"></dt>
+              <dd class="name"><strong>{$good.goods_name}</strong></dd>
+              <dd class="name"><strong>应购买{$good.share_num}件</strong></dd>
+              <dd class="name"><strong>已购买{$good.buy_num}件</strong></dd> -->
+              <!-- <dd class="price"><strong>已购买{$good.buy_num}件</strong></dd> -->
+<!--               <dd class="price" onclick="return false;">
+              <if condition="($good.buy_num egt $good.share_num) AND ($good.exchange_statue eq 0)"> <span onclick="window.location.href='{:U('Mobile/Distribut/exchange_goods',array('id'=>$good.id))}'">去兑换</span></if>
+              <if condition="$good.exchange_statue eq 1">已兑换</if>
+              <if condition="$good.buy_num lt $good.share_num">还不能兑换</if>
+              </dd>
+              <dd onclick="window.location.href='{:U('Mobile/Distribut/see_info',array('id'=>$good.id))}'">{$good.view_num}人查看</dd>
+              <dd>{$good.add_time|date="Y-m-d",###}</dd>
+              </a>  
+             </dl> -->
+          	
+        <!--   <div class="anniu" style="width:95%">
+             <span onClick="cancel_order({$list.order_id})">取消订单</span>
+               <a href="{:U('Mobile/Cart/cart4',array('order_id'=>$list['order_id']))}">立即付款</a>
+          </div> -->
+            <a href="javascript:void(0)">
+              <div class="order_list_con">
+                <div class="order_imgbox">
+                  <img src="{$good.goods_id|goods_thum_images=200,200}" alt="" onclick="window.location.href='{:U('Mobile/Distribut/show_exchange',array('id'=>$good.id))}'">
+                </div>
+                <div class="order_goods">
+                  <div class="goods_tit">
+                    {$good.goods_name}
+                  </div>
+                  <div class="goods_time">
+                    {$good.add_time|date="Y-m-d",###}
+                  </div>
+                  <div class="goods_check" onclick="window.location.href='{:U('Mobile/Distribut/see_info',array('id'=>$good.id))}'">
+                    {$good.view_num}人查看
+                  </div>
+                  <div class="goods_due" onclick="return false;">
+                    <if condition="($good.buy_num egt $good.share_num) AND ($good.exchange_statue eq 0)"><span onclick="window.location.href='{:U('Mobile/Distribut/exchange_goods',array('id'=>$good.id))}'">去兑换</span></if>
+                    <if condition="$good.exchange_statue eq 1">已兑换</if>
+                    <if condition="$good.buy_num lt $good.share_num">还不能兑换</if>
+                  </div>
+                  <div class="goods_buy">
+                    <div class="mus">
+                      应购买{$good.share_num}件
+                    </div>
+                    <div class="al" onclick="window.location.href='{:U('Mobile/Distribut/buy_info',array('id'=>$good.id))}'">
+                      已购买{$good.buy_num}件
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+       <!-- </div> -->
+      </volist>

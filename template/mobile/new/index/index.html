@@ -1,0 +1,623 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta name="Generator" content="IMSHOP v1.1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>首页-{$shop_name}</title>
+<meta http-equiv="keywords" content="{$imshop_config['shop_info_store_keyword']}" />
+<meta name="description" content="{$imshop_config['shop_info_store_desc']}" />
+<meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/public.css"/>
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/mhp.css"/>
+<link rel="stylesheet" href="__STATIC__/css/swiper.css">
+<script type="text/javascript" src="__STATIC__/js/jquery.js"></script>
+<script type="text/javascript" src="__STATIC__/js/TouchSlide.1.1.js"></script>
+<script type="text/javascript" src="__STATIC__/js/jquery.json.js"></script>
+<script type="text/javascript" src="__STATIC__/js/touchslider.dev.js"></script>
+<script type="text/javascript" src="__STATIC__/js/layer.js" ></script>
+<script src="__PUBLIC__/js/global.js"></script>
+<script src="__PUBLIC__/js/mobile_common.js"></script>
+<script src="https://g.alicdn.com/aliww/h5.openim.sdk/1.0.6/scripts/wsdk.js"></script>
+<script src="__STATIC__/js/swiper.min.js"></script>
+<style>
+.swiper-slide {
+  line-height: 36px;
+  color: #fff;
+  font-size: 36px;
+  text-align: center;
+}
+.swiper-slide img{
+  width: 100%;
+  height: 100%;
+}
+.vf_nav ul li:nth-child(1) a{color: #65b144;}
+.vf_nav ul li:nth-child(1) a div svg{
+  fill: #65b144;
+}
+.swiper-pagination-bullet-active {
+  background: #fff;
+}
+</style>
+</head>
+<body>
+<div class="hp_swiper">
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <volist name="banners" id="v">
+      <div class="swiper-slide">
+        <a href="{$v.ad_link}" <if condition="$v['target'] eq 1">target="_blank"</if> >
+          <img src="{$v.ad_code}" title="{$v[title]}">
+        </a>
+      </div>
+      </volist>
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+<!--   <div class="hp_search">
+    <div class="search_bar">
+      <div class="search_bar_c">
+        <div class="s_input">
+          <div class="s_icon"></div>
+          <div class="s_inp">
+            <form action="{:U('Mobile/Goods/search')}">
+              <div class="s_form">
+                <input type="text" placeholder="搜索" name="q">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+</div>
+<script>        
+  var mySwiper = new Swiper ('.swiper-container', {
+    direction: 'horizontal',
+    loop: true,
+    autoplay:true,
+    pagination: {
+    el: '.swiper-pagination'
+    }
+  })        
+</script>
+<!-- 门店选择开始 -->
+<!-- <section class="shopChose">
+  <div class="shopC_w">
+    <a href="/index.php/Mobile/Cart/useBusiness" id="latlon">
+    <div class="shopC_c">
+      <h3>苏州全部门店</h3>
+      <p>大师钣喷、卡马仕</p>
+      <span><svg t="1512454024154" style="fill: #9d9d9d;" viewBox="0 0 1024 1024" version="1.1" p-id="1103" width="25" height="25"><defs><style type="text/css"></style></defs><path d="M683.9808 512 267.6224 95.6672 303.8208 59.4432 720.4608 476.0832 756.3776 512 303.8208 964.5568 267.6224 928.3328Z" p-id="1104"></path></svg></span>
+    </div>
+    </a>
+  </div>
+</section> -->
+<!-- 门店选择结束 -->
+<!-- 合伙人频道开始 -->
+<section class="partner">
+  <div class="partner_w">
+    <a href="{:U('/Mobile/Index/limecar_partner')}">
+      <img src="__STATIC__/images/partnerChannel.jpg" alt="">
+    </a>
+  </div>
+</section>
+<!-- 合伙人频道结束 -->
+<!-- 推荐商品开始 -->
+<section class="topShelf" style="background: #fff">
+  <div class="curingCar_blank blank">
+    <div class="blank_w">
+      <div class="blank_con">
+        <h3>超值优选</h3>
+        <!-- <a href="{:U('/Mobile/Goods/goodsList',array('id'=>165))}">更多<em></em></a> -->
+      </div>
+    </div>
+  </div>
+  <a href="{:U('/Mobile/Goods/goodsInfo',array('id'=>$rnewCars[0]['goods_id']))}">
+  <div class="left">
+<!--     <div class="left_w">
+      <div class="left_tit">
+        <h3>{$rnewCars[0]['goods_name']}</h3>
+        <p>{$rnewCars[0]['goods_id']|getProgramme=2,###}起</p>
+      </div>
+      <div class="left_img">
+        <img src="{$rnewCars[0]['goods_id']|goods_thum_images=345,268}" alt="">
+      </div>
+    </div> -->
+    <div class="left_w">
+      <a href="{:U('/Mobile/Index/activity')}">
+        <img src="__STATIC__/images/actEntrance.jpg" alt="" style="width: 100%;max-height: 100%;">
+      </a>
+    </div>
+  </div>
+  </a>
+  <div class="right">
+    <a href="{:U('/Mobile/Index/auto_insurance')}">
+    <div class="right1_w">
+      <div class="r1_left">
+        <svg t="1515393640553" viewBox="0 0 1024 1024" p-id="27825" width="35" height="35"><path d="M512 0L96.865 184.505V461.26c0 256 177.124 495.395 415.135 553.514 238.01-58.12 415.135-297.514 415.135-553.514V184.505L512 0z m0 506.926h322.883C810.436 696.966 683.589 866.25 512 919.294V507.387H189.117V244.468L512 101.016v405.91z" fill="#279cff" p-id="27826"></path></svg>
+      </div>
+      <div class="r1_middle">
+        <h2>青柠车险</h2>
+        <p>青柠车险立返25%起</p>
+      </div>
+      <div class="r1_right">
+        <svg t="1512453943213" viewBox="0 0 1024 1024" p-id="994" width="20" height="20"><path d="M267.354606 72.005964c-13.515828 12.812817-13.515828 33.603329 0 46.417169l414.889265 393.579937-414.889265 393.565611c-13.515828 12.821003-13.515828 33.604352 0 46.425356 13.508665 12.81998 35.418674 12.81998 48.927339 0l432.159604-410.009118c0 0 18.33867-16.991999 18.33867-29.981848 0-11.971659-18.33867-29.989011-18.33867-29.989011L316.282968 72.005964C302.77328 59.184961 280.863271 59.184961 267.354606 72.005964z" p-id="995"></path></svg>
+      </div>
+    </div>
+    </a>
+<!--     <a href="{:U('/Mobile/Goods/goodsInfo',array('id'=>$rcurings[1]['goods_id']))}">
+    <div class="right2_w">
+      <div class="r2_tit">
+        <h3>{$rcurings[1]['goods_name']}</h3>
+        <p>￥{$rcurings[1]['shop_price']|calcu_goods_price}</p>
+      </div>
+      <div class="r2_img">
+        <img src="{$rcurings[1]['goods_id']|getFirstImg=280,275}" alt="">
+      </div>
+    </div>
+    </a> -->
+    <div class="right2_l">
+    <a href="{:U('Mobile/Index/curings',array('type'=>'wash'))}">
+      <div class="r2_l_tit">
+        <h3>汽车美容</h3>
+        <p>天天开新车</p>
+      </div>
+      <div class="r2_l_m"></div>
+      <div class="r2_l_img">
+        <img src="__STATIC__/images/r2_l_img.jpg" alt="">
+      </div>
+    </a>
+    </div>
+    <div class="right2_r">
+    <a href="{:U('Mobile/Index/curings',array('type'=>'curing'))}">
+      <div class="r2_r_tit">
+        <h3>超值养护</h3>
+        <p>精品养护 物超所值</p>
+      </div>
+      <div class="r2_r_m"></div>
+      <div class="r2_r_img">
+        <img src="__STATIC__/images/r2_r_img.jpg" alt="">
+      </div>
+    </a>
+    </div>
+  </div>
+  <div style="clear: both;"></div>
+</section>
+<!-- 推荐商品结束 -->
+<!-- 汽车养护开始 -->
+<section class="whp_curingCar whp">
+  <div class="curingCar_blank blank">
+    <div class="blank_w">
+      <div class="blank_con">
+        <h3 style="color:#67B044;">轻养护 · 高品质</h3>
+      </div>
+    </div>
+  </div>
+  <div class="curingCar_list hp_list">
+<!--     <div class="list_w">
+      <ul>
+      <volist name="curings" id="vo" key="k">
+        <li>
+          <a href="{:U('/Mobile/Goods/goodsInfo',array('id'=>$vo[goods_id]))}">
+          <div class="curingCarBox carBox">
+            <div class="img">
+              <img src="{$vo['goods_id']|getFirstImg=373,366}" alt="">
+            </div>
+            <div class="detail">
+              <div class="det_w">
+                <h3>{$vo['goods_name']}</h3>
+                <div class="price">青柠价&nbsp;{$vo['shop_price']|calcu_goods_price}</div>
+              </div>
+            </div>
+          </div>
+          </a>
+        </li>
+        </volist>
+        <div style="clear: both;"></div>
+      </ul>
+    </div> -->
+    <div class="list_w swiper-container-c">
+      <div class="swiper-wrapper" style="height: 228px!important;">
+        <div class="swiper-slide">
+          <a href="{:U('/Mobile/Goods/goodsInfo',array('id'=>$curings[0][goods_id]))}" class="link">
+            <div class="curingCarBox carBox">
+              <div class="img">
+                <img src="{$curings[0]['goods_id']|getFirstImg=373,366}" alt="">
+              </div>
+              <div class="detail">
+              <div class="det_w">
+                <h3>{$curings[0]['goods_name']}</h3>
+                <div class="price">青柠价&nbsp;{$curings[0]['shop_price']|calcu_goods_price}</div>
+              </div>
+            </div>
+            </div>
+          </a>
+          <a href="{:U('/Mobile/Goods/goodsInfo',array('id'=>$curings[1][goods_id]))}" class="link">
+            <div class="curingCarBox carBox">
+              <div class="img">
+                <img src="{$curings[1]['goods_id']|getFirstImg=373,366}" alt="">
+              </div>
+              <div class="detail">
+              <div class="det_w">
+                <h3>{$curings[1]['goods_name']}</h3>
+                <div class="price">青柠价&nbsp;{$curings[1]['shop_price']|calcu_goods_price}</div>
+              </div>
+            </div>
+            </div>
+          </a>
+        </div>
+        <div class="swiper-slide">
+          <a href="{:U('/Mobile/Goods/goodsInfo',array('id'=>$curings[2][goods_id]))}" class="link">
+            <div class="curingCarBox carBox">
+              <div class="img">
+                <img src="{$curings[2]['goods_id']|getFirstImg=373,366}" alt="">
+              </div>
+              <div class="detail">
+              <div class="det_w">
+                <h3>{$curings[2]['goods_name']}</h3>
+                <div class="price">青柠价&nbsp;{$curings[2]['shop_price']|calcu_goods_price}</div>
+              </div>
+            </div>
+            </div>
+          </a>
+          <a href="{:U('/Mobile/Goods/goodsInfo',array('id'=>$curings[3][goods_id]))}" class="link">
+            <div class="curingCarBox carBox">
+              <div class="img">
+                <img src="{$curings[3]['goods_id']|getFirstImg=373,366}" alt="">
+              </div>
+              <div class="detail">
+              <div class="det_w">
+                <h3>{$curings[3]['goods_name']}</h3>
+                <div class="price">青柠价&nbsp;{$curings[3]['shop_price']|calcu_goods_price}</div>
+              </div>
+            </div>
+            </div>
+          </a>
+        </div>
+    </div>
+    <div class="slide-tip" style="top: 8px;">
+      滑动加载更多
+    </div>
+  </div>
+<!--   <div class="more">
+    <a href="{:U('/Mobile/Goods/goodsList',array('id'=>165))}">查看更多<em></em></a>
+  </div> -->
+</section>
+<!-- 汽车养护结束 -->
+<!-- AD -->
+<div class="whp-ad">
+  <a href="{:U('Mobile/Agency/index')}">
+    <img src="__STATIC__/images/mhp-AD.jpg" alt="">
+  </a>
+</div>
+<!-- AD -->
+<!-- 新车/二手车开始 -->
+<section class="whp">
+  <div class="blank carBlank">
+    <div class="blank_w">
+      <div class="blank_con newCarChange">
+        <h3 style="color:#67B044;">热销新车</h3>
+      </div>
+    </div>
+    <div class="blank_w">
+      <div class="blank_con secCarChange">
+        <h3>精品二手车</h3>
+      </div>
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+  <div class="newCar_list hp_list">
+    <div class="list_w swiper-container1">
+      <div class="swiper-wrapper" style="height: 253px!important;">
+        <div class="swiper-slide">
+          <a href="{:U('/Mobile/Goods/goodsInfo',array('id'=>$newCars[0][goods_id]))}" class="link">
+            <div class="newCarBox carBox">
+              <div class="img">
+                <img src="{$newCars[0]['goods_id']|goods_thum_images=373,366}" alt="">
+              </div>
+              <div class="detail">
+                <div class="det_w">
+                  <h3>{$newCars[0]['goods_name']}</h3>
+                  <div class="price">最低首付：{$newCars[0]['goods_id']|getProgramme=2,###}</div>
+                  <div class="monthPay">月供：{$newCars[0]['goods_id']|getProgramme=1,###}</div>
+                </div>
+              </div>
+            </div>
+          </a>
+          <a href="{:U('/Mobile/Goods/goodsInfo',array('id'=>$newCars[1][goods_id]))}" class="link">
+            <div class="newCarBox carBox">
+              <div class="img">
+                <img src="{$newCars[1]['goods_id']|goods_thum_images=373,366}" alt="">
+              </div>
+              <div class="detail">
+                <div class="det_w">
+                  <h3>{$newCars[1]['goods_name']}</h3>
+                  <div class="price">最低首付：{$newCars[1]['goods_id']|getProgramme=2,###}</div>
+                  <div class="monthPay">月供：{$newCars[1]['goods_id']|getProgramme=1,###}</div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="swiper-slide">
+          <a href="{:U('/Mobile/Goods/goodsInfo',array('id'=>$newCars[2][goods_id]))}" class="link">
+            <div class="newCarBox carBox">
+              <div class="img">
+                <img src="{$newCars[2]['goods_id']|goods_thum_images=373,366}" alt="">
+              </div>
+              <div class="detail">
+                <div class="det_w">
+                  <h3>{$newCars[2]['goods_name']}</h3>
+                  <div class="price">最低首付：{$newCars[2]['goods_id']|getProgramme=2,###}</div>
+                  <div class="monthPay">月供：{$newCars[2]['goods_id']|getProgramme=1,###}</div>
+                </div>
+              </div>
+            </div>
+          </a>
+          <a href="{:U('/Mobile/Goods/goodsInfo',array('id'=>$newCars[3][goods_id]))}" class="link">
+            <div class="newCarBox carBox">
+              <div class="img">
+                <img src="{$newCars[3]['goods_id']|goods_thum_images=373,366}" alt="">
+              </div>
+              <div class="detail">
+                <div class="det_w">
+                  <h3>{$newCars[3]['goods_name']}</h3>
+                  <div class="price">最低首付：{$newCars[3]['goods_id']|getProgramme=2,###}</div>
+                  <div class="monthPay">月供：{$newCars[3]['goods_id']|getProgramme=1,###}</div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+    </div>
+    <div class="slide-tip">
+      滑动加载更多
+    </div>
+<!--       <ul>
+      <volist name="newCars" id="vo" key="k">
+      
+        <li>
+          <a href="{:U('/Mobile/Goods/goodsInfo',array('id'=>$vo[goods_id]))}">
+          <div class="newCarBox carBox">
+            <div class="img">
+              <img src="{$vo['goods_id']|goods_thum_images=373,366}" alt="">
+            </div>
+            <div class="detail">
+              <div class="det_w">
+                <h3>{$vo['goods_name']}</h3>
+                <div class="price">最低首付&nbsp;{$vo['goods_id']|getProgramme=2,###}</div>
+                <div class="monthPay">月供{$vo['goods_id']|getProgramme=1,###}</div>
+              </div>
+            </div>
+          </div>
+          </a>
+        </li>
+       
+        </volist>
+      </ul> -->
+    </div>
+  </div>
+  <div class="secCar_list hp_list" style="display: none;">
+    <div class="list_w swiper-container2">
+      <div class="swiper-wrapper" style="height: 253px!important;">
+        <div class="swiper-slide">
+          <a href="{:U('/Mobile/Goods/goodsInfo',array('id'=>$usedCars[0]['goods_id']))}" class="link">
+          <div class="secCarBox carBox">
+            <div class="img">
+              <img src="{$usedCars[0]['goods_id']|goods_thum_images=373,366}" alt="">
+            </div>
+            <div class="detail">
+              <div class="det_w">
+                <h3>{$usedCars[0]['goods_name']}</h3>
+                <div class="price">青柠价&nbsp;{$usedCars[0]['shop_price']|calcu_goods_price}</div>
+                <div class="monthPay">最低首付{$usedCars[0]['goods_id']|getProgramme=2,###}</div>
+              </div>
+            </div>
+          </div>
+          </a>
+          <a href="{:U('/Mobile/Goods/goodsInfo',array('id'=>$usedCars[1]['goods_id']))}" class="link">
+          <div class="secCarBox carBox">
+            <div class="img">
+              <img src="{$usedCars[1]['goods_id']|goods_thum_images=373,366}" alt="">
+            </div>
+            <div class="detail">
+              <div class="det_w">
+                <h3>{$usedCars[1]['goods_name']}</h3>
+                <div class="price">青柠价&nbsp;{$usedCars[1]['shop_price']|calcu_goods_price}</div>
+                <div class="monthPay">最低首付{$usedCars[1]['goods_id']|getProgramme=2,###}</div>
+              </div>
+            </div>
+          </div>
+          </a>
+        </div>
+        <div class="swiper-slide">
+          <a href="{:U('/Mobile/Goods/goodsInfo',array('id'=>$usedCars[2]['goods_id']))}" class="link">
+          <div class="secCarBox carBox">
+            <div class="img">
+              <img src="{$usedCars[2]['goods_id']|goods_thum_images=373,366}" alt="">
+            </div>
+            <div class="detail">
+              <div class="det_w">
+                <h3>{$usedCars[2]['goods_name']}</h3>
+                <div class="price">青柠价&nbsp;{$usedCars[2]['shop_price']|calcu_goods_price}</div>
+                <div class="monthPay">最低首付{$usedCars[2]['goods_id']|getProgramme=2,###}</div>
+              </div>
+            </div>
+          </div>
+          </a>
+          <a href="{:U('/Mobile/Goods/goodsInfo',array('id'=>$usedCars[3]['goods_id']))}" class="link">
+          <div class="secCarBox carBox">
+            <div class="img">
+              <img src="{$usedCars[3]['goods_id']|goods_thum_images=373,366}" alt="">
+            </div>
+            <div class="detail">
+              <div class="det_w">
+                <h3>{$usedCars[3]['goods_name']}</h3>
+                <div class="price">青柠价&nbsp;{$usedCars[3]['shop_price']|calcu_goods_price}</div>
+                <div class="monthPay">最低首付{$usedCars[3]['goods_id']|getProgramme=2,###}</div>
+              </div>
+            </div>
+          </div>
+          </a>
+        </div>
+      </div>
+      <div class="slide-tip">
+      滑动加载更多
+      </div>
+      <!-- <ul>
+      <volist name="usedCars" id="vo">
+        <li>
+          <a href="{:U('/Mobile/Goods/goodsInfo',array('id'=>$vo[goods_id]))}">
+          <div class="secCarBox carBox">
+            <div class="img">
+              <img src="{$vo['goods_id']|goods_thum_images=373,366}" alt="">
+            </div>
+            <div class="detail">
+              <div class="det_w">
+                <h3>{$vo['goods_name']}</h3>
+                <div class="price">三品車价&nbsp;{$vo['shop_price']|calcu_goods_price}</div>
+                <div class="monthPay">最低首付{$vo['goods_id']|getProgramme=2,###}</div>
+              </div>
+            </div>
+          </div>
+          </a>
+        </li>
+        </volist>
+      </ul> -->
+    </div>
+  </div>
+</section>
+<!-- 新车/二手车开始  -->
+
+<!-- 二手车商城开始 -->
+<!-- <section class="whp_secCar whp">
+  <div class="secCar_blank blank">
+    <div class="blank_w">
+      <div class="blank_con">
+        <h3>热销二手车</h3>
+        <a href="{:U('/Mobile/Goods/goodsList',array('id'=>164))}">更多<em></em></a>
+      </div>
+    </div>
+  </div> -->
+<!--   <div class="secCar_list hp_list">
+    <div class="list_w"> -->
+      <!-- <ul>
+      <volist name="usedCars" id="vo">
+        <li>
+          <a href="{:U('/Mobile/Goods/goodsInfo',array('id'=>$vo[goods_id]))}">
+          <div class="secCarBox carBox">
+            <div class="img">
+              <img src="{$vo['goods_id']|goods_thum_images=373,366}" alt="">
+            </div>
+            <div class="detail">
+              <div class="det_w">
+                <h3>{$vo['goods_name']}</h3>
+                <div class="price">三品車价&nbsp;{$vo['shop_price']|calcu_goods_price}</div>
+                <div class="monthPay">最低首付{$vo['goods_id']|getProgramme=2,###}</div>
+              </div>
+            </div>
+          </div>
+          </a>
+        </li>
+        </volist>
+      </ul> -->
+<!--     </div>
+  </div>
+  <div style="clear: both;"></div> -->
+<!-- </section> -->
+<!-- 二手车商城结束 -->
+
+
+<!-- 底部banner开始 -->
+<section class="mhp_footer">
+  <div class="footer_blank blank">
+    <div class="blank_w">
+      <div class="blank_con">
+        <h3>服务流程</h3>
+      </div>
+    </div>
+  </div>
+  <div class="process">
+    <img src="__STATIC__/images/mhp-process.jpg" alt="">
+    <img src="__STATIC__/images/mhp-footer.jpg" alt="">
+    <p>买车、保养、 洗车、 维修  全流程服务您的爱车</p>
+    <p>联系方式：400-877-8063</p>
+  </div>
+</section>
+<!-- 底部banner结束 -->
+
+<include file="public/footer"/>
+<script>
+function goTop(){
+  $('html,body').animate({'scrollTop':0},600);
+}
+//商品侧滑
+var mySwiper = new Swiper ('.swiper-container-c', {
+    direction: 'horizontal',
+    loop: false,
+    width:330,
+    freeMode : true,
+    on:{
+      touchEnd: function(event){
+      TR=this.translate;
+      console.log(TR)
+      if(TR<-400){
+        this.setTranslate(TR);
+        location.href ="{:U('/Mobile/Goods/goodsList',array('id'=>165))}";
+      }
+    }
+  }
+}) 
+var mySwiper = new Swiper ('.swiper-container1', {
+    direction: 'horizontal',
+    loop: false,
+    width:330,
+    freeMode : true,
+    on:{
+      touchEnd: function(event){
+      TR=this.translate;
+      console.log(TR)
+      if(TR<-400){
+        this.setTranslate(TR);
+        location.href ="{:U('/Mobile/Goods/goodsList',array('id'=>138))}";
+      }
+    }
+  }
+}) 
+var mySwiper = new Swiper ('.swiper-container2', {
+    direction: 'horizontal',
+    loop: false,
+    width:330,
+    freeMode : true,
+    on:{
+      touchEnd: function(event){
+      TR=this.translate;
+      console.log(TR)
+      if(TR<-400){
+        this.setTranslate(TR);
+        location.href ="{:U('/Mobile/Goods/goodsList',array('id'=>164))}";
+      }
+    }
+  }
+}) 
+//标签页切换
+$('.newCarChange').click(function(){
+  $('.secCar_list').hide()
+  $('.newCar_list').show()
+  $(this).children().css("color","#67B044")
+  $('.secCarChange').children().css("color","#000")
+})   
+$('.secCarChange').click(function(){
+  $('.secCar_list').show()
+  $('.newCar_list').hide()
+  $(this).children().css("color","#67B044")
+  $('.newCarChange').children().css("color","#000")
+})      
+</script>
+<include file="public/footer_nav"/>
+
+<script src="__PUBLIC__/js/jqueryUrlGet.js"></script><!--获取get参数插件-->
+<script> set_first_leader(); //设置推荐人 </script>
+</body>
+</html>

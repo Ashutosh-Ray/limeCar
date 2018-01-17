@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{$goods.goods_name}-{$imshop_config['shop_info_store_title']}</title>
+    <meta http-equiv="keywords" content="{$imshop_config['shop_info_store_keyword']}" />
+    <meta name="description" content="{$imshop_config['shop_info_store_desc']}" />
+</head>
+<body>
+<link rel="stylesheet" href="__STATIC__/css/order.css">
+<script type="text/javascript" src="__STATIC__/js/jquery-1.10.2.min.js"></script> 
+<!--------头部开始-------------->
+<include file="public/header" />
+<!--------头部结束-------------->
+
+<!-- 顶部banner开始 -->
+<style>
+.navList li:nth-child(1) a{
+    color: #000!important;
+    }
+.navList li:nth-child(4) a{
+    color: #ca141d!important;
+}
+</style>
+
+<!-- 中部内容开始 -->
+<section class="pS">
+  <div class="pS_con">
+    <p>恭喜您已支付成功</p>
+    <p style="color: #000;font-size: 16px;">请扫描下方二维码关注三品車公众号，在“个人中心”->“我的订单”中可以查询已购买的产品信息，并在使用时向商家出示验券码。</p>
+    <img src="__STATIC__/images/erwei.jpg" alt="" style="display: block;margin: 50px auto">
+  </div>
+</section>
+<!-- 中部内容结束 -->
+
+
+<!--------footer-开始-------------->
+<include file="public/footer" />
+<!--------footer-结束-------------->
+
+</body>
+</html>

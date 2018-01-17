@@ -1,0 +1,17 @@
+<volist name="attributes" id="vo">
+            <dl class="row">
+                <dt class="tit">
+                    <label for="record_no">{$vo.attr_name}</label>
+                </dt>
+                <dd class="opt">
+                    <input type="hidden" name="attribute_ids[]" value="{$vo['id']}">
+                    <if condition="$vo['input_data_type'] eq 1">
+                    <input type="text" value="{$vo.attr_val}" name="attr_vals[]" class="t_mane" onKeyUp="this.value=this.value.replace(/[^\d.]/g,'')" onpaste="this.value=this.value.replace(/[^\d.]/g,'')" />
+                    <span class="err" id="err_market_price" style="color:#F00; display:none;">必填</span>
+                    <else/>
+                    <input type="text" value="{$vo.attr_val}" name="attr_vals[]" class="t_mane" />
+                    <span class="err" id="err_market_price" style="color:#F00; display:none;">必填</span>
+                    </if>
+                </dd>
+            </dl>
+</volist>

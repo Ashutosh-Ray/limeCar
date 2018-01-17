@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="Generator" content="IMSHOP v1.1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>{$shop_name}</title>
+<meta http-equiv="keywords" content="{$imshop_config['shop_info_store_keyword']}" />
+<meta name="description" content="{$imshop_config['shop_info_store_desc']}" />
+<meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
+<link rel="stylesheet" href="__STATIC__/css/drawcoupon.css">
+<script type="text/javascript" src="__STATIC__/js/jquery.js"></script>
+<script type="text/javascript" src="__STATIC__/js/layer.js" ></script>
+<script>
+	(function (doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                if(clientWidth>=640){
+                    docEl.style.fontSize = '100px';
+                }else{
+                    docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+                }
+            };
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+</script>
+</head>
+<body>
+	<div class="drawcoupon">
+		<img src="__STATIC__/images/drawcoupon.jpg" alt="" class="bg">
+		<div class="dc_get">
+			<span >{$msg}</span>
+		</div>
+		<img src="__STATIC__/images/gongzhonghao.jpg" alt="" class="erwei">
+		<dic class="dc_tit">
+			<img src="__STATIC__/images/x.png" alt="" class="xman">
+			<p>使用须知</p>
+		</dic>
+		<div class="dc_tips">
+			<div class="tips_c">
+				<p>1.领取优惠券后请在青柠养车公众号“个人中心查收。<br>2.单个手机号只允许领取一次。<br>3.优惠券仅供在青柠养车平台下使用，不能进行出售、转让或其他用途。<br>4.本规则有青柠养车依据国家相关法律及规章予以解释。</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

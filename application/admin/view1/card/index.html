@@ -1,0 +1,226 @@
+<include file="public/layout" />
+<body style="background-color: rgb(255, 255, 255); overflow: auto; cursor: default; -moz-user-select: inherit;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title">
+      <div class="subject">
+        <h3>会员卡管理</h3>
+        <h5>会员卡管理索引及管理</h5>
+      </div>
+    </div>
+  </div>
+  <!-- 操作说明 -->
+  <div id="explanation" class="explanation" style="color: rgb(44, 188, 163); background-color: rgb(237, 251, 248); width: 99%; height: 100%;">
+    <div id="checkZoom" class="title"><i class="fa fa-lightbulb-o"></i>
+      <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+      <span title="收起提示" id="explanationZoom" style="display: block;"></span>
+    </div>
+ <!--    <ul>
+      <li>会员卡管理注意发布会员卡后清理缓存.</li>
+      <li>会员卡缩列图也有缓存.</li>
+    </ul> -->
+  </div>
+  <div class="flexigrid">
+    <div class="mDiv">
+      <div class="ftitle">
+        <h3>会员卡列表</h3>
+        <h5></h5>
+      </div>
+  <form action="" id="search-form2" class="navbar-form form-inline" method="post" >
+      <div class="sDiv">
+        <div class="sDiv2">           
+          <select name="card_type" id="cat_id" class="select">
+            <option value="">所有分类</option>
+            <foreach name="cates" item="v" key="k" >
+                <option value="{$v['id']}"> {$v['card_name']}</option>
+            </foreach>
+          </select>
+          <input type="text" size="30" name="card_no" class="qsbox" placeholder="搜索会员卡">
+          <input type="text" size="30" name="car_no" class="qsbox" placeholder="搜索车牌">
+          <input type="text" size="30" name="host_phone" class="qsbox" placeholder="搜索手机号">
+          <input type="text" size="30" name="host_name" class="qsbox" placeholder="搜索用户">
+          <input type="submit" class="btn" value="搜索">
+        </div>
+      </div>
+     </form>
+    </div>
+    <div class="hDiv">
+      <div class="hDivBox">
+        <table cellspacing="0" cellpadding="0">
+          <thead>
+            <tr>
+              <th class="sign" axis="col6">
+                <div style="width: 24px;"><i class="ico-check"></i></div>
+              </th>
+              <th align="left" abbr="article_title" axis="col6" class="">
+                <div style="text-align: left; width:65px;" class="">操作</div>
+              </th>              
+              <th align="left" abbr="article_title" axis="col6" class="">
+                <div style="text-align: left; width:50px;" class="" onClick="sort('goods_id');">id</div>
+              </th>
+              <th align="left" abbr="ac_id" axis="col4" class="">
+                <div style="text-align: left; width: 100px;" class="" onClick="sort('goods_name');">会员卡号</div>
+              </th>
+              <th align="center" abbr="article_show" axis="col6" class="">
+                <div style="text-align: center; width: 100px;" class="" onClick="sort('goods_sn');">持有者</div>
+              </th>
+              <th align="center" abbr="article_time" axis="col6" class="">
+                <div style="text-align: center; width: 100px;" class="" onClick="sort('cat_id');">车牌号</div>
+              </th>
+              <th align="center" abbr="article_time" axis="col6" class="">
+                <div style="text-align: center; width: 100px;" class="" onClick="sort('shop_price');">手机号</div>
+              </th>                  
+              <th align="center" abbr="article_time" axis="col6" class="">
+                <div style="text-align: center; width: 100px;" class="" onClick="sort('is_recommend');">类型</div>
+              </th>                       
+              <th align="center" abbr="article_time" axis="col6" class="">
+                <div style="text-align: center; width: 150px;" class="" onClick="sort('is_new');">添加时间</div>
+              </th>                                                          
+              <th style="width:100%" axis="col7">
+                <div></div>
+              </th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>    
+    <div class="tDiv">
+      <div class="tDiv2">
+        <div class="fbutton">       
+          <a href="{:U('Admin/card/add_card')}">
+          <div class="add" title="添加会员卡">
+            <span><i class="fa fa-plus"></i>添加会员卡</span>
+          </div>
+          </a>          
+          </div> 
+      </div>
+      <div style="clear:both"></div>
+    </div>
+    <div class="bDiv" style="height: auto;">
+     <!--ajax 返回 --> 
+      <div id="ajax_return" cellpadding="0" cellspacing="0" border="0">
+      <table>
+       <tbody>
+       <volist name="list" id="l">
+              <tr>
+                <td class="sign" axis="col6">
+                  <div style="width: 24px;"><i class="ico-check"></i></div>
+                </td>
+       <td class="handle" >
+                <div style="text-align:left;   min-width:50px !important; max-width:inherit !important;">
+                  <span class="btn"><em><i class="fa fa-cog"></i>设置<i class="arrow"></i></em>
+                  <ul>
+                    <li><a href="{:U('Admin/Card/add_card',array('id'=>$l['id']))}">编辑会员卡</a></li>
+                    <if condition="$type eq 0"><li><a href="{:U('Admin/Card/del_card',array('id'=>$l['id']))}" >删除会员卡</a></li></if>
+                    
+                    <li><a href="{:U('Admin/Card/consume',array('id'=>$l['id']))}">添加消费</a></li>
+                    <li><a href="{:U('Admin/Card/consume_log',array('id'=>$l['id']))}" >消费记录</a></li>                    
+                  </ul>
+                  </span>
+                </div>
+              </td>                
+                <td align="center" axis="col0">
+                  <div style="width: 50px;">{$l.id}</div>
+                </td>                
+                <td align="center" axis="col0">
+                  <div style="text-align: left; width: 100px;">{$l.card_no}</div>
+                </td>
+                <td align="center" axis="col0">
+                  <div style="text-align: center; width: 100px;">{$l.host_name}</div>
+                </td>
+                 <td align="center" axis="col0">
+                  <div style="text-align: center; width: 100px;">{$l.car_no}</div>
+                </td>
+                <td align="center" axis="col0">
+                  <div style="text-align: center; width: 100px;">{$l.host_phone}</div>
+                </td>
+                <td align="center" axis="col0">
+                  <div style="text-align: center; width: 100px;">
+                  <volist name="cates" id='cate'>
+                  <if condition="$l['card_type'] eq $cate['id']">{$cate.card_name}</if>
+                  </volist>
+                  </div>
+                </td>
+                <td align="center" axis="col0">
+                  <div style="text-align: center; width: 150px;">{$l.add_time|date="Y-m-d:H:i:s",###}</div>
+                </td> 
+             <!--     <td align="center" axis="col0">
+                  <div style="text-align: center; width: 150px;">{$l.edit_time|date="Y-m-d:H:i:s",###}</div>
+                </td> -->                
+                <td align="" class="" style="width: 100%;">
+                  <div>&nbsp;</div>
+                </td>
+              </tr> 
+              </volist>
+          </tbody>
+        </table>
+         {$page}
+      </div>      
+    </div>
+
+     </div>
+</div>
+<script>
+    $(document).ready(function(){ 
+  
+     // 表格行点击选中切换
+    $('#ajax_return').on('click','table>tbody >tr',function(){
+       $(this).toggleClass('trSelected'); 
+                        
+       var checked = $(this).hasClass('trSelected');  
+       $(this).find('input[type="checkbox"]').attr('checked',checked); 
+       //alert('aaa');
+    });     
+    // 刷选条件 鼠标 移动进去 移出 样式
+    $(".hDivBox > table > thead > tr > th").mousemove(function(){
+      $(this).addClass('thOver');
+    }).mouseout(function(){
+      $(this).removeClass('thOver');
+    });       
+  });
+</script>
+<script>
+    $(document).ready(function(){ 
+  
+     // 表格行点击选中切换
+    $('#ajax_return').on('click','table>tbody >tr',function(){
+       $(this).toggleClass('trSelected'); 
+                        
+       var checked = $(this).hasClass('trSelected');  
+       $(this).find('input[type="checkbox"]').attr('checked',checked); 
+       //alert('aaa');
+    });     
+    // 刷选条件 鼠标 移动进去 移出 样式
+    $(".hDivBox > table > thead > tr > th").mousemove(function(){
+      $(this).addClass('thOver');
+    }).mouseout(function(){
+      $(this).removeClass('thOver');
+    });       
+  });
+</script>
+<script>
+
+        
+        // 删除操作
+        function del(id,item)
+        {
+           
+            if(!confirm('确定要删除吗?'))
+                return false;
+                $.ajax({
+                  url:"/index.php?m=Admin&c=card&a=del_attr&id="+id,
+                  success: function(v){ 
+                           var v =  eval('('+v+')');                                 
+                           if(v.hasOwnProperty('status') && (v.status == 1))
+                                 $(item).parents('tr').remove();                                              
+                           else
+                                   layer.msg(v.msg, {icon: 2,time: 1000}); //alert(v.msg);
+                  }
+                }); 
+               return false;
+          } 
+</script>
+</body>
+</html>

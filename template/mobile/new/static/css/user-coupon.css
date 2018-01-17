@@ -1,0 +1,43 @@
+body {
+  background-color: #eee;
+}
+.coupon_list {
+  width: 100%;
+}
+.coupon_list .list_c {
+  padding: 20px;
+}
+.coupon_list .list_c ul {
+  width: 100%;
+}
+.coupon_list .list_c ul li {
+  width: 100%;
+}
+.coupon_list .list_c ul li .left {
+  float: left;
+  height: 100px;
+}
+.coupon_list .list_c ul li .left img {
+  width: 115px;
+  height: 100px;
+}
+.coupon_list .list_c ul li .left span {
+  position: absolute;
+}
+.coupon_list .list_c ul li .content {
+  width: calc(100% - 115px);
+  float: left;
+  background-color: #fff;
+  padding: 15px 0;
+}
+.coupon_list .list_c ul li .content h3 {
+  padding-left: 25px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  font-weight: 700;
+  color: #000;
+}
+.coupon_list .list_c ul li .content p {
+  padding-left: 25px;
+  color: #999;
+}

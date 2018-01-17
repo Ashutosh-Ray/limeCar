@@ -1,0 +1,108 @@
+<table class="table table-striped table-bordered table-hover" id="newCarTable">
+      <thead>
+          <tr>
+              <th style="min-width: 60px;">产品ID</th>
+              <th>产品名称</th>
+              <th class="center" style="min-width: 75px;">产品分类</th>
+              <th class="center" style="min-width: 45px;">库存</th>
+              <th class="center" style="min-width: 60px;">下架/上架</th>
+              <th class="center" style="min-width: 75px;">是否推荐</th>
+              <th class="center" style="min-width: 45px;">排序</th>
+              <th class="center">商家名称</th>
+              <th class="center" style="min-width: 90px;">操作</th>
+          </tr>
+      </thead>
+      <tbody>
+         <volist name="goodsList" id="list">
+              <tr class="odd gradeX">
+                                    <td>{$list.goods_id}</td>
+                                    <td>{$list.goods_name}</td>
+                                    <td class="center">{$catList[$list[cat_id]][name]}</td>
+                                    <td class="center">{$list.store_count}</td>
+                                    <td class="center">
+                                        <div class="switch">
+                                            <label>
+                                                <input type="checkbox" <if condition="$list[is_on_sale] eq 1">checked="true"</if> <if condition="$cat_id eq 164">onchange="swichTableValUsed('goods','goods_id','{$list.goods_id}','is_on_sale',this)"<else/>onchange="swichTableVal('goods','goods_id','{$list.goods_id}','is_on_sale',this)"</if> >
+                                                <span class="lever"></span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    
+                                    <td class="center">
+                                        <div class="judge">
+                                       <if condition='$list[is_recommend] eq 1'>
+                                        <span class="yes" onClick="changeTableVal('goods','goods_id','{$list.goods_id}','is_recommend',this)" ><i class="fa fa-check-circle"></i>是</span>
+                                        <else />
+                                        <span class="no" onClick="changeTableVal('goods','goods_id','{$list.goods_id}','is_recommend',this)" ><i class="fa fa-ban"></i>否</span>
+                                    </if>
+                                        </div>
+                                    </td>
+                                    <td class="center">
+                                        <input type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onpaste="this.value=this.value.replace(/[^\d]/g,'')" onChange="changeTableVal('goods','goods_id','{$list.goods_id}','sort',this)" size="4" value="{$list.sort}">
+                                    </td>
+                                    <td class="center">{$list.shop_name}</td>
+                                    <td class="center">
+                                        <a href="{:U('Admin/Goods/addEditGoods',array('id'=>$list['goods_id']))}">编辑</a> /
+                                        <a href="javascript:void(0);" onclick="del('{$list[goods_id]}')">删除</a>
+                                    </td>
+                                </tr>
+
+            </volist>
+      </tbody>
+  </table>
+  <div class="row">
+      <div class="col-sm-6"></div>
+      <div class="col-sm-6 table-pagecut">
+        {$page}
+      </div>
+  </div>
+        <!--分页位置--> 
+		<script>
+            //点击分页触发的事件
+            $(".pagination  a").click(function(){
+                cur_page = $(this).data('p');
+                ajax_get_table('search-form2',cur_page);
+            });
+			
+			/*
+			 * 清除静态页面缓存
+			 */
+			function ClearGoodsHtml(goods_id)
+			{
+				$.ajax({
+						type:'GET',
+						url:"{:U('Admin/System/ClearGoodsHtml')}",
+						data:{goods_id:goods_id},
+						dataType:'json',
+						success:function(data){
+							layer.alert(data.msg, {icon: 2});								 
+						}
+				});
+			}
+			/*
+			 * 清除商品缩列图缓存
+			 */
+			function ClearGoodsThumb(goods_id)
+			{
+				$.ajax({
+						type:'GET',
+						url:"{:U('Admin/System/ClearGoodsThumb')}",
+						data:{goods_id:goods_id},
+						dataType:'json',
+						success:function(data){
+							layer.alert(data.msg, {icon: 2});								 
+						}
+				});
+			}	
+
+      // function swich(obj) {
+       
+      //   var select=$(obj).is(':checked');
+      //   if (select==true) {
+           
+      //   }else{
+
+      //   }
+      // }
+			
+        </script>        

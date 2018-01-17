@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" class="mask">
+<head>
+<meta name="Generator" content="IMSHOP v1.1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>{$shop_name}</title>
+<meta http-equiv="keywords" content="{$imshop_config['shop_info_store_keyword']}" />
+<meta name="description" content="{$imshop_config['shop_info_store_desc']}" />
+<meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
+<link rel="stylesheet" href="__STATIC__/css/common.css">
+<link rel="stylesheet" href="__STATIC__/css/user-coupon.css">
+<script type="text/javascript" src="__STATIC__/js/jquery.js"></script>
+<script type="text/javascript" src="__STATIC__/js/layer.js" ></script>
+<script>
+	(function (doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                if(clientWidth>=640){
+                    docEl.style.fontSize = '100px';
+                }else{
+                    docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+                }
+            };
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+</script>
+</head>
+<body>
+<div class="coupon_list">
+	<div class="list_c">
+		<ul>
+			<li>
+				<div class="left">
+					<img src="__STATIC__/images/coupon1.png" alt="">
+					<span></span>
+				</div>
+				<div class="content">
+					<h3>免费手工洗车券</h3>
+					<p>截止日期：2018年1月24日</p>
+					<p>使用商家：不限</p>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+</body>
+
+</html>

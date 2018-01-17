@@ -1,0 +1,115 @@
+<include file="public/header"/>
+<div id="page-wrapper">
+<div class="header"> 
+  <h1 class="page-header">
+     返佣方案列表
+  </h1>
+<!--   <ol class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Dashboard</a></li>
+    <li class="active">Data</li>
+  </ol> -->             
+</div>
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+        <!-- Advanced Tables -->
+            <div class="card">
+<!--            <div class="card-action">
+                    Advanced Tables
+                </div> -->
+                <div class="card-content">
+                    <div class="table-responsive">
+                        <div class="row">
+                            <div class="col-sm-6">
+                              <a href="{:U('Admin/Partner/addEditor_commision_set')}" class="waves-effect waves-light btn" style="text-align: center;text-decoration: none;">添加返佣方案</a>
+                            </div>
+                            <div class="col-sm-6 table-search">
+                                <form action="" id="search-form2" class="navbar-form form-inline" method="post" onSubmit="return false">
+                                <div class="ts-la">
+                                    <label>
+                                        <input type="text" placeholder="搜索" name="keywords">
+                                        <a onClick="ajax_get_table('search-form2',1)">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </label>
+                                </div>
+                            </form>
+                            </div>
+                        </div>
+                        <div id="ajax_return">
+
+ </div>
+</div>
+</div>
+</div>
+<!--End Advanced Tables -->
+  </div>
+    </div>
+
+<include file="public/footer"/>
+
+<script>
+    $(document).ready(function () {
+        //ajax 加载商品列表
+        ajax_get_table('search-form2', 1);
+
+    });
+
+    // ajax 抓取页面 form 为表单id  page 为当前第几页
+    var cur_page;
+    function ajax_get_table(form, page) {
+        cur_page = page; //当前页面 保存为全局变量
+        $.ajax({
+            type: "POST",
+            url: "/index.php/Admin/Partner/commision_case_list/p/" + page,//+tab,
+            data: $('#' + form).serialize(),// 你的formid
+            success: function (data) {
+                $("#ajax_return").html('');
+         
+                $("#ajax_return").append(data);
+            }
+        });
+    }
+    
+        // 点击排序
+        function sort(field)
+        {
+           $("input[name='orderby1']").val(field);
+           var v = $("input[name='orderby2']").val() == 'desc' ? 'asc' : 'desc';             
+           $("input[name='orderby2']").val(v);
+           ajax_get_table('search-form2',cur_page);
+        }
+        
+        // 删除操作
+        function del(id)
+        {
+            if(!confirm('确定要删除吗?'))
+                return false;
+
+        $.ajax({
+            type:"POST",
+            url:"/index.php/Admin/Partner/do_set",
+            data:{act:"del",id:id},
+            dataType:'json',
+            success: function(v){ 
+                if (v.status==1) {
+                    layer.msg(v.msg, {icon: 1,time: 1000});
+                    ajax_get_table('search-form2',cur_page);
+                }else{
+                    layer.msg(v.msg, {icon: 2,time: 1000});
+                }
+
+            }
+        }); 
+               return false;
+        }  
+
+</script>
+<include file="public/table"/>
+        <!-- Custom Js -->
+    <script src="__PUBLIC__/static/assets/js/custom-scripts.js"></script> 
+
+</body>
+
+</html>

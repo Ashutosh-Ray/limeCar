@@ -1,0 +1,240 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+      <div class="subject">
+        <h3>商户 - 线下支付入驻</h3>
+        <h5>查看线下支付信息</h5>
+      </div>
+    </div>
+  </div>
+    <input type="hidden" name="iAdminId" value="{$iAdminId}">
+    <div class="ncap-form-default">
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane">密码</label>
+        </dt>
+        <dd class="opt">
+        	{$aSfMerchantPayment.loginPwd}
+        </dd>
+      </dl>
+      
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane">联系人姓名</label>
+        </dt>
+        <dd class="opt">
+        	{$aSfMerchantPayment.contact}
+        </dd>
+      </dl>
+      
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane">邮箱</label>
+        </dt>
+        <dd class="opt">
+          {$aSfMerchantPayment.email}
+        </dd>
+      </dl>
+      
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane">联系人电话</label>
+        </dt>
+        <dd class="opt">
+        	{$aSfMerchantPayment.contactPhoneNo}
+        </dd>
+      </dl>
+      
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane">商户名称</label>
+        </dt>
+        <dd class="opt">
+        	{$aSfMerchantPayment.fullName}
+        </dd>
+      </dl>
+      
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane">注册地址</label>
+        </dt>
+        <dd class="opt">
+        {$aSfMerchantPayment.companyAddress}
+        </dd>
+      </dl>
+      
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane">商户简称</label>
+        </dt>
+        <dd class="opt">
+        	{$aSfMerchantPayment.shortName}
+        </dd>
+      </dl>
+      
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane">固定座机号</label>
+        </dt>
+        <dd class="opt">
+        	{$aSfMerchantPayment.contactLandline}
+        </dd>
+      </dl>
+      
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane">区域</label>
+        </dt>
+        <dd class="opt">
+        	{$aSfMerchantPayment.area}
+        </dd>
+      </dl>
+      
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane">开户名称</label>
+        </dt>
+        <dd class="opt">
+        	{$aSfMerchantPayment.bankAccountName}
+        </dd>
+      </dl>
+      
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane">开户银行</label>
+        </dt>
+        <dd class="opt">
+        	{$aSfMerchantPayment.bank}
+        </dd>
+      </dl>
+
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane">支行名称</label>
+        </dt>
+        <dd class="opt">
+        	{$aSfMerchantPayment.subBranchName}
+        </dd>
+      </dl>
+
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane">开户账号</label>
+        </dt>
+        <dd class="opt">
+        	{$aSfMerchantPayment.bankNo}
+        </dd>
+      </dl>
+
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane">账户类型</label>
+        </dt>
+        <dd class="opt">
+          	<if condition="$aSfMerchantPayment['bankType'] neq 1">
+          		对私
+          	<else />
+          		对公
+          	</if>
+        </dd>
+      </dl>
+      
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane">费率</label>
+        </dt>
+        <dd class="opt">
+          {$aSfMerchantPayment.rate}
+        </dd>
+      </dl>
+      
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane">商户号</label>
+        </dt>
+        <dd class="opt">
+          {$aSfMerchantPayment.mchNo}
+        </dd>
+      </dl>
+
+
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane">商户二维码</label>
+        </dt>
+        <dd class="opt">
+          <img src="{$aSfMerchantPayment.qrcode}" width="200px">
+          <a href="{$aSfMerchantPayment.qrcode}" target="_bank">下载</a>
+        </dd>
+      </dl>
+      
+      
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane">状态</label>
+        </dt>
+        <dd class="opt">
+          	<if condition="$aSfMerchantPayment['status'] eq -1">
+          		未审核
+          	<elseif condition="$aSfMerchantPayment['status'] eq 0">
+          		正常使用
+          	<elseif condition="$aSfMerchantPayment['status'] eq 1">
+          		禁止使用
+          	<elseif condition="$aSfMerchantPayment['status'] eq 2">
+          		关闭使用
+          	<else />
+          	</if>
+        </dd>
+      </dl>
+      
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane">商户图片</label>
+        </dt>
+        <dd class="opt">
+          	<if condition="$aSfMerchantPayment['businessLicense'] neq ''">
+          		<img src="{$aSfMerchantPayment.businessLicense}" width="100px">
+          	</if>
+          	
+          	<if condition="$aSfMerchantPayment['idCardFront'] neq ''">
+          		<img src="{$aSfMerchantPayment.idCardFront}" width="100px">
+          	</if>
+          	
+          	<if condition="$aSfMerchantPayment['idCardBack'] neq ''">
+          		<img src="{$aSfMerchantPayment.idCardBack}" width="100px">
+          	</if>
+          	
+          	<if condition="$aSfMerchantPayment['shopPic'] neq ''">
+          		<img src="{$aSfMerchantPayment.shopPic}" width="100px">
+          	</if>
+          	
+          	<if condition="$aSfMerchantPayment['bankCardFront'] neq ''">
+          		<img src="{$aSfMerchantPayment.bankCardFront}" width="100px">
+          	</if>
+          	
+          	<if condition="$aSfMerchantPayment['bankCardBack'] neq ''">
+          		<img src="{$aSfMerchantPayment.bankCardBack}" width="100px">
+          	</if>
+          	
+          	<if condition="$aSfMerchantPayment['openingPermit'] neq ''">
+          		<img src="{$aSfMerchantPayment.openingPermit}" width="100px">
+          	</if>
+          	
+        </dd>
+      </dl>
+     
+      
+      
+      
+ 
+     <div class="bot" style="margin-bottom: 40px">
+     <a  class="ncap-btn-big ncap-btn-green" href="/index.php/Admin/Business/fillShufuPayInfo">返回</a>
+     </div>
+    </div>
+</div>
+</body>
+</html>

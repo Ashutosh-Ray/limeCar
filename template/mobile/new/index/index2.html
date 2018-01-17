@@ -1,0 +1,393 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta name="Generator" content="IMSHOP v1.1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>首页-{$shop_name}</title>
+<meta http-equiv="keywords" content="{$imshop_config['shop_info_store_keyword']}" />
+<meta name="description" content="{$imshop_config['shop_info_store_desc']}" />
+<meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/public.css"/>
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/mhp.css"/>
+<link rel="stylesheet" href="__STATIC__/css/idangerous.swiper.css">
+<script type="text/javascript" src="__STATIC__/js/jquery.js"></script>
+<script type="text/javascript" src="__STATIC__/js/TouchSlide.1.1.js"></script>
+<script type="text/javascript" src="__STATIC__/js/jquery.json.js"></script>
+<script type="text/javascript" src="__STATIC__/js/touchslider.dev.js"></script>
+<script type="text/javascript" src="__STATIC__/js/layer.js" ></script>
+<script src="__PUBLIC__/js/global.js"></script>
+<script src="__PUBLIC__/js/mobile_common.js"></script>
+<script src="https://g.alicdn.com/aliww/h5.openim.sdk/1.0.6/scripts/wsdk.js"></script>
+<script src="__STATIC__/js/idangerous.swiper.min.js"></script>
+<!-- <script>
+    document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+</script> -->
+<style>
+.swiper-slide {
+  line-height: 36px;
+  color: #fff;
+  font-size: 36px;
+  text-align: center;
+}
+.swiper-slide img{
+  width: 100%;
+  height: 100%;
+}
+</style>
+</head>
+<body>
+<<<<<<< HEAD
+<div class="hp_swiper">
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide blue-slide">
+        <img src="__STATIC__/images/whp-banner1.jpg" alt="">
+      </div>
+      <div class="swiper-slide red-slide">
+        <img src="__STATIC__/images/whp-banner1.jpg" alt="">
+      </div>
+      <div class="swiper-slide orange-slide">
+        <img src="__STATIC__/images/whp-banner1.jpg" alt="">
+      </div>
+    </div>
+=======
+<div id="scrollimg" class="scrollimg">
+  <div class="bd">
+	 <ul style="">
+	 <volist name="banners" id="v">
+	    	<li><a href="{$v.ad_link}" <if condition="$v['target'] eq 1">target="_blank"</if> ><img src="{$v.ad_code}" title="{$v[title]}"  width="100%" style="{$v[style]}"/></a></li>
+    </volist>                     
+     </ul>
+  </div>
+  <div class="hd">
+	<ul></ul>
+>>>>>>> 01597497578def272db26d2dd769d2c546b53fc5
+  </div>
+  <div class="hp_search">
+    <div class="search_bar">
+      <div class="search_bar_c">
+        <div class="s_input">
+          <div class="s_icon"></div>
+          <div class="s_inp">
+            <form action="">
+              <div class="s_form">
+                <input type="text" placeholder="搜索">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  var mySwiper = new Swiper('.swiper-container',{
+    loop: true,
+  autoplay: 1000,
+  });  
+</script>
+<!-- 推荐商品开始 -->
+<section class="topShelf">  
+  <a href="">
+  <div class="left">
+    <div class="left_w">
+      <div class="left_tit">
+        <h3>凯迪拉克fdasfa范德萨发生发水电费第三方sd</h3>
+        <p>3万起</p>
+      </div>
+      <div class="left_img">
+        <img src="__STATIC__/images/hot-left.jpg" alt="">
+      </div>
+    </div>
+  </div>
+  </a>
+  <div class="right">
+    <a href="">
+    <div class="right1_w">
+      <div class="r1_tit">
+        <h3>199小保养</h3>
+        <p>￥199</p>
+      </div>
+      <div class="r1_img">
+        <img src="__STATIC__/images/hot-right.jpg" alt="">
+      </div>
+    </div>
+    </a>
+    <a href="">
+    <div class="right2_w">
+      <div class="r2_tit">
+        <h3>199小保养</h3>
+        <p>￥199</p>
+      </div>
+      <div class="r2_img">
+        <img src="__STATIC__/images/hot-right2.jpg" alt="">
+      </div>
+    </div>
+    </a>
+  </div>
+  <div style="clear: both;"></div>
+</section>
+<!-- 推荐商品结束 -->
+
+<!-- 新车商城开始 -->
+<section class="whp_newCar whp">
+  <div class="newCar_blank blank">
+    <div class="blank_w">
+      <div class="blank_con">
+        <h3>热销新车</h3>
+        <a href="#">更多<em></em></a>
+      </div>
+    </div>
+  </div>
+  <div class="newCar_list hp_list">
+    <div class="list_w">
+      <ul>
+        <li>
+          <a href="">
+          <div class="newCarBox carBox">
+            <div class="img">
+              <img src="__STATIC__/images/newCar.jpg" alt="">
+            </div>
+            <div class="detail">
+              <div class="det_w">
+                <h3>凯迪拉克atsl28 2.0T da范德萨发撒范德萨发大法十大fsd</h3>
+                <div class="price">最低首付&nbsp;3万</div>
+                <div class="monthPay">月供7777</div>
+              </div>
+            </div>
+          </div>
+          </a>
+        </li>
+        <li>
+          <a href="">
+          <div class="newCarBox carBox">
+            <div class="img">
+              <img src="__STATIC__/images/newCar.jpg" alt="">
+            </div>
+            <div class="detail">
+              <div class="det_w">
+                <h3>凯迪拉克atsl</h3>
+                <div class="price">最低首付&nbsp;3万</div>
+                <div class="monthPay">月供7777</div>
+              </div>
+            </div>
+          </div>
+          </a>
+        </li>
+        <li>
+          <a href="">
+          <div class="newCarBox carBox">
+            <div class="img">
+              <img src="__STATIC__/images/newCar.jpg" alt="">
+            </div>
+            <div class="detail">
+              <div class="det_w">
+                <h3>凯迪拉克atsl</h3>
+                <div class="price">最低首付&nbsp;3万</div>
+                <div class="monthPay">月供7777</div>
+              </div>
+            </div>
+          </div>
+          </a>
+        </li>
+        <li>
+          <a href="">
+          <div class="newCarBox carBox">
+            <div class="img">
+              <img src="__STATIC__/images/newCar.jpg" alt="">
+            </div>
+            <div class="detail">
+              <div class="det_w">
+                <h3>凯迪拉克atsl</h3>
+                <div class="price">最低首付&nbsp;3万</div>
+                <div class="monthPay">月供7777</div>
+              </div>
+            </div>
+          </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div style="clear: both;"></div>
+</section>
+<!-- 新车商城结束 -->
+
+<!-- 二手车商城开始 -->
+<section class="whp_secCar whp">
+  <div class="secCar_blank blank">
+    <div class="blank_w">
+      <div class="blank_con">
+        <h3>热销二手车</h3>
+        <a href="#">更多<em></em></a>
+      </div>
+    </div>
+  </div>
+  <div class="secCar_list hp_list">
+    <div class="list_w">
+      <ul>
+        <li>
+          <a href="">
+          <div class="secCarBox carBox">
+            <div class="img">
+              <img src="__STATIC__/images/newCar.jpg" alt="">
+            </div>
+            <div class="detail">
+              <div class="det_w">
+                <h3>凯迪拉克atsl28 2.0T da范德萨发撒范德萨发大法十大fsd</h3>
+                <div class="price">三品车价&nbsp;33.33万</div>
+                <div class="monthPay">最低首付7777元</div>
+              </div>
+            </div>
+          </div>
+          </a>
+        </li>
+        <li>
+          <a href="">
+          <div class="secCarBox carBox">
+            <div class="img">
+              <img src="__STATIC__/images/newCar.jpg" alt="">
+            </div>
+            <div class="detail">
+              <div class="det_w">
+                <h3>凯迪拉克atsl28 2.0T da范德萨发撒范德萨发大法十大fsd</h3>
+                <div class="price">三品车价&nbsp;33.33万</div>
+                <div class="monthPay">最低首付7777元</div>
+              </div>
+            </div>
+          </div>
+          </a>
+        </li>
+        <li>
+          <a href="">
+          <div class="secCarBox carBox">
+            <div class="img">
+              <img src="__STATIC__/images/newCar.jpg" alt="">
+            </div>
+            <div class="detail">
+              <div class="det_w">
+                <h3>凯迪拉克atsl28 2.0T da范德萨发撒范德萨发大法十大fsd</h3>
+                <div class="price">三品车价&nbsp;33.33万</div>
+                <div class="monthPay">最低首付7777元</div>
+              </div>
+            </div>
+          </div>
+          </a>
+        </li>
+        <li>
+          <a href="">
+          <div class="secCarBox carBox">
+            <div class="img">
+              <img src="__STATIC__/images/newCar.jpg" alt="">
+            </div>
+            <div class="detail">
+              <div class="det_w">
+                <h3>凯迪拉克atsl28 2.0T da范德萨发撒范德萨发大法十大fsd</h3>
+                <div class="price">三品车价&nbsp;33.33万</div>
+                <div class="monthPay">最低首付7777元</div>
+              </div>
+            </div>
+          </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div style="clear: both;"></div>
+</section>
+<!-- 二手车商城结束 -->
+
+<!-- 汽车养护开始 -->
+<section class="whp_curingCar whp">
+  <div class="curingCar_blank blank">
+    <div class="blank_w">
+      <div class="blank_con">
+        <h3>汽车养护</h3>
+        <a href="#">更多<em></em></a>
+      </div>
+    </div>
+  </div>
+  <div class="curingCar_list hp_list">
+    <div class="list_w">
+      <ul>
+        <li>
+          <a href="">
+          <div class="curingCarBox carBox">
+            <div class="img">
+              <img src="__STATIC__/images/newCar.jpg" alt="">
+            </div>
+            <div class="detail">
+              <div class="det_w">
+                <h3>凯迪拉克atsl28 2.0T da范德萨发撒范德萨发大法十大fsd</h3>
+                <div class="price">三品车价&nbsp;33.33万</div>
+              </div>
+            </div>
+          </div>
+          </a>
+        </li>
+        <li>
+          <a href="">
+          <div class="curingCarBox carBox">
+            <div class="img">
+              <img src="__STATIC__/images/newCar.jpg" alt="">
+            </div>
+            <div class="detail">
+              <div class="det_w">
+                <h3>凯迪拉克atsl28 2.0T da范德萨发撒范德萨发大法十大fsd</h3>
+                <div class="price">三品车价&nbsp;33.33万</div>
+              </div>
+            </div>
+          </div>
+          </a>
+        </li>
+        <li>
+          <a href="">
+          <div class="curingCarBox carBox">
+            <div class="img">
+              <img src="__STATIC__/images/newCar.jpg" alt="">
+            </div>
+            <div class="detail">
+              <div class="det_w">
+                <h3>凯迪拉克atsl28 2.0T da范德萨发撒范德萨发大法十大fsd</h3>
+                <div class="price">三品车价&nbsp;33.33万</div>
+              </div>
+            </div>
+          </div>
+          </a>
+        </li>
+        <li>
+          <a href="">
+          <div class="curingCarBox carBox">
+            <div class="img">
+              <img src="__STATIC__/images/newCar.jpg" alt="">
+            </div>
+            <div class="detail">
+              <div class="det_w">
+                <h3>凯迪拉克atsl28 2.0T da范德萨发撒范德萨发大法十大fsd</h3>
+                <div class="price">三品车价&nbsp;33.33万</div>
+              </div>
+            </div>
+          </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+<!-- 汽车养护结束 -->
+
+   
+
+<include file="public/footer"/>
+<script>
+function goTop(){
+	$('html,body').animate({'scrollTop':0},600);
+}
+</script>
+<include file="public/footer_nav"/>
+
+<script src="__PUBLIC__/js/jqueryUrlGet.js"></script><!--获取get参数插件-->
+<script> set_first_leader(); //设置推荐人 </script>
+</body>
+</html>

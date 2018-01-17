@@ -1,0 +1,103 @@
+<include file="public/header"/>
+<body>
+<header>
+<div class="tab_nav">
+   <div class="header">
+     <div class="h-left"><a class="sb-back" href="javascript:history.back(-1)" title="返回"></a></div>
+     <div class="h-mid">我的分享</div>
+     <div class="h-right">
+       <aside class="top_bar">
+         <div onClick="show_menu();$('#close_btn').addClass('hid');" id="show_more"><a href="javascript:;"></a> </div>
+       </aside>
+     </div>
+   </div>
+ </div>
+</header>
+<include file="public/menu"/>
+
+<div id="tbh5v0">
+<!--------筛选 form 表单 开始-------------->
+<form action="{:U('Mobile/order_list/ajax_order_list')}" name="filter_form" id="filter_form">  
+      <div class="Evaluation2">
+            <ul>
+              <li style="width: 33%"><a href="{:U('/Mobile/Distribut/index',array('type'=>'all'))}" class="tab_head <if condition="$type eq 'all'">on</if><if condition="$type eq ''">on</if>"  >全部</a></li>
+              <li style="width: 33%"><a href="{:U('/Mobile/Distribut/index',array('type'=>'never'))}"      class="tab_head <if condition="$type eq 'never'">on</if>">待兑换</a></li>
+              <li style="width: 33%"><a href="{:U('/Mobile/Distribut/index',array('type'=>'already'))}"     class="tab_head <if condition="$type eq 'already'">on</if>">已兑换</a></li>
+      </div>     
+      
+	<div class="order ">
+	   <!-- <volist name="lists" id="list"> -->
+       <div class="order_list ajax_return">
+         	
+	          <volist name="lists" id="good">
+              <a href="javascript:void(0)">
+		          <dl style="position: relative">  
+		          <dt><img src="{$good.goods_id|goods_thum_images=200,200}" onclick="window.location.href='{:U('Mobile/Distribut/show_exchange',array('id'=>$good.id))}'"></dt>
+		          <dd class="name"><strong>{$good.goods_name}</strong></dd>
+              <dd class="name"><strong>应购买{$good.share_num}件</strong></dd>
+              <dd class="name" onclick="window.location.href='{:U('Mobile/Distribut/buy_info',array('id'=>$good.id))}'"><strong>已购买{$good.buy_num}件</strong></dd>
+              <!-- <dd class="price"><strong>已购买{$good.buy_num}件</strong></dd> -->
+              <dd class="price" onclick="return false;">
+              <if condition="($good.buy_num egt $good.share_num) AND ($good.exchange_statue eq 0)"> <span onclick="window.location.href='{:U('Mobile/Distribut/exchange_goods',array('id'=>$good.id))}'">去兑换</span></if>
+              <if condition="$good.exchange_statue eq 1">已兑换</if>
+              <if condition="$good.buy_num lt $good.share_num">还不能兑换</if>
+              </dd>
+              <dd onclick="window.location.href='{:U('Mobile/Distribut/see_info',array('id'=>$good.id))}'">{$good.view_num}人查看</dd>
+              <dd>{$good.add_time|date="Y-m-d",###}</dd>
+              </a>  
+             </dl>  
+          	
+        <!--   <div class="anniu" style="width:95%">
+             <span onClick="cancel_order({$list.order_id})">取消订单</span>
+               <a href="{:U('Mobile/Cart/cart4',array('order_id'=>$list['order_id']))}">立即付款</a>
+          </div> -->
+      
+      </volist>
+       </div>
+    </div>
+  <!--查询条件-->
+  <input type="hidden" name="type" value="{$type}" />
+</form>   
+<notempty name="lists"> 
+   <div id="getmore" style="font-size:.24rem;text-align: center;color:#888;padding:.25rem .24rem .4rem; clear:both">
+  		<a href="javascript:void(0)" onClick="ajax_sourch_submit()">点击加载更多</a>
+  </div>         
+</notempty>    
+</div>
+<include file="public/footer_nav"/>
+
+<script language="javascript">
+var  page = 1;
+ 
+ /*** ajax 提交表单 查询订单列表结果*/  
+ function ajax_sourch_submit()
+ {	 	
+ 		page += 1; 	 
+		$.ajax({
+			type : "GET",
+			url:"/index.php?m=Mobile&c=Distribut&a=index&type={$type}&is_ajax=1&p="+page,//+tab,
+//			url:"{:U('Mobile/User/order_list',array('type'=>$_GET['type']),'')}/is_ajax/1/p/"+page,//+tab,			
+			//data : $('#filter_form').serialize(),
+			success: function(data)
+			{
+				if(data == '')
+					$('#getmore').hide();
+				else  
+				{
+					$(".ajax_return").append(data);			
+					$(".m_loading").hide();
+				}
+			}
+		}); 
+ }
+
+//取消订单
+// function cancel_order(id){
+// 	if(!confirm("确定取消订单?"))
+// 		return false;
+// 	location.href = "/index.php?m=Mobile&c=User&a=cancel_order&id="+id;
+// }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<volist name="list" id="vo">
+	<tr>
+	<td>
+		{$vo['change_time']|date="Y-m-d",###}
+	</td>
+	<td><if condition="$vo['type'] eq 1">+<else/>-</if>{$vo['number']}元</td>
+	<td>{$vo.desc}</td>
+	</tr>
+</volist>

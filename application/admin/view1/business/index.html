@@ -1,0 +1,139 @@
+<include file="public/layout" />
+<body style="background-color: rgb(255, 255, 255); overflow: auto; cursor: default; -moz-user-select: inherit;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title">
+      <div class="subject">
+        <h3>商户管理</h3>
+        <h5>商城所有商户索引及管理</h5>
+      </div>
+    </div>
+  </div>
+  <!-- 操作说明 -->
+  <div id="explanation" class="explanation" style="color: rgb(44, 188, 163); background-color: rgb(237, 251, 248); width: 99%; height: 100%;">
+    <div id="checkZoom" class="title"><i class="fa fa-lightbulb-o"></i>
+      <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+      <span title="收起提示" id="explanationZoom" style="display: block;"></span>
+    </div>
+    <ul>
+      <li>商户管理注意发布商户后清理缓存.</li>
+      <li>商户缩列图也有缓存.</li>
+    </ul>
+  </div>
+  <div class="flexigrid">
+    <div class="mDiv">
+      <div class="ftitle">
+        <h3>商户列表</h3>
+        <h5></h5>
+      </div>
+  <form action="/index.php/Admin/Business/index" id="search-form2" class="navbar-form form-inline" method="get" >
+      <div class="sDiv">
+        <div class="sDiv2">           
+          <select name="check_status" id="cat_id" class="select">
+            <option value="">所有状态</option>
+            <option value='1'>审核通过</option>
+            <option value='0'>未审核</option>
+            <option value='-1'>审核不通过</option>
+          </select>
+          <input type="text" size="30" name="key_word" class="qsbox" placeholder="搜索词...">
+          <input type="submit" class="btn" value="搜索">
+        </div>
+      </div>
+     </form>
+    </div>
+    
+    <div class="tDiv">
+      <div class="tDiv2">
+        <div class="fbutton">       
+          <a href="{:U('Admin/Business/addEditBusiness')}">
+          <div class="add" title="添加商户">
+            <span><i class="fa fa-plus"></i>添加商户</span>
+          </div>
+          </a>          
+          </div> 
+      </div>
+      <div style="clear:both"></div>
+    </div>
+    <div class="bDiv" style="height: auto;">
+     <!--ajax 返回 --> 
+      <div id="ajax_return" cellpadding="0" cellspacing="0" border="0">
+      <table>
+      
+          <thead>
+            <tr style="height: 40px;font: bold;background-color: #F5F5F5">
+
+              <th align="left" abbr="article_title" axis="col6" class="">
+                <div style="text-align: center;" class="">操作</div>
+              </th>              
+              <th align="left" abbr="article_title" axis="col6" class="">
+                <div style="text-align: center;" class="" >id</div>
+              </th>
+              <th align="left" abbr="ac_id" axis="col4" class="">
+                <div style="text-align: center;" class="" >商户名称</div>
+              </th>
+              <th align="center" abbr="article_show" axis="col6" class="">
+                <div style="text-align: center;" class="" >管理员名称</div>
+              </th>
+              <th align="center" abbr="article_time" axis="col6" class="">
+                <div style="text-align: center;" class="" >地址</div>
+              </th>
+              <th align="center" abbr="article_time" axis="col6" class="">
+                <div style="text-align: center;" class="" >审核状态</div>
+              </th>
+			  <th>线现支付入驻</th>
+            </tr>
+          </thead>
+      
+      
+       <tbody>
+       <volist name="list" id="l">
+           <tr>
+           <td align="left" abbr="article_title" axis="col6" class="" style="text-align: left; " >
+                <div style="text-align: center; class="">
+                <a href="/index.php/Admin/Business/addEditBusiness/id/{$l.admin_id}">编辑</a>|<a href="/index.php/Admin/Business/del_shop_admin/id/{$l.admin_id}">删除</a>|<a href="/index.php/Admin/Business/businessCheckList/id/{$l.admin_id}">查看验劵</a>|<a href="/index.php/Admin/Business/checkBusiness/id/{$l.admin_id}">审核</a>
+                </div>
+              </td>              
+              <td align="left" abbr="article_title" axis="col6" class="" style="text-align: left; ">
+                <div style="text-align: center;" class="" >{$l.admin_id}</div>
+              </td>
+              <td align="left" abbr="ac_id" axis="col4" class="" style="text-align: left;">
+                <div style="text-align: center; " class="" >{$l.shop_name}</div>
+              </td>
+              <td align="center" abbr="article_show" axis="col6" class=""  >
+                <div style="text-align: center; " class="" >{$l.user_name}</div>
+              </td>
+              <td align="center" abbr="article_time" axis="col6" class="" >
+                <div style="text-align: center; " class="" >{$l.shop_address}</div>
+              </td>
+               <td align="center" abbr="article_time" axis="col6" class="" >
+                <div style="text-align: center; " class="" >
+                <a href="/index.php/Admin/Business/checkBusiness/id/{$l.admin_id}">
+                <if condition="$l.check_status eq 1">审核通过</if>
+                <if condition="$l.check_status eq -1">审核未通过</if>
+                <if condition="$l.check_status eq 0">未审核</if>
+                </a>
+                
+                </div>
+              </td>
+              <td ><div style="text-align: center; " class="" >
+              <if condition="$l.offline_payment_status eq 1">
+              	<a href="/Admin/Business/ViewShufuPayInfo?adminId={$l.admin_id}">查看</a>
+              <else/>
+              	<a href="/Admin/Business/FillShufuPayInfo?adminId={$l.admin_id}">填写资料</a>
+              </if>
+              </div></td>
+            </tr>
+            </volist>
+          </tbody>
+        </table>
+        <div class="dataTables_paginate paging_simple_numbers">{$page}</div>
+      </div>      
+    </div>
+
+     </div>
+</div>
+
+</body>
+</html>

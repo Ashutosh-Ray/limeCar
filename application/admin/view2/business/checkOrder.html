@@ -1,0 +1,215 @@
+<include file="public/layout" />
+<body style="overflow: auto;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title">
+      <!-- <a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a> -->
+      <div class="subject">
+        <h3>商户 - 验劵</h3>
+      </div>
+    </div>
+  </div>
+<!--   <div class="explanation" id="explanation">
+    <div class="title" id="checkZoom"><i class="fa fa-lightbulb-o"></i>
+      <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+      <span id="explanationZoom" title="收起提示"></span>
+    </div>
+    <ul>
+      <li>请正确填写劵码</li>
+    </ul>
+  </div> -->
+  <form action="{:U('Business/do_check_order2')}" method="post" class="form-horizontal" id="business_form">
+    <div class="ncap-form-default">
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>劵码</label>
+           <div class="bot"><a id="submitBtn" class="ncap-btn-big ncap-btn-green" href="JavaScript:void(0);">确认提交</a></div>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="劵码" class="input-txt" name="order_sn" >
+          <span class="err" id="err_name" style="color:#F00; display:none;"></span>
+          <p class="notic"></p>
+        </dd>
+       
+      </dl>
+     <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><a  class="ncap-btn-big ncap-btn-green" href="http://e.meituan.com/meishi/epassport/login">美团验劵</a></label>
+        </dt>
+        <dd class="opt">
+<!--           <p class="notic">帐号：{$data.meituan}&nbsp;&nbsp; 密码：{$data.meituanpsw}</p> -->
+        </dd>
+
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><a  class="ncap-btn-big ncap-btn-green" href="https://mct.y.nuomi.com/login">糯米验劵</a></label>
+        </dt>
+        <dd class="opt">
+<!--           <p class="notic">帐号：{$data.baidu}&nbsp;&nbsp; 密码：{$data.baidupsw}</p> -->
+        </dd>
+
+      </dl>
+    </div>
+    <input type="hidden" name="id" value="{$data.admin_id}">
+  </form>
+
+
+</div>
+<style>
+  #check{
+    display: none;
+    margin:25px;
+  }
+  #check tbody tr{
+    height: 30px;
+  }
+  #check tbody tr td:nth-child(1){
+    text-align: center;
+    width: 100px;
+  }
+  #check tbody tr td:nth-child(2){
+    width: auto;
+    text-align: left;
+  }
+  #range{
+    display: none;
+    margin: 25px;
+  }
+  #range tbody tr{
+    height: 30px;
+  }
+  #range tbody tr td:nth-child(1){
+    text-align: center;
+    width: 120px;
+  }
+  #range tbody tr td:nth-child(2){
+    width: auto;
+    text-align: left;
+  }
+</style>
+<table id="check">
+  <tbody>
+    <tr>
+      <td>平台：</td>
+      <td>三品车</td>
+    </tr>
+    <tr>
+      <td>服务名称：</td>
+      <td id="goods_name">机器洗车</td>
+    </tr>
+    <tr>
+      <td>服务时间：</td>
+      <td class="range_time">不限</td>
+    </tr>
+    <tr>
+      <td>服务商家：</td>
+      <td class="shops">不限</td>
+    </tr>
+  </tbody>
+</table>
+<table id="range">
+  <tbody>
+    <tr>
+      <td>验券码使用时间：</td>
+      <td class="range_time">2017年12月1日至2018年1月1日</td>
+    </tr>
+    <tr>
+      <td>验券码使用商家范围：</td>
+      <td class="shops"></td>
+    </tr>
+  </tbody>
+</table>
+<script>  
+    
+/** 以下是编辑时默认选中某个商品分类*/
+$(document).ready(function(){
+	$('#submitBtn').click(function () {
+  var form  = $('#business_form');
+  var _url = form.attr('action');
+  $.ajax({
+    url:_url,
+    type:'POST',
+    data:form.serialize(),
+    dataType:'json',
+    success:function (res) {
+     if (res.status==0) {
+       layer.open({
+       content:res.msg
+       })
+     }else if(res.status==-1){
+          $('.range_time').text(res.range_time);
+          $('.shops').text(res.shop_names);
+           layer.open({
+           title:['该验券码使用范围不正确'],
+           type: 1,
+           content:$('#range'),
+           btn:["确定"],
+           yes:function(index){
+            layer.close(index);
+
+             // window.location.reload(); 
+           }
+         })
+
+     }else{
+      $('.range_time').text(res.range_time);
+      $('.shops').text(res.shop_names);
+      $('#goods_name').text(res.goods_name);
+        //商家确认信息
+         layer.open({
+           title:['请商家确认以下信息'],
+           type: 1,
+           content:$('#check'),
+           btn:["确定","取消"],
+           yes:function(index){
+             var form  = $('#business_form');
+             $.ajax({
+              url:"{:U('/Admin/Business/real_check_order2')}",
+              type:'POST',
+              data:form.serialize(),
+              dataType:'json',
+              success:function (res) {
+                layer.open({
+                content:res.msg
+                })
+              }
+             })
+             layer.close(index);
+             window.location.reload(); 
+           }
+         })
+     }
+    }
+  });
+  });
+});
+//商家确认信息
+// layer.open({
+//   title:['请商家确认以下信息'],
+//   type: 1,
+//   content:$('#check'),
+//   btn:["确定","取消"],
+//   yes:function(index){
+//     console.log("确定的回调");
+//     layer.close(index);
+//     window.location.reload(); 
+//   }
+// })
+//使用范围不正确
+// layer.open({
+//   title:['该验券码使用范围不正确'],
+//   type: 1,
+//   content:$('#range'),
+//   btn:["确定"],
+//   yes:function(index){
+//     console.log("确定的回调");
+//     window.location.reload(); 
+//   }
+// })
+</script>
+
+</body>
+</html>

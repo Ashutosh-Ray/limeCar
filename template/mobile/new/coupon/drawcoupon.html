@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" class="mask">
+<head>
+<meta name="Generator" content="IMSHOP v1.1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>{$shop_name}</title>
+<meta http-equiv="keywords" content="{$imshop_config['shop_info_store_keyword']}" />
+<meta name="description" content="{$imshop_config['shop_info_store_desc']}" />
+<meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
+<link rel="stylesheet" href="__STATIC__/css/drawcoupon.css">
+<script type="text/javascript" src="__STATIC__/js/jquery.js"></script>
+<script type="text/javascript" src="__STATIC__/js/layer.js" ></script>
+<script>
+	(function (doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                if(clientWidth>=640){
+                    docEl.style.fontSize = '100px';
+                }else{
+                    docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+                }
+            };
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+</script>
+</head>
+<body class="mask">
+	<div class="drawcoupon">
+		<img src="__STATIC__/images/drawcoupon.jpg" alt="" class="bg">
+		<div class="dc_get">
+			<span id="tip"></span>
+		</div>
+		<img src="__STATIC__/images/gongzhonghao.jpg" alt="" class="erwei">
+		<dic class="dc_tit">
+			<img src="__STATIC__/images/x.png" alt="" class="xman">
+			<p>使用须知</p>
+		</dic>
+		<div class="dc_tips">
+			<div class="tips_c">
+				<p>1.领取优惠券后请在青柠养车公众号“个人中心查收。<br>2.单个手机号只允许领取一次。<br>3.优惠券仅供在青柠养车平台下使用，不能进行出售、转让或其他用途。<br>4.本规则有青柠养车依据国家相关法律及规章予以解释。</p>
+			</div>
+		</div>
+		<div class="dc_open">
+			<img src="__STATIC__/images/lemo.png" alt="">
+			<div class="open_c">
+				<form id="drawcoupon">
+					<input type="hidden" name="coupon" value="{$coupon}">
+				<ul>
+					<li>领取优惠券</li>
+					<li><input type="text" placeholder="请输入手机号" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')" class="phone" name="phone"></li>
+					<li><input type="text" placeholder="请输入验证码" class="code" name="code"><a href="javascript:void(0);" class="codeSend" onclick="sendCode()" >获取验证码</a></li>
+					<li><a href="javascript:void(0);" onclick="check()">立即领取</a></li>
+					<li class="tip"></li>
+				</ul>
+			</form>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	var code=$(".code").val().replace(/(^\s*)|(\s*$)/g, "");
+	var phone,name
+	function check(){
+		//内容为空验证
+		  
+		$(".tip").html("")
+		if ($(".phone").val()=="") {
+			$(".tip").html("请输入手机号")
+		}else if ($(".code").val()=="") {
+			$(".tip").html("请输入验证码")
+		}else{
+			$.ajax({
+				type:"POST",
+				dataType:"JSON",
+				url:"/index.php?m=Mobile&c=Coupon&a=do_draw",
+				data:$('#drawcoupon').serialize(),
+				success:function(data){
+					if (data.status==0) {
+						$(".tip").html(data.msg)
+						$("#tip").html('领取成功')
+						$('html,body').attr('overflow','auto')
+						$('html,body').attr('height','auto')
+					}else{
+						$("#tip").html(data.msg)
+						$('.dc_open').hide()
+						$("html,body").removeClass('mask')
+					}
+				}
+		})
+		}	
+	}
+	function sendCode(){
+		var reg=/^1[3|4|5|7|8][0-9]{9}$/; 
+		phone=$(".phone").val().replace(/(^\s*)|(\s*$)/g, "");
+		if (reg.test(phone)==true) {
+		//发送验证码
+			$.ajax({
+				type:"POST",
+				dataType:"JSON",
+				url:"/index.php?m=Home&c=Api&a=sendCode",
+				data:{phone:phone,model_id:46986},
+				success:function(data){
+					layer.open({
+						content:data.msg,
+						type:0,
+						time:1000
+					})
+				}
+		})
+		}else{
+			$(".tip").html("请输入正确的手机号")
+		}
+	}
+</script>
+</html>

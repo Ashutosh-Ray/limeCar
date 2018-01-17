@@ -1,0 +1,630 @@
+// 中间内容开始
+.gi_content{
+	.gi_bg{
+		width: 100%;
+		height: 695px;
+		background-color: #E4E4E4;
+		border-top: 50px solid #E4E4E4;
+		.gi_banner{
+			width: 1200px;
+			margin: 0 auto;
+			background-color: #fff;
+			padding: 46px 50px;
+			margin-bottom: 50px;
+			.gi_base_info{
+				.img{
+					position: relative;
+					width: 560px;
+					height: 550px;
+					float: left;
+					img{
+						width: 100%;
+						height: 100%;
+					}
+					.moreImg{
+						height: 32px;
+						width: 124px;
+						background: #a3a3a3 url(../images/folder.png) no-repeat 12px 7px;
+						border: 1px solid #E0E0E0;
+						position: absolute;
+						bottom: 20px;
+						left: 0;
+						cursor: pointer;
+						text-align: center;
+						line-height: 32px;
+						color: #fff;
+						text-indent: 20px;
+					}
+				}
+				>.info{
+					height: 550px;
+					width: 560px;
+					// background-color: pink;
+					float: right;
+					>.info_tit{
+						height: 125px;
+						border-bottom: 1px solid #DBDBDB;
+						h2{
+							font-size: 22px;
+							font-weight: 700;
+						}
+						p{
+							width: 100%;
+							font-size: 16px;
+							color: #696969;
+							display:-webkit-box;
+  							-webkit-line-clamp:3;
+  							-webkit-box-orient:vertical;
+  							overflow:hidden;
+  							line-height: 22px;
+  							margin-top: 10px;
+  							height: 65px;
+						}
+					}
+					>.info_plan1{
+						height: 125px;
+						padding: 10px 0;
+						border-bottom: 1px solid #DBDBDB;
+						h3{
+							font-size: 18px;
+							display: inline-block;
+							margin-top: 5px;
+						}
+						>.info_plan1_right{
+							float: right;
+							height: 100%;
+							width: 250px;
+							margin-top: 5px;
+							ul{
+								width: 100%;
+								li{
+									width: 100%;
+									float: left;
+									margin-top: 5px;
+									height: 28px;
+									span{
+										float: left;
+										font-size: 14px;
+										color: red;
+									}
+									span:nth-child(1){
+										width: 75%;
+										text-align: right;
+									}
+									span:nth-child(2){
+										width: 25%;
+										text-align: right;
+									}
+									div{
+										border: 1px solid red;
+										float: right;
+										padding: 2px 5px; 
+										background-color: #FFEEE8;
+										color: red;
+										font-size: 12px;
+									}
+								}
+							}
+						}
+					}
+					>.info_plan2{
+						height: 160px;
+						padding: 10px 0;
+						border-bottom: 1px solid #DBDBDB;
+						overflow: hidden;
+						h3{
+							font-size: 18px;
+							margin-top: 5px;
+						}
+						.info_plan2_left{
+							margin-top: 20px;
+
+							p{
+								font-size: 16px;
+								margin-top: 10px;
+								span{
+									color: red;
+								}
+							}
+						}
+					}
+					>.info_tip{
+						>p{
+							margin-top: 12px;
+							color: #155DFF;
+							font-size: 14px;
+						}
+					}
+					>.info_btn{
+						>.btn{
+							display: block;
+							width: 100%;
+							height: 48px;
+							background-color: #FF8F00;
+							color: #fff;
+							cursor: pointer;
+							text-align: center;
+							line-height: 48px;
+							font-size: 20px;
+							font-weight: 700;
+							margin-top: 13px;
+							text-decoration: none;
+						}
+					}
+				}
+			}
+		}
+	}
+	.gi_details{
+		width: 1200px;
+		margin: 0 auto;
+		background-color: #fff;
+		padding: 50px 0;
+		.details_con{
+			text-align: center;
+			.imgBox{
+				margin: 0 auto;
+				text-align: center;
+				img{
+					max-width: 1200px;
+				}
+			}
+			p{
+				margin-top: 5px;
+				font-size: 16px;
+				line-height: 32px;
+				img{
+					max-width: 100%;
+				}
+			}
+		}
+	}
+}
+// 中间内容结束
+// 查看图片开始
+    .swiper-container {
+        width: 750px;
+        height: 650px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .swiper-slide {
+        background-size: cover;
+        background-position: center;
+    }
+    .gallery-top {
+        height: 550px;
+        width: 750px;
+        margin-top: 140px;
+    }
+    .gallery-thumbs {
+        height: 120px;
+        box-sizing: border-box;
+        padding: 10px 0;
+    }
+    .gallery-thumbs .swiper-slide {
+        width: 150px;
+        height: 100%;
+        opacity: 0.4;
+    }
+    .gallery-thumbs .swiper-slide-active {
+        opacity: 1;
+    }
+
+    .gi_swiper{
+    	position: fixed;
+		top: 0;
+    	right: 0;
+    	bottom: 0;
+    	left: 0;
+    	z-index: 2;
+    	background-color: rgba(0,0,0,0.8);
+    	.swiper_close{
+    		position: absolute;
+			top: 20px;
+			right: 20px;
+			width: 55px;
+			height: 55px;
+			// background-color: rgba(0,0,0,0.5);
+			z-index: 5;
+			font-size: 80px;
+			text-align: center;
+			line-height: 45px;
+			color: #fff;
+			font-family: "新宋";
+			cursor: pointer;
+    	}
+    }
+    .swiper-button-white{
+    	background-color: rgba(0,0,0,0.6)
+    }
+
+// 查看图片结束
+//二手车部分开始
+.gi_usedInfo{
+	.info_usedCarPlan{
+		height: 228px;
+		border-bottom: 1px solid #DBDBDB;
+		.planCon{
+			margin-top: 100px;
+			p{
+				color: red;
+				font-size: 20px;
+				margin-top: 5px;
+			}
+			p:nth-child(4){
+				color: #000;
+				font-size: 14px;
+				margin-top: 15px;
+			}
+		}
+	}
+	.parameter{
+		width: 100%;
+		border-bottom: 1px solid #DBDBDB;
+		border-top: 1px solid #DBDBDB;
+		padding-top: 45px;
+		>h3{
+			font-size: 24px;
+		}
+		>ul{
+			padding-top: 15px;
+			>li{
+				float: left;
+				width: calc(1200px/3);
+				>div{
+					width: 80%;
+					margin: 0 auto;
+					height: 55px;
+					line-height: 55px;
+					border-bottom: 1px solid #DBDBDB;
+					font-size: 16px;
+					>span:nth-child(1){
+						float: left;
+						color: #5E5E5E;
+					}
+					>span:nth-child(2){
+						float: right;
+					}
+				}
+			}
+		}
+	}
+}
+//二手车部分结束
+// 汽车养护部分开始
+.gi_CuringInfo{
+	width: 100%;
+	.curing_bg{
+		width: 100%;
+		margin-top: 60px;
+		.curing_banner{
+			width: 100%;
+			.curing_base_info{
+				width: 1200px;
+				margin: 0 auto;
+				.curing_img{
+					width: 100%;
+					img{
+						width: 100%;
+					}
+				}
+				.curing_info{
+					width: 100%;
+					margin: 30px 0 40px;
+					height: 120px;
+					.curing_info_left{
+						float: left;
+						width: 50%;
+						height: 100%;
+						position: relative;
+						.curing_tit{
+							margin-bottom: 10px;
+							h3{
+								font-size: 24px;
+								margin-bottom: 10px;
+							}
+							p{
+								font-size: 14px;
+								color: #696969;
+							}
+						}
+						.curing_price{
+							font-size: 24px;
+							color: red;
+						}
+						.curing_shop{
+							position: absolute;
+							left: 280px;
+							bottom: 14px;
+							a{
+								color: #5EA6FF;
+								cursor: pointer;
+								text-decoration: none;
+							}
+						}
+					}
+					.curing_info_right{
+						float: right;
+						width: 50%;
+						height: 100%;
+						position: relative;
+						.curing_calc{
+							position: absolute;
+							right: 0;
+							bottom: 75px;
+							span{
+								font-size: 14px;
+    							float: left;
+    							margin-top: 4px;
+							}
+							.add,.sub{
+								float: left;
+								width: 28px;
+    							height: 28px;
+    							border: 1px solid #DBDBDB;
+    							text-align: center;
+    							line-height: 24px;
+    							text-decoration: none;
+							}
+							.add{
+    							font-size: 24px;
+    							margin-left: 10px;
+							}
+							.sub{
+    							font-size: 32px;
+							}
+							.num{
+								float: left;
+								width: 50px;
+								height: 28px;
+    							border: 1px solid #DBDBDB;
+    							text-align: center;
+    							line-height: 28px;
+    							font-size: 18px;
+    							margin-left: 10px;
+    							// font-family: å¾®è½¯é›…é»‘;
+							}
+						}
+						.curing_btn{
+							position: absolute;
+							right: 0;
+							bottom: 12px;
+							a{
+								display: block;
+								height: 48px;
+								width: 287px;
+								background-color: #FF8F00;
+								text-align: center;
+								line-height: 48px;
+								color: #fff;
+								text-decoration: none;
+								font-size: 24px;
+								cursor: pointer;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	.curing_blank{
+		height: 60px;
+		background-color: #e4e4e4;
+	}
+	.info_curingPlan{
+		height: 228px;
+		border-bottom: 1px solid #DBDBDB;
+		.planCon{
+			margin-top: 100px;
+			p{
+				color: red;
+				font-size: 20px;
+				margin-top: 5px;
+			}
+			.curingShop{
+				width: 100%;
+				margin-top: 15px;
+				.buyNum{
+					float: left;
+					span{
+						font-size: 14px;
+						float: left;
+						margin-top: 4px;
+					}
+					a{
+						text-decoration: none;
+					}
+					.sub{
+						float: left;
+						width: 28px;
+						height: 28px;
+						border: 1px solid #DBDBDB;
+						text-align: center;
+						line-height: 24px;
+						font-size: 32px;
+					}
+					.num{
+						float: left;
+						width: 50px;
+						height: 28px;
+						border: 1px solid #DBDBDB;
+						text-align: center;
+						line-height: 28px;
+						font-size: 18px;
+						margin-left: 10px;
+						font-family: 微软雅黑;
+					}
+					.add{
+						float: left;
+						width: 28px;
+						height: 28px;
+						border: 1px solid #DBDBDB;
+						text-align: center;
+						line-height: 24px;
+						font-size: 24px;
+						margin-left: 10px;
+					}
+				}
+				.shop{
+					float: right;
+					height: 28px;
+					background-color: #FFEEE8;
+					border: 1px solid #FFA9A5;
+					width: 192px;
+					text-align: center;
+					line-height: 28px;
+					color: red;
+					text-decoration: none;
+				}
+			}
+		}
+	}
+}
+// 汽车养护部分结束
+//预约到店开始
+.booking{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0,0,0,0.8);
+	z-index: 2;
+	.booking_con{
+		width: 940px;
+		margin: 195px auto;
+		height: 480px;
+		background-color: #fff;
+		padding: 60px 130px;
+		position: relative;
+		>.tit{
+			padding-bottom: 15px;
+			border-bottom: 1px solid #BEBEBE;
+			h3{
+				display: inline-block;
+				font-size: 32px;
+			}
+			p{
+				display: inline-block;
+				margin-left: 35px;
+				font-size: 16px;
+				font-weight: 700;
+			}
+		}
+		>.con{
+			margin-top: 35px;
+			.con_left{
+				width: 450px;
+				float: left;
+				.con_imgBox{
+					width: 100%;
+					height: 400px;
+					img{
+						width: 100%;
+						height: 100%;
+					}
+				}
+				.con_tit{
+					margin-top: 15px;
+					h3{
+						font-size: 22px;
+						width: 100%;
+						overflow: hidden;
+						text-overflow:ellipsis;
+						white-space: nowrap;
+					}
+				}
+			}
+			.con_right{
+				width: 450px;
+				float: right;
+				table{
+					width: 100%;
+					tr{
+						width: 100%;
+						height: 60px;
+						td:nth-child(1){
+							width: 16%;
+							text-align: right;
+							font-size: 16px;
+						}
+						td:nth-child(2){
+							height: 45px;
+							padding-left: 15px;
+							input{
+								height: 33px;
+								border: 1px solid #BFBFBF;
+								padding-left: 6px;
+								font-size: 14px;
+								width: 90%;
+								font-family: 微软雅黑;
+							}
+							p{
+								font-size: 14px;
+							}
+						}
+					}
+					tr:nth-child(1){
+						td:nth-child(3){
+							input{
+								vertical-align:text-bottom; 
+								margin-bottom:1px; 
+								margin-right: 3px;
+								font-family: 微软雅黑;
+								margin-left: 10px;
+							}
+						}
+					}
+					tr:nth-child(2){
+						span{
+							color: red;
+						}
+					}
+					tr:nth-child(3){
+						td:nth-child(3){
+							a{
+								display: block;
+								width: 140px;
+								height: 35px;
+								background-color: #EAEAEA;
+								text-decoration: none;
+								text-align: center;
+								line-height: 35px;
+								font-size: 16px;
+							}
+							a:active{
+								background-color: #2783c9;
+								color: #fff;
+							}
+						}
+					}
+				}
+				.book-btn{
+					width: 100%;
+					height: 48px;
+					background-color: #FF8F00;
+					color: #fff;
+					text-align: center;
+					line-height: 47px;
+					display: block;
+					font-size: 20px;
+					font-weight: 700;
+					text-decoration: none;
+					margin-top: 7px;
+					margin-top: 52px;
+				}
+			}
+		}
+		>.book-close{
+			font-size: 42px;
+			color: gray;
+			position: absolute;
+			top: 0px;
+			right: 25px;
+			cursor: pointer;
+		}
+	}
+
+}
+//预约到店结束

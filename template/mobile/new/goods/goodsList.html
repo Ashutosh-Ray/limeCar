@@ -1,0 +1,150 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>所有分类-{$shop_name}</title>
+<meta http-equiv="keywords" content="{$imshop_config['shop_info_store_keyword']}" />
+<meta name="description" content="{$imshop_config['shop_info_store_desc']}" />
+<meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/public.css"/>
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/carlist.css"/>
+<script type="text/javascript" src="__STATIC__/js/jquery.js"></script>
+<script src="__PUBLIC__/js/global.js"></script>
+</head>
+<body>
+<!-- 头部开始 -->
+<header>
+  <div class="newCar_banner">
+    <div class="banner_w">
+      <div class="img">
+        <img src="__STATIC__/images/carlist-banner1.jpg" alt="">
+      </div>
+      <div class="search">
+        <div class="search_bar">
+          <div class="search_bar_c">
+            <div class="s_input">
+              <div class="s_icon"></div>
+              <div class="s_inp">
+                <form action="">
+                  <div class="s_form">
+                    <input type="text" placeholder="搜索" name="q">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- 头部结束 -->
+<!-- 列表开始 -->
+<section class="cg_newCar">
+  <div class="newCar_list category_list">
+    <div class="list_w">
+      <ul id="goods_list">
+        <!-- 新車 -->
+        <volist name="goods_list" id="vo">
+        <in name="vo.cat_id" value="$newCates">
+        <li>
+          <a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$vo[goods_id]))}">
+          <div class="newCarBox carBox">
+            <div class="img">
+              <img src="{$vo.goods_id|goods_thum_images=280,275}" alt="">
+            </div>
+            <div class="detail">
+              <div class="det_w">
+                <h3>{$vo['goods_name']}</h3>
+                <div class="price">最低首付&nbsp;{$vo.goods_id|getProgramme=2,###}</div>
+                <div class="monthPay">月供&nbsp;{$vo.goods_id|getProgramme=1,###}</div>
+              </div>
+            </div>
+          </div>
+          </a>
+        </li>
+        </in>
+       
+        <!-- 二手車 -->
+        <in name="vo.cat_id" value="$usedCates">
+        <li>
+          <a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$vo[goods_id]))}">
+          <div class="secCarBox carBox">
+            <div class="img">
+              <img src="{$vo.goods_id|goods_thum_images=280,275}" alt="">
+            </div>
+            <div class="detail">
+              <div class="det_w">
+                <h3>{$vo['goods_name']}</h3>
+                <div class="price">青柠价&nbsp;{$vo['shop_price']|calcu_goods_price}</div>
+                <div class="monthPay">最低首付{$vo.goods_id|getProgramme=2,###}</div>
+              </div>
+            </div>
+          </div>
+          </a>
+        </li>
+        </in>
+        <!-- 养护 -->
+        <in name="vo.cat_id" value="$curingCates">
+        <li>
+          <a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$vo[goods_id]))}">
+          <div class="curingCarBox carBox">
+            <div class="img">
+              <img src="{$vo.goods_id|getFirstImg=280,275}" alt="">
+            </div>
+            <div class="detail">
+              <div class="det_w">
+                <h3>{$vo['goods_name']}</h3>
+                <div class="price curingPrice">青柠价&nbsp;{$vo['shop_price']|calcu_goods_price}</div>
+              </div>
+            </div>
+          </div>
+          </a>
+        </li>
+        </in>
+        </volist>
+      </ul>
+    </div>
+  </div>  
+  <div style="clear: both;"></div>
+  <notempty name="goods_list">
+   <div id="getmore" style="font-size:.24rem;text-align: center;color:#888;padding:.1rem; clear:both">
+      <a href="javascript:void(0)" onClick="ajax_sourch_submit()">点击加载更多</a>
+  </div>
+</notempty>
+</section>
+<!-- 列表结束 -->
+
+<script>
+var  page = 1;
+ /*** ajax 提交表单 查询订单列表结果*/  
+ function ajax_sourch_submit()
+ {
+    page += 1;
+    $.ajax({
+        type : "POST",
+        url:"{:U('Mobile/Goods/goodsList')}",//+tab,
+//      data : $('#filter_form').serialize(),// 你的formid 搜索表单 序列化提交
+        data:{id:'{$cat_id}',q:'{$q}',is_ajax:1,sort:'{$Request.param.sort}',sort_asc:'{$Request.param.sort_asc}',p:page},
+        success: function(data)
+        {
+            if($.trim(data) == '')
+                $('#getmore').hide();
+            else
+                $("#goods_list").append(data);
+        }
+    });
+ } 
+</script>
+
+
+<include file="public/footer"/>
+<script>
+function goTop(){
+  $('html,body').animate({'scrollTop':0},600);
+}
+</script>
+<include file="public/footer_nav"/>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta name="Generator" content="TPSHOP v1.1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="applicable-device" content="mobile">
+<title>{$shop_name}</title>
+<meta http-equiv="keywords" content="{$imshop_config['shop_info_store_keyword']}" />
+<meta name="description" content="{$imshop_config['shop_info_store_desc']}" />
+<link rel="stylesheet" href="__STATIC__/css/public.css">
+<link rel="stylesheet" href="__STATIC__/css/subscribe.css">
+<link rel="stylesheet" href="__STATIC__/css/mobiscroll.custom-3.0.0-beta6.min.css">
+<script src="__STATIC__/js/zepto.js"></script>
+<script type="text/javascript" src="__STATIC__/js/jquery.js"></script>
+<script src="__PUBLIC__/js/global.js"></script>
+<script src="__PUBLIC__/js/mobile_common.js"></script>
+<script src="__STATIC__/js/mobiscroll.custom-3.0.0-beta6.min.js"></script>
+<script src="__STATIC__/js/mobiscroll.custom-3.0.0-beta6.js"></script>
+<script type="text/javascript" src="__STATIC__/js/layer.js" ></script>
+<script src="__PUBLIC__/js/layer/layer.js"></script>
+</head>
+<body>      
+
+<section>
+	<div class="goodsTit">
+		<div class="goodsTit_w">
+			<img src="{$goods.goods_id|goods_thum_images=184,160}" alt="">
+			<div class="goodsTit_c">
+				<h3>{$goods['goods_name']}</h3>
+				<p>{$goods['goods_remark']}</p>
+			</div>
+		</div>
+	</div>
+	<div class="goodsCon">
+		<div class="goodsCon_w">
+		<form id="ajax_form">
+			<table>
+				<tr>
+					<td>姓名</td>
+					<td><input type="text" placeholder="请输入您的姓名" name="user_name"></td>
+					<td>
+						<input type="radio" name="sex" id="male" value="0">
+						<label for="male" class="male"><em><i></i></em><span>男</span></label>
+						<input type="radio" name="sex" id="female" value="1">
+						<label for="female" class="female active"><em><i></i></em><span>女</span></label>
+					</td>
+				</tr>
+				<tr>
+					<td>手机号</td>
+					<td colspan="2"><input type="number" placeholder="请输入您的手机号" class="phone" name="phone">
+					<p class="phoneTip">请输入正确的手机号</p>
+					</td>
+				</tr>
+				<tr>
+					<td>验证码</td>
+					<td><input type="text" placeholder="请输入验证码" name="code"></td>
+					<td>
+						<a href="javascript:void(0);" class="send">发送验证码</a>
+					</td>
+				</tr>
+				<tr>
+					<td>预约时间</td>
+					<td colspan="2">
+						<input type="text" id="picktime" placeholder="点击选择日期" name="time" readonly>
+					</td>
+				</tr>
+				<tr>
+					<td>预约地址</td>
+					<td colspan="2">
+						<p>苏州市工业园区若水路1号（苏州市工业园区职业技术学院西门）</p>
+					</td>
+				</tr>
+			</table>
+			 <input type="hidden" name="goods_id" value="{$goods.goods_id}">
+			</form>
+		</div>
+	</div>
+	<div class="confirm">
+		<a id="order">确认预约</a>
+	</div>
+</section>
+
+<include file="public/footer"/>
+<script>
+	var now = new Date(),
+        max = new Date(now.getFullYear() + 100, now.getMonth(), now.getDate());
+
+    $('#picktime').mobiscroll().date({
+        theme: 'mobiscroll',
+        lang: 'zh',
+        display: 'bottom',
+        max: max
+    });
+
+	$('.male').click(function(){
+		$('#male').attr("checked","checked");
+		$('#female').removeAttr("checked");
+		$('.male').addClass("active");
+		$('.female').removeClass("active");
+	})
+	$('.female').click(function(){
+		$('#female').attr("checked","checked");
+		$('#male').removeAttr("checked");
+		$('.female').addClass("active");
+		$('.male').removeClass("active");
+	})
+
+	$('.send').click(function(){
+		let phone=$('.phone').val()
+		if (!(/^1[345678]\d{9}$/.test(phone))) {
+			$('.phoneTip').show()
+		}else{
+		$.ajax({
+        url:'/index.php/Home/Goods/sendCode',
+        dataType:'json',
+        data:{phone:phone},
+        type:'post',
+        success:function (res) {
+          if(res.status==1){
+             layer.msg(res.msg, {icon: 1,time: 3000}); 
+          }else{
+             layer.msg(res.msg, {icon: 2,time: 3000}); 
+          }
+          
+        }
+      })
+		}
+	})
+
+
+	$('#order').click(function(){
+    let phone=$('input[name="phone"]').val();
+    let name=$.trim($('input[name="user_name"]').val());
+    let code=$.trim($('input[name="code"]').val());
+    let time=$.trim($('input[name="time"]').val());
+    if (!(/^1[345678]\d{9}$/.test(phone))) {
+      $('.phoneTip').show();
+    }else if(name.length==0){
+          layer.msg('请输入姓名', {icon: 2,time: 3000});
+    }else if(code.length==0){
+          layer.msg('请输入验证码', {icon: 2,time: 3000});
+    }else if(time.length==0){
+          layer.msg('请选择时间', {icon: 2,time: 3000});
+    }
+    else{
+    $.ajax({
+        url:'/index.php/Home/Goods/ajax_subscribe',
+        dataType:'json',
+        data:$('#ajax_form').serialize(),
+        type:'post',
+        success:function (res) {
+          	if(res.status==1){
+          		 layer.alert(res.msg, {icon: 1, closeBtn:0}); 
+         
+            window.location.href="/Mobile/Goods/goodsInfo/id/{$goods['goods_id']}";
+          	}else{
+          		 layer.alert(res.msg, {icon: 2, closeBtn:0}); 
+             
+              window.location.href="/Mobile/Goods/goodsInfo/id/{$goods['goods_id']}";
+        	}
+        }
+      	})
+    	}
+  	})
+
+
+
+
+</script>
+</body>
+</html>

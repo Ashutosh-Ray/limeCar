@@ -1,0 +1,204 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>所有分类-{$shop_name}</title>
+<meta http-equiv="keywords" content="{$imshop_config['shop_info_store_keyword']}" />
+<meta name="description" content="{$imshop_config['shop_info_store_desc']}" />
+<meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/public.css"/>
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/carlist.css"/>
+<script type="text/javascript" src="__STATIC__/js/jquery.js"></script>
+<script src="__PUBLIC__/js/global.js"></script>
+<script src="__STATIC__/js/layer/layer.js"></script>
+<script src="__STATIC__/js/layer/layui.js"></script>
+
+
+</head>
+<body>
+<!-- 头部开始 -->
+<header>
+  <div class="newCar_banner">
+    <div class="banner_w">
+      <div class="img">
+        <img src="__STATIC__/images/carlist-banner1.jpg" alt="">
+      </div>
+      <div class="search">
+        <div class="search_bar">
+          <div class="search_bar_c">
+            <div class="s_input">
+              <div class="s_icon"></div>
+              <div class="s_inp">
+                <form action="">
+                  <div class="s_form">
+                    <input type="text" placeholder="搜索">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- 头部结束 -->
+<!-- 列表开始 -->
+<section class="cg_newCar">
+  <div class="newCar_list category_list">
+    <div class="list_w">
+      <ul id="list_c">
+        <!-- 新车 -->
+        <li>
+          <a href="">
+          <div class="newCarBox carBox">
+            <div class="img">
+              <img src="__STATIC__/images/newCar.jpg" alt="">
+            </div>
+            <div class="detail">
+              <div class="det_w">
+                <h3>凯迪拉克atsl28 2.0T da范德萨发撒范德萨发大法十大fsd</h3>
+                <div class="price">最低首付&nbsp;3万</div>
+                <div class="monthPay">月供7777</div>
+              </div>
+            </div>
+          </div>
+          </a>
+        </li>
+        <!-- 二手车 -->
+        <li>
+          <a href="{:U('Mobile/Goods/goodsList',array('id'=>$v2[id]))}">
+          <div class="secCarBox carBox">
+            <div class="img">
+              <img src="__STATIC__/images/newCar.jpg" alt="">
+            </div>
+            <div class="detail">
+              <div class="det_w">
+                <h3>凯迪拉克atsl28 2.0T da范德萨发撒范德萨发大法十大fsd</h3>
+                <div class="price">三品车价&nbsp;33.33万</div>
+                <div class="monthPay">最低首付7777元</div>
+              </div>
+            </div>
+          </div>
+          </a>
+        </li>
+        <!-- 养护 -->
+        <li>
+          <a href="">
+          <div class="curingCarBox carBox">
+            <div class="img">
+              <img src="__STATIC__/images/newCar.jpg" alt="">
+            </div>
+            <div class="detail">
+              <div class="det_w">
+                <h3>凯迪拉克atsl28 2.0T da范德萨发撒范德萨发大法十大fsd</h3>
+                <div class="price curingPrice">三品车价&nbsp;33.33万</div>
+              </div>
+            </div>
+          </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>  
+  <div style="clear: both;"></div>
+</section>
+<!-- 列表结束 -->
+
+
+<!-- 二手车列表开始 -->
+<!-- <section class="cg_secCar">
+  <div class="secCar_list category_list">
+    <div class="list_w">
+      <ul>
+        <li>
+          <a href="">
+          <div class="secCarBox carBox">
+            <div class="img">
+              <img src="__STATIC__/images/newCar.jpg" alt="">
+            </div>
+            <div class="detail">
+              <div class="det_w">
+                <h3>凯迪拉克atsl28 2.0T da范德萨发撒范德萨发大法十大fsd</h3>
+                <div class="price">三品车价&nbsp;33.33万</div>
+                <div class="monthPay">最低首付7777元</div>
+              </div>
+            </div>
+          </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div style="clear: both;"></div>
+</section> -->
+<!-- 二手车列表结束 -->
+
+
+
+
+<!-- 汽车养护列表开始 -->
+<!-- <section>
+  <div class="curingCar_list category_list">
+    <div class="list_w">
+      <ul>
+        <li>
+          <a href="">
+          <div class="curingCarBox carBox">
+            <div class="img">
+              <img src="__STATIC__/images/newCar.jpg" alt="">
+            </div>
+            <div class="detail">
+              <div class="det_w">
+                <h3>凯迪拉克atsl28 2.0T da范德萨发撒范德萨发大法十大fsd</h3>
+                <div class="price">三品车价&nbsp;33.33万</div>
+              </div>
+            </div>
+          </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div style="clear: both;"></div>
+</section> -->
+<!-- 汽车养护列表结束 -->
+
+
+
+<include file="public/footer"/>
+<script src="__STATIC__/js/layer/lay/modules/flow.js"></script>
+<script src="__STATIC__/js/layer/lay/modules/laypage.js"></script>
+<script>
+function goTop(){
+  $('html,body').animate({'scrollTop':0},600);
+}
+
+layui.use('flow', function(){
+  var $ = layui.jquery; //不用额外加载jQuery，flow模块本身是有依赖jQuery的，直接用即可。
+  var flow = layui.flow;
+  flow.load({
+    elem: '#demo' //指定列表容器
+    ,done: function(page, next){ //到达临界点（默认滚动触发），触发下一页
+      var lis = [];
+      //以jQuery的Ajax请求为例，请求下一页数据（注意：page是从2开始返回）
+      $.get('/api/list?page='+page, function(res){
+        //假设你的列表返回在data集合中
+        layui.each(res.data, function(index, item){
+          lis.push('<li>'+ item.title +'</li>');
+        }); 
+        
+        //执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
+        //pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
+        next(lis.join(''), page < res.pages);    
+      });
+    }
+  });
+});
+
+
+</script>
+<include file="public/footer_nav"/>
+</body>
+</html>

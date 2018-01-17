@@ -1,0 +1,126 @@
+header{
+	width: 100%;
+	img{
+		width: 100%;
+	}
+}
+.about-title{
+	padding: 25px;
+	width: calc(~"70% - 50px");
+	margin: 25px auto;
+	background-color: #65D245;
+	h2{
+		font-size: 18px;
+		text-align: center;
+		color: #fff;
+	}
+	p{
+		font-size: 12px;
+		line-height: 16px;
+		color: #fff;
+	}
+}
+.history{
+	h2{
+		font-size: 22px;
+		text-align: center;
+		width: 100%;
+		margin-bottom: 15px;
+	}
+	.abLine{
+		padding: 0 15px;
+		margin: 0 auto;
+		td:nth-child(1),td:nth-child(3){
+			width: 45%;
+			div{
+				width: 100%;
+				height: 1px;
+				background-color: #F39800;
+			}
+		}
+		td:nth-child(2){
+			width: 10%;
+			.diamond{
+				position: relative;
+				width: 30px;
+				height: 20px;
+				background-color: #fff;
+				i{
+					display: block;
+					width: 10px;
+					height: 10px; 
+					margin: 5px 0 0 5px; 
+					-webkit-transform-origin: 0 100%; 
+					-moz-transform-origin: 0 100%; 
+					transform-origin: 0 100%; 
+					-webkit-transform:rotate(-45deg); 
+					-moz-transform:rotate(-45deg);  
+					transform:rotate(-45deg); 
+					background: #F39800;
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					margin-left: 0px;
+	    			margin-top: -3px;
+				}
+			
+			}
+		}
+	}
+	.history-con{
+		width: 80%;
+		margin: 0 auto;
+		.con-left{
+			width: 10%;
+			float: left;
+			height: 20px;
+			.line{
+				height: 390px;
+				width: 4px;
+				background-color: #65D245;
+				margin-top: 16px;
+				position: relative;
+				.circle{
+					position: absolute;
+					width: 20px;
+					height: 65px;
+					background-color: #fff;
+					top: 15px;
+					left: -5px;
+					i{
+						display: block;
+						width: 9px;
+						height: 9px;
+						border-radius: 50%;	
+						border: 2px solid #65D245;
+						margin-top: 5px;
+					}
+				}
+				.circle:nth-child(2){
+					top: 100px;
+					height: 90px;
+				}
+				.circle:nth-child(3){
+					top: 215px;
+					height: 70px;
+				}
+				.circle:nth-child(4){
+					top: 310px;
+				}
+			}
+		}
+		.con-right{
+			width: 90%;
+			float: left;
+			h3{
+				font-size: 12px;
+				font-weight: 700;
+			}
+			p{
+				font-size: 12px;
+				line-height: 16px;
+				margin-bottom: 25px;
+			}
+		}
+	}
+}

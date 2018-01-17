@@ -1,0 +1,207 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>首页-{$imshop_config['shop_info_store_title']}</title>
+<meta http-equiv="keywords" content="{$imshop_config['shop_info_store_keyword']}" />
+<meta name="description" content="{$imshop_config['shop_info_store_desc']}" />
+</head>
+<script src="__PUBLIC__/js/pc_common.js"></script> 
+<body>
+<!-- 头部开始 -->
+<include file="public/header" />
+<!-- 头部结束 -->
+
+<!-- 轮播图开始 -->
+<include file="public/hp_lun" />
+<!-- 轮播图结束 -->
+
+<!-- 新车开始 -->
+<section class="hp_newcar">
+	<div class="newcar_banner">
+		<div class="newcar_tit">
+			<div class="tit_w fl">
+				<p>新车商城</p>
+			</div>
+			<div class="tit_more fr">
+				<p><a href="{:U('Goods/goodsList',array('id'=>138))}">查看更多&gt;&gt;</a></p>
+			</div>
+		</div>
+		<div class="newcar_left fl">
+			<a href="{:U('Goods/goodsList',array('id'=>138))}">
+				<img src="__STATIC__/images/ad_left1.jpg" alt="">
+				<h3>热销车型</h3>
+				<p>原厂新车 买车更实惠</p>
+				<button>更多新车&gt;&gt;</button>
+			</a>
+		</div>
+		<div class="newcar_right fl">
+			<ul class="newcar_carbox">
+			<volist name="newCars" id="vo">
+				<li class="fl">
+					<a href="{:U('/Home/Goods/goodsInfo',array('id'=>$vo[goods_id]))}">
+					<div class="carbox">
+						<img src="{$vo.goods_id|goods_thum_images=275,284}" alt="">
+						<p class="carName">{$vo.goods_name}</p>
+						<div class="carPrice">
+							<ul>
+								<li><div><span>市场指导价：</span><span>{$vo.market_price|calcu_goods_price}</span></div></li>
+								<!-- <li><div><span>三品車价：</span><span>{$vo.shop_price|calcu_goods_price}</span></div></li> -->
+								<li><div><span>月供：</span><span>{$vo.goods_id|getProgramme=1,###}</span></div></li>
+								<li class="last"><div><span>首付：</span><span>{$vo.goods_id|getProgramme=2,###}</span></div></li>
+							</ul>
+						</div>
+						<div class="carBottom">无额外服务费，含购置税，另送一年保险</div>
+					</div>
+					</a>
+				</li>
+				</volist>
+			</ul>
+		</div>
+	</div>
+</section>
+<!-- 新车结束 -->
+
+<!-- 二手车开始 -->
+<section class="hp_seccar">
+	<div class="seccar_banner">
+		<div class="seccar_tit">
+			<div class="tit_w fl">
+				<p>二手车商城</p>
+			</div>
+			<div class="tit_more fr">
+				<p><a href="{:U('Goods/goodsList',array('id'=>164))}">查看更多&gt;&gt;</a></p>
+			</div>
+		</div>
+		<div class="seccar_left fl">
+			<a href="{:U('Goods/goodsList',array('id'=>164))}">
+				<img src="__STATIC__/images/ad_left2.jpg" alt="">
+				<h3>热销二手车</h3>
+				<p>商家保障服务 买车更实惠</p>
+				<p style="top: 145px;">优质 放心二手车</p>
+				<button>更多二手车&gt;&gt;</button>
+			</a>
+		</div>
+		<div class="seccar_right fl">
+			<ul class="seccar_carbox">
+			<volist name="usedCars" id="vo">
+				<li class="fl">
+					<a href="{:U('/Home/Goods/goodsInfo',array('id'=>$vo[goods_id]))}">
+					<div class="carbox">
+						<img src="{$vo.goods_id|goods_thum_images=275,284}" alt="">
+						<div class="carBottom">
+							<div class="carBottom_tit">
+								{$vo.goods_name}
+							</div>
+							<div class="carBottom_price">
+								<span>三品車价：</span>
+								<span>{$vo.shop_price|calcu_goods_price}&nbsp;</span>
+								<span>最低首付：</span>
+								<span>{$vo.goods_id|getProgramme=2,###}</span>
+							</div>
+						</div>
+					</div>
+					</a>
+				</li>
+				</volist>
+				
+			</ul>
+		</div>
+	</div>
+</section>
+<!-- 二手车结束 -->
+
+<!-- 配件开始 -->
+<section class="hp_carparts">
+	<div class="carparts_banner">
+		<div class="carparts_tit">
+			<div class="tit_w fl">
+				<p>汽车养护</p>
+			</div>
+			<div class="tit_more fr">
+				<p><a href="{:U('Goods/goodsList',array('id'=>165))}">查看更多&gt;&gt;</a></p>
+			</div>
+		</div>
+		<div class="carparts_left fl">
+			<a href="{:U('Goods/goodsList',array('id'=>165))}">
+				<img style="width: 100%;" src="__STATIC__/images/ad_left3.jpg" alt="">
+				<h3>汽车/保养/维修</h3>
+				<p>车后一站式服务</p>
+				<p>省钱更省心</p>
+				<button>更多汽车养护&gt;&gt;</button>
+			</a>
+		</div>
+		<div class="carparts_right fl">
+			<ul class="carparts_carbox">
+			<volist name="curings" id="vo">
+				<li class="fl">
+					<a href="{:U('/Home/Goods/goodsInfo',array('id'=>$vo[goods_id]))}">
+					<div class="carbox">
+						<img src="{$vo.goods_id|getFirstImg=275,284}" alt="">
+						<div class="partsBottom">
+							<p>{$vo.goods_name}</p>
+							<p>{$vo.shop_price|calcu_goods_price}</p>
+						</div>
+					</div>
+					</a>
+				</li>
+				</volist>
+				
+			</ul>
+		</div>
+	</div>
+</section>
+<!-- 配件结束 -->
+
+<!-- 底部导航开始 -->
+<section class="hp_bottomnav">
+	<div class="bottomnav_banner">
+		<h3>服务流程</h3>
+<!-- 		<div class="bottomnav">
+			<div class="imgBox">
+				<img src="__STATIC__/images/hp_icon3.png" alt="">
+			</div>
+			<h3>第一步：在线预约</h3>
+			<p>选择意向车型提交联系方式和预约时间</p>
+		</div>
+		<div class="bottomnav">
+			<div class="imgBox">
+				<img src="__STATIC__/images/hp_icon2.png" alt="">
+			</div>
+			<h3>第二步：回访确认</h3>
+			<p>24H内会有专门顾问电话回访确认</p>
+		</div>
+		<div class="bottomnav">
+			<div class="imgBox">
+				<img src="__STATIC__/images/hp_icon4.png" alt="">
+			</div>
+			<h3>第三步：到店购车</h3>
+			<p>销售顾问详细介绍车辆情况及购车金融方案</p>
+		</div>
+		<div class="bottomnav">
+			<div class="imgBox">
+				<img src="__STATIC__/images/hp_icon1.png" alt="">
+			</div>
+			<h3>第四步：坐等爱车到家</h3>
+			<p>3至5天内可到店提车</p>
+		</div> -->
+		<img src="__STATIC__/images/footer-banner.jpg" alt="">
+	</div>
+</section>
+<!-- 底部导航结束 -->
+<!-- footer开始 -->
+<include file="public/footer" />
+<!-- footer结束 --> 
+
+<script src="__PUBLIC__/js/jqueryUrlGet.js"></script><!--获取get参数插件-->
+
+<script> 
+
+
+set_first_leader(); //设置推荐人 
+// 如果是手机浏览器跳到手机
+if(isMobileBrowser())
+   location.href="{:U('Mobile/Index/index')}";
+</script>
+</body>
+</html>

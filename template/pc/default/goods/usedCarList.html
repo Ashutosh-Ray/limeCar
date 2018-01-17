@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>商品列表-{$imshop_config['shop_info_store_title']}</title>
+<meta http-equiv="keywords" content="{$imshop_config['shop_info_store_keyword']}" />
+<meta name="description" content="{$imshop_config['shop_info_store_desc']}" />
+</head>
+
+<body>
+<link rel="stylesheet" href="__STATIC__/css/common.min.css" type="text/css">
+<link rel="stylesheet" href="__STATIC__/css/hp.css" type="text/css">
+<link rel="stylesheet" href="__STATIC__/css/goodsList.css" type="text/css">
+<script type="text/javascript" src="__STATIC__/js/jquery-1.10.2.min.js"></script> 
+<script type="text/javascript" src="__STATIC__/js/jquery.jqzoom.js"></script> 
+<script src="__PUBLIC__/js/pc_common.js"></script>
+<script src="__PUBLIC__/js/layer/layer.js"></script><!--弹窗js 参考文档 http://layer.layui.com/-->
+
+<!-- 头部开始 -->
+<include file="public/header" />
+<!-- 头部结束 -->
+
+<!-- 顶部banner开始 -->
+<style>
+.navList li:nth-child(1) a{
+    color: #000!important;
+    }
+.navList li:nth-child(3) a{
+    color: #ca141d!important;
+}
+</style>
+<form name="sourch_form" id="sourch_form" method="post" action="{:U('/Home/Goods/search',array('id'=>$cat_id))}">
+<div class="gl_top_banner">
+  <h2>更聪明的购车方式</h2>
+  <h3>带给你一种全新的购车体验</h3>
+  <!-- <a href="" class="gl_check">查看更多</a> -->
+  <div class="search">
+    <input type="text" name="q" placeholder="搜索你想要的二手车" class="gl-search" value="{$q}">
+    <a onclick="searchSubmit()">
+    <div class="search_btn">
+      <img src="__STATIC__/images/search.png" alt="" style="margin-top: 5px;margin-left: 5px;">
+    </div>
+    </a>
+    <div class="tip">
+      <span>宝马</span>
+      <span>奔驰</span>
+      <span>suv</span>
+    </div>
+  </div>
+</div>
+</form>
+<script>
+  $('.tip').click(function(){
+    $('.gl-search').focus();
+  });
+</script>
+<!-- 顶部banner结束 -->
+
+<!--------中间内容-------------->
+<div class="cata_shop_right usedCar-con" id="tracker_category"> 
+  <!-- 商品列表 -->
+  <ul id="cata_choose_product" class="cart_containt clearfix listContainer">
+    <foreach name="goods_list" item="v" key="k">
+      <li>
+        <a rel="nofollow" target="_blank" href="{:U('/Home/Goods/goodsInfo',array('id'=>$v[goods_id]))}">
+        <!-- <a rel="nofollow" href="javascript:0;"> -->
+          <div class="nosinglemore"></div>
+            <div class="listbox clearfix"> 
+          <!-- 圖片 -->
+              <div class="listPic"> 
+                <img style="display: block;" src="{$v.goods_id|goods_thum_images=284,260}" class="fn_img_lazy">             
+              </div>
+            <div class="list-scroll J_scrollBox clearfix">
+            <!-- 品名 -->
+            <div class="listDescript"> 
+            <span>{$v[goods_name]}</span>
+                    <!-- 价格 -->
+            <div class="discountPrice">
+              <div class="price-cash">
+                <table class="usedCar-table">
+                  <tr>
+                    <td>三品車价：</td>
+                    <td>{$v.shop_price|calcu_goods_price}</td>
+                    <td>最低首付：</td>
+                    <td>{$v.goods_id|getProgramme=2,###}</td>
+                  </tr>
+                </table>
+                <!-- <span class="">{$v[shop_price]|calcu_goods_price}</span> -->
+              </div>
+            </div>
+          <!-- 价格 end-->
+            </div>
+            <a href="javascript:void(0);" class="list-scroll-right cbtn"></a> </div>
+        </div>
+        </a> 
+      </li>
+    </foreach>
+    <div class="clear" style="clear: both;"></div>
+  </ul>
+  
+  <!-- Page -->
+  <div class="fn-page-css-1 pagintion fix" style="display: block;">
+  	<div class="pagenavi text12">{$page->show()}</div>
+  </div>
+  <!-- 商品列表 --> 
+</div>
+</div>
+<!--------中间内容end-------------->   
+ 
+
+<!--------footer-开始-------------->
+<include file="public/footer" />
+<!--------footer-结束-------------->
+<script type="text/javascript">
+
+//############   分类导航折叠        ############
+$('span[name="submenuicon"]').each(function(){
+	 $(this).click(function(){
+		 if($(this).hasClass('menuplus')){
+			 $(this).removeClass('menuplus').addClass('menuminus');
+			 $(this).siblings('.second_div').find('ul').show();
+		 }else{
+			 $(this).removeClass('menuminus').addClass('menuplus');
+			 $(this).siblings('.second_div').find('ul').hide();
+		 }
+	 });
+})
+
+//############   更多类别属性筛选       ###########
+$('.f-out-more').click(function(){
+  $('.m-tr').each(function(i,o){
+    if(i >  7){
+      var attrdisplay = $(o).css('display');
+      if(attrdisplay == 'none'){
+        $(o).css('display','block');
+      }
+      if(attrdisplay == 'block'){
+        $(o).css('display','none');
+      }
+    }
+  });
+  if($(this).hasClass('checked')){
+    $(this).removeClass('checked tex-center').html('收起<i class="checked"></i>');
+  }else{
+    $(this).addClass('checked tex-center').html('更多选项');
+  }
+})
+$('.f-out-more').trigger('click').html('更多选项'); //  默认点击一下
+
+//############   更多条件选择        ###########
+$('.f-more').click(function(){
+  if($(this).hasClass('checked')){
+    $(this).parent().siblings('ul').removeClass('z-show-more');
+    $(this).removeClass('checked').html('更多<i></i>');
+  }else{
+    $(this).parent().siblings('ul').addClass('z-show-more');
+    $(this).addClass('checked').html('收起<i class="checked"></i>');
+  }
+})
+
+var cancelBtn = null;
+//############   多选框        ###########
+$('.f-check').click(function(){
+	var _this = this;
+	var st = 0;
+	//关闭前一个多选框
+	if(cancelBtn != null){
+		$(cancelBtn).parent().siblings('ul').removeClass('z-show-more');  //移除UL的calss:z-show-more
+		$(cancelBtn).parent().siblings('ul').find('li >a').each(function(i,o){  //遍历所有a便签
+			$(o).removeClass('select selected');    //移除class
+			$(o).attr('href',$(o).data('href'));    //添加href
+			$(o).children('i').removeClass('selected').css('display','');  //移除a标签前面的选框
+			$(o).unbind('click');
+		});		
+		$(cancelBtn).parent().siblings('.f-ext').show().children('a').removeClass('checked'); //显示多选按钮并移除a标签样式
+		$(cancelBtn).parent().hide();  //隐藏当前取消按钮
+		$(cancelBtn).siblings().removeClass('u-confirm01');
+	}
+	cancelBtn = $(_this).parent().siblings('div').find('.u-cancel'); //取消按钮
+	
+	//打开多选框
+	$(_this).addClass('checked');
+	$(_this).siblings().addClass('checked');
+	$(_this).parent().siblings('.g-btns').show();
+	$(_this).parent().siblings('ul').addClass('z-show-more');
+	$(_this).parent().siblings('ul').find('li>a').each(function(i,o){
+		$(o).addClass('select');
+		$(o).children('i').css('display','inline');
+		$(o).attr('href','javascript:;');
+		$(o).bind('click',function(){
+			if($(o).hasClass('selected')){
+				$(o).removeClass('selected');
+				$(o).children('i').removeClass('selected');
+				st--;
+			}else{
+				$(o).addClass('selected');
+				$(o).children('i').addClass('selected');
+				$(_this).parent().siblings('.g-btns').children('.u-confirm').addClass('u-confirm01');
+				st++;
+			}
+			//如果没有选中项,确定按钮点不了
+			if(st==0){
+				$(_this).parent().siblings('.g-btns').children('.u-confirm').removeClass('u-confirm01');
+			}
+		});
+	});
+	$(_this).parent().hide();
+})
+
+
+//############   取消多选        ###########
+$('.g-btns .u-cancel').each(function(){
+	$(this).click(function(){
+		$(this).parent().siblings('ul').removeClass('z-show-more');
+		$(this).parent().siblings('ul').find('li >a').each(function(i,o){
+			$(o).removeClass('select selected');
+			$(o).attr('href',$(o).data('href'));
+			$(o).children('i').removeClass('selected').css('display','');
+			$(o).unbind('click');
+		});
+		$(this).parent().siblings('.f-ext').show().children('a').removeClass('checked');
+		$(this).parent().hide();
+		$(this).siblings().removeClass('u-confirm01');
+	});
+})
+
+//############   产品图片切换        ###########
+
+$('.list-scroll-warp').each(function(){
+	var _this = this;
+		
+	$(_this).children().children().each(function(i,o){
+		$(o).mouseover(function(){
+			$(o).siblings().removeClass('cur');
+			$(o).addClass('cur');			
+			var img_src = $(o).children().children().attr('data-img');
+			$(_this).parent().siblings('.listPic').find('a').children().attr('src',img_src);
+		})
+	})
+})
+
+//############   点击多选确定按钮      ############
+// t 为类型  是品牌 还是 规格 还是 属性
+// btn 是点击的确定按钮用于找位置
+ get_parment = <?php echo json_encode($_GET); ?>;	
+function submitMoreFilter(t,btn)
+{
+	// 没有被勾选的时候
+	if(!$(btn).hasClass("u-confirm01"))
+		return false;
+		
+	// 获取现有的get参数		
+	var key = ''; // 请求的 参数名称
+	var val = new Array(); // 请求的参数值
+	$(btn).parent().siblings(".f-list").find("li > a.selected").each(function(){
+		   key = $(this).data('key');
+		   val.push($(this).data('val'));
+	});
+	//parment = key+'_'+val.join('_');
+    
+	// 品牌
+	if(t == 'brand')
+	{
+		get_parment.brand_id = val.join('_');
+	}
+	// 规格
+	if(t == 'spec')
+	{
+		if(get_parment.hasOwnProperty('spec'))		
+		{		
+			get_parment.spec += '@'+key+'_'+val.join('_');
+		}		
+		else	
+		{		
+			get_parment.spec = key+'_'+val.join('_');
+		}		
+	}
+	// 属性
+	if(t == 'attr')
+	{
+		if(get_parment.hasOwnProperty('attr'))		
+		{		
+			get_parment.attr += '@'+key+'_'+val.join('_');
+		}		
+		else	
+		{		
+			get_parment.attr = key+'_'+val.join('_');
+		}		
+	}
+   // 组装请求的url	
+  var url = '';
+  for ( var k in get_parment )
+  { 
+		url += "&"+k+'='+get_parment[k];
+  } 
+
+	//console.log('get_parment',get_parment);	
+	location.href ="/index.php?m=Home&c=Goods&a=goodsList"+url;
+}
+
+//给每行第一个li添加标签
+let li=$("#cata_choose_product").children("li")
+li.each(function(i,n){
+  var j=0;
+  if (i%4==0) {
+    $(this).addClass('lineFirst')
+    j++;
+    return;
+  }
+
+})
+function searchSubmit(){
+	$('#sourch_form').submit();
+}
+</script>
+</body>
+</html>

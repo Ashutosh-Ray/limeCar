@@ -1,0 +1,46 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta name="Generator" content="IMSHOP v1.1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>首页-{$shop_name}</title>
+<meta http-equiv="keywords" content="{$imshop_config['shop_info_store_keyword']}" />
+<meta name="description" content="{$imshop_config['shop_info_store_desc']}" />
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/public.css"/>
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/index.css"/>
+<script type="text/javascript" src="__STATIC__/js/jquery.js"></script>
+<script type="text/javascript" src="__STATIC__/js/TouchSlide.1.1.js"></script>
+<script type="text/javascript" src="__STATIC__/js/jquery.json.js"></script>
+<script type="text/javascript" src="__STATIC__/js/touchslider.dev.js"></script>
+<script type="text/javascript" src="__STATIC__/js/layer/layer.js" ></script>
+<script src="__PUBLIC__/js/global.js"></script>
+<script src="__PUBLIC__/js/mobile_common.js"></script>
+<!-- IE8及以下支持JSON -->
+<!--[if lt IE 9]>
+    <script src="https://g.alicdn.com/aliww/ww/json/json.js" charset="utf-8"></script>
+<![endif]-->
+<!-- WSDK-->
+<script src="https://g.alicdn.com/aliww/h5.openim.sdk/1.0.6/scripts/wsdk.js"></script>
+</head>
+<body>
+<div id="page" class="showpage">
+<div>
+<header id="header"> 
+<a href="{:U('Goods/categoryList')}" class="top_bt"></a><a href="{:U('Index/index')}" class='user_btn'></a>
+<span href="javascript:void(0)" class="logo">{$shop_name}</span> 
+</header>
+<button onclick="selectGoods()">弹出</button>
+<script type="text/javascript">
+	 function selectGoods(){
+        layer.open({
+        	     title:['我是标题','background-color: #FF4351; color:#fff;'],
+                 type: 1,
+                 content:'',
+                 anim: 'up',
+                 style: 'position:fixed; left:10%; top:10%; width:80%; height:80%; border: none; -webkit-animation-duration: .5s; animation-duration: .5s;'
+        });
+    }
+</script>
+   

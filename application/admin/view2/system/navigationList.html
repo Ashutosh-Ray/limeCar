@@ -1,0 +1,118 @@
+<include file="public/header"/>
+<div id="page-wrapper">
+<div class="header"> 
+  <h1 class="page-header">
+      PC端导航栏配置
+  </h1>
+<!--   <ol class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Dashboard</a></li>
+    <li class="active">Data</li>
+  </ol> -->             
+</div>
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+        <!-- Advanced Tables -->
+            <div class="card">
+<!--            <div class="card-action">
+                    Advanced Tables
+                </div> -->
+                <div class="card-content">
+                    <div class="table-responsive">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <a href="{:U('Admin/System/addEditNav')}" class="waves-effect waves-light btn" style="text-align: center;text-decoration: none;">
+                                    新增导航
+                                </a>
+                            </div>
+                            <div class="col-sm-6 table-search">
+                                <!-- <div class="ts-la">
+                                    <label>
+                                        <div class="btn-group">
+                                            <select name="pid">
+                                                <option value="0">==查看所有==</option>
+                                                <volist name="ad_position_list" id="item" key="k">
+                                                    <option value="{$item.position_id}">{$item.position_name}</option>
+                                               </volist>          
+                                            </select>
+                                        </div>
+                                        <input type="search" placeholder="搜索">
+                                        <a href="">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </label>
+                                </div> -->
+                            </div>
+                        </div>
+                        <table class="table table-striped table-bordered table-hover" id="navListTable">
+                            <thead>
+                                <tr>
+                                    <th class="center">导航名称</th>
+                                    <th class="center">链接地址</th>
+                                    <th class="center">是否显示</th>
+                                    <th class="center">排序</th>
+                                    <th class="center">位置</th>
+                                    <th class="center">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <foreach name="navigationList" item="vo" key="k" >
+                                <tr class="odd gradeX">
+                                    <td class="center">{$vo.name}</td>
+                                    <td class="center">{$vo.url}</td>
+                                    <td class="center">
+                                        <div class="judge">
+                                            <if condition='$vo[is_show] eq 1'>
+                                            <span class="yes" onclick="changeTableVal('navigation','id','{$vo.id}','is_show',this)">
+                                                <i class="fa fa-check-circle"></i>
+                                                <span>是</span>
+                                            </span>
+                                            <else/>
+                                            <span class="no" onclick="changeTableVal('navigation','id','{$vo.id}','is_show',this)">
+                                                <i class="fa fa-ban
+                                                " style="color: #BEC3C7"></i>
+                                                <span style="color: #BEC3C7">否</span>
+                                            </span>
+                                        </if>
+                                        </div>
+                                    </td>
+                                    <td class="center">
+                                        <input type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onpaste="this.value=this.value.replace(/[^\d]/g,'')" value="{$vo.sort}" onchange="changeTableVal('navigation','id','{$vo.id}','sort',this)">
+                                    </td>
+                                    <td class="center">
+                                        <if condition="$vo['type'] eq 1">电脑端</if>
+                                        <if condition="$vo['type'] eq 2">微信端</if>
+                                    </td>
+                                    <td class="center">
+                                        <if condition="$vo['url'] != NULL">
+                                        <a href="{$vo.url}" target="_blank">查看</a> /
+                                       </if>
+                                        <a href="{:U('Admin/System/addEditNav',array('id'=>$vo['id']))}">编辑</a> /
+                                        <a href="{:U('System/delNav',array('id'=>$vo.id))}">删除</a>
+                                    </td>
+                                </tr>
+                            </foreach>
+                            </tbody>
+                        </table>
+                        <div class="row">
+                            <div class="col-sm-6"></div>
+                            <div class="col-sm-6 table-pagecut">
+                                {$page}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+    </div>
+
+
+<include file="public/footer"/>
+<include file="public/table"/>
+        <!-- Custom Js -->
+    <script src="__PUBLIC__/static/assets/js/custom-scripts.js"></script> 
+
+</body>
+</html>

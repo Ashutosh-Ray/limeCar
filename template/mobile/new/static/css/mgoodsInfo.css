@@ -1,0 +1,421 @@
+body {
+  background-color: #eee;
+  margin-bottom: 50px;
+}
+.tab_nav {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background-color: #F6F6F6;
+  z-index: 999;
+}
+.tab_nav .header .h-mid {
+  margin-left: 5px;
+}
+.tab_nav .header .h-mid a {
+  display: block;
+  width: 50%;
+  height: 100%;
+  float: left;
+  text-align: center;
+  line-height: 45px;
+  font-size: 16px;
+}
+.tab_nav .header .h-mid a.on {
+  color: red!important;
+}
+.tab_nav .header .h-mid a:hover {
+  color: #000;
+}
+.mgi_top {
+  margin-top: 45px;
+}
+.mgi_top .mgi_tit {
+  background-color: #fff;
+}
+.mgi_top .mgi_tit .tit_w {
+  padding: 5px 12px;
+}
+.mgi_top .mgi_tit .tit_w .tit_c > h3 {
+  font-size: 18px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.mgi_top .mgi_tit .tit_w .tit_c > p {
+  font-size: 20px;
+  color: #FF0014;
+  font-weight: 700;
+  margin-top: 0px;
+}
+.mgi_top .mgi_tit .tit_w .tit_c > p:nth-child(2) {
+  font-size: 12px;
+  color: #727272;
+  font-weight: 500;
+  height: 20px;
+  line-height: 20px;
+  margin-top: -5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  white-space: nowrap;
+  display: block;
+}
+.mgi_top .mgi_tit .tit_w .tit_c > span {
+  font-size: 12px;
+  display: block;
+  margin-top: -2px;
+  color: #C8C8C8;
+  font-weight: 500;
+  height: 20px;
+  line-height: 20px;
+}
+.mgi_top .mgi_tit .tit_w .tit_c .priceBox {
+  background-color: #eee;
+  height: 65px;
+  width: 100%;
+  margin: 8px auto;
+}
+.mgi_top .mgi_tit .tit_w .tit_c .priceBox li {
+  float: left;
+  width: 33%;
+  text-align: center;
+  height: 45px;
+  margin-top: 10px;
+}
+.mgi_top .mgi_tit .tit_w .tit_c .priceBox li > span {
+  color: #000;
+  font-size: 14px;
+  display: block;
+  height: 24px;
+  line-height: 20px;
+}
+.mgi_top .mgi_tit .tit_w .tit_c .priceBox li > p {
+  color: #FF9000;
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: -8px;
+}
+.mgi_top .mgi_tit .tit_w .tit_c .priceBox li:nth-child(2) {
+  border-left: 1px solid #dcdcdc;
+  border-right: 1px solid #dcdcdc;
+}
+.mgi_top .mgi_tit .tit_w .tit_c .redTip li {
+  color: #FF3F3F;
+  background-color: #FFEEE8;
+  border: 1px solid #FFA9A5;
+  float: left;
+  font-size: 12px;
+  padding: 2px 8px;
+  height: 12px;
+  line-height: 12px;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+.mgi_top .mgi_tit .tit_w .tit_c .redTip li:nth-child(2) {
+  margin-left: 3px;
+  margin-right: 3px;
+}
+.mgi_top .mgi_tit .tit_w .secCar p {
+  margin-top: 0;
+}
+.mgi_top .mgi_tit .tit_w .secCar p:nth-child(2) {
+  font-size: 12px;
+  color: #727272;
+  font-weight: 500;
+  height: 20px;
+  line-height: 20px;
+  margin-top: -5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  white-space: nowrap;
+  display: block;
+}
+.mgi_top .mgi_tit .tit_w .curingCar {
+  position: relative;
+}
+.mgi_top .mgi_tit .tit_w .curingCar p {
+  margin-top: 0;
+}
+.mgi_top .mgi_tit .tit_w .curingCar p:nth-child(2) {
+  font-size: 12px;
+  color: #727272;
+  font-weight: 500;
+  height: 20px;
+  line-height: 20px;
+  margin-top: -5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  white-space: nowrap;
+  display: block;
+}
+.mgi_top .mgi_tit .tit_w .curingCar .calc {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 30px;
+  line-height: 20px;
+}
+.mgi_top .mgi_tit .tit_w .curingCar .calc span {
+  color: #494949;
+  font-size: 12px;
+  float: left;
+  margin-top: 3px;
+  text-decoration: none;
+}
+.mgi_top .mgi_tit .tit_w .curingCar .calc a {
+  float: left;
+  width: 23px;
+  height: 23px;
+  border: 1px solid #DBDBDB;
+  text-align: center;
+  line-height: 23px;
+  font-size: 20px;
+}
+.mgi_top .mgi_tit .tit_w .curingCar .calc input {
+  float: left;
+  width: 33px;
+  height: 23px;
+  border: 1px solid #DBDBDB;
+  text-align: center;
+  line-height: 23px;
+  font-size: 16px;
+  margin: 0px 5px;
+}
+.mgi_loanPro {
+  background-color: #fff;
+  margin-top: 16px;
+}
+.mgi_loanPro .loanPro_w .loanPro_c .proFirst {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+.mgi_loanPro .loanPro_w .loanPro_c .proFirst .proFirst_tit {
+  border-left: 2px solid #FF0013;
+  font-size: 16px;
+  height: 20px;
+  line-height: 20px;
+  padding-left: 10px;
+}
+.mgi_loanPro .loanPro_w .loanPro_c .proFirst .shopAddress {
+  font-family: "微软雅黑";
+}
+.mgi_loanPro .loanPro_w .loanPro_c .proFirst .shopAddress h3 {
+  font-size: 16px;
+  font-weight: 700;
+  height: 30px;
+  line-height: 30px;
+}
+.mgi_loanPro .loanPro_w .loanPro_c .proFirst .shopAddress h4 {
+  font-size: 14px;
+  height: 24px;
+  line-height: 24px;
+}
+.mgi_loanPro .loanPro_w .loanPro_c .proFirst .shopAddress p {
+  font-size: 12px;
+  color: #ccc;
+  height: 16px;
+  line-height: 16px;
+}
+.mgi_loanPro .loanPro_w .loanPro_c .proFirst .proFirst_con {
+  padding-left: 10px;
+  position: relative;
+}
+.mgi_loanPro .loanPro_w .loanPro_c .proFirst .proFirst_con ul {
+  margin-top: 10px;
+}
+.mgi_loanPro .loanPro_w .loanPro_c .proFirst .proFirst_con ul li {
+  font-size: 14px;
+  color: #FF3F3F;
+  height: 20px;
+  line-height: 20px;
+  padding-left: 5px;
+}
+.mgi_loanPro .loanPro_w .loanPro_c .proFirst .proFirst_con > .calc {
+  position: absolute;
+  font-size: 12px;
+  background-color: #FFEEE8;
+  border: 1px solid #FFA9A5;
+  padding: 2px 8px;
+  height: 15px;
+  line-height: 15px;
+  color: #FF3F3F;
+  bottom: 0;
+  right: 0;
+}
+.mgi_loanPro .loanPro_w .loanPro_c > img {
+  width: 100%;
+}
+.mgi_loanPro .loanPro_w .loanPro_c .proSec {
+  padding: 10px 12px;
+}
+.mgi_loanPro .loanPro_w .loanPro_c .proSec .proSec_tit {
+  border-left: 2px solid #FF0013;
+  font-size: 16px;
+  height: 20px;
+  line-height: 20px;
+  padding-left: 10px;
+}
+.mgi_loanPro .loanPro_w .loanPro_c .proSec .proSec_con {
+  padding-left: 10px;
+  position: relative;
+}
+.mgi_loanPro .loanPro_w .loanPro_c .proSec .proSec_con ul {
+  margin-top: 10px;
+}
+.mgi_loanPro .loanPro_w .loanPro_c .proSec .proSec_con ul li {
+  font-size: 14px;
+  height: 20px;
+  line-height: 20px;
+  padding-left: 5px;
+}
+.mgi_loanPro .loanPro_w .loanPro_c .proSec .proSec_con ul li span {
+  color: #FF3F3F;
+}
+.mgi_config {
+  background-color: #fff;
+  margin-top: 10px;
+}
+.mgi_config .config_w .config_tit {
+  font-size: 18px;
+  font-weight: 700;
+  padding: 10px 10px;
+  border-bottom: 1px solid #eee;
+}
+.mgi_config .config_w .config_c {
+  padding: 10px 12px;
+}
+.mgi_config .config_w .config_c ul li {
+  font-size: 14px;
+  border-bottom: 1px solid #eee;
+  color: #7F7F7F;
+}
+.mgi_config .config_w .config_c ul li span {
+  float: right;
+  color: #000;
+}
+.mgi_shop {
+  background-color: #fff;
+  margin-top: 10px;
+}
+.mgi_shop .shop_w {
+  padding: 10px 12px;
+}
+.mgi_shop .shop_w .shop_c h3 {
+  font-size: 18px;
+}
+.mgi_shop .shop_w .shop_c h3 a {
+  float: right;
+  color: #656565;
+  font-weight: 500;
+}
+.mgi_shop .shop_w .shop_c p {
+  font-size: 16px;
+}
+.mgi_shop .shop_w .shop_c p:nth-child(3) {
+  color: #656565;
+  font-size: 14px;
+  margin-top: -5px;
+  height: 24px;
+  line-height: 24px;
+}
+.tip_w {
+  width: 100%;
+  background-color: #fff;
+}
+.tip_w .tip_c {
+  padding: 15px 0;
+}
+.tip_w .tip_c img {
+  width: 100%;
+}
+.mgi_detail {
+  background-color: #fff;
+  width: 100%;
+}
+.mgi_detail .detail_w {
+  width: 100%;
+}
+.mgi_detail .detail_w .detail_c {
+  width: 100%;
+}
+.mgi_detail .detail_w .detail_c img {
+  max-width: 100%;
+  margin-top: 5px;
+  display: block;
+  margin: 0 auto;
+}
+.mgi_detail .detail_w .detail_c p {
+  font-size: 16px;
+  line-height: 24px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.footer_nav {
+  height: 50px;
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.footer_nav ul {
+  width: 50%;
+  float: left;
+  height: 100%;
+}
+.footer_nav ul li {
+  float: left;
+  width: 50%;
+  text-align: center;
+  line-height: 50px;
+}
+.footer_nav ul li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  line-height: 80px;
+}
+.footer_nav ul li a em {
+  position: absolute;
+  top: -15px;
+}
+.footer_nav ul li a span {
+  font-size: 12px;
+}
+.footer_nav ul li:nth-child(2):active a em svg {
+  fill: red;
+}
+.footer_nav ul li:nth-child(1):active a em svg {
+  fill: red;
+}
+.footer_nav dl {
+  width: 50%;
+  float: left;
+  height: 100%;
+}
+.footer_nav dl dd {
+  width: 100%;
+  height: 100%;
+}
+.footer_nav dl dd a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #FF9000;
+  text-align: center;
+  text-decoration: none;
+  line-height: 50px;
+  font-size: 18px;
+  color: #fff;
+  font-weight: 700;
+}
+.spec_tit {
+  background-color: #fff;
+  padding: 2px 12px;
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 10px;
+}

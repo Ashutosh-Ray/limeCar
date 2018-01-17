@@ -1,0 +1,9 @@
+#robots.txtforIMSHOP
+User-agent: *
+Disallow:
+Disallow: /install/ 
+Disallow: /plugins/ 
+Disallow: /public/ 
+Disallow: /static/ 
+Disallow: /template/ 
+Disallow: /router.php

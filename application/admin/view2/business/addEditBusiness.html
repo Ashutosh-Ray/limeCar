@@ -1,0 +1,441 @@
+<include file="public/layout" />
+<style>
+  .goods_check{
+  float: left;
+  height: 24px;
+  padding-top: 3px;
+  margin-right: 5px;
+}
+.goods_check input{
+  display: block;
+  float: left;
+}
+.goods_check span{
+  display: block;
+  float: left;
+  height: 16px;
+  line-height: 15px;
+}
+</style>
+</head>
+<body style="overflow: auto;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title"><!-- <a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a> -->
+      <div class="subject">
+        <h3>商户 - 添加修改商户</h3>
+        <h5>添加或编辑商品分类</h5>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="explanation" id="explanation">
+    <div class="title" id="checkZoom"><i class="fa fa-lightbulb-o"></i>
+      <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+      <span id="explanationZoom" title="收起提示"></span>
+    </div>
+    <ul>
+      <li>请正确填写商户信息</li>
+    </ul>
+  </div> -->
+  <form action="{:U('Business/addEditBusiness')}" method="post" class="form-horizontal" id="business_form">
+    <div class="ncap-form-default">
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>商户名称</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="商户名称" class="input-txt" name="shop_name" value="{$data.shop_name}">
+          <span class="err" id="err_name" style="color:#F00; display:none;"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em></em>所在区域</label>
+        </dt>
+        <dd class="opt">省
+          <select name="province" value="{$data.province}">
+          <volist name="provinces" id="p">
+          <option value="{$p.id}">{$p.name}</option>
+          </volist>
+          </select>
+          市
+          <select name="city" value="{$data.city}">
+          </select>
+           区
+          <select name="area" value="{$data.area}">
+          </select>
+          <span class="err" id="err_name" style="color:#F00; display:none;"></span>
+          <p class="notic"></p>
+        </dd>
+        
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>商户地址</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="商户地址" class="input-txt" name="shop_address" value="{$data.shop_address}">
+          <span class="err" id="err_mobile_name" style="color:#F00; display:none;"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>经度</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="经度" class="input-txt" name="shop_lon" value="{$data.shop_lon}">
+          <span class="err" id="err_name" style="color:#F00; display:none;"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>纬度</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="纬度" class="input-txt" name="shop_lat" value="{$data.shop_lat}">
+          <span class="err" id="err_name" style="color:#F00; display:none;"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>商户管理员名称</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="商户管理员" class="input-txt" name="user_name" value="{$data.user_name}">
+          <span class="err" id="err_name" style="color:#F00; display:none;"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>密码</label>
+        </dt>
+        <dd class="opt">
+          <input type="password" placeholder="密码" class="input-txt" name="password" value="">
+          <span class="err" id="err_name" style="color:#F00; display:none;"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>法人姓名</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="法人" class="input-txt" name="legal_person" value="{$data.legal_person}">
+          <span class="err" id="err_name" style="color:#F00; display:none;"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane">法人手机号</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="手机号" class="input-txt" name="phone" value="{$data.phone}">
+          <span class="err" id="err_name" style="color:#F00; display:none;"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>法人身份证号</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="法人身份证号" class="input-txt" name="legal_id" value="{$data.legal_id}">
+          <span class="err" id="err_name" style="color:#F00; display:none;"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+        <dl class="row">
+        <dt class="tit">法人身份证正面</dt>
+        <dd class="opt">
+          <div class="input-file-show" id="divComUploadContainer">
+            <span class="show">
+                <a class="nyroModal" rel="gal" href="{$data.card_font}">
+                    <i class="fa fa-picture-o" onmouseover="layer.tips('<img src={$data.card_font}>',this, {tips: [1, '#fff']});" onmouseout="layer.closeAll();"></i>
+                </a>
+            </span>           
+            <span class="type-file-box">            
+            <input type="text" id="card_font" name="card_font" value="{$data.card_font}" class="type-file-text">            
+            <input type="button" class="type-file-button" onClick="GetUploadify(1,'card_font','category','')" value="上传图片" hidefocus="true" nc_type="change_site_logo" title="点击前方预览图可查看大图，点击按钮选择文件并提交表单后上传生效"/> 
+            </span>
+          </div>
+          <div id="thumbnails" class="ncap-thumb-list">
+            <h5><i class="fa fa-exclamation-circle"></i> 请上传图片格式文件。</h5>
+            <ul>
+            </ul>
+          </div>
+        </dd>
+      </dl>
+       <dl class="row">
+        <dt class="tit">法人身份证反面</dt>
+        <dd class="opt">
+          <div class="input-file-show" id="divComUploadContainer">
+            <span class="show">
+                <a class="nyroModal" rel="gal" href="{$data.card_back}">
+                    <i class="fa fa-picture-o" onmouseover="layer.tips('<img src={$data.card_back}>',this, {tips: [1, '#fff']});" onmouseout="layer.closeAll();"></i>
+                </a>
+            </span>           
+            <span class="type-file-box">            
+            <input type="text" id="card_back" name="card_back" value="{$data.card_back}" class="type-file-text">            
+            <input type="button" class="type-file-button" onClick="GetUploadify(1,'card_back','category','')" value="上传图片" hidefocus="true" nc_type="change_site_logo" title="点击前方预览图可查看大图，点击按钮选择文件并提交表单后上传生效"/> 
+            </span>
+          </div>
+          <div id="thumbnails" class="ncap-thumb-list">
+            <h5><i class="fa fa-exclamation-circle"></i> 请上传图片格式文件。</h5>
+            <ul>
+            </ul>
+          </div>
+        </dd>
+      </dl>
+       <dl class="row">
+        <dt class="tit">营业执照</dt>
+        <dd class="opt">
+          <div class="input-file-show" id="divComUploadContainer">
+            <span class="show">
+                <a class="nyroModal" rel="gal" href="{$data.business_licence}">
+                    <i class="fa fa-picture-o" onmouseover="layer.tips('<img src={$data.business_licence}>',this, {tips: [1, '#fff']});" onmouseout="layer.closeAll();"></i>
+                </a>
+            </span>           
+            <span class="type-file-box">            
+            <input type="text" id="business_licence" name="business_licence" value="{$data.business_licence}" class="type-file-text">            
+            <input type="button" class="type-file-button" onClick="GetUploadify(1,'business_licence','category','')" value="上传图片" hidefocus="true" nc_type="change_site_logo" title="点击前方预览图可查看大图，点击按钮选择文件并提交表单后上传生效"/> 
+            </span>
+          </div>
+          <div id="thumbnails" class="ncap-thumb-list">
+            <h5><i class="fa fa-exclamation-circle"></i> 请上传图片格式文件。</h5>
+            <ul>
+            </ul>
+          </div>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">商家logo</dt>
+        <dd class="opt">
+          <div class="input-file-show" id="divComUploadContainer">
+            <span class="show">
+                <a class="nyroModal" rel="gal" href="{$data.shop_logo}">
+                    <i class="fa fa-picture-o" onmouseover="layer.tips('<img src={$data.shop_logo}>',this, {tips: [1, '#fff']});" onmouseout="layer.closeAll();"></i>
+                </a>
+            </span>           
+            <span class="type-file-box">            
+            <input type="text" id="imagetext" name="shop_logo" value="{$data.shop_logo}" class="type-file-text">            
+            <input type="button" class="type-file-button" onClick="GetUploadify(1,'imagetext','category','')" value="上传图片" hidefocus="true" nc_type="change_site_logo" title="点击前方预览图可查看大图，点击按钮选择文件并提交表单后上传生效"/> 
+            </span>
+          </div>
+          <div id="thumbnails" class="ncap-thumb-list">
+            <h5><i class="fa fa-exclamation-circle"></i> 请上传图片格式文件。</h5>
+            <ul>
+            </ul>
+          </div>
+        </dd>
+      </dl> 
+
+
+ 
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em></em>商户类型</label>
+        </dt>
+
+        <dd class="opt">
+          <select name="shop_type" value="{$data.shop_type}">
+          
+          <option value="1"<if condition="$data.shop_type eq 1">selected</if>>一站式</option>
+          
+          <option value="2" <if condition="$data.shop_type eq 2">selected</if>>社区店</option>
+          <option value="3"<if condition="$data.shop_type eq 3">selected</if>>维修厂</option>
+          </select>
+          <span class="err" id="err_name" style="color:#F00; display:none;"></span>
+          <p class="notic"></p>
+        </dd>
+        
+      </dl>
+
+      
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane">百度糯米</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="百度糯米号" class="input-txt" name="baidu" value="{$data.baidu}">
+          <input type="text" placeholder="百度糯密码" class="input-txt" name="baidupsw" value="{$data.baidupsw}">
+          <span class="err" id="err_name" style="color:#F00; display:none;"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane">美团</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="美团号" class="input-txt" name="meituan" value="{$data.meituan}">
+          <input type="text" placeholder="美团密码" class="input-txt" name="meituanpsw" value="{$data.meituanpsw}">
+          <span class="err" id="err_name" style="color:#F00; display:none;"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane">固话</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="固话" class="input-txt" name="tel" value="{$data.tel}">
+          <span class="err" id="err_name" style="color:#F00; display:none;"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+       <dl class="row">
+        <dt class="tit">
+          <label for="t_mane">验卷数</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="固话" class="input-txt" name="check_num" value="{$data.check_num}">
+          <span class="err" id="err_name" style="color:#F00; display:none;"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>服务范围</label>
+        </dt>
+          <dd class="opt">
+            <div class="goods_check" checked=""><input type="checkbox" class="all"><span>全选</span></div>
+            <volist name="tags" id="vo">
+                    <in name="vo.id" value="$stags" >
+                     <div class="goods_check"><input type="checkbox" name="tags[]" value="{$vo.id}" checked="true"><span>{$vo.name}</span></div>
+                     </in>
+                     <notin  name="vo.id" value="$stags">
+                      <div class="goods_check"><input type="checkbox" name="tags[]" value="{$vo.id}" ><span>{$vo.name}</span></div>
+                    </notin>
+             </volist>
+            <!-- <div class="goods_check"><input type="checkbox"><span>新车</span></div>
+            <div class="goods_check"><input type="checkbox"><span>二手车</span></div>
+            <div class="goods_check"><input type="checkbox"><span>保养</span></div>
+            <div class="goods_check"><input type="checkbox"><span>洗车</span></div>
+            <div class="goods_check"><input type="checkbox"><span>打蜡</span></div>
+            <div class="goods_check"><input type="checkbox"><span>抛光</span></div>
+            <div class="goods_check"><input type="checkbox"><span>钣喷</span></div>
+            <div class="goods_check"><input type="checkbox"><span>空调清洗</span></div>
+            <div class="goods_check"><input type="checkbox"><span>空调加氟</span></div> -->
+          </dd>
+      </dl>
+	  <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>是否使用</label>
+        </dt>
+        <dd class="opt">
+          <div class="onoff">
+            <label for="goods_category1" class="cb-enable <if condition="$data[status] eq 1">selected</if>">是</label>
+            <label for="goods_category0" class="cb-disable <if condition="$data[status] eq 0">selected</if>">否</label>
+            <input id="goods_category1" name="status" value="1" type="radio" <if condition="$data[status] eq 1"> checked="checked"</if>>
+            <input id="goods_category0" name="status" value="0" type="radio" <if condition="$data[status] eq 0"> checked="checked"</if>>
+          </div>
+          <p class="notic">商户是否能使用</p>
+        </dd>        
+    </dl>
+                        
+     <!--  <div class="bot"><a id="submitBtn" class="ncap-btn-big ncap-btn-green" href="JavaScript:void(0);" onClick="ajax_submit_form('category_form','{:U('Goods/addEditCategory?is_ajax=1')}');">确认提交</a></div>
+    </div> -->
+     <div class="bot"><a id="submitBtn" class="ncap-btn-big ncap-btn-green" href="JavaScript:void(0);">确认提交</a></div>
+    </div>
+    <input type="hidden" name="id" value="{$data.admin_id}">
+  </form>
+</div>
+<script>  
+    
+/** 以下是编辑时默认选中某个商品分类*/
+$(document).ready(function(){
+	$('#submitBtn').click(function () {
+  var form  = $('#business_form');
+  var _url = form.attr('action');
+  $.ajax({
+    url:_url,
+    type:'POST',
+    data:form.serialize(),
+    dataType:'json',
+    success:function (res) {
+     alert(res.msg);
+     window.location.reload(); 
+    }
+  });
+  });
+
+
+  $('select[name="province"]').change(function () {
+    var val = $(this).val();
+    $.ajax({
+       url:"{:U('Business/area')}",
+       type:'post',
+       dataType:"json",
+       data:{id:val},
+       success:function (res) {
+         if (res.status==1) {
+          var html = '';
+          $(res.info).each(function (index,item) {
+            html+= '<option value="'+item.id+'">'+item.name+'</option>';
+          });
+          $('select[name="city"]').html(html);
+         }else{
+         
+         }
+       }
+    });
+  });
+
+$('select[name="city"]').change(function () {
+    var val = $(this).val();
+    $.ajax({
+       url:"{:U('Business/area')}",
+       type:'post',
+       dataType:"json",
+       data:{id:val},
+       success:function (res) {
+         if (res.status==1) {
+          var html = '';
+          $(res.info).each(function (index,item) {
+            html+= '<option value="'+item.id+'">'+item.name+'</option>';
+          });
+          $('select[name="area"]').html(html);
+         }else{
+         
+         }
+       }
+    });
+  });
+
+});
+//产品分类控制
+$('.all').click(function(){
+  if ($(this).attr("checked")=="checked") {
+    $(this).parent().siblings().children('input').attr("checked","checked")
+  }else{
+    $(this).parent().siblings().children('input').removeAttr("checked")
+  }
+})
+var oths=$('.all').parent().siblings().children('input')
+oths.each(function(){
+  $(this).click(function(){
+    var chknum=$('.all').parent().siblings().children('input').size()
+    var chk=0
+    oths.each(function(){
+      if ($(this).prop("checked")==true) {
+        chk++;
+      }
+    })
+    if (chk==chknum) {
+      $('.all').prop("checked",true)
+    }else{
+      $('.all').prop("checked",false)
+    }
+  })
+})
+</script>
+</body>
+</html>

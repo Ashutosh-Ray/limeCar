@@ -1,0 +1,16 @@
+html, body, div, ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, pre, form, p, blockquote, fieldset, input { padding: 0; margin: 0; }
+h1, h2, h3, h4, h5, h6, pre, code, address, caption, cite, code, em, strong, table, th, td { font-size: 1em; font-style: normal; font-weight: normal; }
+strong { font-weight: bold; }
+ul, ol { list-style: none outside none; }
+fieldset, img { border: medium none; vertical-align: middle; }
+caption, th { text-align: left; }
+table { border-collapse: collapse; border-spacing: 0; }
+body { font: 12px/20px "Microsoft Yahei"; color: #666; background: #FFF none repeat scroll 0 0; }
+input, select, textarea { font: 12px/20px Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif; }
+i, cite, em { font-style: normal; }
+input, button, select, textarea { outline:none }
+html { min-height:101%; }
+/* 链接 */
+a { color: #333; text-decoration: none; outline: medium none; -webkit-transition-property:color; -webkit-transition-duration: 0.3s; -webkit-transition-timing-function: ease; }
+a:link, a:visited, a:active { text-decoration: none; }
+a:hover { color: #C81623; text-decoration: none; }

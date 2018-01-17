@@ -1,0 +1,120 @@
+<div id="flexigrid" cellpadding="0" cellspacing="0" border="0">
+    <table>
+        <tbody>
+        <volist name="distributorList" id="list">
+            <tr data-id="{$list['id']}">
+                <td class="sign">
+                    <div style="width: 24px;"><i class="ico-check"></i></div>
+                </td>
+                <td class="handle">
+                <div style="text-align:left;   min-width:50px !important; max-width:inherit !important;">
+                  <span class="btn"><em><i class="fa fa-cog"></i>设置<i class="arrow"></i></em>
+                  <ul>
+                    <li><a  href="">查看分销明细</a></li>
+                    <li><a href="javascript:void(0);" onclick="del('{$list.id}')">删除分销记录</a></li>                  
+                  </ul>
+                  </span>
+                </div>
+              </td>
+                <td align="left" class="">
+                    <div style="text-align: center; width: 40px;">{$list.id}</div>
+                </td>
+                <td align="left" class="">
+                    <div style="text-align: center; width: 150px;">{$list.nickname}</div>
+                </td>
+                <td align="left" class="">
+                    <div style="text-align: center; width: 50px;">{$list.goods_id}</div>
+                </td>
+                <td align="left" class="">
+                    <div style="text-align: center; width: 80px;">{$list.goods_name}</div>
+                </td>
+                <td align="left" class="">
+                    <div style="text-align: center; width: 180px;">{$list.email}
+                        {$list.share_num}
+                    </div>
+                </td>
+                <td align="left" class="">
+                    <div style="text-align: center; width: 60px;">
+                    <if condition="$list['exchange_statue'] eq 1">已兑换过<else/>未兑换</if>
+                    </div>
+                </td>
+                <td align="left" class="">
+                    <div style="text-align: center; width: 60px;"><a href="{:U('admin/distribut/buyinfo',array('id'=>$list.id))}">{$list.buy_num}</a></div>
+                </td>
+                 <td align="left" class="">
+                    <div style="text-align: center; width: 60px;"><a href="{:U('admin/distribut/scaninfo',array('id'=>$list.id))}">{$list.view_num}</a></div>
+                </td>
+                <td align="left" class="">
+                    <div style="text-align: center; width: 60px;">
+                    <if condition="$list['exchange_type'] eq 1">兑换商品</if>
+                    <if condition="$list['exchange_type'] eq 2">返佣金</if>
+                    <if condition="$list['exchange_type'] eq 0">未选择</if>
+                    </div>
+                </td>
+                <td align="left" class="">
+                    <div style="text-align: center; width: 130px;">
+                    {$list.add_time|date="Y-m-d:H:i:s",###}                    
+                    </div>
+                </td>
+<!--                 <td align="left" class="">
+                    <div style="text-align: center; width: 80px;">{$list.user_money}</div>
+                </td>
+                <td align="left" class="">
+                    <div style="text-align: center; width: 80px;">{$list.pay_points}</div>
+                </td>
+                <td align="left" class="">
+                    <div style="text-align: center; width: 120px;">{$list.reg_time|date='Y-m-d',###}</div>
+                </td>
+                <td align="center" class="handle">
+                    <div style="text-align: center; width: 170px; max-width:170px;">
+                        <a class="btn blue" href="{:U('Admin/user/detail',array('id'=>$list['user_id']))}"><i class="fa fa-pencil-square-o"></i>查看编辑</a>
+                        <a class="btn blue" href="{:U('Admin/user/account_log',array('id'=>$list['user_id']))}"><i class="fa fa-search"></i>用户资金</a>
+                        <a class="btn blue" href="{:U('Admin/user/address',array('id'=>$list['user_id']))}"><i class="fa fa-steam"></i>收货地址</a>
+                        <a class="btn red"  href="javascript:void(0)" data-id="{$list['user_id']}"  data-url="{:U('Admin/user/ajax_delete')}" onClick="delfun(this)"><i class="fa fa-trash-o"></i>删除</a>
+                    </div>
+                </td> -->
+                <td align="" class="" style="width: 100%;">
+                    <div>&nbsp;</div>
+                </td>
+            </tr>
+        </volist>
+        </tbody>
+    </table>
+</div>
+<!--分页位置-->
+{$page}
+<script>
+    $(".pagination  a").click(function(){
+        var page = $(this).data('p');
+        ajax_get_table('search-form2',page);
+    });
+    $(document).ready(function(){
+        // 表格行点击选中切换
+        $('#flexigrid >table>tbody>tr').click(function(){
+            $(this).toggleClass('trSelected');
+        });
+        $('#user_count').empty().html("{$pager->totalRows}");
+    });
+    function delfun(obj) {
+        // 删除按钮
+        layer.confirm('确认删除？', {
+            btn: ['确定', '取消'] //按钮
+        }, function () {
+            $.ajax({
+                type: 'post',
+                url: $(obj).attr('data-url'),
+                data: {id : $(obj).attr('data-id')},
+                dataType: 'json',
+                success: function (data) {
+                    layer.closeAll();
+                    if (data.status == 1) {
+                        $(obj).parent().parent().parent().remove();
+                    } else {
+                        layer.alert(data.msg, {icon: 2});
+                    }
+                }
+            })
+        }, function () {
+        });
+    }
+</script>
