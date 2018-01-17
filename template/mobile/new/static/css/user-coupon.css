@@ -12,10 +12,13 @@ body {
 }
 .coupon_list .list_c ul li {
   width: 100%;
+  margin-bottom: 10px;
+  position: relative;
 }
 .coupon_list .list_c ul li .left {
   float: left;
   height: 100px;
+  position: relative;
 }
 .coupon_list .list_c ul li .left img {
   width: 115px;
@@ -23,6 +26,15 @@ body {
 }
 .coupon_list .list_c ul li .left span {
   position: absolute;
+  width: 115px;
+  top: 38px;
+  left: 0px;
+  font-size: 40px;
+  text-align: center;
+  color: #fff;
+}
+.coupon_list .list_c ul li .left span i {
+  font-size: 30px;
 }
 .coupon_list .list_c ul li .content {
   width: calc(100% - 115px);
@@ -31,13 +43,42 @@ body {
   padding: 15px 0;
 }
 .coupon_list .list_c ul li .content h3 {
-  padding-left: 25px;
+  padding-left: 20px;
   font-size: 16px;
   margin-bottom: 10px;
   font-weight: 700;
   color: #000;
 }
 .coupon_list .list_c ul li .content p {
-  padding-left: 25px;
+  padding-left: 20px;
   color: #999;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.coupon_list .list_c ul li .chose {
+  position: absolute;
+  right: 10px;
+  top: 15px;
+}
+.coupon_list .list_c ul li .chose svg {
+  fill: #63B143;
+}
+.coupon_list .btn {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 45px;
+}
+.coupon_list .btn a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 45px;
+  color: #fff;
+  background-color: #63B143;
+  font-size: 16px;
+  letter-spacing: 2px;
 }

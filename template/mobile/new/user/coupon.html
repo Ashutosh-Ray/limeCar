@@ -10,7 +10,7 @@
 <meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
 <link rel="stylesheet" href="__STATIC__/css/common.css">
 <link rel="stylesheet" href="__STATIC__/css/user-coupon.css">
-<script type="text/javascript" src="__STATIC__/js/jquery.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="__STATIC__/js/layer.js" ></script>
 <script>
 	(function (doc, win) {
@@ -38,17 +38,44 @@
 			<li>
 				<div class="left">
 					<img src="__STATIC__/images/coupon1.png" alt="">
-					<span></span>
 				</div>
 				<div class="content">
 					<h3>免费手工洗车券</h3>
 					<p>截止日期：2018年1月24日</p>
 					<p>使用商家：不限</p>
 				</div>
+				<div style="clear: both;"></div>
+			</li>
+			<li class="">
+				<div class="left">
+					<img src="__STATIC__/images/coupon2.png" alt="">
+					<span><i>￥</i>100</span>
+				</div>
+				<div class="content">
+					<h3>免费手工洗车券</h3>
+					<p>截止日期：2018年1月24日</p>
+					<p>使用商家：不限</p>
+				</div>
+				<div style="clear: both;"></div>
 			</li>
 		</ul>
 	</div>
+	<div class="btn">
+		<a href="javascript:void(0);" onclick="submit()">立即使用</a>
+	</div> 
 </div>
 </body>
+<script>
+var html=$('<div class="chose" style="display:none;"><svg t="1516159300549" viewBox="0 0 1024 1024" p-id="1491" width="20" height="20"><defs><style type="text/css"></style></defs><path d="M512 64C262.4 64 64 262.4 64 512s198.4 448 448 448 448-198.4 448-448S761.6 64 512 64z m236.8 326.4L454.4 684.8c-12.8 12.8-32 12.8-44.8 0L275.2 544c-12.8-12.8-12.8-32 0-44.8 12.8-12.8 32-12.8 44.8 0l115.2 115.2L704 339.2c12.8-12.8 32-12.8 44.8 0 12.8 12.8 12.8 38.4 0 51.2z" p-id="1492"></path></svg></div>')
+$(function(){
+	$('li').children('.content').after(html)
+})
+$('li').click(function(){
+	$(this).toggleClass("current")
+	$(this).children(".chose").toggle();
+})
+function submit(){
 
+}
+</script>
 </html>
