@@ -60,7 +60,7 @@ class Coupon extends Base {
 
         if(IS_POST){
         	$data = I('post.');
-            $data['use_end_time'] = strtotime($data['use_end_time']);
+            $data['use_end_time'] = strtotime($data['use_end_time'].' 23:59:59');
             if(empty($data['id'])){
             	$data['add_time'] = time();
                 $data['code'] = time();

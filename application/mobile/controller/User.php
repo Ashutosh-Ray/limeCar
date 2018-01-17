@@ -1477,7 +1477,7 @@ class User extends MobileBase
         $where['uid'] = $this->user_id;
         $where['user_del'] = 0;
         $count = M('CouponList')->where($where)->count();
-        $page = new AjaxPage($count,10);
+        $page = new AjaxPage($count,5);
         $list = M('CouponList')->where($where)->limit($page->firstRow.','.$page->listRows)->select();
         $this->assign('list',$list);
         if (IS_AJAX) {
