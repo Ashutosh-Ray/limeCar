@@ -1,0 +1,125 @@
+body{
+	background-color: #ebebeb;
+}
+.order_list{
+	.goods_list{
+		li{
+			padding: 10px;
+			background-color: #fff;
+			margin-bottom: 2px;
+			.list_content{
+				img{
+					width:72px;
+					height: 72px;
+					float: left;
+				}
+				.goods_name{
+					float: left;
+					margin-left: 25px;
+					width: 60%;
+					h3{
+						width: 100%;
+						font-size: 16px;
+						color: #000;
+						margin-top: 10px;
+						overflow: hidden;
+						text-overflow:ellipsis;
+						white-space: nowrap;
+					}
+					p{
+						color: #000;
+						margin-top: 10px;
+					}
+				}
+				.goods_num{
+					float: right;
+					margin-top: 10px;
+					font-size: 14px;
+				}
+			}
+		}
+	}
+}
+.order_price{
+	width: 100%;
+	margin-top: 10px;
+	ul{
+		width: 100%;
+		li{
+			background-color: #fff;
+			position: relative;
+			height: 35px;
+			padding: 0 10px;
+			font-size: 14px;
+			margin-bottom: 2px;
+			a{
+				display: block;
+				width: 100%;
+				height: 35px;
+			}
+			.tit{
+				float: left;
+				display: block;
+				height: 35px;
+				line-height: 35px;
+				color: #000;
+				font-weight: 700;
+			}
+			div{
+				float: right;
+				height: 35px;
+				line-height: 35px;
+				margin-right: 10px;
+				color: #666;
+			}
+			.icon{
+				position: absolute;
+				right: 0;
+				font-family: "宋体";
+				top: 8px;
+				right: 5px;
+				font-weight: 700;
+			}
+		}
+		li:nth-child(2){
+			div{
+				color: #000;
+			}
+		}
+		li:nth-child(3){
+			div{
+				color: red;
+			}
+		}
+	}
+}
+footer{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	left: 0;
+	height: 45px;
+	background-color: #fff;
+	div{
+		float: left;
+		color: red;
+		height: 45px;
+		line-height: 45px;
+		padding-left: 10px;
+		font-size: 16px;
+	}
+	a{
+		display: block;
+		float: right;
+		width: 100px;
+		height: 45px;
+		background-color: #FF9000;
+		color: #fff;
+		text-align: center;
+		line-height: 45px;
+		font-size: 18px;
+	}
+	a:hover{
+		color: #fff;
+	}
+}

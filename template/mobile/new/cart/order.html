@@ -1,41 +1,78 @@
-<include file="public/header"/>
+<!DOCTYPE html>
+<html lang="en" class="mask">
+<head>
+<meta name="Generator" content="IMSHOP v1.1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>{$shop_name}</title>
+<meta http-equiv="keywords" content="{$imshop_config['shop_info_store_keyword']}" />
+<meta name="description" content="{$imshop_config['shop_info_store_desc']}" />
+<meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
+<link rel="stylesheet" href="__STATIC__/css/common.css">
+<link rel="stylesheet" href="__STATIC__/css/cart-order.css">
+<script type="text/javascript" src="__STATIC__/js/jquery.js"></script>
+<script type="text/javascript" src="__STATIC__/js/layer.js" ></script>
+<script>
+  (function (doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                if(clientWidth>=640){
+                    docEl.style.fontSize = '100px';
+                }else{
+                    docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+                }
+            };
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+</script>
+</head>
 <body>
-<header>
-<div class="tab_nav">
-   <div class="header">
-     <div class="h-left"><a class="sb-back" href="javascript:history.back(-1)" title="返回"></a></div>
-     <div class="h-mid">确定订单</div>
-     <div class="h-right">
-       <aside class="top_bar">
-         <div onClick="show_menu();$('#close_btn').addClass('hid');" id="show_more"><a href="javascript:;"></a> </div>
-       </aside>
-     </div>
-   </div>
- </div>
-</header>
-<include file="public/menu"/>
-
-<div id="tbh5v0">
-<div class="order ajax_return">
-<volist name="lists" id="vo">
-	<div class="order_list">
-        <a>
-	        <dl style="position: relative;background-color: #fff;">
-		        <dd class="name" style="width: 55%;"><strong>{$vo.goods_name}</strong>
-		          	<!-- <span style="position: absolute;"> </span></dd> -->
-		        <dd class="pice" style="font-weight: 500;width: 45%;">￥{$vo.goods_price}<em>x{$vo.goods_num}</em></dd>
-		    </dl>
-	    </a>
-        <div class="pic" style="border-bottom: none;">共{$vo.goods_num}件商品<span>&nbsp;&nbsp;合计：</span><strong style="font-weight: 700;">￥{$allmoney['order_amount']}</strong></div>
-    </div>
+<section class="order_list">
+  <ul class="goods_list">
+    <volist name="lists" id="vo">
+    <li>
+      <div class="list_content">
+        <img src="__STATIC__/images/test.jpg" alt="">
+        <div class="goods_name">
+          <h3>{$vo.goods_name}</h3>
+          <p>￥{$vo.goods_price}</p>
+        </div>
+        <div class="goods_num">*{$vo.goods_num}</div>
+      </div>
+      <div style="clear: both;"></div>
+    </li>
     </volist>
-    <div class="btn" style="width: 100%;background-color: #fff;">
-    	<a onclick="addSubmit()" style="width: 90%;display: block;height: 35px;color: #fff;text-align: center;line-height: 35px;background-color: #FF9000;margin: 0 auto;font-size: 14px;font-weight: 700;">确认支付</a>
-    </div>
-    
-</div>
-
-
+  </ul>
+</section>
+<section class="order_price">
+  <ul>
+    <li>
+      <a href="">
+        <span class="tit">优惠券：</span>
+        <div>3张</div>
+        <span class="icon">&gt;</span>
+      </a>
+    </li>
+    <li>
+        <span class="tit">商品合计：</span>
+        <div>{$allmoney['order_amount']}</div>
+    </li>
+    <li>
+        <span class="tit">优惠：</span>
+        <div>￥360.00</div>
+    </li>
+  </ul>
+</section>
+<footer>
+  <div>应付：360.00</div>
+  <a href="javascript:void(0);" onclick="addSubmit()">去付款</a>
+</footer>
+</body>
 <script type="text/javascript">
   function addSubmit() {
     $.ajax({
@@ -53,5 +90,4 @@
     })
   }
 </script>
-</body>
 </html>
