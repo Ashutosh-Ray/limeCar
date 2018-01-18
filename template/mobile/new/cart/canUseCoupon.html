@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" class="mask">
+<head>
+<meta name="Generator" content="IMSHOP v1.1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>{$shop_name}</title>
+<meta http-equiv="keywords" content="{$imshop_config['shop_info_store_keyword']}" />
+<meta name="description" content="{$imshop_config['shop_info_store_desc']}" />
+<meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
+<link rel="stylesheet" href="__STATIC__/css/common.css">
+<link rel="stylesheet" href="__STATIC__/css/user-coupon.css">
+<script src="__STATIC__/js/jquery.js"></script>
+<script type="text/javascript" src="__STATIC__/js/layer.js" ></script>
+<script>
+	(function (doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                if(clientWidth>=640){
+                    docEl.style.fontSize = '100px';
+                }else{
+                    docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+                }
+            };
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+</script>
+</head>
+<body>
+<div class="coupon_list">
+	<div class="list_c">
+		<form id="sub_mit">
+		<ul id="ajax_retutn">
+			<volist name="list" id="vo">
+			<if condition="$vo['type'] eq 1">
+			<li>
+				<div class="left">
+					<img src="__STATIC__/images/coupon1.png" alt="">
+				</div>
+				<div class="content">
+					<h3>{$vo.name}</h3>
+					<p>截止日期：{$vo['use_end_time']|date="Y-m-d",###}</p>
+					<p>使用商家：
+						<if condition="$vo['is_appoint'] eq 0">不限
+							<else/>
+							<volist name="vo.shops" id='shop'>{$shop.shop_name}</volist>
+						</if>
+					</p>
+				</div>
+				<if condition="$vo['can_use'] eq 1">
+				<div class="chose" style="display:none;">
+					<input name="id" type="radio" style="display: none;" class="checkbox" value="{$vo['id']}">
+					<svg t="1516159300549" viewBox="0 0 1024 1024" p-id="1491" width="20" height="20"><defs><style type="text/css"></style></defs><path d="M512 64C262.4 64 64 262.4 64 512s198.4 448 448 448 448-198.4 448-448S761.6 64 512 64z m236.8 326.4L454.4 684.8c-12.8 12.8-32 12.8-44.8 0L275.2 544c-12.8-12.8-12.8-32 0-44.8 12.8-12.8 32-12.8 44.8 0l115.2 115.2L704 339.2c12.8-12.8 32-12.8 44.8 0 12.8 12.8 12.8 38.4 0 51.2z" p-id="1492"></path></svg>
+				</div></if>
+				<div style="clear: both;"></div>
+			</li>
+		</if>
+		<if condition="$vo['type'] eq 0">
+			<li class="">
+				<div class="left">
+					<img src="__STATIC__/images/coupon2.png" alt="">
+					<span><i>￥</i>{$vo.money|number_format=###,0}</span>
+				</div>
+				<div class="content">
+					<h3>{$vo.name}</h3>
+					<p>截止日期：{$vo['use_end_time']|date="Y-m-d",###}</p>
+					<p>使用范围：
+						<if condition="$vo['tag_count'] eq 0">不限
+							<else/>
+							<volist name="vo.tags" id='tag'>{$tag.name}</volist>
+						</if>
+					</p>
+				</div>
+				<if condition="$vo['can_use'] eq 1">
+				<div class="chose" style="display:none;">
+					<input name="id" type="radio" style="display: none;" class="checkbox" value="{$vo['id']}">
+					<svg t="1516159300549" viewBox="0 0 1024 1024" p-id="1491" width="20" height="20"><defs><style type="text/css"></style></defs><path d="M512 64C262.4 64 64 262.4 64 512s198.4 448 448 448 448-198.4 448-448S761.6 64 512 64z m236.8 326.4L454.4 684.8c-12.8 12.8-32 12.8-44.8 0L275.2 544c-12.8-12.8-12.8-32 0-44.8 12.8-12.8 32-12.8 44.8 0l115.2 115.2L704 339.2c12.8-12.8 32-12.8 44.8 0 12.8 12.8 12.8 38.4 0 51.2z" p-id="1492"></path></svg>
+				</div></if>
+				<div style="clear: both;"></div>
+			</li>
+		</if>
+		</volist>
+		</ul>
+		</form>
+	</div>
+	<notempty name="list"> 
+   <div id="getmore" style="font-size:.24rem;text-align: center;color:#888;padding:.25rem .24rem .4rem; clear:both">
+  		<a href="javascript:void(0)" onClick="ajax_sourch_submit()">点击加载更多</a>
+  </div>         
+</notempty>
+	<div class="btn">
+		<a href="javascript:void(0);" onclick="submit()">立即使用</a>
+	</div> 
+</div>
+</body>
+<script>
+$('li').live('click',function(){
+	$(this).children(".chose").toggle();
+	$(this).toggleClass("current")
+	var check=$(this).children('.chose').children(".checkbox").prop("checked")
+	
+	if (check) {
+		$(this).children('.chose').children(".checkbox").prop("checked",false)
+	}else{
+		$(this).children('.chose').children(".checkbox").prop("checked",true)
+	}
+})
+$('li').click(function () {
+})
+
+
+var  page = 1;
+ /*** ajax 提交表单 查询订单列表结果*/  
+ function ajax_sourch_submit()
+ {
+    page += 1;
+    $.ajax({
+        type : "POST",
+        url:"{:U('Mobile/User/coupon')}",
+        data:{p:page},
+        success: function(data)
+        {
+            if($.trim(data) == '')
+                $('#getmore').hide();
+            else
+                $("#ajax_retutn").append(data);
+        }
+    });
+ }
+function submit(){
+var count =0;
+var checkboxs = $('#sub_mit').find('input[type="radio"]');
+$(checkboxs).each(function (index,item) {
+	var bool =$(item).prop('checked')
+	if (bool) {
+		count++
+	}
+})
+alert(count)
+if (count<=0) {
+	alert('您还未选中优惠券');
+}else{
+	// $.ajax({
+ //        type : "POST",
+ //        url:"{:U('Mobile/Coupon/del_coupon')}",
+ //        data:$('#sub_mit').serialize(),
+ //        success: function(data)
+ //        {
+ //            if($.trim(data) == 1)
+ //                location.reload()
+ //            else
+ //                alert('删除失败')
+ //        }
+ //    });
+}
+}
+</script>
+</html>

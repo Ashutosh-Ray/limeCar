@@ -37,7 +37,7 @@
     <volist name="lists" id="vo">
     <li>
       <div class="list_content">
-        <img src="__STATIC__/images/test.jpg" alt="">
+        <img src="{$vo.goods_id|getFirstImg=280,275}" alt="">
         <div class="goods_name">
           <h3>{$vo.goods_name}</h3>
           <p>￥{$vo.goods_price}</p>
@@ -52,9 +52,9 @@
 <section class="order_price">
   <ul>
     <li>
-      <a href="">
+      <a href="{:U('Mobile/Cart/canUseCoupon')}">
         <span class="tit">优惠券：</span>
-        <div>3张</div>
+        <div>{$count_coupon}张</div>
         <span class="icon">&gt;</span>
       </a>
     </li>
@@ -64,12 +64,12 @@
     </li>
     <li>
         <span class="tit">优惠：</span>
-        <div>￥360.00</div>
+        <div>￥0.00</div>
     </li>
   </ul>
 </section>
 <footer>
-  <div>应付：360.00</div>
+  <div>应付：{$allmoney['order_amount']}</div>
   <a href="javascript:void(0);" onclick="addSubmit()">去付款</a>
 </footer>
 </body>

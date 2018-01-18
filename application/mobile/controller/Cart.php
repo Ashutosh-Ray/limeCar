@@ -285,9 +285,77 @@ class Cart extends MobileBase {
         if($this->user_id == 0)
              $this->error('请登录');
           $this->addCart();
+          $count_coupon = M("CouponList")->where(array('user_del'=>0,'uid'=>$this->user_id,'order_id'=>0))->count();
+          $this->assign('count_coupon',$count_coupon);
           return $this->fetch();
     }
 
+
+    public function canUseCoupon()
+    {
+      if($this->user_id == 0)
+             $this->error('请登录');
+      $coupons = M("CouponList")->where(array('user_del'=>0,'uid'=>$this->user_id,'order_id'=>0))->select();
+     foreach ($coupons as $key => $coupon) {
+        $coupon['can_use']=1;
+        if ($coupon['use_end_time']<time()){
+          $coupon['can_use']=0;
+          $coupon['no_use'] = '优惠券已过期';
+          $coupons[$key]=$coupon;
+          continue;
+        }
+
+        //判断是否是产品卷
+        if ($coupon['type']==1) 
+        {
+          $goods_id = $coupon['goods_id'];
+          $cartGoodcount = M('cart')->where(array('goods_id'=>$goods_id,'user_id'=>$this->user_id,'session_id'=>$this->session_id))->count();
+          if ($cartGoodcount<=0) 
+          {
+            $coupon['can_use']=0;
+            $coupons[$key]=$coupon;
+            continue;
+          }
+          //判断产品券是否指定商家
+          if ($coupon['is_appoint']==1) 
+          {
+            $goods = M('Goods')->where(array('goods_id'=>$goods_id,'is_on_sale'=>1,'del_status'=>0))->find();
+            if ($goods['is_appoint']==1) 
+            {
+              $count = M('UcouponSag')->alias('us')->join('__GUSEB__ gb','gb.shop_id=us.shop_id')->where(array('us.clid'=>$coupon['id'],'gb.goods_id'=>$goods_id))->count();
+              if ($count<=0) 
+              {
+               $coupon['can_use']=0;
+               $coupons[$key]=$coupon;
+                continue;
+              }
+            }else{
+              $coupon['can_use']=0;
+              $coupons[$key]=$coupon;
+                continue;
+            }
+          }
+
+        }else{
+          //代金券情况下
+          $ctags = M('UCouponTag')->where(array('clid'=>$coupon['id']))->count();
+          if ($ctags>0) 
+          {
+           $gcount = M('UCouponTag')->alias('ut')->join('__GOODS_TAG__ gt','gt.tag_id=ut.tag_id')->join('__CART__ c','c.goods_id=gt.goods_id')->where(array('ut.clid'=>$coupon['id'],'c.user_id'=>$this->user_id,'c.session_id'->$this->session))->count();
+           if ($gcount<=0) 
+           {
+             $coupon['can_use']=0;
+             $coupons[$key]=$coupon;
+              continue;
+           }
+          }
+        }
+        $coupons[$key]=$coupon;
+      }
+      $this->assign('list',$coupons);
+      return $this->fetch();
+
+    }
 
 
     /*
