@@ -64,6 +64,12 @@ body {
 .coupon_list .list_c ul li .chose svg {
   fill: #63B143;
 }
+.coupon_list .list_c ul .cant .content h3 {
+  color: #bdbdbd;
+}
+.coupon_list .list_c ul .cant .content p {
+  color: #bdbdbd;
+}
 .coupon_list .btn {
   position: fixed;
   bottom: 0;
