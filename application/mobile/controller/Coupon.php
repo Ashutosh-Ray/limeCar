@@ -120,6 +120,24 @@ class Coupon extends MobileBase {
     }
 
 
+    //用户删除自己的优惠券
+    public function del_coupon()
+    {
+        if (IS_POST) {
+           $ids = $_POST['ids'];
+           $where = array();
+           $where['uid'] = $this->user_id;
+           if (is_array($ids)) {
+              $where['id'] = array('in',$ids);
+           }
+            $res = M('CouponList')->where($where)->save(array('user_del'=>1));
+            if ($res) {
+                exit(json_encode(1));
+            }
+        }
+    }
+
+
     
 
 

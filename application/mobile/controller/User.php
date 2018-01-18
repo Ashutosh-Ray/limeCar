@@ -1479,6 +1479,14 @@ class User extends MobileBase
         $count = M('CouponList')->where($where)->count();
         $page = new AjaxPage($count,5);
         $list = M('CouponList')->where($where)->limit($page->firstRow.','.$page->listRows)->select();
+
+        foreach ($list as $key => $value) {
+            if($value['is_appoint']==1) $value['shops']=M('UcouponShop')->alias('us')->join('__ADMIN__ a','a.admin_id=us.shop_id')->where(array('us.clid'=>$value['id']))->field('us.shop_id,a.shop_name')->select();
+            $tags = M('UcouponTag')->alias('ut')->join('__TAG__ t','ut.tag_id=t.id')->where(array('ut.clid'=>$value['id']))->field('ut.tag_id,t.name')->select();
+            $value['tag_count'] = count($tags);
+            $value['tags'] = $tags;
+            $list[$key]=$value;
+        }
         $this->assign('list',$list);
         if (IS_AJAX) {
              return $this->fetch('ajax_coupon');

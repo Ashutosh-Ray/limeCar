@@ -7,7 +7,12 @@
 				<div class="content">
 					<h3>{$vo.name}</h3>
 					<p>截止日期：{$vo['use_end_time']|date="Y-m-d",###}</p>
-					<p>使用商家：不限</p>
+					<p>使用商家：
+						<if condition="$vo['is_appoint'] eq 0">不限
+							<else/>
+							<volist name="vo.shops" id='shop'>{$shop.shop_name}</volist>
+						</if>
+					</p>
 					<input name="ids[]" type="checkbox" style="display: none;" class="checkbox" value="{$vo['id']}">
 				</div>
 				<div class="chose" style="display:none;"><svg t="1516159300549" viewBox="0 0 1024 1024" p-id="1491" width="20" height="20"><defs><style type="text/css"></style></defs><path d="M512 64C262.4 64 64 262.4 64 512s198.4 448 448 448 448-198.4 448-448S761.6 64 512 64z m236.8 326.4L454.4 684.8c-12.8 12.8-32 12.8-44.8 0L275.2 544c-12.8-12.8-12.8-32 0-44.8 12.8-12.8 32-12.8 44.8 0l115.2 115.2L704 339.2c12.8-12.8 32-12.8 44.8 0 12.8 12.8 12.8 38.4 0 51.2z" p-id="1492"></path></svg></div>
@@ -23,7 +28,12 @@
 				<div class="content">
 					<h3>{$vo.name}</h3>
 					<p>截止日期：{$vo['use_end_time']|date="Y-m-d",###}</p>
-					<p>使用商家：不限</p>
+					<p>使用范围：
+						<if condition="$vo['tag_count'] eq 0">不限
+							<else/>
+							<volist name="vo.tags" id='tag'>{$tag.name}</volist>
+						</if>
+					</p>
 					<input name="ids[]" type="checkbox" style="display: none;" class="checkbox" value="{$vo['id']}">
 				</div>
 				<div class="chose" style="display:none;"><svg t="1516159300549" viewBox="0 0 1024 1024" p-id="1491" width="20" height="20"><defs><style type="text/css"></style></defs><path d="M512 64C262.4 64 64 262.4 64 512s198.4 448 448 448 448-198.4 448-448S761.6 64 512 64z m236.8 326.4L454.4 684.8c-12.8 12.8-32 12.8-44.8 0L275.2 544c-12.8-12.8-12.8-32 0-44.8 12.8-12.8 32-12.8 44.8 0l115.2 115.2L704 339.2c12.8-12.8 32-12.8 44.8 0 12.8 12.8 12.8 38.4 0 51.2z" p-id="1492"></path></svg></div>
@@ -31,20 +41,3 @@
 			</li>
 		</if>
 		</volist>
-		<!-- <script type="text/javascript">
-			
-			$('li').live("click",function(){
-	$(this).children(".chose").toggle();
-	$(this).toggleClass("current")
-	// if ($(this).children('.content').children(".checkbox").attr()) {
-
-	// }
-	var check=$(this).children('.content').children(".checkbox").prop("checked")
-	
-	if (check) {
-		$(this).children('.content').children(".checkbox").prop("checked",false)
-	}else{
-		$(this).children('.content').children(".checkbox").prop("checked",true)
-	}
-})
-		</script> -->
