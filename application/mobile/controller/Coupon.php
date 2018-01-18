@@ -42,6 +42,7 @@ class Coupon extends MobileBase {
     	$where['del_status']=0;
     	$where['is_use']=1;
     	$where['code'] =$code;
+        $where['use_end_time'] =array('gt',time());
     	
     	$coupon = M('Coupon')->where($where)->find();
     	if (!is_array($coupon)) {
@@ -81,6 +82,7 @@ class Coupon extends MobileBase {
     			$where['del_status']=0;
     			$where['is_use']=1;
     			$where['code'] =$data['coupon'];
+                $where['use_end_time'] =array('gt',time());
         		$coupon = M('Coupon')->where($where)->field('id,name,type,money,use_end_time,is_appoint,code,goods_name,goods_id,createnum,send_num')->find();
     			if (!is_array($coupon)) exit(json_encode(array('status'=>0,'msg'=>'优惠券已失效')));
 
