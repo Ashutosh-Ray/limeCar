@@ -341,7 +341,7 @@ class Cart extends MobileBase {
           $ctags = M('UCouponTag')->where(array('clid'=>$coupon['id']))->count();
           if ($ctags>0) 
           {
-           $gcount = M('UCouponTag')->alias('ut')->join('__GOODS_TAG__ gt','gt.tag_id=ut.tag_id')->join('__CART__ c','c.goods_id=gt.goods_id')->where(array('ut.clid'=>$coupon['id'],'c.user_id'=>$this->user_id,'c.session_id'->$this->session))->count();
+           $gcount = M('UCouponTag')->alias('ut')->join('__GOODS_TAG__ gt','gt.tag_id=ut.tag_id')->join('__CART__ c','c.goods_id=gt.goods_id')->where(array('ut.clid'=>$coupon['id'],'c.user_id'=>$this->user_id,'c.session_id'=>$this->session))->count();
            if ($gcount<=0) 
            {
              $coupon['can_use']=0;
