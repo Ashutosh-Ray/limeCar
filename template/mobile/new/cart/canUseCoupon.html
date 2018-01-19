@@ -171,6 +171,7 @@ var  page = 1;
  }
 function submit(){
 var count =0;
+var coupon_id=$("input[name='id']:checked").val();  
 var checkboxs = $('#sub_mit').find('input[type="radio"]');
 $(checkboxs).each(function (index,item) {
 	var bool =$(item).prop('checked')
@@ -182,18 +183,7 @@ $(checkboxs).each(function (index,item) {
 if (count<=0) {
 	alert('您还未选中优惠券');
 }else{
-	// $.ajax({
- //        type : "POST",
- //        url:"{:U('Mobile/Coupon/del_coupon')}",
- //        data:$('#sub_mit').serialize(),
- //        success: function(data)
- //        {
- //            if($.trim(data) == 1)
- //                location.reload()
- //            else
- //                alert('删除失败')
- //        }
- //    });
+	window.parent.useCoupon(coupon_id)
 }
 }
 function cancle(){

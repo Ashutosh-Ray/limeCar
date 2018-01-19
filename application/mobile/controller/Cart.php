@@ -202,7 +202,7 @@ class Cart extends MobileBase {
         $shipping_code =  I("shipping_code"); //  物流编号        
         $invoice_title = I('invoice_title'); // 发票
         $couponTypeSelect =  I("couponTypeSelect"); //  优惠券类型  1 下拉框选择优惠券 2 输入框输入优惠券代码
-        $coupon_id =  I("coupon_id/d"); //  优惠券id
+        $coupon_id =  I("coupon_id/d",0); //  优惠券id
         $couponCode =  I("couponCode"); //  优惠券代码
         $pay_points =  I("pay_points/d",0); //  使用积分
         $user_money =  I("user_money/f",0); //  使用余额
@@ -272,7 +272,8 @@ class Cart extends MobileBase {
     {
       if($this->user_id == 0)
              exit(json_encode(array('status'=>-100,'msg'=>"登录超时请重新登录!",'result'=>null)));
-         $result = $this->cartLogic->addOrder($this->user_id,$this->session_id); // 添加订单
+          $coupon_id = I("coupon_id/d",0);
+         $result = $this->cartLogic->addOrder($this->user_id,$this->session_id,0,0,'',$coupon_id); // 添加订单
          exit(json_encode($result));
 
          
@@ -310,7 +311,7 @@ class Cart extends MobileBase {
         if ($coupon['type']==1) 
         {
           $goods_id = $coupon['goods_id'];
-          $cartGoodcount = M('cart')->where(array('goods_id'=>$goods_id,'user_id'=>$this->user_id,'session_id'=>$this->session_id,'selected'=>1))->count();
+          $cartGoodcount = M('cart')->where(array('goods_id'=>$goods_id,'user_id'=>$this->user_id,'selected'=>1))->count();
           if ($cartGoodcount<=0) 
           {
             $coupon['can_use']=0;
@@ -320,11 +321,11 @@ class Cart extends MobileBase {
           //判断产品券是否指定商家
           if ($coupon['is_appoint']==1) 
           {
-            $value['shops']=M('UcouponShop')->alias('us')->join('__ADMIN__ a','a.admin_id=us.shop_id')->where(array('us.clid'=>$value['id']))->field('us.shop_id,a.shop_name')->select();
+            $coupon['shops']=M('UcouponShop')->alias('us')->join('__ADMIN__ a','a.admin_id=us.shop_id')->where(array('us.clid'=>$coupon['id']))->field('us.shop_id,a.shop_name')->select();
             $goods = M('Goods')->where(array('goods_id'=>$goods_id,'is_on_sale'=>1,'del_status'=>0))->find();
             if ($goods['is_appoint']==1) 
             {
-              $count = M('UcouponSag')->alias('us')->join('__GUSEB__ gb','gb.shop_id=us.shop_id')->where(array('us.clid'=>$coupon['id'],'gb.goods_id'=>$goods_id))->count();
+              $count = M('UcouponShop')->alias('us')->join('__GUSEB__ gb','gb.shop_id=us.shop_id')->where(array('us.clid'=>$coupon['id'],'gb.goods_id'=>$goods_id))->count();
               if ($count<=0) 
               {
                $coupon['can_use']=0;
@@ -341,12 +342,13 @@ class Cart extends MobileBase {
         }else{
           //代金券情况下
           
-          $tags = M('UcouponTag')->alias('ut')->join('__TAG__ t','ut.tag_id=t.id')->where(array('ut.clid'=>$value['id']))->field('ut.tag_id,t.name')->select();
+          $tags = M('UcouponTag')->alias('ut')->join('__TAG__ t','ut.tag_id=t.id')->where(array('ut.clid'=>$coupon['id']))->field('ut.tag_id,t.name')->select();
             $ctags = count($tags);
-            $value['tag_count'] = $ctags;
+            $coupon['tag_count'] = $ctags;
+            $coupon['tags'] = $tags;
           if ($ctags>0) 
           {
-           $gcount = M('UCouponTag')->alias('ut')->join('__GOODS_TAG__ gt','gt.tag_id=ut.tag_id')->join('__CART__ c','c.goods_id=gt.goods_id')->where(array('ut.clid'=>$coupon['id'],'c.user_id'=>$this->user_id,'c.session_id'=>$this->session))->count();
+           $gcount = M('UCouponTag')->alias('ut')->join('__GOODS_TAG__ gt','gt.tag_id=ut.tag_id')->join('__CART__ c','c.goods_id=gt.goods_id')->where(array('ut.clid'=>$coupon['id'],'c.user_id'=>$this->user_id,'c.selected'=>1))->count();
            if ($gcount<=0) 
            {
              $coupon['can_use']=0;
@@ -360,6 +362,19 @@ class Cart extends MobileBase {
       $this->assign('list',$coupons);
       return $this->fetch();
 
+    }
+
+
+    public function useCouponCalculate()
+    {
+        if (IS_AJAX) {
+          $coupon_id = I('coupon_id',0);
+         //将本次购物车里所有商品取出   
+         $lists = M('Cart')->where(array('user_id'=>$this->user_id,'session_id'=>$this->session_id,'selected'=>1))->select();
+         $allMoney = new_calculate_price($this->user_id,$lists,$coupon_id);
+        exit(json_encode($allMoney));
+        }
+        
     }
 
 

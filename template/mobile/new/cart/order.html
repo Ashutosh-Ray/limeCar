@@ -64,16 +64,19 @@
     </li>
     <li>
         <span class="tit">优惠：</span>
-        <div>￥0.00</div>
+        <div id="coupon_price">￥0.00</div>
     </li>
   </ul>
 </section>
 <iframe src="{:U('/Mobile/Cart/canUseCoupon')}" frameborder="0" class="order_coupon" style="display: none;"></iframe>
 <div class="order_mask" style="display: none;" onclick="cancleMask()"></div>
 <footer>
-  <div>应付：{$allmoney['order_amount']}</div>
+  <div id="order_amount">应付：{$allmoney['order_amount']}</div>
   <a href="javascript:void(0);" onclick="addSubmit()">去付款</a>
 </footer>
+<form id="submit_f">
+  <input type="hidden" name="coupon_id" value="0">
+</form>
 </body>
 <script type="text/javascript">
   $(function(){
@@ -84,11 +87,28 @@
   function cancleMask(){
       $(".order_coupon,.order_mask").slideUp()
   }
+
+  function useCoupon(coupon_id) {
+    $.ajax({
+      type : 'post',
+      url : "{:U('/Mobile/Cart/useCouponCalculate')}",
+      data : {coupon_id:coupon_id},
+      dataType : 'json',
+      success : function(res){
+        if(res.status==1){
+           $(".order_coupon,.order_mask").slideUp()
+          $('#order_amount').html('应付：'+res.result.order_amount)
+          $('#coupon_price').html('￥'+res.result.coupon_price)
+          $('input[name="coupon_id"]').val(coupon_id)
+        }
+      }
+    })
+  }
   function addSubmit() {
     $.ajax({
       type : 'post',
       url : "{:U('/Mobile/Cart/submit_order')}",
-      data : {},
+      data : $("#submit_f").serialize(),
       dataType : 'json',
       success : function(res){
         if(res.status==1){

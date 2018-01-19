@@ -1291,28 +1291,104 @@ function get_order_promotion($order_amount){
     return $res;        
 }
 
-function new_calculate_price($user_id = 0, $order_goods){
+//该优惠券能否使用
+function canUse($user_id = 0,$coupon_id=0)
+{
+        $coupon = array();
+
+    //判断能否使用优惠券
+    if (is_numeric($coupon_id)&&!empty($coupon_id)) 
+    {
+       $coupon = M('CouponList')->where(array('user_del'=>0,'uid'=>$user_id,'order_id'=>0,'id'=>$coupon_id))->find();
+       $coupon['can_use']=1;
+       if ($coupon['use_end_time']<time()){
+          $coupon['can_use']=0;
+          $coupon['no_use'] = '优惠券已过期';
+        }
+        //判断是否是产品卷
+        if ($coupon['type']==1) 
+        {
+          $goods_id = $coupon['goods_id'];
+          $cartGoodcount = M('cart')->where(array('goods_id'=>$goods_id,'user_id'=>$user_id,'selected'=>1))->count();
+          if ($cartGoodcount<=0) 
+          {
+            $coupon['can_use']=0;
+
+          }
+          //判断产品券是否指定商家
+          if ($coupon['is_appoint']==1) 
+          {
+
+            $goods = M('Goods')->where(array('goods_id'=>$goods_id,'is_on_sale'=>1,'del_status'=>0))->find();
+            if ($goods['is_appoint']==1) 
+            {
+              $count = M('UcouponShop')->alias('us')->join('__GUSEB__ gb','gb.shop_id=us.shop_id')->where(array('us.clid'=>$coupon['id'],'gb.goods_id'=>$goods_id))->count();
+              if ($count<=0) 
+              {
+               $coupon['can_use']=0;
+              }
+            }else{
+              $coupon['can_use']=0;
+            }
+          }
+
+        }else{
+          //代金券情况下
+          
+          $tags = M('UcouponTag')->alias('ut')->join('__TAG__ t','ut.tag_id=t.id')->where(array('ut.clid'=>$coupon['id']))->field('ut.tag_id,t.name')->select();
+            $ctags = count($tags);
+            $coupon['tag_count'] = $ctags;
+          if ($ctags>0) 
+          {
+           $gcount = M('UCouponTag')->alias('ut')->join('__GOODS_TAG__ gt','gt.tag_id=ut.tag_id')->join('__CART__ c','c.goods_id=gt.goods_id')->where(array('ut.clid'=>$coupon['id'],'c.user_id'=>$user_id,'c.selected'=>1))->count();
+           if ($gcount<=0) 
+           {
+             $coupon['can_use']=0;
+           
+           }
+          }
+        }
+
+    }
+    return $coupon;
+}
+
+function new_calculate_price($user_id = 0, $order_goods,$coupon_id=0){
 
     $allMoney=0;//总价
-    $allNum = 0;//总件数 
-    // var_dump($order_goods);die();
+    $order_amount=0;
+    $allNum = 0;//总件数
+    $coupon_price =0;
+    $coupon = canUse($user_id,$coupon_id);
+    
+    if ($coupon['can_use']==1) {
+       if ($coupon['type']==1) {
+          $coupon_price = M('Goods')->where(array('goods_id'=>$coupon['goods_id']))->getField('shop_price');
+       }else{
+         $coupon_price = $coupon['money'];
+       }
+    }
     foreach ($order_goods as $k => $val) {
         $allMoney+=$val['goods_price']*$val['goods_num'];
         $allNum  += $val['goods_num'];
     }
 
+    $order_amount = $allMoney-$coupon_price;
+
+
      $result = array(
         'total_amount' => $allMoney, // 商品总价
-        'order_amount' => $allMoney, // 应付金额
+        'order_amount' => $order_amount, // 应付金额
         'shipping_price' => 0, // 物流费
         'goods_price' => $allMoney, // 商品总价
         'cut_fee' =>0, // 共节约多少钱
         'anum' => $allNum, // 商品总共数量
         'integral_money' => 0,  // 积分抵消金额
         'user_money' => 0, // 使用余额
-        'coupon_price' => 0,// 优惠券抵消金额
+        'coupon_price' => $coupon_price,// 优惠券抵消金额
         'order_goods' => $order_goods, // 商品列表 多加几个字段原样返回
     );
+     
     return array('status' => 1, 'msg' => "计算价钱成功", 'result' => $result);
 }
 

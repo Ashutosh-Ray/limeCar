@@ -233,7 +233,7 @@ class CartLogic extends Model
      * @param type $user_note 用户备注
      * @return type $order_id 返回新增的订单id
      */
-    public function addOrder($user_id,$session_id,$address_id=0,$shipping_code=0,$invoice_title='',$coupon_id = 0,$car_price='',$user_note='')
+    public function addOrder($user_id,$session_id=0,$address_id=0,$shipping_code=0,$invoice_title='',$coupon_id = 0,$car_price='',$user_note='')
     {
         
         // 仿制灌水 1天只能下 50 单  // select * from `tp_order` where user_id = 1  and order_sn like '20151217%' 
@@ -248,19 +248,23 @@ class CartLogic extends Model
         $cartList = M('cart')->where(['user_id'=>$user_id,'selected'=>1,'session_id'=>$session_id])->select();
         $count = count($cartList);
         if($count==0) return array('status'=>0,'msg'=>'请重新选择下单'); 
-        $result = new_calculate_price($user_id,$cartList);
-
+        $result = new_calculate_price($user_id,$cartList,$coupon_id);
         $data = array(
                 'order_sn'         => date('YmdHis').rand(1000,9999), // 订单编号
                 'user_id'          =>$user_id, // 用户id
                 'total_amount'     =>$result['result']['total_amount'],// 订单总额
                 'order_amount'     =>$result['result']['order_amount'],//'应付款金额',                
                 'add_time'         =>time(), // 下单时间                
-                'user_note'        =>$user_note, // 用户下单备注          
+                'user_note'        =>$user_note, // 用户下单备注 
+                'coupon_id'        =>$coupon_id,
+                'coupon_price'     =>$result['result']['coupon_price']
         );
         $_SESSION['shop_id']?$data['shop_id']=$_SESSION['shop_id']:$data['shop_id']=0;
         $data['order_id'] = $order_id = M("Order")->insertGetId($data);
         $order = $data;//M('Order')->where("order_id", $order_id)->find();
+        $coupon = M('CouponList')->where(array('uid'=>$user_id,'id'=>$coupon_id))->find();
+        if (is_array($coupon)&&$order_id) M('CouponList')->where(array('uid'=>$user_id,'id'=>$coupon_id))->save(array('order_id'=>$order_id,'use_time'=>time()));
+
         if(!$order_id)
             return array('status'=>-8,'msg'=>'添加订单失败','result'=>NULL);
                 
