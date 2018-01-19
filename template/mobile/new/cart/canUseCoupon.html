@@ -124,17 +124,11 @@
 			</if>
 		</if>
 		</volist>
-		
-			
 		</ul>
 		</form>
 	</div>
-	<notempty name="list"> 
-   <div id="getmore" style="font-size:.24rem;text-align: center;color:#888;padding:.25rem .24rem .4rem; clear:both">
-  		<a href="javascript:void(0)" onClick="ajax_sourch_submit()">点击加载更多</a>
-  </div>         
-</notempty>
 	<div class="btn">
+		<a href="javascript:void(0);" onclick="cancle()">取消</a>
 		<a href="javascript:void(0);" onclick="submit()">立即使用</a>
 	</div> 
 </div>
@@ -202,6 +196,9 @@ if (count<=0) {
  //        }
  //    });
 }
+}
+function cancle(){
+	window.parent.cancleMask()
 }
 </script>
 </html>

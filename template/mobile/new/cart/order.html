@@ -52,7 +52,7 @@
 <section class="order_price">
   <ul>
     <li>
-      <a href="{:U('Mobile/Cart/canUseCoupon')}">
+      <a href="javasctipt:void(0);" class="coupon">
         <span class="tit">优惠券：</span>
         <div>{$count_coupon}张</div>
         <span class="icon">&gt;</span>
@@ -68,12 +68,22 @@
     </li>
   </ul>
 </section>
+<iframe src="{:U('/Mobile/Cart/canUseCoupon')}" frameborder="0" class="order_coupon" style="display: none;"></iframe>
+<div class="order_mask" style="display: none;" onclick="cancleMask()"></div>
 <footer>
   <div>应付：{$allmoney['order_amount']}</div>
   <a href="javascript:void(0);" onclick="addSubmit()">去付款</a>
 </footer>
 </body>
 <script type="text/javascript">
+  $(function(){
+    $(".coupon").click(function(){
+      $(".order_coupon,.order_mask").slideDown()
+    })
+  })
+  function cancleMask(){
+      $(".order_coupon,.order_mask").slideUp()
+  }
   function addSubmit() {
     $.ajax({
       type : 'post',
