@@ -38,7 +38,8 @@
 		<ul id="ajax_retutn">
 			<volist name="list" id="vo">
 			<if condition="$vo['type'] eq 1">
-			<li>
+			<if condition="$vo['can_use'] eq 1">
+			<li class="canclick">
 				<div class="left">
 					<img src="__STATIC__/images/coupon1.png" alt="">
 				</div>
@@ -52,16 +53,35 @@
 						</if>
 					</p>
 				</div>
-				<if condition="$vo['can_use'] eq 1">
 				<div class="chose" style="display:none;">
 					<input name="id" type="radio" style="display: none;" class="checkbox" value="{$vo['id']}">
 					<svg t="1516159300549" viewBox="0 0 1024 1024" p-id="1491" width="20" height="20"><defs><style type="text/css"></style></defs><path d="M512 64C262.4 64 64 262.4 64 512s198.4 448 448 448 448-198.4 448-448S761.6 64 512 64z m236.8 326.4L454.4 684.8c-12.8 12.8-32 12.8-44.8 0L275.2 544c-12.8-12.8-12.8-32 0-44.8 12.8-12.8 32-12.8 44.8 0l115.2 115.2L704 339.2c12.8-12.8 32-12.8 44.8 0 12.8 12.8 12.8 38.4 0 51.2z" p-id="1492"></path></svg>
-				</div></if>
+				</div>
 				<div style="clear: both;"></div>
 			</li>
+			<else/>
+			<li class="cant">
+				<div class="left">
+					<img src="__STATIC__/images/coupon3.png" alt="">
+					
+				</div>
+				<div class="content">
+					<h3>{$vo.name}</h3>
+					<p>截止日期：{$vo['use_end_time']|date="Y-m-d",###}</p>
+					<p>使用范围：
+						<if condition="$vo['is_appoint'] eq 0">不限
+							<else/>
+							<volist name="vo.shops" id='shop'>{$shop.shop_name}</volist>
+						</if>
+					</p>
+				</div>
+				<div style="clear: both;"></div>
+			</li>
+			</if>
 		</if>
 		<if condition="$vo['type'] eq 0">
-			<li class="">
+			<if condition="$vo['can_use'] eq 1">
+			<li class="canclick">
 				<div class="left">
 					<img src="__STATIC__/images/coupon2.png" alt="">
 					<span><i>￥</i>{$vo.money|number_format=###,0}</span>
@@ -76,21 +96,15 @@
 						</if>
 					</p>
 				</div>
-				<if condition="$vo['can_use'] eq 1">
-				<div class="chose" style="display:none;">
-					<input name="id" type="radio" style="display: none;" class="checkbox" value="{$vo['id']}">
-					<svg t="1516159300549" viewBox="0 0 1024 1024" p-id="1491" width="20" height="20"><defs><style type="text/css"></style></defs><path d="M512 64C262.4 64 64 262.4 64 512s198.4 448 448 448 448-198.4 448-448S761.6 64 512 64z m236.8 326.4L454.4 684.8c-12.8 12.8-32 12.8-44.8 0L275.2 544c-12.8-12.8-12.8-32 0-44.8 12.8-12.8 32-12.8 44.8 0l115.2 115.2L704 339.2c12.8-12.8 32-12.8 44.8 0 12.8 12.8 12.8 38.4 0 51.2z" p-id="1492"></path></svg>
-				</div></if>
+				
 				<div class="chose" style="display:none;">
 					<input name="id" type="radio" style="display: none;" class="checkbox" value="{$vo['id']}">
 					<svg t="1516159300549" viewBox="0 0 1024 1024" p-id="1491" width="20" height="20"><defs><style type="text/css"></style></defs><path d="M512 64C262.4 64 64 262.4 64 512s198.4 448 448 448 448-198.4 448-448S761.6 64 512 64z m236.8 326.4L454.4 684.8c-12.8 12.8-32 12.8-44.8 0L275.2 544c-12.8-12.8-12.8-32 0-44.8 12.8-12.8 32-12.8 44.8 0l115.2 115.2L704 339.2c12.8-12.8 32-12.8 44.8 0 12.8 12.8 12.8 38.4 0 51.2z" p-id="1492"></path></svg>
 				</div>
 				<div style="clear: both;"></div>
 			</li>
-			
-		</if>
-		</volist>
-		<li class="cant">
+			<else/>
+			<li class="cant">
 				<div class="left">
 					<img src="__STATIC__/images/coupon4.png" alt="">
 					<span><i>￥</i>{$vo.money|number_format=###,0}</span>
@@ -107,23 +121,11 @@
 				</div>
 				<div style="clear: both;"></div>
 			</li>
-			<li class="cant">
-				<div class="left">
-					<img src="__STATIC__/images/coupon3.png" alt="">
-					
-				</div>
-				<div class="content">
-					<h3>{$vo.name}</h3>
-					<p>截止日期：{$vo['use_end_time']|date="Y-m-d",###}</p>
-					<p>使用范围：
-						<if condition="$vo['tag_count'] eq 0">不限
-							<else/>
-							<volist name="vo.tags" id='tag'>{$tag.name}</volist>
-						</if>
-					</p>
-				</div>
-				<div style="clear: both;"></div>
-			</li>
+			</if>
+		</if>
+		</volist>
+		
+			
 		</ul>
 		</form>
 	</div>
@@ -138,7 +140,7 @@
 </div>
 </body>
 <script>
-$('li').live('click',function(){
+$(".canclick").live('click',function(){
 	// $(this).children(".chose").toggle();
 	// $(this).toggleClass("current")
 	var check=$(this).children('.chose').children(".checkbox").prop("checked")
@@ -152,7 +154,7 @@ $('li').live('click',function(){
 		$(this).siblings().children(".chose").hide();
 	}
 })
-$('li').click(function () {
+$(".canclick").click(function () {
 })
 
 
@@ -183,7 +185,7 @@ $(checkboxs).each(function (index,item) {
 		count++
 	}
 })
-alert(count)
+
 if (count<=0) {
 	alert('您还未选中优惠券');
 }else{

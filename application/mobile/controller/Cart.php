@@ -284,7 +284,8 @@ class Cart extends MobileBase {
     {
         if($this->user_id == 0)
              $this->error('请登录');
-          $this->addCart();
+          $this->AddCart();
+         
           $count_coupon = M("CouponList")->where(array('user_del'=>0,'uid'=>$this->user_id,'order_id'=>0))->count();
           $this->assign('count_coupon',$count_coupon);
           return $this->fetch();
@@ -309,7 +310,7 @@ class Cart extends MobileBase {
         if ($coupon['type']==1) 
         {
           $goods_id = $coupon['goods_id'];
-          $cartGoodcount = M('cart')->where(array('goods_id'=>$goods_id,'user_id'=>$this->user_id,'session_id'=>$this->session_id))->count();
+          $cartGoodcount = M('cart')->where(array('goods_id'=>$goods_id,'user_id'=>$this->user_id,'session_id'=>$this->session_id,'selected'=>1))->count();
           if ($cartGoodcount<=0) 
           {
             $coupon['can_use']=0;
@@ -319,6 +320,7 @@ class Cart extends MobileBase {
           //判断产品券是否指定商家
           if ($coupon['is_appoint']==1) 
           {
+            $value['shops']=M('UcouponShop')->alias('us')->join('__ADMIN__ a','a.admin_id=us.shop_id')->where(array('us.clid'=>$value['id']))->field('us.shop_id,a.shop_name')->select();
             $goods = M('Goods')->where(array('goods_id'=>$goods_id,'is_on_sale'=>1,'del_status'=>0))->find();
             if ($goods['is_appoint']==1) 
             {
@@ -338,7 +340,10 @@ class Cart extends MobileBase {
 
         }else{
           //代金券情况下
-          $ctags = M('UCouponTag')->where(array('clid'=>$coupon['id']))->count();
+          
+          $tags = M('UcouponTag')->alias('ut')->join('__TAG__ t','ut.tag_id=t.id')->where(array('ut.clid'=>$value['id']))->field('ut.tag_id,t.name')->select();
+            $ctags = count($tags);
+            $value['tag_count'] = $ctags;
           if ($ctags>0) 
           {
            $gcount = M('UCouponTag')->alias('ut')->join('__GOODS_TAG__ gt','gt.tag_id=ut.tag_id')->join('__CART__ c','c.goods_id=gt.goods_id')->where(array('ut.clid'=>$coupon['id'],'c.user_id'=>$this->user_id,'c.session_id'=>$this->session))->count();
