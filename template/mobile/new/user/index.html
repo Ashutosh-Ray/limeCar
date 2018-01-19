@@ -54,7 +54,12 @@
 		我的资产
 	</div>
 	<div class="myAssets_con">
-		<a href="{:U('Mobile/User/coupon')}">
+		<if condition="$coupon_count eq 0">
+			<a>
+			<else/>
+			<a href="{:U('Mobile/User/coupon')}">
+		</if>
+		
 			<p>{$coupon_count}<span>&nbsp;张可用</span></p>
 			<p>优惠券</p>
 		</a>
