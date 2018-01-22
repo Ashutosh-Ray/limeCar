@@ -300,11 +300,24 @@ class Cart extends MobileBase {
       $coupons = M("CouponList")->where(array('user_del'=>0,'uid'=>$this->user_id,'order_id'=>0))->select();
      foreach ($coupons as $key => $coupon) {
         $coupon['can_use']=1;
+        //判断是否过期
         if ($coupon['use_end_time']<time()){
           $coupon['can_use']=0;
           $coupon['no_use'] = '优惠券已过期';
           $coupons[$key]=$coupon;
           continue;
+        }
+        //判断是否指定商家
+        if ($coupon['is_appoint']==1) 
+        {
+           $count = M('UcouponShop')->alias('us')->join('__GUSEB__ gb','gb.shop_id=us.shop_id')->join('__CART__ c','c.goods_id=gb.goods_id')->join('__GOODS__ g','g.goods_id=c.goods_id')->where(array('ut.clid'=>$coupon['id'],'c.user_id'=>$this->user_id,'c.selected'=>1,'g.is_appoint'=>1))->count();
+
+          if ($count<=0) 
+          {
+            $coupon['can_use']=0;
+            $coupons[$key]=$coupon;
+            continue;
+          }
         }
 
         //判断是否是产品卷
@@ -319,25 +332,25 @@ class Cart extends MobileBase {
             continue;
           }
           //判断产品券是否指定商家
-          if ($coupon['is_appoint']==1) 
-          {
-            $coupon['shops']=M('UcouponShop')->alias('us')->join('__ADMIN__ a','a.admin_id=us.shop_id')->where(array('us.clid'=>$coupon['id']))->field('us.shop_id,a.shop_name')->select();
-            $goods = M('Goods')->where(array('goods_id'=>$goods_id,'is_on_sale'=>1,'del_status'=>0))->find();
-            if ($goods['is_appoint']==1) 
-            {
-              $count = M('UcouponShop')->alias('us')->join('__GUSEB__ gb','gb.shop_id=us.shop_id')->where(array('us.clid'=>$coupon['id'],'gb.goods_id'=>$goods_id))->count();
-              if ($count<=0) 
-              {
-               $coupon['can_use']=0;
-               $coupons[$key]=$coupon;
-                continue;
-              }
-            }else{
-              $coupon['can_use']=0;
-              $coupons[$key]=$coupon;
-                continue;
-            }
-          }
+          // if ($coupon['is_appoint']==1) 
+          // {
+          //   $coupon['shops']=M('UcouponShop')->alias('us')->join('__ADMIN__ a','a.admin_id=us.shop_id')->where(array('us.clid'=>$coupon['id']))->field('us.shop_id,a.shop_name')->select();
+          //   $goods = M('Goods')->where(array('goods_id'=>$goods_id,'is_on_sale'=>1,'del_status'=>0))->find();
+          //   if ($goods['is_appoint']==1) 
+          //   {
+          //     $count = M('UcouponShop')->alias('us')->join('__GUSEB__ gb','gb.shop_id=us.shop_id')->where(array('us.clid'=>$coupon['id'],'gb.goods_id'=>$goods_id))->count();
+          //     if ($count<=0) 
+          //     {
+          //      $coupon['can_use']=0;
+          //      $coupons[$key]=$coupon;
+          //       continue;
+          //     }
+          //   }else{
+          //     $coupon['can_use']=0;
+          //     $coupons[$key]=$coupon;
+          //       continue;
+          //   }
+          // }
 
         }else{
           //代金券情况下

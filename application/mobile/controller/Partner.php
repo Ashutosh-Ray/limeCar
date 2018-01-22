@@ -228,7 +228,7 @@ class Partner extends MobileBase
 	{
 		// $count = M('Partner')->alias('p')->join('__USERS__ u','p.user_id = u.user_id')->where(array('p.partner_status'=>1,'p.del_status'=>0))->count();
 		// $page = new AjaxPage($count,10);
-		$list = M('Partner')->alias('p')->join('__USERS__ u','p.user_id = u.user_id')->field('p.*,u.nickname,u.head_pic')->limit(10)->order('all_commision desc')->where(array('p.partner_status'=>1,'p.del_status'=>0))->select();
+		$list = M('Partner')->alias('p')->join('__USERS__ u','p.user_id = u.user_id')->field('p.*,u.nickname,u.head_pic')->limit(5)->order('all_commision desc')->where(array('p.partner_status'=>1,'p.del_status'=>0))->select();
     	$this->assign('list',$list);
     	// $this->assign('show',$page->show());
     	if (IS_AJAX) {
