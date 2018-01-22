@@ -106,6 +106,7 @@ class Business extends Base {
       $_POST['add_time'] = time();
       $_POST['role_id'] = 8;
       $_POST['check_status'] = 1;
+      $_POST['password'] = encrypt($_POST['password']);
       $res =D('Admin')->add($_POST);
         if ($res) {
 
