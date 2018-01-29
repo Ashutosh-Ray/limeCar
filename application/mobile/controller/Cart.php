@@ -310,7 +310,7 @@ class Cart extends MobileBase {
         //判断是否指定商家
         if ($coupon['is_appoint']==1) 
         {
-           $count = M('UcouponShop')->alias('us')->join('__GUSEB__ gb','gb.shop_id=us.shop_id')->join('__CART__ c','c.goods_id=gb.goods_id')->join('__GOODS__ g','g.goods_id=c.goods_id')->where(array('ut.clid'=>$coupon['id'],'c.user_id'=>$this->user_id,'c.selected'=>1,'g.is_appoint'=>1))->count();
+           $count = M('UcouponShop')->alias('us')->join('__GUSEB__ gb','gb.shop_id=us.shop_id')->join('__CART__ c','c.goods_id=gb.goods_id')->join('__GOODS__ g','g.goods_id=c.goods_id')->where(array('us.clid'=>$coupon['id'],'c.user_id'=>$this->user_id,'c.selected'=>1,'g.is_appoint'=>1))->count();
 
           if ($count<=0) 
           {

@@ -1305,6 +1305,17 @@ function canUse($user_id = 0,$coupon_id=0)
           $coupon['can_use']=0;
           $coupon['no_use'] = '优惠券已过期';
         }
+
+        //判断是否指定商家
+        if ($coupon['is_appoint']==1) 
+        {
+           $count = M('UcouponShop')->alias('us')->join('__GUSEB__ gb','gb.shop_id=us.shop_id')->join('__CART__ c','c.goods_id=gb.goods_id')->join('__GOODS__ g','g.goods_id=c.goods_id')->where(array('us.clid'=>$coupon['id'],'c.user_id'=>$this->user_id,'c.selected'=>1,'g.is_appoint'=>1))->count();
+
+          if ($count<=0) 
+          {
+            $coupon['can_use']=0;
+          }
+        }
         //判断是否是产品卷
         if ($coupon['type']==1) 
         {
@@ -1315,22 +1326,22 @@ function canUse($user_id = 0,$coupon_id=0)
             $coupon['can_use']=0;
 
           }
-          //判断产品券是否指定商家
-          if ($coupon['is_appoint']==1) 
-          {
+          // //判断产品券是否指定商家
+          // if ($coupon['is_appoint']==1) 
+          // {
 
-            $goods = M('Goods')->where(array('goods_id'=>$goods_id,'is_on_sale'=>1,'del_status'=>0))->find();
-            if ($goods['is_appoint']==1) 
-            {
-              $count = M('UcouponShop')->alias('us')->join('__GUSEB__ gb','gb.shop_id=us.shop_id')->where(array('us.clid'=>$coupon['id'],'gb.goods_id'=>$goods_id))->count();
-              if ($count<=0) 
-              {
-               $coupon['can_use']=0;
-              }
-            }else{
-              $coupon['can_use']=0;
-            }
-          }
+          //   $goods = M('Goods')->where(array('goods_id'=>$goods_id,'is_on_sale'=>1,'del_status'=>0))->find();
+          //   if ($goods['is_appoint']==1) 
+          //   {
+          //     $count = M('UcouponShop')->alias('us')->join('__GUSEB__ gb','gb.shop_id=us.shop_id')->where(array('us.clid'=>$coupon['id'],'gb.goods_id'=>$goods_id))->count();
+          //     if ($count<=0) 
+          //     {
+          //      $coupon['can_use']=0;
+          //     }
+          //   }else{
+          //     $coupon['can_use']=0;
+          //   }
+          // }
 
         }else{
           //代金券情况下
