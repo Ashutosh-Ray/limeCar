@@ -65,11 +65,6 @@ class Index extends MobileBase {
         return $this->fetch();
         return $this->fetch();
     }
-    public function banners()
-    {
-        $banners = M('Ad')->where(array('pid'=>1,'media_type'=>0,'position_type'=>1))->order('orderby DESC')->select();
-        exit(json_encode(array('status'=>1,'msg'=>'ok','data'=>$banners)));
-    }
 
     /**
      * 分类列表显示
