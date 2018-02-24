@@ -81,10 +81,17 @@
 <script type="text/javascript">
   $(function(){
     $(".coupon").click(function(){
-      $(".order_coupon,.order_mask").slideDown()
+      $(".order_mask").slideDown()
+       setTimeout(function(){
+        $(".order_coupon").slideDown()
+      },500);
+      // $(".order_coupon").slideDown()
     })
   })
   function cancleMask(){
+      // setTimeout(function(){
+      //   $(".order_coupon,.order_mask").slideUp()
+      // },1000);
       $(".order_coupon,.order_mask").slideUp()
   }
 

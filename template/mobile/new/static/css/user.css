@@ -146,7 +146,7 @@ background-size: 100%;}
 
 /*我的订单user_order_list.lbi*/
 .order{ width:100%; overflow:hidden; background:#FFF}
-.order_list{ width:100%; overflow:hidden; background:#FFF; margin-bottom:0px; border-bottom: 1px solid #ccc;}
+.order_list{ width:100%; overflow:hidden; background:#FFF; margin-bottom:0px;}
 .order_list h2{ width:100%; margin:auto; height:40px; border-bottom:1px solid #eeeeee;font-size:14px; line-height:40px; color:#666; font-weight:normal;padding-left: 10px; position: relative; overflow: hidden;}
 .order_list h2:nth-child(3) a {
 	position: relative;
